@@ -1,0 +1,30 @@
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\bin\Debug\Sem2IntroProjectWaterfall0.1.exe.config
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\bin\Debug\Sem2IntroProjectWaterfall0.1.exe
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\bin\Debug\Sem2IntroProjectWaterfall0.1.pdb
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0.1.csprojAssemblyReference.cache
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.Dashboard.resources
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.LoginScreen.resources
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.Properties.Resources.resources
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0.1.csproj.GenerateResource.cache
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0.1.exe
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0.1.pdb
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.EmployeeListing.resources
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.EmployeeManagement.resources
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.StockManagement.resources
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.Workshifts.resources
+E:\Projects\Uni\AD\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.StatisticsForm.resources
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\bin\Debug\Sem2IntroProjectWaterfall0.1.exe.config
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\bin\Debug\Sem2IntroProjectWaterfall0.1.exe
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\bin\Debug\Sem2IntroProjectWaterfall0.1.pdb
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0.1.csprojAssemblyReference.cache
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.Dashboard.resources
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.EmployeeListing.resources
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.EmployeeManagement.resources
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.LoginScreen.resources
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.Properties.Resources.resources
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.StatisticsForm.resources
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.StockManagement.resources
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0._1.Workshifts.resources
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0.1.csproj.GenerateResource.cache
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0.1.exe
+C:\Users\Aleksandar\Desktop\Fontys Stuff\S2\Project\Software\Sem2IntroProjectWaterfall0.1\Sem2IntroProjectWaterfall0.1\obj\Debug\Sem2IntroProjectWaterfall0.1.pdb
