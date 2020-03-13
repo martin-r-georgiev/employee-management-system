@@ -14,7 +14,7 @@ namespace Sem2IntroProjectWaterfall0._1
         private string password;
         private decimal salaryHourlyRate;
         private Role role;
-        private int departmentID;
+        private string departmentID;
         private string firstName;
         private string lastName;
         private string nationality;
@@ -116,7 +116,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
-        public int DepartmentID
+        public string DepartmentID
         {
             get { return this.departmentID; }
             set
@@ -293,7 +293,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         //Constructors
 
-        public Employee(string newUsername, string newPassword, decimal newSalaryRate, Role newRole, int newDepID)
+        public Employee(string newUsername, string newPassword, decimal newSalaryRate, Role newRole, string newDepID)
         {
             this.username = newUsername;
             this.password = newPassword;
@@ -350,7 +350,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     this.password = dataReader.GetString(2);
                     this.salaryHourlyRate = dataReader.GetDecimal(3);
                     this.role = (Role) dataReader.GetInt32(4);
-                    this.departmentID = dataReader.GetInt32(5);
+                    this.departmentID = dataReader.GetString(5);
                     this.firstName = dataReader.GetString(7);
                     this.lastName = dataReader.GetString(8);
                     this.nationality = (dataReader.IsDBNull(9)) ? null : dataReader.GetString(9);

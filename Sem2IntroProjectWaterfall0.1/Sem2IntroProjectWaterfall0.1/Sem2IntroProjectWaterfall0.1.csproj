@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Forms\Dashboard.cs">
       <SubType>Form</SubType>
@@ -73,6 +74,7 @@
     <Compile Include="Forms\LoginScreen.Designer.cs">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions\NameTakenException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\StatisticsForm.cs">
