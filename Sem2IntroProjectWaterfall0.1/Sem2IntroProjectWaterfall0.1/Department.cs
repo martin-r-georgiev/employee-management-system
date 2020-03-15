@@ -60,6 +60,8 @@ namespace Sem2IntroProjectWaterfall0._1
 		}
 
         #endregion
+        #region Constructors
+
         public Department(string name, string address)
         {
             this.Name = name;
@@ -76,9 +78,9 @@ namespace Sem2IntroProjectWaterfall0._1
 
             if (dataReader.Read())
             {
-                throw new Exception("Department name taken!");
                 cmd.Dispose();
                 dataReader.Close();
+                throw new Exception("Department name taken!");
             }
             else
             {
@@ -155,6 +157,8 @@ namespace Sem2IntroProjectWaterfall0._1
             con.Close();
         }
 
+        #endregion
+        #region Methods
 
         private string GenerateDepartmentID()
         {
@@ -166,5 +170,42 @@ namespace Sem2IntroProjectWaterfall0._1
 
             return GuidString;
         }
+
+        public override string ToString()
+        {
+            return $"Department {this.Name} on {this.Address} - {this.employees.Count} Workers.";
+        }
+
+        public void RemoveEmployee(string userID)
+        {
+            bool atleastOneWorking = (employees.Count > 1) ? true : false;
+
+            if (atleastOneWorking)
+            {
+                foreach (Employee e in employees)
+                    if (e.UserID == userID)
+                    {
+                        e.RemoveFromDatabase();
+                        employees.Remove(e);
+                        break;
+                    }
+            } else { throw new Exception("You must always have one employee in a department!"); }
+        }
+
+        public void RemoveFromDatabase()
+        {
+            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
+            foreach (Employee e in employees)
+                e.RemoveFromDatabase();
+            //First we clear the employees in the department that were not previously moved, then we delete the actual deaprtment
+            using (MySqlCommand cmd = new MySqlCommand($"DELETE department WHERE departmentID=@departmentID", con))
+            {
+                cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            con.Close();
+        }
     }
+    #endregion
 }

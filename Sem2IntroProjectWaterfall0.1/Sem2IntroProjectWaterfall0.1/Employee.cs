@@ -351,14 +351,14 @@ namespace Sem2IntroProjectWaterfall0._1
                     this.salaryHourlyRate = dataReader.GetDecimal(3);
                     this.role = (Role) dataReader.GetInt32(4);
                     this.departmentID = dataReader.GetString(5);
-                    this.firstName = dataReader.GetString(7);
-                    this.lastName = dataReader.GetString(8);
+                    this.firstName = (dataReader.IsDBNull(7)) ? null : dataReader.GetString(7);
+                    this.lastName = (dataReader.IsDBNull(8)) ? null : dataReader.GetString(8);
                     this.nationality = (dataReader.IsDBNull(9)) ? null : dataReader.GetString(9);
                     this.address = (dataReader.IsDBNull(10)) ? null : dataReader.GetString(10);
                     this.email = (dataReader.IsDBNull(11)) ? null : dataReader.GetString(11);
                     this.phoneNumber = (dataReader.IsDBNull(12)) ? null : dataReader.GetString(12);
-                    this.dateofBirth = dataReader.GetDateTime(13);
-                    this.sex = dataReader.GetBoolean(14);
+                    if (!dataReader.IsDBNull(13)) this.dateofBirth = dataReader.GetDateTime(13);
+                    if (!dataReader.IsDBNull(14)) this.sex = dataReader.GetBoolean(14);
                     if (!dataReader.IsDBNull(15)) this.startDate = dataReader.GetDateTime(15);
                     if (!dataReader.IsDBNull(16)) this.endDate = dataReader.GetDateTime(16);
                 }
