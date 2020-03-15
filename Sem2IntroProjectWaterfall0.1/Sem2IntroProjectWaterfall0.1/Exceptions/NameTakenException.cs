@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sem2IntroProjectWaterfall0._1.Forms
+namespace Sem2IntroProjectWaterfall0._1
 {
     class NameTakenException : Exception
     {

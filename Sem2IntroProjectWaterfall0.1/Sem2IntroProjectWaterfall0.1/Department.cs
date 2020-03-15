@@ -80,7 +80,7 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 cmd.Dispose();
                 dataReader.Close();
-                throw new Exception("Department name taken!");
+                throw new NameTakenException("Department name taken!");
             }
             else
             {
@@ -109,9 +109,45 @@ namespace Sem2IntroProjectWaterfall0._1
                 con.Close();
             }
         }
-
-        public Department(string employeeId)
+        public Department(string departmentId)
         {
+            this.DepartmentId = departmentId;
+            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
+            MySqlCommand cmd;
+            MySqlDataReader dataReader;
+
+            using (cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
+            {
+                cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
+                dataReader = cmd.ExecuteReader();
+
+                if (dataReader.Read())
+                {
+                    this.Name = dataReader.GetString(0);
+                    this.Address = dataReader.GetString(1);
+                }
+            }
+            //Get all other properties from department table
+            cmd.Dispose();
+            dataReader.Close();
+
+            cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con);
+            cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+            dataReader = cmd.ExecuteReader();
+            this.employees = new List<Employee>();
+
+            while (dataReader.Read())
+            {
+                employees.Add(new Employee(dataReader.GetString(0)));
+            }
+            cmd.Dispose();
+            dataReader.Close();
+            con.Close();
+        }
+        public Department(string employeeId, bool withEmployeeId)
+        {
+            withEmployeeId = true;
+
             MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
             MySqlCommand cmd;
             MySqlDataReader dataReader;
@@ -189,7 +225,8 @@ namespace Sem2IntroProjectWaterfall0._1
                         employees.Remove(e);
                         break;
                     }
-            } else { throw new Exception("You must always have one employee in a department!"); }
+            } else {
+                throw new MinimalEmployeesException("You must always have one employee in a department!"); }
         }
 
         public void RemoveFromDatabase()
@@ -198,13 +235,40 @@ namespace Sem2IntroProjectWaterfall0._1
             foreach (Employee e in employees)
                 e.RemoveFromDatabase();
             //First we clear the employees in the department that were not previously moved, then we delete the actual deaprtment
-            using (MySqlCommand cmd = new MySqlCommand($"DELETE department WHERE departmentID=@departmentID", con))
+            using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM department WHERE departmentID=@departmentID", con))
             {
                 cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
             con.Close();
+        }
+        
+        public static List<Department> GetAllDepartments()
+        {
+            List<Department> allDepartments = new List<Department>();
+            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
+            MySqlCommand cmd;
+            MySqlDataReader dataReader;
+
+            cmd = new MySqlCommand($"SELECT departmentID FROM department", con);
+            dataReader = cmd.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                allDepartments.Add(new Department(dataReader.GetString(0)));
+            }
+            cmd.Dispose();
+            dataReader.Close();
+            con.Close();
+            return allDepartments;
+        }
+
+        public static void AssignEmployeeTo (string userID, string newDepartmentId)
+        {
+            foreach (Employee e in Employee.GetAllEmployees())
+                if (e.UserID == userID)
+                    e.DepartmentID = newDepartmentId;
         }
     }
     #endregion
