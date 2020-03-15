@@ -54,5 +54,9 @@ namespace Sem2IntroProjectWaterfall0._1
             newScreen.Show();
             this.Close();
         }
+
+        private void BtnCheckin_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
