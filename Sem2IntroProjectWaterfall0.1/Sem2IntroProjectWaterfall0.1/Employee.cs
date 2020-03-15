@@ -364,6 +364,23 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 cmd.Dispose();
                 dataReader.Close();
+
+                /*Console.WriteLine($"UserID: {this.UserID}");
+                Console.WriteLine($"Username: {this.Username}");
+                Console.WriteLine($"Password: {this.Password}");
+                Console.WriteLine($"SalaryHourlyRate: {this.SalaryHourlyRate}");
+                Console.WriteLine($"Role: {this.Role}");
+                Console.WriteLine($"DepID: {this.DepartmentID}");
+                Console.WriteLine($"FirstName: {this.FirstName}");
+                Console.WriteLine($"LastName: {this.LastName}");
+                Console.WriteLine($"Nationality: {this.Nationality}");
+                Console.WriteLine($"Address: {this.Address}");
+                Console.WriteLine($"Email: {this.Email}");
+                Console.WriteLine($"PhoneNumber: {this.PhoneNumber}");
+                Console.WriteLine($"DateOfBirth: {this.DateOfBirth}");
+                Console.WriteLine($"Sex: {this.Sex}");
+                Console.WriteLine($"StartDate: {this.StartDate}");
+                Console.WriteLine($"EndDate: {this.EndDate}");*/
             }
             conn.Close();
         }
