@@ -9,7 +9,7 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     class Inventory
     {
-        List<StockItem> items = new List<StockItem>();
+        List<StockItem> items;
         #region variables + properties
         private string departmentId;
         #endregion
@@ -18,6 +18,22 @@ namespace Sem2IntroProjectWaterfall0._1
         public Inventory(string departmentId)
         {
             this.departmentId = departmentId;
+            items = new List<StockItem>();
+            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
+            MySqlCommand cmd;
+            MySqlDataReader dataReader;
+
+            cmd = new MySqlCommand($"SELECT * FROM Stock WHERE CurrentAmmount<Treshold", con);
+            dataReader = cmd.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                items.Add(new StockItem(dataReader["StockID"].ToString(),Convert.ToInt32(dataReader["threshold"]),Convert.ToInt32(dataReader["currentAmmount"])));
+            }
+            cmd.Dispose();
+            dataReader.Close();
+            con.Close();
+
         }
         #endregion
         #region Methods

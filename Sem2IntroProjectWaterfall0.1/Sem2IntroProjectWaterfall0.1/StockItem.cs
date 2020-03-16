@@ -35,6 +35,11 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
             }
         }
+        public string StockID
+        {
+            get { return this.stockID; }
+            private set { }
+        }
 
         public int Threshold
         {
@@ -95,6 +100,14 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             
             this.stockID = stockID;
+        }
+
+        public StockItem(string stockID,  int treshold, int currentAmmount)
+        {
+
+            this.stockID = stockID;
+            this.threshold = treshold;
+            this.currentAmount = currentAmmount;
         }
 
         //TODO - Stockitem class constructor overload - should be able to create a stock item that allready exists for a different department and also select a stockitem by stockID (or name? idk)
