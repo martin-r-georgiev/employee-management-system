@@ -135,6 +135,11 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
+        public string Name
+        {
+            get { return $"{this.firstName} {this.lastName}"; }
+        }
+
         public string FirstName
         {
             get { return this.firstName; }
@@ -481,14 +486,15 @@ namespace Sem2IntroProjectWaterfall0._1
 
             conn.Close();
         }
+
         public static List<Employee> GetAllEmployees()
         {
             List<Employee> allEmployees = new List<Employee>();
-            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
+            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
             MySqlCommand cmd;
             MySqlDataReader dataReader;
 
-            cmd = new MySqlCommand($"SELECT userID FROM users", con);
+            cmd = new MySqlCommand($"SELECT userID FROM users", conn);
             dataReader = cmd.ExecuteReader();
 
             while (dataReader.Read())
@@ -497,8 +503,25 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             cmd.Dispose();
             dataReader.Close();
-            con.Close();
+            conn.Close();
             return allEmployees;
+        }
+
+        public static bool IsUniqueUsername(string targetUsername)
+        {
+            bool result = false;
+            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
+            
+            using(MySqlCommand cmd = new MySqlCommand($"SELECT username FROM users WHERE username=@username", conn))
+            {
+                cmd.Parameters.AddWithValue("@username", targetUsername);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.Read()) result = true;
+                dataReader.Dispose();
+                cmd.Dispose();
+            }
+
+            return result;
         }
     }
 }
