@@ -29,8 +29,6 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnStocks_Click(object sender, EventArgs e)
         {
-            Department test = new Department("gPkjMBgIEG0O54KDScyTQ");
-            MessageBox.Show(test.Address);
             StockManagement newScreen = new StockManagement();
             newScreen.Show();
             this.Close();
@@ -55,6 +53,10 @@ namespace Sem2IntroProjectWaterfall0._1
             Workshifts newScreen = new Workshifts();
             newScreen.Show();
             this.Close();
+        }
+
+        private void BtnCheckin_Click(object sender, EventArgs e)
+        {
         }
     }
 }

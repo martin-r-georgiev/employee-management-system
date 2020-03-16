@@ -481,5 +481,24 @@ namespace Sem2IntroProjectWaterfall0._1
 
             conn.Close();
         }
+        public static List<Employee> GetAllEmployees()
+        {
+            List<Employee> allEmployees = new List<Employee>();
+            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
+            MySqlCommand cmd;
+            MySqlDataReader dataReader;
+
+            cmd = new MySqlCommand($"SELECT userID FROM users", con);
+            dataReader = cmd.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                allEmployees.Add(new Employee(dataReader.GetString(0)));
+            }
+            cmd.Dispose();
+            dataReader.Close();
+            con.Close();
+            return allEmployees;
+        }
     }
 }
