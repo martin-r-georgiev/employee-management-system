@@ -154,7 +154,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
 
         #endregion
-
+        
+        #region Auxiliary methods 
         public int getindex(StockItem item)
         {
             int i=0;
@@ -165,6 +166,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             return -1;
         }
+        #endregion
 
     }
 }
