@@ -41,11 +41,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
             }
         }
-        public string StockID
-        {
-            get { return this.stockID; }
-            private set { }
-        }
+       
 
         public int Threshold
         {
