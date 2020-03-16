@@ -68,7 +68,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
 
             conn.Close();
-            items.RemoveAt(getindex(item));
+            items.RemoveAt(getindex(item.StockID));
         }
         public void UpdateAmmount(int newAmmount, string StockID) //good
         {
@@ -144,7 +144,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 string stockID=dataReader["stockID"].ToString();
                 int threshold=Convert.ToInt32(dataReader["threshold"]);
                 int currentammount=Convert.ToInt32(dataReader["currentAmmount"]);
-                items.Add(new StockItem(stockID,threshold,currentammount)); // maybe add name to stock table
+                Allitems.Add(new StockItem(stockID,threshold,currentammount)); // maybe add name to stock table
             }
             cmd.Dispose();
             dataReader.Close();
@@ -156,12 +156,12 @@ namespace Sem2IntroProjectWaterfall0._1
         #endregion
         
         #region Auxiliary methods 
-        public int getindex(StockItem item)
+        public int getindex(string StockID)
         {
             int i=0;
             for(i=0;i<items.Count();i++)
                 {
-                if(item.StockID==items[i].StockID)
+                if(StockID==items[i].StockID)
                     return i;
             }
             return -1;
