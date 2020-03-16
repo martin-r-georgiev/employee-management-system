@@ -9,6 +9,7 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     class Inventory
     {
+        //pull 
         List<StockItem> items = new List<StockItem>();
         #region variables + properties
         private string departmentId;

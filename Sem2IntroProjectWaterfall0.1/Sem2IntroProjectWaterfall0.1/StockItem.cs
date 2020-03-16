@@ -90,6 +90,13 @@ namespace Sem2IntroProjectWaterfall0._1
                 this.departmentID = value;
             }
         }
+
+        public StockItem(string stockID)
+        {
+            
+            this.stockID = stockID;
+        }
+
         //TODO - Stockitem class constructor overload - should be able to create a stock item that allready exists for a different department and also select a stockitem by stockID (or name? idk)
         public StockItem(string name, int threshold, string departmentID, int currentAmount)
         {
