@@ -90,7 +90,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 this.departmentID = value;
             }
         }
-
+        //TODO - Stockitem class constructor overload - should be able to create a stock item that allready exists for a different department and also select a stockitem by stockID (or name? idk)
         public StockItem(string name, int threshold, string departmentID, int currentAmount)
         {
             this.name = name;
@@ -132,7 +132,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             conn.Close();
         }
-
+        //TODO - Method to get all stocks by a department, method to get all different stocks from stock_item (Inventory class?)
         private string GenerateStockID()
         {
             Guid key = Guid.NewGuid();
