@@ -9,7 +9,6 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     class Inventory
     {
-        //pull 
         List<StockItem> items = new List<StockItem>();
         #region variables + properties
         private string departmentId;
@@ -22,8 +21,8 @@ namespace Sem2IntroProjectWaterfall0._1
         }
         #endregion
         #region Methods
-       // useless lmao public void AddItem(StockItem item)
-     
+        // useless lmao public void AddItem(StockItem item)
+
         public void RemoveItem(StockItem item)
         {
             MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
@@ -71,7 +70,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             conn.Close();
         }
-    
+
 
         public static List<StockItem> GetRestockItems()
         {
