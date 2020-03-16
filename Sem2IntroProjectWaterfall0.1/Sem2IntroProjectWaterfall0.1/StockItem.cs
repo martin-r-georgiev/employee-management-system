@@ -15,6 +15,12 @@ namespace Sem2IntroProjectWaterfall0._1
         private int currentAmount;
         private string departmentID;
 
+         public string StockID
+        {
+        get{ return this.stockID;}
+        private set{}
+        }
+
         public string Name
         {
             get { return this.name; }
