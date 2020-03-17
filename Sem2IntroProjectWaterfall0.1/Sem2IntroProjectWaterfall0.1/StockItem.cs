@@ -9,11 +9,17 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     class StockItem
     {
+        #region Var and prop
         private string name;
         private string stockID;
         private int threshold;
         private int currentAmount;
         private string departmentID;
+
+        public string StockID
+        {
+            get{ return this.stockID; }
+        }
 
         public string Name
         {
@@ -35,11 +41,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
             }
         }
-        public string StockID
-        {
-            get { return this.stockID; }
-            private set { }
-        }
+       
 
         public int Threshold
         {
@@ -95,6 +97,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 this.departmentID = value;
             }
         }
+        #endregion
 
         public StockItem(string stockID)
         {
@@ -133,6 +136,14 @@ namespace Sem2IntroProjectWaterfall0._1
             cmd.Dispose();
             dataReader.Close();
 
+            using (cmd = new MySqlCommand($"INSERT IGNORE stock_item (stockID, name) VALUES (@stockID, @name)", conn))
+            {
+                cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                cmd.Parameters.AddWithValue("@name", this.name);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+
             using (cmd = new MySqlCommand($"INSERT INTO stock (stockID, departmentID, threshold, currentAmount) VALUES (@stockID, @departmentID, @threshold, @currentAmount)", conn))
             {
                 cmd.Parameters.AddWithValue("@stockID", this.stockID);
@@ -143,16 +154,9 @@ namespace Sem2IntroProjectWaterfall0._1
                 cmd.Dispose();
             }
 
-            using (cmd = new MySqlCommand($"INSERT IGNORE stock_item (stockID, name) VALUES (@stockID, @name)", conn))
-            {
-                cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                cmd.Parameters.AddWithValue("@name", this.name);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-            }
             conn.Close();
         }
-        //TODO - Method to get all stocks by a department, method to get all different stocks from stock_item (Inventory class?)
+        
         private string GenerateStockID()
         {
             Guid key = Guid.NewGuid();

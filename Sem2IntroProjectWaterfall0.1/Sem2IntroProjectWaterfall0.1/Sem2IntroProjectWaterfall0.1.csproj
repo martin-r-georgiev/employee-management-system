@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Exceptions\NameTakenException.cs" />
     <Compile Include="Exceptions\MinimalEmployeesException.cs" />
+    <Compile Include="HashManager.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="LoggedInUser.cs" />
     <Compile Include="Program.cs" />

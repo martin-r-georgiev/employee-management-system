@@ -9,6 +9,8 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     public class Employee
     {
+        #region Instance Variables
+
         private string userID;
         private string username;
         private string password;
@@ -26,14 +28,11 @@ namespace Sem2IntroProjectWaterfall0._1
         private Nullable<DateTime> startDate;
         private Nullable<DateTime> endDate;
         private string mainDetails;
+
+        #endregion
+
+        #region Properties
         //Properties
-        public string MainDetails
-        {
-            get { return mainDetails; }
-            set { mainDetails = value; }
-        }
-
-
 
         public string UserID
         {
@@ -72,7 +71,8 @@ namespace Sem2IntroProjectWaterfall0._1
                     MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
                     using (MySqlCommand cmd = new MySqlCommand($"UPDATE users SET password=@password WHERE userID=@userID", conn))
                     {
-                        cmd.Parameters.AddWithValue("@password", value);
+                        string hashValue = HashManager.GetSha256(value);
+                        cmd.Parameters.AddWithValue("@password", hashValue);
                         cmd.Parameters.AddWithValue("@userID", this.userID);
                         cmd.ExecuteNonQuery();
                         cmd.Dispose();
@@ -302,13 +302,20 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.endDate; }
             set { this.endDate = value; }
         }
+        public string MainDetails
+        {
+            get { return mainDetails; }
+            set { mainDetails = value; }
+        }
+        #endregion
 
+        #region Constructors
         //Constructors
 
         public Employee(string newUsername, string newPassword, decimal newSalaryRate, Role newRole, string newDepID)
         {
             this.username = newUsername;
-            this.password = newPassword;
+            this.password = HashManager.GetSha256(newPassword);
             this.salaryHourlyRate = newSalaryRate;
             this.role = newRole;
             this.departmentID = newDepID;
@@ -343,8 +350,8 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             conn.Close();
             Department employeeDepartment = new Department(this.DepartmentID);
-            if (firstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
-            else this.MainDetails = $"{Username} ({employeeDepartment.Name})";
+            if (this.FirstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
+            else this.MainDetails = $"{username} ({employeeDepartment.Name})";
         }
 
         public Employee(string userIdentifier)
@@ -399,10 +406,13 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             conn.Close();
             Department employeeDepartment = new Department(this.DepartmentID);
-            if (firstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
-            else this.MainDetails = $"{Username} ({employeeDepartment.Name})";
+            if (this.FirstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
+            else this.MainDetails = $"{username} ({employeeDepartment.Name})";
         }
 
+        #endregion
+
+        #region Class methods
         //Methods
         private string GenerateUserID()
         {
@@ -536,5 +546,6 @@ namespace Sem2IntroProjectWaterfall0._1
 
             return result;
         }
+        #endregion
     }
 }

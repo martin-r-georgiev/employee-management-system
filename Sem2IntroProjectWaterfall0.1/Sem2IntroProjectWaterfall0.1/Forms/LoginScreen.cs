@@ -31,7 +31,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     using (MySqlCommand cmd = new MySqlCommand($"SELECT userID, username, password, role FROM users WHERE username=@username AND password=@password", conn))
                     {
                         cmd.Parameters.AddWithValue("@username", tbUsername.Text);
-                        cmd.Parameters.AddWithValue("@password", tbPassword.Text);
+                        cmd.Parameters.AddWithValue("@password", HashManager.GetSha256(tbPassword.Text));
                         MySqlDataReader dataReader = cmd.ExecuteReader();
 
                         if (dataReader.Read())
