@@ -18,9 +18,12 @@ namespace Sem2IntroProjectWaterfall0._1
         public EmployeeManagement()
         {
             InitializeComponent();
-            RefreshComboboxes();
-            employees = Employee.GetAllEmployees();
+<<<<<<< HEAD
             departments = Department.GetAllDepartments();
+            employees = Employee.GetAllEmployees();
+=======
+            RefreshComboboxes();
+>>>>>>> d4ba0124ec72bcc70457534699b37f96f97cea9b
         }
 
         private void UpdateDepartmentList() { departments = Department.GetAllDepartments(); }
@@ -105,14 +108,15 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
             }
             else MessageBox.Show("Missing information in required fields. Please check for mistakes and try again.");
-            {
-                try
-                {
-                    Department newDepartment = new Department(tbDepartmentCreateName.Text, tbDepartmentCreateAddress.Text);
-                }
-                catch (Exception exc) { MessageBox.Show(exc.Message); }
-            }
         }
+
+        private void btnCreateNewDepartment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Department newDepartment = new Department(tbDepartmentCreateName.Text, tbDepartmentCreateAddress.Text);
+            } catch (Exception exc) { MessageBox.Show(exc.Message); }
+            }
 
         void RefreshComboboxes()
         {
@@ -168,20 +172,5 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); }
         }
-        
-        private void cmbAssignUserList_DropDown(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCreateNewDepartment_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Department newDepartment = new Department(tbDepartmentCreateName.Text, tbDepartmentCreateAddress.Text);
-            }
-            catch (Exception exc) { MessageBox.Show(exc.Message); }
-        }
-
     }
 }
