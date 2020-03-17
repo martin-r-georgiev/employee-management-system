@@ -25,8 +25,15 @@ namespace Sem2IntroProjectWaterfall0._1
         private bool sex;
         private Nullable<DateTime> startDate;
         private Nullable<DateTime> endDate;
-
+        private string mainDetails;
         //Properties
+        public string MainDetails
+        {
+            get { return mainDetails; }
+            set { mainDetails = value; }
+        }
+
+
 
         public string UserID
         {
@@ -335,6 +342,9 @@ namespace Sem2IntroProjectWaterfall0._1
                 cmd.Dispose();
             }
             conn.Close();
+            Department employeeDepartment = new Department(this.DepartmentID);
+            if (firstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
+            else this.MainDetails = $"{Username} ({employeeDepartment.Name})";
         }
 
         public Employee(string userIdentifier)
@@ -388,6 +398,9 @@ namespace Sem2IntroProjectWaterfall0._1
                 Console.WriteLine($"EndDate: {this.EndDate}");*/
             }
             conn.Close();
+            Department employeeDepartment = new Department(this.DepartmentID);
+            if (firstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
+            else this.MainDetails = $"{Username} ({employeeDepartment.Name})";
         }
 
         //Methods

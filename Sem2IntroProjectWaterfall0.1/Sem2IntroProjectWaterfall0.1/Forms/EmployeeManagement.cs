@@ -15,6 +15,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public EmployeeManagement()
         {
             InitializeComponent();
+            RefreshComboboxes();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -67,6 +68,69 @@ namespace Sem2IntroProjectWaterfall0._1
         private void cmbAssignUserList_DropDown(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCreateNewDepartment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Department newDepartment = new Department(tbDepartmentCreateName.Text, tbDepartmentCreateAddress.Text);
+            } catch (Exception exc) { MessageBox.Show(exc.Message); }
+            }
+
+        void RefreshComboboxes()
+        {
+            List<Employee> allEmployees = Employee.GetAllEmployees();
+            List<Department> allDepartments = Department.GetAllDepartments();
+
+            cbEmployeeAssign.Items.Clear();
+            cbDepartmentAssign.Items.Clear();
+            cbDepartmentEdit.Items.Clear();
+            cbDepartmentRemove.Items.Clear();
+
+            cbEmployeeAssign.DataSource = allEmployees;
+            cbEmployeeAssign.DisplayMember = "MainDetails";
+            cbDepartmentAssign.DataSource = allDepartments;
+            cbDepartmentAssign.DisplayMember = "Name";
+            cbDepartmentEdit.DataSource = allDepartments;
+            cbDepartmentEdit.DisplayMember = "Name";
+            cbDepartmentRemove.DataSource = allDepartments;
+            cbDepartmentRemove.DisplayMember = "Name";
+        }
+
+        private void btnAssignEmployee_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Employee selectedUser = (Employee)cbEmployeeAssign.SelectedItem;
+                Department selectedDepartment = (Department)cbDepartmentAssign.SelectedItem;
+                Department.AssignEmployeeTo(selectedUser.UserID, selectedDepartment.DepartmentId);
+                RefreshComboboxes();
+            }catch(Exception exc) { MessageBox.Show(exc.Message); }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tbDepartmentEditAddress.TextLength > 0 && tbDepartmentEditName.TextLength > 0)
+                {
+                    Department selectedDepartment = (Department)cbDepartmentEdit.SelectedItem;
+                    selectedDepartment.Address = tbDepartmentEditAddress.Text;
+                    selectedDepartment.Name = tbDepartmentEditName.Text;
+                }
+            }
+            catch (Exception exc) { MessageBox.Show(exc.Message); }
+        }
+
+        private void btnDepartmentRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Department selectedDepartment = (Department)cbDepartmentEdit.SelectedItem;
+                selectedDepartment.RemoveFromDatabase();
+            }
+            catch (Exception exc) { MessageBox.Show(exc.Message); }
         }
     }
 }

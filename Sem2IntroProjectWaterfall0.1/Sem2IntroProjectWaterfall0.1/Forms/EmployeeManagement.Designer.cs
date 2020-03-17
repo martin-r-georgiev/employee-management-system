@@ -59,30 +59,30 @@
             this.lblHouseUnit = new System.Windows.Forms.Label();
             this.tbLastName = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tbDepartmentCreateName = new System.Windows.Forms.TextBox();
-            this.tbDepartmentCreateAddress = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnCreateNewDepartment = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbEmployeeAssign = new System.Windows.Forms.ComboBox();
-            this.cbDepartmentAssign = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnAssignEmployee = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.cbDepartmentRemove = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.cbDepartmentEdit = new System.Windows.Forms.ComboBox();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.tbDepartmentEditAddress = new System.Windows.Forms.TextBox();
             this.tbDepartmentEditName = new System.Windows.Forms.TextBox();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.cbDepartmentEdit = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnDepartmentRemove = new System.Windows.Forms.Button();
+            this.cbDepartmentRemove = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnAssignEmployee = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbDepartmentAssign = new System.Windows.Forms.ComboBox();
+            this.cbEmployeeAssign = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnCreateNewDepartment = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbDepartmentCreateAddress = new System.Windows.Forms.TextBox();
+            this.tbDepartmentCreateName = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gbAssignUser.SuspendLayout();
@@ -441,7 +441,7 @@
             this.tabPage2.Controls.Add(this.cbDepartmentEdit);
             this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.btnDepartmentRemove);
             this.tabPage2.Controls.Add(this.cbDepartmentRemove);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label8);
@@ -463,172 +463,15 @@
             this.tabPage2.Text = "Departments";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tbDepartmentCreateName
+            // btnEdit
             // 
-            this.tbDepartmentCreateName.Location = new System.Drawing.Point(15, 66);
-            this.tbDepartmentCreateName.Name = "tbDepartmentCreateName";
-            this.tbDepartmentCreateName.Size = new System.Drawing.Size(169, 20);
-            this.tbDepartmentCreateName.TabIndex = 0;
-            // 
-            // tbDepartmentCreateAddress
-            // 
-            this.tbDepartmentCreateAddress.Location = new System.Drawing.Point(15, 112);
-            this.tbDepartmentCreateAddress.Multiline = true;
-            this.tbDepartmentCreateAddress.Name = "tbDepartmentCreateAddress";
-            this.tbDepartmentCreateAddress.Size = new System.Drawing.Size(169, 61);
-            this.tbDepartmentCreateAddress.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(75, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(172, 16);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Create New Department";
-            // 
-            // btnCreateNewDepartment
-            // 
-            this.btnCreateNewDepartment.Location = new System.Drawing.Point(15, 189);
-            this.btnCreateNewDepartment.Name = "btnCreateNewDepartment";
-            this.btnCreateNewDepartment.Size = new System.Drawing.Size(169, 23);
-            this.btnCreateNewDepartment.TabIndex = 4;
-            this.btnCreateNewDepartment.Text = "Create";
-            this.btnCreateNewDepartment.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(75, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Address";
-            // 
-            // cbEmployeeAssign
-            // 
-            this.cbEmployeeAssign.FormattingEnabled = true;
-            this.cbEmployeeAssign.Location = new System.Drawing.Point(15, 286);
-            this.cbEmployeeAssign.Name = "cbEmployeeAssign";
-            this.cbEmployeeAssign.Size = new System.Drawing.Size(169, 21);
-            this.cbEmployeeAssign.TabIndex = 3;
-            // 
-            // cbDepartmentAssign
-            // 
-            this.cbDepartmentAssign.FormattingEnabled = true;
-            this.cbDepartmentAssign.Location = new System.Drawing.Point(15, 332);
-            this.cbDepartmentAssign.Name = "cbDepartmentAssign";
-            this.cbDepartmentAssign.Size = new System.Drawing.Size(169, 21);
-            this.cbDepartmentAssign.TabIndex = 6;
-            // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 228);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(172, 39);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Assign an employee to another department";
-            // 
-            // btnAssignEmployee
-            // 
-            this.btnAssignEmployee.Location = new System.Drawing.Point(15, 359);
-            this.btnAssignEmployee.Name = "btnAssignEmployee";
-            this.btnAssignEmployee.Size = new System.Drawing.Size(169, 23);
-            this.btnAssignEmployee.TabIndex = 8;
-            this.btnAssignEmployee.Text = "Assign";
-            this.btnAssignEmployee.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(67, 270);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 13);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Employee";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(67, 316);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(62, 13);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Department";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(296, 317);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 13);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "Department";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(244, 360);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Remove";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // cbDepartmentRemove
-            // 
-            this.cbDepartmentRemove.FormattingEnabled = true;
-            this.cbDepartmentRemove.Location = new System.Drawing.Point(244, 333);
-            this.cbDepartmentRemove.Name = "cbDepartmentRemove";
-            this.cbDepartmentRemove.Size = new System.Drawing.Size(169, 21);
-            this.cbDepartmentRemove.TabIndex = 11;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(254, 286);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(150, 16);
-            this.label11.TabIndex = 14;
-            this.label11.Text = "Remove Department";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(266, 18);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(119, 16);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Edit Department";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(297, 50);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(62, 13);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "Department";
-            // 
-            // cbDepartmentEdit
-            // 
-            this.cbDepartmentEdit.FormattingEnabled = true;
-            this.cbDepartmentEdit.Location = new System.Drawing.Point(245, 66);
-            this.cbDepartmentEdit.Name = "cbDepartmentEdit";
-            this.cbDepartmentEdit.Size = new System.Drawing.Size(169, 21);
-            this.cbDepartmentEdit.TabIndex = 15;
+            this.btnEdit.Location = new System.Drawing.Point(245, 244);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(169, 23);
+            this.btnEdit.TabIndex = 22;
+            this.btnEdit.Text = "Confirm";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // label14
             // 
@@ -663,14 +506,175 @@
             this.tbDepartmentEditName.Size = new System.Drawing.Size(169, 20);
             this.tbDepartmentEditName.TabIndex = 18;
             // 
-            // btnEdit
+            // label12
             // 
-            this.btnEdit.Location = new System.Drawing.Point(245, 244);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(169, 23);
-            this.btnEdit.TabIndex = 22;
-            this.btnEdit.Text = "Confirm";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(266, 18);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(119, 16);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Edit Department";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(297, 50);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(62, 13);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "Department";
+            // 
+            // cbDepartmentEdit
+            // 
+            this.cbDepartmentEdit.FormattingEnabled = true;
+            this.cbDepartmentEdit.Location = new System.Drawing.Point(245, 66);
+            this.cbDepartmentEdit.Name = "cbDepartmentEdit";
+            this.cbDepartmentEdit.Size = new System.Drawing.Size(169, 21);
+            this.cbDepartmentEdit.TabIndex = 15;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(254, 286);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(150, 16);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Remove Department";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(296, 317);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(62, 13);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "Department";
+            // 
+            // btnDepartmentRemove
+            // 
+            this.btnDepartmentRemove.Location = new System.Drawing.Point(244, 360);
+            this.btnDepartmentRemove.Name = "btnDepartmentRemove";
+            this.btnDepartmentRemove.Size = new System.Drawing.Size(169, 23);
+            this.btnDepartmentRemove.TabIndex = 12;
+            this.btnDepartmentRemove.Text = "Remove";
+            this.btnDepartmentRemove.UseVisualStyleBackColor = true;
+            this.btnDepartmentRemove.Click += new System.EventHandler(this.btnDepartmentRemove_Click);
+            // 
+            // cbDepartmentRemove
+            // 
+            this.cbDepartmentRemove.FormattingEnabled = true;
+            this.cbDepartmentRemove.Location = new System.Drawing.Point(244, 333);
+            this.cbDepartmentRemove.Name = "cbDepartmentRemove";
+            this.cbDepartmentRemove.Size = new System.Drawing.Size(169, 21);
+            this.cbDepartmentRemove.TabIndex = 11;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(67, 316);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(62, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Department";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(67, 270);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Employee";
+            // 
+            // btnAssignEmployee
+            // 
+            this.btnAssignEmployee.Location = new System.Drawing.Point(15, 359);
+            this.btnAssignEmployee.Name = "btnAssignEmployee";
+            this.btnAssignEmployee.Size = new System.Drawing.Size(169, 23);
+            this.btnAssignEmployee.TabIndex = 8;
+            this.btnAssignEmployee.Text = "Assign";
+            this.btnAssignEmployee.UseVisualStyleBackColor = true;
+            this.btnAssignEmployee.Click += new System.EventHandler(this.btnAssignEmployee_Click);
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(12, 228);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(172, 39);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Assign an employee to another department";
+            // 
+            // cbDepartmentAssign
+            // 
+            this.cbDepartmentAssign.FormattingEnabled = true;
+            this.cbDepartmentAssign.Location = new System.Drawing.Point(15, 332);
+            this.cbDepartmentAssign.Name = "cbDepartmentAssign";
+            this.cbDepartmentAssign.Size = new System.Drawing.Size(169, 21);
+            this.cbDepartmentAssign.TabIndex = 6;
+            // 
+            // cbEmployeeAssign
+            // 
+            this.cbEmployeeAssign.FormattingEnabled = true;
+            this.cbEmployeeAssign.Location = new System.Drawing.Point(15, 286);
+            this.cbEmployeeAssign.Name = "cbEmployeeAssign";
+            this.cbEmployeeAssign.Size = new System.Drawing.Size(169, 21);
+            this.cbEmployeeAssign.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(75, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Address";
+            // 
+            // btnCreateNewDepartment
+            // 
+            this.btnCreateNewDepartment.Location = new System.Drawing.Point(15, 189);
+            this.btnCreateNewDepartment.Name = "btnCreateNewDepartment";
+            this.btnCreateNewDepartment.Size = new System.Drawing.Size(169, 23);
+            this.btnCreateNewDepartment.TabIndex = 4;
+            this.btnCreateNewDepartment.Text = "Create";
+            this.btnCreateNewDepartment.UseVisualStyleBackColor = true;
+            this.btnCreateNewDepartment.Click += new System.EventHandler(this.btnCreateNewDepartment_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(172, 16);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Create New Department";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(75, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Name";
+            // 
+            // tbDepartmentCreateAddress
+            // 
+            this.tbDepartmentCreateAddress.Location = new System.Drawing.Point(15, 112);
+            this.tbDepartmentCreateAddress.Multiline = true;
+            this.tbDepartmentCreateAddress.Name = "tbDepartmentCreateAddress";
+            this.tbDepartmentCreateAddress.Size = new System.Drawing.Size(169, 61);
+            this.tbDepartmentCreateAddress.TabIndex = 1;
+            // 
+            // tbDepartmentCreateName
+            // 
+            this.tbDepartmentCreateName.Location = new System.Drawing.Point(15, 66);
+            this.tbDepartmentCreateName.Name = "tbDepartmentCreateName";
+            this.tbDepartmentCreateName.Size = new System.Drawing.Size(169, 20);
+            this.tbDepartmentCreateName.TabIndex = 0;
             // 
             // EmployeeManagement
             // 
@@ -748,7 +752,7 @@
         private System.Windows.Forms.ComboBox cbDepartmentEdit;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDepartmentRemove;
         private System.Windows.Forms.ComboBox cbDepartmentRemove;
         private System.Windows.Forms.Button btnEdit;
     }
