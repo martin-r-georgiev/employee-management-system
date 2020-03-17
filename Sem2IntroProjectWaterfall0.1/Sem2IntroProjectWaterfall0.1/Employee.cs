@@ -27,6 +27,7 @@ namespace Sem2IntroProjectWaterfall0._1
         private bool sex;
         private Nullable<DateTime> startDate;
         private Nullable<DateTime> endDate;
+        private string mainDetails;
 
         #endregion
 
@@ -301,7 +302,11 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.endDate; }
             set { this.endDate = value; }
         }
-
+        public string MainDetails
+        {
+            get { return mainDetails; }
+            set { mainDetails = value; }
+        }
         #endregion
 
         #region Constructors
@@ -344,6 +349,9 @@ namespace Sem2IntroProjectWaterfall0._1
                 cmd.Dispose();
             }
             conn.Close();
+            Department employeeDepartment = new Department(this.DepartmentID);
+            if (this.FirstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
+            else this.MainDetails = $"{username} ({employeeDepartment.Name})";
         }
 
         public Employee(string userIdentifier)
@@ -397,6 +405,9 @@ namespace Sem2IntroProjectWaterfall0._1
                 Console.WriteLine($"EndDate: {this.EndDate}");*/
             }
             conn.Close();
+            Department employeeDepartment = new Department(this.DepartmentID);
+            if (this.FirstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
+            else this.MainDetails = $"{username} ({employeeDepartment.Name})";
         }
 
         #endregion
