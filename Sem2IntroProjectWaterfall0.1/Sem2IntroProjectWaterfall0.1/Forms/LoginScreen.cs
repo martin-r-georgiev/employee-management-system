@@ -48,7 +48,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 catch(MySqlException ex)
                 {
-                    MessageBox.Show(ex.ToString(), $"SQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.ToString(), $"Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 conn.Close();
             }
