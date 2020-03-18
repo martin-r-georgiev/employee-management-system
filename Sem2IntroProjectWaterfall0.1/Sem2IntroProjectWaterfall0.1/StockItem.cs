@@ -120,7 +120,7 @@ namespace Sem2IntroProjectWaterfall0._1
             this.currentAmount = currentAmmount;
         }
 
-        //TODO - Stockitem class constructor overload - should be able to create a stock item that allready exists for a different department and also select a stockitem by stockID (or name? idk)
+        //TO DO: Shorten and clean code
         public StockItem(string name, int threshold, string departmentID, int currentAmount)
         {
             this.name = name;
@@ -128,21 +128,28 @@ namespace Sem2IntroProjectWaterfall0._1
             this.currentAmount = currentAmount;
             this.departmentID = departmentID;
 
-            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
-            {
-                MySqlCommand cmd;
-                MySqlDataReader dataReader;
+            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
+            MySqlCommand cmd;
+            MySqlDataReader dataReader, reader;
 
-                do
+            cmd = new MySqlCommand("SELECT stockID FROM stock_item WHERE name=@name", conn);
+            cmd.Parameters.AddWithValue("@name", this.name);
+            dataReader = cmd.ExecuteReader();
+            if (!dataReader.Read())
+            {
+                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
                 {
-                    this.stockID = GenerateStockID();
-                    cmd = new MySqlCommand($"SELECT stockID FROM stock_item WHERE stockID=@stockID", conn);
-                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                    dataReader = cmd.ExecuteReader();
+                    do
+                    {
+                        this.stockID = GenerateStockID();
+                        cmd = new MySqlCommand($"SELECT stockID FROM stock_item WHERE stockID=@stockID", con);
+                        cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                        reader = cmd.ExecuteReader();
+                    }
+                    while (reader.Read());
+                    cmd.Dispose();
+                    dataReader.Close();
                 }
-                while (dataReader.Read());
-                cmd.Dispose();
-                dataReader.Close();
 
                 using (cmd = new MySqlCommand($"INSERT IGNORE stock_item (stockID, name) VALUES (@stockID, @name)", conn))
                 {
@@ -151,20 +158,23 @@ namespace Sem2IntroProjectWaterfall0._1
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
-
-                using (cmd = new MySqlCommand($"INSERT INTO stock (stockID, departmentID, threshold, currentAmount) VALUES (@stockID, @departmentID, @threshold, @currentAmount)", conn))
-                {
-                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                    cmd.Parameters.AddWithValue("@departmentID", this.departmentID);
-                    cmd.Parameters.AddWithValue("@threshold", this.threshold);
-                    cmd.Parameters.AddWithValue("@currentAmount", this.currentAmount);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                }
-                conn.Close();
             }
+
+            else { this.stockID = dataReader.GetString(0); }
+
+            dataReader.Dispose();
+            using (cmd = new MySqlCommand($"REPLACE INTO stock (stockID, departmentID, threshold, currentAmount) VALUES (@stockID, @departmentID, @threshold, @currentAmount)", conn))
+            {
+                cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                cmd.Parameters.AddWithValue("@departmentID", this.departmentID);
+                cmd.Parameters.AddWithValue("@threshold", this.threshold);
+                cmd.Parameters.AddWithValue("@currentAmount", this.currentAmount);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            conn.Close();
         }
-        
+
         private string GenerateStockID()
         {
             Guid key = Guid.NewGuid();
