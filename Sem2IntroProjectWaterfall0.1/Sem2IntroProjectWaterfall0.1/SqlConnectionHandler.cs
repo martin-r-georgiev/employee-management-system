@@ -22,6 +22,7 @@ namespace Sem2IntroProjectWaterfall0._1
             MySqlConnection connection = new MySqlConnection(SqlConnectionHandler.ServerConnection);
             try
             {
+                connection.Open();
                 return connection;                
             }
             catch (MySqlException e)

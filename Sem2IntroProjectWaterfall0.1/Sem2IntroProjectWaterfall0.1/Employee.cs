@@ -46,9 +46,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
-                        conn.Open();
                         using (MySqlCommand cmd = new MySqlCommand($"UPDATE users SET username=@username WHERE userID=@userID", conn))
                         {
                             cmd.Parameters.AddWithValue("@username", value);
@@ -70,9 +69,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
-                        conn.Open();
                         using (MySqlCommand cmd = new MySqlCommand($"UPDATE users SET password=@password WHERE userID=@userID", conn))
                         {
                             string hashValue = HashManager.GetSha256(value);
@@ -97,9 +95,8 @@ namespace Sem2IntroProjectWaterfall0._1
                 if (this.salaryHourlyRate >= 0) this.salaryHourlyRate = value;
                 else this.salaryHourlyRate = 0;
 
-                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand($"UPDATE users SET salary=@salary WHERE userID=@userID", conn))
                     {
                         cmd.Parameters.AddWithValue("@salary", this.salaryHourlyRate);
@@ -117,9 +114,8 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.role; }
             private set
             {
-                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand($"UPDATE users SET role=@role WHERE userID=@userID", conn))
                     {
                         cmd.Parameters.AddWithValue("@role", value);
@@ -138,9 +134,8 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.departmentID; }
             set
             {
-                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand($"UPDATE users SET departmentID=@depID WHERE userID=@userID", conn))
                     {
                         cmd.Parameters.AddWithValue("@depID", value);
@@ -166,9 +161,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
-                        conn.Open();
                         using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees SET firstName=@firstName WHERE userID=@userID", conn))
                         {
                             cmd.Parameters.AddWithValue("@firstName", value);
@@ -190,9 +184,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
-                        conn.Open();
                         using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees SET lastName=@lastName WHERE userID=@userID", conn))
                         {
                             cmd.Parameters.AddWithValue("@lastName", value);
@@ -214,9 +207,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
-                        conn.Open();
                         using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees SET nationality=@nationality WHERE userID=@userID", conn))
                         {
                             cmd.Parameters.AddWithValue("@nationality", value);
@@ -238,9 +230,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
-                        conn.Open();
                         using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees SET address=@address WHERE userID=@userID", conn))
                         {
                             cmd.Parameters.AddWithValue("@address", value);
@@ -262,9 +253,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
-                        conn.Open();
                         using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees SET email=@email WHERE userID=@userID", conn))
                         {
                             cmd.Parameters.AddWithValue("@email", value);
@@ -286,9 +276,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
-                        conn.Open();
                         using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees SET phoneNumber=@phoneNumber WHERE userID=@userID", conn))
                         {
                             cmd.Parameters.AddWithValue("@phoneNumber", value);
@@ -344,9 +333,8 @@ namespace Sem2IntroProjectWaterfall0._1
             this.role = newRole;
             this.departmentID = newDepID;
 
-            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                conn.Open();
                 MySqlCommand cmd;
                 MySqlDataReader dataReader;
 
@@ -383,9 +371,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public Employee(string userIdentifier)
         {
-            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID WHERE u.userID=@userID", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", userIdentifier);
@@ -454,9 +441,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void SetPersonalInfo(string fName, string lName, DateTime dateOfBirth, bool sex)
         {
-            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE employees (userID, firstName, lastName, dateOfBirth, sex) VALUES (@userID, @fName, @lName, @birthDate, @sex)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", this.userID);
@@ -473,9 +459,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void SetPersonalInfo(string fName, string lName, string nationality, string address, string email, string phoneNum, DateTime dateOfBirth, bool sex)
         {
-            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO employees (userID, firstName, lastName, nationality, address, email, phoneNumber, dateOfBirth, sex) VALUES (@userID, @fName, @lName, @nat, @address, @email, @pNum, @birthDate, @sex)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", this.userID);
@@ -501,9 +486,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public static void RemoveFromDatabase(string userIdentifier)
         {
-            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM employees WHERE userID=@userID", conn))
                 {
                     cmd.Parameters.AddWithValue("@userid", userIdentifier);
@@ -523,9 +507,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void RemoveFromDatabase()
         {
-            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM employees WHERE userID=@userID", conn))
                 {
                     cmd.Parameters.AddWithValue("@userid", this.userID);
@@ -546,9 +529,8 @@ namespace Sem2IntroProjectWaterfall0._1
         public static List<Employee> GetAllEmployees()
         {
             List<Employee> allEmployees = new List<Employee>();
-            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                conn.Open();
                 using(MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM users", conn))
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -567,9 +549,8 @@ namespace Sem2IntroProjectWaterfall0._1
         public static bool IsUniqueUsername(string targetUsername)
         {
             bool result = false;
-            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT username FROM users WHERE username=@username", conn))
                 {
                     cmd.Parameters.AddWithValue("@username", targetUsername);

@@ -23,9 +23,8 @@ namespace Sem2IntroProjectWaterfall0._1
 		{
 			get { return address; }
 			set {
-                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand($"UPDATE department SET address = @address WHERE departmentID=@departmentId", conn))
                     {
                         cmd.Parameters.AddWithValue("@address", value);
@@ -44,9 +43,8 @@ namespace Sem2IntroProjectWaterfall0._1
 			get { return name; }
 			set
             {
-                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand($"UPDATE department SET name = @name WHERE departmentID=@departmentId", conn))
                     {
                         cmd.Parameters.AddWithValue("@name", value);
@@ -75,9 +73,8 @@ namespace Sem2IntroProjectWaterfall0._1
             this.address = address;
             employees = new List<Employee>();
 
-            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                con.Open();
                 MySqlCommand cmd;
                 MySqlDataReader dataReader;
 
@@ -122,9 +119,8 @@ namespace Sem2IntroProjectWaterfall0._1
         public Department(string departmentId)
         {
             this.DepartmentId = departmentId;
-            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                con.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
                 {
                     cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
@@ -148,6 +144,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
                     while (dataReader.Read())
                     {
+                        //TODO: Fix the issue causing MySQL max connections timeout (Caused by the line below)
                         //employees.Add(new Employee(dataReader.GetString(0)));
                     }
                     cmd.Dispose();
@@ -160,9 +157,8 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             withEmployeeId = true;
 
-            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                con.Open();
                 MySqlCommand cmd;
                 MySqlDataReader dataReader;
 
@@ -246,9 +242,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void RemoveFromDatabase()
         {
-            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                con.Open();
                 foreach (Employee e in employees) { e.RemoveFromDatabase(); }    
                 //First we clear the employees in the department that were not previously moved, then we delete the actual deaprtment
                 using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM department WHERE departmentID=@departmentID", con))
@@ -264,9 +259,8 @@ namespace Sem2IntroProjectWaterfall0._1
         public static List<Department> GetAllDepartments()
         {
             List<Department> allDepartments = new List<Department>();
-            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                con.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT departmentID FROM department", con))
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();

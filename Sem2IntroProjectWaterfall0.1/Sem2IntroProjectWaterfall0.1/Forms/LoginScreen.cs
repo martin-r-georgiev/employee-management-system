@@ -25,9 +25,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
             if (!string.IsNullOrEmpty(tbUsername.Text) && !string.IsNullOrEmpty(tbPassword.Text))
             {
-                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    conn.Open();
                     try
                     {
                         using (MySqlCommand cmd = new MySqlCommand($"SELECT userID, username, password, role FROM users WHERE username=@username AND password=@password", conn))

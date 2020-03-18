@@ -28,9 +28,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
-                        conn.Open();
                         using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock_item SET name = @name WHERE stockID=@stockID", conn))
                         {
                             cmd.Parameters.AddWithValue("@name", value);
@@ -51,9 +50,8 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.threshold; }
             set
             {
-                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET threshold = @threshold WHERE stockID=@stockID", conn))
                     {
                         cmd.Parameters.AddWithValue("@threshold", value);
@@ -72,9 +70,8 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.currentAmount; }
             set
             {
-                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET currentAmount = @currentAmount WHERE stockID=@stockID", conn))
                     {
                         cmd.Parameters.AddWithValue("@currentAmount", value);
@@ -93,9 +90,8 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.departmentID; }
             set
             {
-                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET departmentID=@departmentID WHERE stockID=@stockID", conn))
                     {
                         cmd.Parameters.AddWithValue("@depID", value);
@@ -132,9 +128,8 @@ namespace Sem2IntroProjectWaterfall0._1
             this.currentAmount = currentAmount;
             this.departmentID = departmentID;
 
-            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                conn.Open();
                 MySqlCommand cmd;
                 MySqlDataReader dataReader;
 

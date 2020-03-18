@@ -19,9 +19,8 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             this.departmentId = departmentId;
             items = new List<StockItem>();
-            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                con.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM stock", con))
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -51,9 +50,8 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             string stockname = item.Name;
             string StockID = item.StockID;
-            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM stock WHERE stockID=@stockID", conn))
                 {
                     cmd.Parameters.AddWithValue("@stockID", StockID);
@@ -77,8 +75,7 @@ namespace Sem2IntroProjectWaterfall0._1
             items[indextoupdate].CurrentAmmount=newAmmount;
 
             // should be the same as below   grammar
-            /* MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection);
-             * UPDATE: BE SURE TO OPEN CONNECTION (From: Martin)
+            /* MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
              using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET currentAmmount = @newAmmount WHERE StockID=@StockID", conn))
              {
                  cmd.Parameters.AddWithValue("@newAmmount", newAmmount);
@@ -95,8 +92,7 @@ namespace Sem2IntroProjectWaterfall0._1
             items[indextoupdate].Threshold=newTreshhold;
 
             //should be same as below grammar
-            /*  MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection);
-             *  UPDATE: BE SURE TO OPEN CONNECTION (From: Martin)
+            /*  MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
                 using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET threshold = @newTreshhold WHERE StockID=@StockID", conn))
                 {
                     cmd.Parameters.AddWithValue("@Treshold", newTreshhold);
@@ -112,9 +108,8 @@ namespace Sem2IntroProjectWaterfall0._1
         public static List<StockItem> GetRestockItems() //good
         {
             List<StockItem> OutOfStockItems = new List<StockItem>();
-            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                con.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT StockID FROM stock WHERE currentAmmount<threshold", con))
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -136,9 +131,8 @@ namespace Sem2IntroProjectWaterfall0._1
         public static List<StockItem> ListAllItems() //good
         {
             List<StockItem> Allitems = new List<StockItem>();
-            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                con.Open();
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM stock", con))
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();
