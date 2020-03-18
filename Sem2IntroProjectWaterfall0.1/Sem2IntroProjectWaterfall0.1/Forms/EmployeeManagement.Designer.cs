@@ -32,7 +32,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gbPersonalInfo = new System.Windows.Forms.GroupBox();
-            this.btvUpdateEmployee = new System.Windows.Forms.Button();
+            this.btnUpdateEmployee = new System.Windows.Forms.Button();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.tbAddress = new System.Windows.Forms.TextBox();
@@ -45,7 +45,7 @@
             this.lblLastName = new System.Windows.Forms.Label();
             this.tbFirstName = new System.Windows.Forms.TextBox();
             this.lblFirstName = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbPersonalInfoList = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gbAssignUser = new System.Windows.Forms.GroupBox();
             this.btnMoveEmployee = new System.Windows.Forms.Button();
@@ -54,8 +54,8 @@
             this.lblUser = new System.Windows.Forms.Label();
             this.lblHouseUnit2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.cbRemoveList = new System.Windows.Forms.ComboBox();
+            this.btnRemoveEmployee = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAddEmployee = new System.Windows.Forms.Button();
@@ -94,6 +94,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbDepartmentCreateAddress = new System.Windows.Forms.TextBox();
             this.tbDepartmentCreateName = new System.Windows.Forms.TextBox();
+            this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
+            this.lblBirthday = new System.Windows.Forms.Label();
+            this.btnClearPersonalInfo = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gbPersonalInfo.SuspendLayout();
@@ -142,7 +145,10 @@
             // 
             // gbPersonalInfo
             // 
-            this.gbPersonalInfo.Controls.Add(this.btvUpdateEmployee);
+            this.gbPersonalInfo.Controls.Add(this.btnClearPersonalInfo);
+            this.gbPersonalInfo.Controls.Add(this.lblBirthday);
+            this.gbPersonalInfo.Controls.Add(this.dtpBirthday);
+            this.gbPersonalInfo.Controls.Add(this.btnUpdateEmployee);
             this.gbPersonalInfo.Controls.Add(this.tbEmail);
             this.gbPersonalInfo.Controls.Add(this.lblEmail);
             this.gbPersonalInfo.Controls.Add(this.tbAddress);
@@ -155,7 +161,7 @@
             this.gbPersonalInfo.Controls.Add(this.lblLastName);
             this.gbPersonalInfo.Controls.Add(this.tbFirstName);
             this.gbPersonalInfo.Controls.Add(this.lblFirstName);
-            this.gbPersonalInfo.Controls.Add(this.comboBox2);
+            this.gbPersonalInfo.Controls.Add(this.cbPersonalInfoList);
             this.gbPersonalInfo.Controls.Add(this.label3);
             this.gbPersonalInfo.Location = new System.Drawing.Point(441, 96);
             this.gbPersonalInfo.Name = "gbPersonalInfo";
@@ -164,14 +170,15 @@
             this.gbPersonalInfo.TabStop = false;
             this.gbPersonalInfo.Text = "Set/Change Personal Information";
             // 
-            // btvUpdateEmployee
+            // btnUpdateEmployee
             // 
-            this.btvUpdateEmployee.Location = new System.Drawing.Point(76, 330);
-            this.btvUpdateEmployee.Name = "btvUpdateEmployee";
-            this.btvUpdateEmployee.Size = new System.Drawing.Size(334, 24);
-            this.btvUpdateEmployee.TabIndex = 29;
-            this.btvUpdateEmployee.Text = "Update employee info";
-            this.btvUpdateEmployee.UseVisualStyleBackColor = true;
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(76, 360);
+            this.btnUpdateEmployee.Name = "btnUpdateEmployee";
+            this.btnUpdateEmployee.Size = new System.Drawing.Size(334, 24);
+            this.btnUpdateEmployee.TabIndex = 29;
+            this.btnUpdateEmployee.Text = "Update employee info";
+            this.btnUpdateEmployee.UseVisualStyleBackColor = true;
+            this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
             // 
             // tbEmail
             // 
@@ -251,7 +258,7 @@
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(76, 17);
             this.lblLastName.TabIndex = 33;
-            this.lblLastName.Text = "First Name";
+            this.lblLastName.Text = "Last Name";
             // 
             // tbFirstName
             // 
@@ -269,14 +276,16 @@
             this.lblFirstName.TabIndex = 31;
             this.lblFirstName.Text = "First Name";
             // 
-            // comboBox2
+            // cbPersonalInfoList
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(153, 37);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(257, 24);
-            this.comboBox2.TabIndex = 30;
+            this.cbPersonalInfoList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPersonalInfoList.FormattingEnabled = true;
+            this.cbPersonalInfoList.Location = new System.Drawing.Point(153, 37);
+            this.cbPersonalInfoList.Name = "cbPersonalInfoList";
+            this.cbPersonalInfoList.Size = new System.Drawing.Size(257, 24);
+            this.cbPersonalInfoList.TabIndex = 30;
+            this.cbPersonalInfoList.DropDown += new System.EventHandler(this.cbPersonalInfoList_DropDown);
+            this.cbPersonalInfoList.SelectedIndexChanged += new System.EventHandler(this.cbPersonalInfoList_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -322,7 +331,7 @@
             this.cbDepartmentList.Name = "cbDepartmentList";
             this.cbDepartmentList.Size = new System.Drawing.Size(233, 24);
             this.cbDepartmentList.TabIndex = 20;
-            this.cbDepartmentList.SelectedIndexChanged += new System.EventHandler(this.cbDepartmentList_SelectedIndexChanged);
+            this.cbDepartmentList.DropDown += new System.EventHandler(this.cbDepartmentList_DropDown);
             // 
             // cbEmployeeList
             // 
@@ -332,7 +341,7 @@
             this.cbEmployeeList.Name = "cbEmployeeList";
             this.cbEmployeeList.Size = new System.Drawing.Size(233, 24);
             this.cbEmployeeList.TabIndex = 19;
-            this.cbEmployeeList.SelectedIndexChanged += new System.EventHandler(this.cbEmployeeList_SelectedIndexChanged);
+            this.cbEmployeeList.DropDown += new System.EventHandler(this.cbEmployeeList_DropDown);
             // 
             // lblUser
             // 
@@ -354,8 +363,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.cbRemoveList);
+            this.groupBox1.Controls.Add(this.btnRemoveEmployee);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(441, 24);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -366,23 +375,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Remove employee from system";
             // 
-            // comboBox1
+            // cbRemoveList
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(97, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(233, 24);
-            this.comboBox1.TabIndex = 28;
+            this.cbRemoveList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRemoveList.FormattingEnabled = true;
+            this.cbRemoveList.Location = new System.Drawing.Point(97, 25);
+            this.cbRemoveList.Name = "cbRemoveList";
+            this.cbRemoveList.Size = new System.Drawing.Size(233, 24);
+            this.cbRemoveList.TabIndex = 28;
+            this.cbRemoveList.DropDown += new System.EventHandler(this.cbRemoveList_DropDown);
             // 
-            // button2
+            // btnRemoveEmployee
             // 
-            this.button2.Location = new System.Drawing.Point(336, 25);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(138, 24);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "Remove employee";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRemoveEmployee.Location = new System.Drawing.Point(336, 25);
+            this.btnRemoveEmployee.Name = "btnRemoveEmployee";
+            this.btnRemoveEmployee.Size = new System.Drawing.Size(138, 24);
+            this.btnRemoveEmployee.TabIndex = 27;
+            this.btnRemoveEmployee.Text = "Remove employee";
+            this.btnRemoveEmployee.UseVisualStyleBackColor = true;
+            this.btnRemoveEmployee.Click += new System.EventHandler(this.btnRemoveEmployee_Click);
             // 
             // label4
             // 
@@ -762,6 +773,32 @@
             this.tbDepartmentCreateName.Size = new System.Drawing.Size(224, 22);
             this.tbDepartmentCreateName.TabIndex = 0;
             // 
+            // dtpBirthday
+            // 
+            this.dtpBirthday.Location = new System.Drawing.Point(148, 319);
+            this.dtpBirthday.Name = "dtpBirthday";
+            this.dtpBirthday.Size = new System.Drawing.Size(262, 22);
+            this.dtpBirthday.TabIndex = 43;
+            // 
+            // lblBirthday
+            // 
+            this.lblBirthday.AutoSize = true;
+            this.lblBirthday.Location = new System.Drawing.Point(72, 324);
+            this.lblBirthday.Name = "lblBirthday";
+            this.lblBirthday.Size = new System.Drawing.Size(75, 17);
+            this.lblBirthday.TabIndex = 44;
+            this.lblBirthday.Text = "Birth Date:";
+            // 
+            // btnClearPersonalInfo
+            // 
+            this.btnClearPersonalInfo.Location = new System.Drawing.Point(416, 37);
+            this.btnClearPersonalInfo.Name = "btnClearPersonalInfo";
+            this.btnClearPersonalInfo.Size = new System.Drawing.Size(57, 24);
+            this.btnClearPersonalInfo.TabIndex = 45;
+            this.btnClearPersonalInfo.Text = "Clear";
+            this.btnClearPersonalInfo.UseVisualStyleBackColor = true;
+            this.btnClearPersonalInfo.Click += new System.EventHandler(this.btnClearPersonalInfo_Click);
+            // 
             // EmployeeManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -838,12 +875,12 @@
         private System.Windows.Forms.ComboBox cbDepartmentList;
         private System.Windows.Forms.ComboBox cbEmployeeList;
         private System.Windows.Forms.Button btnMoveEmployee;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox cbRemoveList;
+        private System.Windows.Forms.Button btnRemoveEmployee;
         private System.Windows.Forms.GroupBox gbPersonalInfo;
         private System.Windows.Forms.TextBox tbFirstName;
         private System.Windows.Forms.Label lblFirstName;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbPersonalInfoList;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbLastName;
         private System.Windows.Forms.Label lblLastName;
@@ -855,6 +892,9 @@
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Button btvUpdateEmployee;
+        private System.Windows.Forms.Button btnUpdateEmployee;
+        private System.Windows.Forms.Label lblBirthday;
+        private System.Windows.Forms.DateTimePicker dtpBirthday;
+        private System.Windows.Forms.Button btnClearPersonalInfo;
     }
 }

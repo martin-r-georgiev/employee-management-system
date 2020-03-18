@@ -151,7 +151,11 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public string Name
         {
-            get { return $"{this.firstName} {this.lastName}"; }
+            get
+            {
+                if (!string.IsNullOrEmpty(this.firstName) || !string.IsNullOrEmpty(this.lastName)) return $"{this.firstName} {this.lastName}";
+                else return "Unknown";
+            }
         }
 
         public string FirstName
@@ -365,7 +369,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 conn.Close();
             }
             Department employeeDepartment = new Department(this.DepartmentID);
-            if (this.FirstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
+            if (this.FirstName != null && this.FirstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
             else this.MainDetails = $"{username} ({employeeDepartment.Name})";
         }
 
@@ -443,7 +447,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE employees (userID, firstName, lastName, dateOfBirth, sex) VALUES (@userID, @fName, @lName, @birthDate, @sex)", conn))
+                using (MySqlCommand cmd = new MySqlCommand($"REPLACE INTO employees (userID, firstName, lastName, dateOfBirth, sex) VALUES (@userID, @fName, @lName, @birthDate, @sex)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", this.userID);
                     cmd.Parameters.AddWithValue("@fName", fName);
@@ -461,7 +465,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO employees (userID, firstName, lastName, nationality, address, email, phoneNumber, dateOfBirth, sex) VALUES (@userID, @fName, @lName, @nat, @address, @email, @pNum, @birthDate, @sex)", conn))
+                using (MySqlCommand cmd = new MySqlCommand($"REPLACE INTO employees (userID, firstName, lastName, nationality, address, email, phoneNumber, dateOfBirth, sex) VALUES (@userID, @fName, @lName, @nat, @address, @email, @pNum, @birthDate, @sex)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", this.userID);
                     cmd.Parameters.AddWithValue("@fName", fName);
@@ -548,14 +552,14 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public static bool IsUniqueUsername(string targetUsername)
         {
-            bool result = false;
+            bool result = true;
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT username FROM users WHERE username=@username", conn))
                 {
                     cmd.Parameters.AddWithValue("@username", targetUsername);
                     MySqlDataReader dataReader = cmd.ExecuteReader();
-                    if (dataReader.Read()) result = true;
+                    if (dataReader.Read()) result = false;
                     dataReader.Dispose();
                     cmd.Dispose();
                 }
