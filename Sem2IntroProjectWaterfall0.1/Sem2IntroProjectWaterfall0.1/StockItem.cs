@@ -28,16 +28,19 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock_item SET name = @name WHERE stockID=@stockID", conn))
+                    using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
                     {
-                        cmd.Parameters.AddWithValue("@name", value);
-                        cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                        cmd.ExecuteNonQuery();
-                        cmd.Dispose();
+                        conn.Open();
+                        using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock_item SET name = @name WHERE stockID=@stockID", conn))
+                        {
+                            cmd.Parameters.AddWithValue("@name", value);
+                            cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                            cmd.ExecuteNonQuery();
+                            cmd.Dispose();
+                        }
+                        conn.Close();
+                        this.name = value;
                     }
-                    conn.Close();
-                    this.name = value;
                 }
             }
         }
@@ -48,16 +51,19 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.threshold; }
             set
             {
-                MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-                using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET threshold = @threshold WHERE stockID=@stockID", conn))
+                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
                 {
-                    cmd.Parameters.AddWithValue("@threshold", value);
-                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET threshold = @threshold WHERE stockID=@stockID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@threshold", value);
+                        cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    conn.Close();
+                    this.threshold = value;
                 }
-                conn.Close();
-                this.threshold = value;
             }
         }
 
@@ -66,16 +72,19 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.currentAmount; }
             set
             {
-                MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-                using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET currentAmount = @currentAmount WHERE stockID=@stockID", conn))
+                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
                 {
-                    cmd.Parameters.AddWithValue("@currentAmount", value);
-                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET currentAmount = @currentAmount WHERE stockID=@stockID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@currentAmount", value);
+                        cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    conn.Close();
+                    this.currentAmount = value;
                 }
-                conn.Close();
-                this.currentAmount = value;
             }
         }
 
@@ -84,17 +93,19 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.departmentID; }
             set
             {
-                MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-                using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET departmentID=@departmentID WHERE stockID=@stockID", conn))
+                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
                 {
-                    cmd.Parameters.AddWithValue("@depID", value);
-                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET departmentID=@departmentID WHERE stockID=@stockID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@depID", value);
+                        cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    conn.Close();
+                    this.departmentID = value;
                 }
-                conn.Close();
-
-                this.departmentID = value;
             }
         }
         #endregion
@@ -121,40 +132,42 @@ namespace Sem2IntroProjectWaterfall0._1
             this.currentAmount = currentAmount;
             this.departmentID = departmentID;
 
-            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader;
-
-            do
+            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
             {
-                this.stockID = GenerateStockID();
-                cmd = new MySqlCommand($"SELECT stockID FROM stock_item WHERE stockID=@stockID", conn);
-                cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                dataReader = cmd.ExecuteReader();
-            }
-            while (dataReader.Read());
-            cmd.Dispose();
-            dataReader.Close();
+                conn.Open();
+                MySqlCommand cmd;
+                MySqlDataReader dataReader;
 
-            using (cmd = new MySqlCommand($"INSERT IGNORE stock_item (stockID, name) VALUES (@stockID, @name)", conn))
-            {
-                cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                cmd.Parameters.AddWithValue("@name", this.name);
-                cmd.ExecuteNonQuery();
+                do
+                {
+                    this.stockID = GenerateStockID();
+                    cmd = new MySqlCommand($"SELECT stockID FROM stock_item WHERE stockID=@stockID", conn);
+                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                    dataReader = cmd.ExecuteReader();
+                }
+                while (dataReader.Read());
                 cmd.Dispose();
-            }
+                dataReader.Close();
 
-            using (cmd = new MySqlCommand($"INSERT INTO stock (stockID, departmentID, threshold, currentAmount) VALUES (@stockID, @departmentID, @threshold, @currentAmount)", conn))
-            {
-                cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                cmd.Parameters.AddWithValue("@departmentID", this.departmentID);
-                cmd.Parameters.AddWithValue("@threshold", this.threshold);
-                cmd.Parameters.AddWithValue("@currentAmount", this.currentAmount);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-            }
+                using (cmd = new MySqlCommand($"INSERT IGNORE stock_item (stockID, name) VALUES (@stockID, @name)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                    cmd.Parameters.AddWithValue("@name", this.name);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
 
-            conn.Close();
+                using (cmd = new MySqlCommand($"INSERT INTO stock (stockID, departmentID, threshold, currentAmount) VALUES (@stockID, @departmentID, @threshold, @currentAmount)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                    cmd.Parameters.AddWithValue("@departmentID", this.departmentID);
+                    cmd.Parameters.AddWithValue("@threshold", this.threshold);
+                    cmd.Parameters.AddWithValue("@currentAmount", this.currentAmount);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                conn.Close();
+            }
         }
         
         private string GenerateStockID()

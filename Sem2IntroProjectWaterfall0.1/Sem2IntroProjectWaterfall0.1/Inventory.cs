@@ -19,24 +19,25 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             this.departmentId = departmentId;
             items = new List<StockItem>();
-            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader;
-
-            cmd = new MySqlCommand($"SELECT * FROM stock", con);
-            dataReader = cmd.ExecuteReader();
-
-            while (dataReader.Read())
+            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
             {
-                string stockID=dataReader["stockID"].ToString();
-                int threshold=Convert.ToInt32(dataReader["threshold"]);
-                int currentammount=Convert.ToInt32(dataReader["currentAmmount"]);
-                items.Add(new StockItem(stockID,threshold,currentammount)); // maybe add name to stock table
-            }
-            cmd.Dispose();
-            dataReader.Close();
-            con.Close();
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM stock", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
 
+                    while (dataReader.Read())
+                    {
+                        string stockID = dataReader["stockID"].ToString();
+                        int threshold = Convert.ToInt32(dataReader["threshold"]);
+                        int currentammount = Convert.ToInt32(dataReader["currentAmmount"]);
+                        items.Add(new StockItem(stockID, threshold, currentammount)); // maybe add name to stock table
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                con.Close();
+            }
         }
         #endregion
         #region Methods
@@ -48,26 +49,26 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void RemoveItem(StockItem item) //good
         {
-            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-
             string stockname = item.Name;
             string StockID = item.StockID;
-
-            using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM stock WHERE stockID=@stockID", conn))
+            using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
             {
-                cmd.Parameters.AddWithValue("@stockID", StockID);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-            }
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM stock WHERE stockID=@stockID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@stockID", StockID);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
 
-            using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM stock_item WHERE stockID=@stockID", conn))
-            {
-                cmd.Parameters.AddWithValue("@stockID", StockID);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM stock_item WHERE stockID=@stockID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@stockID", StockID);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                conn.Close();
             }
-
-            conn.Close();
             items.RemoveAt(getindex(item.StockID));
         }
         public void UpdateAmmount(int newAmmount, string StockID) //good
@@ -76,33 +77,34 @@ namespace Sem2IntroProjectWaterfall0._1
             items[indextoupdate].CurrentAmmount=newAmmount;
 
             // should be the same as below   grammar
-           /* MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-            using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET currentAmmount = @newAmmount WHERE StockID=@StockID", conn))
-            {
-                cmd.Parameters.AddWithValue("@newAmmount", newAmmount);
-                cmd.Parameters.AddWithValue("@StockID", StockID);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-            }
-            conn.Close(); // use stockitem instead of this
-            */ 
+            /* MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection);
+             * UPDATE: BE SURE TO OPEN CONNECTION (From: Martin)
+             using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET currentAmmount = @newAmmount WHERE StockID=@StockID", conn))
+             {
+                 cmd.Parameters.AddWithValue("@newAmmount", newAmmount);
+                 cmd.Parameters.AddWithValue("@StockID", StockID);
+                 cmd.ExecuteNonQuery();
+                 cmd.Dispose();
+             }
+             conn.Close(); // use stockitem instead of this
+             */
         }
         public void UpdateTreshhold(int newTreshhold, string StockID)//good
         {
             int indextoupdate=getindex(StockID);
             items[indextoupdate].Threshold=newTreshhold;
-            
+
             //should be same as below grammar
-            /*
-            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-            using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET threshold = @newTreshhold WHERE StockID=@StockID", conn))
-            {
-                cmd.Parameters.AddWithValue("@Treshold", newTreshhold);
-                cmd.Parameters.AddWithValue("@StockID", StockID);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-            }
-            conn.Close();
+            /*  MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection);
+             *  UPDATE: BE SURE TO OPEN CONNECTION (From: Martin)
+                using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET threshold = @newTreshhold WHERE StockID=@StockID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@Treshold", newTreshhold);
+                    cmd.Parameters.AddWithValue("@StockID", StockID);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                conn.Close();
             */
         }
 
@@ -110,20 +112,22 @@ namespace Sem2IntroProjectWaterfall0._1
         public static List<StockItem> GetRestockItems() //good
         {
             List<StockItem> OutOfStockItems = new List<StockItem>();
-            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader;
-
-            cmd = new MySqlCommand($"SELECT StockID FROM stock WHERE currentAmmount<threshold", con);
-            dataReader = cmd.ExecuteReader();
-
-            while (dataReader.Read())
+            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
             {
-                OutOfStockItems.Add(new StockItem(dataReader["stockID"].ToString()));
-            }
-            cmd.Dispose();
-            dataReader.Close();
-            con.Close();
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT StockID FROM stock WHERE currentAmmount<threshold", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        OutOfStockItems.Add(new StockItem(dataReader["stockID"].ToString()));
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }  
+                con.Close();
+            }    
             return OutOfStockItems;
         }
         // List of all stockitems
@@ -132,26 +136,27 @@ namespace Sem2IntroProjectWaterfall0._1
         public static List<StockItem> ListAllItems() //good
         {
             List<StockItem> Allitems = new List<StockItem>();
-            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader;
-
-            cmd = new MySqlCommand($"SELECT * FROM stock", con);
-            dataReader = cmd.ExecuteReader();
-
-            while (dataReader.Read())
+            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
             {
-                string stockID=dataReader["stockID"].ToString();
-                int threshold=Convert.ToInt32(dataReader["threshold"]);
-                int currentammount=Convert.ToInt32(dataReader["currentAmmount"]);
-                Allitems.Add(new StockItem(stockID,threshold,currentammount)); // maybe add name to stock table
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM stock", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        string stockID = dataReader["stockID"].ToString();
+                        int threshold = Convert.ToInt32(dataReader["threshold"]);
+                        int currentammount = Convert.ToInt32(dataReader["currentAmmount"]);
+                        Allitems.Add(new StockItem(stockID, threshold, currentammount)); // maybe add name to stock table
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                con.Close();
             }
-            cmd.Dispose();
-            dataReader.Close();
-            con.Close();
             return Allitems;
         }
-
 
         #endregion
         

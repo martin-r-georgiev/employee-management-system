@@ -9,18 +9,29 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     class SqlConnectionHandler
     {
+        public static string ServerConnection
+        {
+            get
+            {
+                return @"server=studmysql01.fhict.local;userid=dbi426060;database=dbi426060;password=SuperSecurePassword";
+            }
+        }
+
         public static MySqlConnection GetSqlConnection()
         {
+            MySqlConnection connection = new MySqlConnection(SqlConnectionHandler.ServerConnection);
             try
             {
-                MySqlConnection connection = new MySqlConnection(@"server=studmysql01.fhict.local;userid=dbi426060;database=dbi426060;password=SuperSecurePassword;");
-                connection.Open();
-
                 return connection;                
             }
             catch (MySqlException e)
             {
                 Console.WriteLine("Error: {0}", e.ToString());
+                if(connection != null && connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                    connection.Dispose();
+                }
             }
             return null;
         }

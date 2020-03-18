@@ -25,32 +25,35 @@ namespace Sem2IntroProjectWaterfall0._1
 
             if (!string.IsNullOrEmpty(tbUsername.Text) && !string.IsNullOrEmpty(tbPassword.Text))
             {
-                MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-                try
+                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
                 {
-                    using (MySqlCommand cmd = new MySqlCommand($"SELECT userID, username, password, role FROM users WHERE username=@username AND password=@password", conn))
+                    conn.Open();
+                    try
                     {
-                        cmd.Parameters.AddWithValue("@username", tbUsername.Text);
-                        cmd.Parameters.AddWithValue("@password", HashManager.GetSha256(tbPassword.Text));
-                        MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                        if (dataReader.Read())
+                        using (MySqlCommand cmd = new MySqlCommand($"SELECT userID, username, password, role FROM users WHERE username=@username AND password=@password", conn))
                         {
-                            LoggedInUser.userID = dataReader.GetString(0);
-                            LoggedInUser.role = (Role)dataReader.GetInt16(3);
-                            //Opening dashboard on successful login
-                            Dashboard newScreen = new Dashboard();
-                            newScreen.Show();
-                            this.Hide();
+                            cmd.Parameters.AddWithValue("@username", tbUsername.Text);
+                            cmd.Parameters.AddWithValue("@password", HashManager.GetSha256(tbPassword.Text));
+                            MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                            if (dataReader.Read())
+                            {
+                                LoggedInUser.userID = dataReader.GetString(0);
+                                LoggedInUser.role = (Role)dataReader.GetInt16(3);
+                                //Opening dashboard on successful login
+                                Dashboard newScreen = new Dashboard();
+                                newScreen.Show();
+                                this.Hide();
+                            }
+                            else MessageBox.Show("Failed login attempt. Please try again.");
                         }
-                        else MessageBox.Show("Failed login attempt. Please try again."); 
                     }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show(ex.ToString(), $"Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    conn.Close();
                 }
-                catch(MySqlException ex)
-                {
-                    MessageBox.Show(ex.ToString(), $"Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                conn.Close();
             }
             else MessageBox.Show("Please fill all required fields before attempting to log in!");
         }

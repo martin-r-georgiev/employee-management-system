@@ -23,16 +23,19 @@ namespace Sem2IntroProjectWaterfall0._1
 		{
 			get { return address; }
 			set {
-                MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-                using (MySqlCommand cmd = new MySqlCommand($"UPDATE department SET address = @address WHERE departmentID=@departmentId", conn))
+                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
                 {
-                    cmd.Parameters.AddWithValue("@address", value);
-                    cmd.Parameters.AddWithValue("@departmentId", this.DepartmentId);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE department SET address = @address WHERE departmentID=@departmentId", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@address", value);
+                        cmd.Parameters.AddWithValue("@departmentId", this.DepartmentId);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    conn.Close();
+                    address = value;
                 }
-                conn.Close();
-                address = value; 
             }
 		}
 
@@ -41,16 +44,20 @@ namespace Sem2IntroProjectWaterfall0._1
 			get { return name; }
 			set
             {
-                MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-                using (MySqlCommand cmd = new MySqlCommand($"UPDATE department SET name = @name WHERE departmentID=@departmentId", conn))
+                using (MySqlConnection conn = new MySqlConnection(SqlConnectionHandler.ServerConnection))
                 {
-                    cmd.Parameters.AddWithValue("@name", value);
-                    cmd.Parameters.AddWithValue("@departmentId", this.DepartmentId);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE department SET name = @name WHERE departmentID=@departmentId", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@name", value);
+                        cmd.Parameters.AddWithValue("@departmentId", this.DepartmentId);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    conn.Close();
+                    name = value;
                 }
-                conn.Close();
-                name = value; }
+            }
 		}
 
 		public string DepartmentId
@@ -64,47 +71,50 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public Department(string name, string address)
         {
-            this.Name = name;
-            this.Address = address;
+            this.name = name;
+            this.address = address;
             employees = new List<Employee>();
 
-            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader;
-
-            cmd = new MySqlCommand($"SELECT name FROM department WHERE name=@name", con);
-            cmd.Parameters.AddWithValue("@name", name);
-            dataReader = cmd.ExecuteReader();
-
-            if (dataReader.Read())
+            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
             {
-                cmd.Dispose();
-                dataReader.Close();
-                throw new NameTakenException("Department name taken!");
-            }
-            else
-            {
-                cmd.Dispose();
-                dataReader.Close();
-                do
-                {
-                    this.DepartmentId = GenerateDepartmentID();
-                    cmd = new MySqlCommand($"SELECT departmentID FROM department WHERE departmentID=@departmentID", con);
-                    cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-                    dataReader = cmd.ExecuteReader();
-                }
-                while (dataReader.Read());
-                cmd.Dispose();
-                dataReader.Close();
-                //Making sure that the ID is unique
+                con.Open();
+                MySqlCommand cmd;
+                MySqlDataReader dataReader;
 
-                using (cmd = new MySqlCommand($"INSERT INTO department (departmentID, name, address) VALUES (@departmentID, @name, @address)", con))
+                cmd = new MySqlCommand($"SELECT name FROM department WHERE name=@name", con);
+                cmd.Parameters.AddWithValue("@name", name);
+                dataReader = cmd.ExecuteReader();
+
+                if (dataReader.Read())
                 {
-                    cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-                    cmd.Parameters.AddWithValue("@name", this.Name);
-                    cmd.Parameters.AddWithValue("@address", this.Address);
-                    cmd.ExecuteNonQuery();
                     cmd.Dispose();
+                    dataReader.Close();
+                    throw new NameTakenException("Department name taken!");
+                }
+                else
+                {
+                    cmd.Dispose();
+                    dataReader.Close();
+                    do
+                    {
+                        this.DepartmentId = GenerateDepartmentID();
+                        cmd = new MySqlCommand($"SELECT departmentID FROM department WHERE departmentID=@departmentID", con);
+                        cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                        dataReader = cmd.ExecuteReader();
+                    }
+                    while (dataReader.Read());
+                    cmd.Dispose();
+                    dataReader.Close();
+                    //Making sure that the ID is unique
+
+                    using (cmd = new MySqlCommand($"INSERT INTO department (departmentID, name, address) VALUES (@departmentID, @name, @address)", con))
+                    {
+                        cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                        cmd.Parameters.AddWithValue("@name", this.Name);
+                        cmd.Parameters.AddWithValue("@address", this.Address);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
                 }
                 con.Close();
             }
@@ -112,85 +122,90 @@ namespace Sem2IntroProjectWaterfall0._1
         public Department(string departmentId)
         {
             this.DepartmentId = departmentId;
-            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader;
-
-            using (cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
+            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
             {
-                cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
-                dataReader = cmd.ExecuteReader();
-
-                if (dataReader.Read())
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
                 {
-                    this.Name = dataReader.GetString(0);
-                    this.Address = dataReader.GetString(1);
+                    cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    if (dataReader.Read())
+                    {
+                        this.name = dataReader.GetString(0);
+                        this.address = dataReader.GetString(1);
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
                 }
-            }
-            //Get all other properties from department table
-            cmd.Dispose();
-            dataReader.Close();
+                //Get all other properties from department table
+                
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con))
+                {
+                    cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    this.employees = new List<Employee>();
 
-            cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con);
-            cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-            dataReader = cmd.ExecuteReader();
-            this.employees = new List<Employee>();
-
-            while (dataReader.Read())
-            {
-                employees.Add(new Employee(dataReader.GetString(0)));
+                    while (dataReader.Read())
+                    {
+                        //employees.Add(new Employee(dataReader.GetString(0)));
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }   
+                con.Close();
             }
-            cmd.Dispose();
-            dataReader.Close();
-            con.Close();
         }
         public Department(string employeeId, bool withEmployeeId)
         {
             withEmployeeId = true;
 
-            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader;
-
-            cmd = new MySqlCommand($"SELECT departmentID FROM users WHERE userID=@userID", con);
-            cmd.Parameters.AddWithValue("@userID", employeeId);
-            dataReader = cmd.ExecuteReader();
-
-            if (dataReader.Read())
+            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
             {
-                this.DepartmentId = dataReader.GetString(0);
-            }
-            cmd.Dispose();
-            dataReader.Close();
-            //Get department id from the user
+                con.Open();
+                MySqlCommand cmd;
+                MySqlDataReader dataReader;
 
-            using (cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
-            {
-                cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
+                cmd = new MySqlCommand($"SELECT departmentID FROM users WHERE userID=@userID", con);
+                cmd.Parameters.AddWithValue("@userID", employeeId);
                 dataReader = cmd.ExecuteReader();
-                
+
                 if (dataReader.Read())
                 {
-                    this.Name = dataReader.GetString(0);
-                    this.Address = dataReader.GetString(1);
+                    this.DepartmentId = dataReader.GetString(0);
                 }
-            }
-            //Get all other properties from department table
-            cmd.Dispose();
-            dataReader.Close();
+                cmd.Dispose();
+                dataReader.Close();
+                //Get department id from the user
 
-            cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con);
-            cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-            dataReader = cmd.ExecuteReader();
-            this.employees = new List<Employee>();
+                using (cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
+                {
+                    cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
+                    dataReader = cmd.ExecuteReader();
 
-            while (dataReader.Read())
-            {
-                employees.Add(new Employee(dataReader.GetString(0)));
+                    if (dataReader.Read())
+                    {
+                        this.name = dataReader.GetString(0);
+                        this.address = dataReader.GetString(1);
+                    }
+                }
+                //Get all other properties from department table
+                cmd.Dispose();
+                dataReader.Close();
+
+                cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con);
+                cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                dataReader = cmd.ExecuteReader();
+                this.employees = new List<Employee>();
+
+                while (dataReader.Read())
+                {
+                    employees.Add(new Employee(dataReader.GetString(0)));
+                }
+                cmd.Dispose();
+                dataReader.Close();
+                con.Close();
             }
-            cmd.Dispose();
-            dataReader.Close();
-            con.Close();
         }
 
         #endregion
@@ -231,36 +246,39 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void RemoveFromDatabase()
         {
-            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
-            foreach (Employee e in employees)
-                e.RemoveFromDatabase();
-            //First we clear the employees in the department that were not previously moved, then we delete the actual deaprtment
-            using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM department WHERE departmentID=@departmentID", con))
+            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
             {
-                cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                con.Open();
+                foreach (Employee e in employees) { e.RemoveFromDatabase(); }    
+                //First we clear the employees in the department that were not previously moved, then we delete the actual deaprtment
+                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM department WHERE departmentID=@departmentID", con))
+                {
+                    cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                con.Close();
             }
-            con.Close();
         }
         
         public static List<Department> GetAllDepartments()
         {
             List<Department> allDepartments = new List<Department>();
-            MySqlConnection con = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader;
-
-            cmd = new MySqlCommand($"SELECT departmentID FROM department", con);
-            dataReader = cmd.ExecuteReader();
-
-            while (dataReader.Read())
+            using (MySqlConnection con = new MySqlConnection(SqlConnectionHandler.ServerConnection))
             {
-                allDepartments.Add(new Department(dataReader.GetString(0)));
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT departmentID FROM department", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        allDepartments.Add(new Department(dataReader.GetString(0)));
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                con.Close();
             }
-            cmd.Dispose();
-            dataReader.Close();
-            con.Close();
             return allDepartments;
         }
 
