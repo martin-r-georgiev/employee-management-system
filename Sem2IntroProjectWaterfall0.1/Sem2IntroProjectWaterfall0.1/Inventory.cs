@@ -29,7 +29,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         string stockID = dataReader["stockID"].ToString();
                         int threshold = Convert.ToInt32(dataReader["threshold"]);
-                        int currentammount = Convert.ToInt32(dataReader["currentAmmount"]);
+                        int currentammount = Convert.ToInt32(dataReader["currentAmount"]);
                         items.Add(new StockItem(stockID, threshold, currentammount)); // maybe add name to stock table
                     }
                     cmd.Dispose();
@@ -105,12 +105,12 @@ namespace Sem2IntroProjectWaterfall0._1
         }
 
 
-        public static List<StockItem> GetRestockItems() //good
+        public  List<StockItem> GetRestockItems() //good
         {
             List<StockItem> OutOfStockItems = new List<StockItem>();
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT StockID FROM stock WHERE currentAmmount<threshold", con))
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT StockID FROM stock WHERE currentAmount<threshold", con))
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
@@ -128,7 +128,7 @@ namespace Sem2IntroProjectWaterfall0._1
         // List of all stockitems
 
 
-        public static List<StockItem> ListAllItems() //good
+        public  List<StockItem> ListAllItems() //good
         {
             List<StockItem> Allitems = new List<StockItem>();
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
@@ -141,7 +141,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         string stockID = dataReader["stockID"].ToString();
                         int threshold = Convert.ToInt32(dataReader["threshold"]);
-                        int currentammount = Convert.ToInt32(dataReader["currentAmmount"]);
+                        int currentammount = Convert.ToInt32(dataReader["currentAmount"]);
                         Allitems.Add(new StockItem(stockID, threshold, currentammount)); // maybe add name to stock table
                     }
                     cmd.Dispose();
