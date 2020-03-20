@@ -368,9 +368,6 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 conn.Close();
             }
-            Department employeeDepartment = new Department(this.DepartmentID);
-            if (this.FirstName != null && this.FirstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
-            else this.MainDetails = $"{username} ({employeeDepartment.Name})";
         }
 
         public Employee(string userIdentifier)
@@ -423,15 +420,14 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 conn.Close();
             }
-            Department employeeDepartment = new Department(this.DepartmentID);
-            if (this.FirstName != null && this.FirstName.Length > 0) this.MainDetails = $"{firstName} {lastName} ({employeeDepartment.Name})";
-            else this.MainDetails = $"{username} ({employeeDepartment.Name})";
+            
         }
 
         #endregion
 
         #region Class methods
         //Methods
+
         private string GenerateUserID()
         {
             Guid key = Guid.NewGuid();
@@ -540,7 +536,11 @@ namespace Sem2IntroProjectWaterfall0._1
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        allEmployees.Add(new Employee(dataReader.GetString(0)));
+                        Employee newEmp = new Employee(dataReader.GetString(0));
+                        Department empDepartment = new Department(newEmp.UserID, true);
+                        if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({empDepartment.Name})";
+                        else newEmp.MainDetails = $"{newEmp.Username} ({empDepartment.Name})";
+                        allEmployees.Add(newEmp);
                     }
                     cmd.Dispose();
                     dataReader.Close();

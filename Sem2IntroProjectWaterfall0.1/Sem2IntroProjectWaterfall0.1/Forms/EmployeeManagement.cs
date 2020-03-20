@@ -76,6 +76,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         Employee newEmployee = new Employee(tbUsername.Text, tbPassword.Text, hourlySalary, (Role) cbRole.SelectedIndex, departments[cbDepartments.SelectedIndex].DepartmentId);
                         MessageBox.Show("Sucessfully added new employee to the system!");
+                        RefreshComboboxes();
                         tbUsername.Clear();
                         tbPassword.Clear();
                         tbHourlySalary.Clear();
@@ -114,21 +115,21 @@ namespace Sem2IntroProjectWaterfall0._1
 
         void RefreshComboboxes()
         {
+            cbEmployeeAssign.DataSource = null;
+            cbDepartmentAssign.DataSource = null;
+            cbDepartmentEdit.DataSource = null;
+            cbDepartmentRemove.DataSource = null;
             List<Employee> allEmployees = Employee.GetAllEmployees();
-            List<Department> allDepartments = Department.GetAllDepartments();
-
-            cbEmployeeAssign.Items.Clear();
-            cbDepartmentAssign.Items.Clear();
-            cbDepartmentEdit.Items.Clear();
-            cbDepartmentRemove.Items.Clear();
-
+            List<Department> allDepartmentsAssign = Department.GetAllDepartments();
+            List<Department> allDepartmentsEdit = Department.GetAllDepartments();
+            List<Department> allDepartmentsRemove = Department.GetAllDepartments();
             cbEmployeeAssign.DataSource = allEmployees;
             cbEmployeeAssign.DisplayMember = "MainDetails";
-            cbDepartmentAssign.DataSource = allDepartments;
+            cbDepartmentAssign.DataSource = allDepartmentsAssign;
             cbDepartmentAssign.DisplayMember = "Name";
-            cbDepartmentEdit.DataSource = allDepartments;
+            cbDepartmentEdit.DataSource = allDepartmentsEdit;
             cbDepartmentEdit.DisplayMember = "Name";
-            cbDepartmentRemove.DataSource = allDepartments;
+            cbDepartmentRemove.DataSource = allDepartmentsRemove;
             cbDepartmentRemove.DisplayMember = "Name";
         }
 
@@ -138,7 +139,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 Employee selectedUser = (Employee)cbEmployeeAssign.SelectedItem;
                 Department selectedDepartment = (Department)cbDepartmentAssign.SelectedItem;
-                Department.AssignEmployeeTo(selectedUser.UserID, selectedDepartment.DepartmentId);
+                Department oldDepartment = new Department(selectedUser.DepartmentID);
+                oldDepartment.AssignEmployeeTo(selectedUser.UserID, selectedDepartment.DepartmentId);
                 RefreshComboboxes();
             }catch(Exception exc) { MessageBox.Show(exc.Message); }
         }
@@ -152,6 +154,9 @@ namespace Sem2IntroProjectWaterfall0._1
                     Department selectedDepartment = (Department)cbDepartmentEdit.SelectedItem;
                     selectedDepartment.Address = tbDepartmentEditAddress.Text;
                     selectedDepartment.Name = tbDepartmentEditName.Text;
+                    RefreshComboboxes();
+                    tbDepartmentEditAddress.Clear();
+                    tbDepartmentEditName.Clear();
                 }
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); }
@@ -161,8 +166,9 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             try
             {
-                Department selectedDepartment = (Department)cbDepartmentEdit.SelectedItem;
+                Department selectedDepartment = (Department)cbDepartmentRemove.SelectedItem;
                 selectedDepartment.RemoveFromDatabase();
+                RefreshComboboxes();
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); }
         }
@@ -172,6 +178,9 @@ namespace Sem2IntroProjectWaterfall0._1
             try
             {
                 Department newDepartment = new Department(tbDepartmentCreateName.Text, tbDepartmentCreateAddress.Text);
+                RefreshComboboxes();
+                tbDepartmentCreateAddress.Clear();
+                tbDepartmentCreateName.Clear();
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); }
         }
@@ -261,6 +270,16 @@ namespace Sem2IntroProjectWaterfall0._1
         private void btnClearPersonalInfo_Click(object sender, EventArgs e)
         {
             ClearEmployeePersonalInfo();
+        }
+
+        private void cbDepartmentEdit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbDepartmentEdit.SelectedIndex > -1)
+            {
+                Department selectedDepartment = (Department)cbDepartmentEdit.SelectedItem;
+                tbDepartmentEditName.Text = selectedDepartment.Name;
+                tbDepartmentEditAddress.Text = selectedDepartment.Address;
+            }
         }
     }
 }

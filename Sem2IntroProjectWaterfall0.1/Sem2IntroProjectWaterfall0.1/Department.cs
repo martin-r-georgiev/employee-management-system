@@ -69,52 +69,56 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public Department(string name, string address)
         {
-            this.name = name;
-            this.address = address;
-            employees = new List<Employee>();
-
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            if (name.Length > 0 && address.Length > 0)
             {
-                MySqlCommand cmd;
-                MySqlDataReader dataReader;
+                this.name = name;
+                this.address = address;
+                employees = new List<Employee>();
 
-                cmd = new MySqlCommand($"SELECT name FROM department WHERE name=@name", con);
-                cmd.Parameters.AddWithValue("@name", name);
-                dataReader = cmd.ExecuteReader();
-
-                if (dataReader.Read())
+                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
                 {
-                    cmd.Dispose();
-                    dataReader.Close();
-                    throw new NameTakenException("Department name taken!");
-                }
-                else
-                {
-                    cmd.Dispose();
-                    dataReader.Close();
-                    do
-                    {
-                        this.DepartmentId = GenerateDepartmentID();
-                        cmd = new MySqlCommand($"SELECT departmentID FROM department WHERE departmentID=@departmentID", con);
-                        cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-                        dataReader = cmd.ExecuteReader();
-                    }
-                    while (dataReader.Read());
-                    cmd.Dispose();
-                    dataReader.Close();
-                    //Making sure that the ID is unique
+                    MySqlCommand cmd;
+                    MySqlDataReader dataReader;
 
-                    using (cmd = new MySqlCommand($"INSERT INTO department (departmentID, name, address) VALUES (@departmentID, @name, @address)", con))
+                    cmd = new MySqlCommand($"SELECT name FROM department WHERE name=@name", con);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    dataReader = cmd.ExecuteReader();
+
+                    if (dataReader.Read())
                     {
-                        cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-                        cmd.Parameters.AddWithValue("@name", this.Name);
-                        cmd.Parameters.AddWithValue("@address", this.Address);
-                        cmd.ExecuteNonQuery();
                         cmd.Dispose();
+                        dataReader.Close();
+                        throw new NameTakenException("Department name taken!");
                     }
+                    else
+                    {
+                        cmd.Dispose();
+                        dataReader.Close();
+                        do
+                        {
+                            this.DepartmentId = GenerateDepartmentID();
+                            cmd = new MySqlCommand($"SELECT departmentID FROM department WHERE departmentID=@departmentID", con);
+                            cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                            dataReader = cmd.ExecuteReader();
+                        }
+                        while (dataReader.Read());
+                        cmd.Dispose();
+                        dataReader.Close();
+                        //Making sure that the ID is unique
+
+                        using (cmd = new MySqlCommand($"INSERT INTO department (departmentID, name, address) VALUES (@departmentID, @name, @address)", con))
+                        {
+                            cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                            cmd.Parameters.AddWithValue("@name", this.Name);
+                            cmd.Parameters.AddWithValue("@address", this.Address);
+                            cmd.ExecuteNonQuery();
+                            cmd.Dispose();
+                        }
+                    }
+                    con.Close();
                 }
-                con.Close();
             }
+            else throw new InvalidEntryException("Please provide the needed details!");
         }
         public Department(string departmentId)
         {
@@ -144,8 +148,10 @@ namespace Sem2IntroProjectWaterfall0._1
 
                     while (dataReader.Read())
                     {
-                        //TODO: Fix the issue causing MySQL max connections timeout (Caused by the line below)
-                        //employees.Add(new Employee(dataReader.GetString(0)));
+                        Employee newEmp = new Employee(dataReader.GetString(0));
+                        if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({this.Name})";
+                        else newEmp.MainDetails = $"{newEmp.Username} ({this.Name})";
+                        employees.Add(newEmp);
                     }
                     cmd.Dispose();
                     dataReader.Close();
@@ -153,7 +159,32 @@ namespace Sem2IntroProjectWaterfall0._1
                 con.Close();
             }
         }
-        public Department(string employeeId, bool withEmployeeId)
+        public List<Employee> GetAllEmployees()
+        {
+            List<Employee> employeesToSend;
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con))
+                {
+                    cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    employeesToSend = new List<Employee>();
+
+                    while (dataReader.Read())
+                    {
+                        Employee newEmp = new Employee(dataReader.GetString(0));
+                        if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({this.Name})";
+                        else newEmp.MainDetails = $"{newEmp.Username} ({this.Name})";
+                        employees.Add(newEmp);
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                con.Close();
+            }
+            return employeesToSend;
+        }
+        public Department(string employeeId, bool withEmployeeId) //This constructor doesnt include an employee list
         {
             withEmployeeId = true;
 
@@ -186,18 +217,6 @@ namespace Sem2IntroProjectWaterfall0._1
                     }
                 }
                 //Get all other properties from department table
-                cmd.Dispose();
-                dataReader.Close();
-
-                cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con);
-                cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-                dataReader = cmd.ExecuteReader();
-                this.employees = new List<Employee>();
-
-                while (dataReader.Read())
-                {
-                    employees.Add(new Employee(dataReader.GetString(0)));
-                }
                 cmd.Dispose();
                 dataReader.Close();
                 con.Close();
@@ -245,7 +264,7 @@ namespace Sem2IntroProjectWaterfall0._1
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
                 foreach (Employee e in employees) { e.RemoveFromDatabase(); }    
-                //First we clear the employees in the department that were not previously moved, then we delete the actual deaprtment
+                //First we clear the employees in the department that were not previously moved, then we delete the actual department
                 using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM department WHERE departmentID=@departmentID", con))
                 {
                     cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
@@ -276,11 +295,16 @@ namespace Sem2IntroProjectWaterfall0._1
             return allDepartments;
         }
 
-        public static void AssignEmployeeTo (string userID, string newDepartmentId)
+        public void AssignEmployeeTo(string userID, string newDepartmentId)
         {
-            foreach (Employee e in Employee.GetAllEmployees())
-                if (e.UserID == userID)
-                    e.DepartmentID = newDepartmentId;
+            bool atleastOneWorking = (this.employees.Count > 1) ? true : false;
+
+            if (atleastOneWorking)
+            {
+                foreach (Employee e in Employee.GetAllEmployees())
+                    if (e.UserID == userID)
+                        e.DepartmentID = newDepartmentId;
+            } else throw new MinimalEmployeesException("You must always have one employee in a department!");
         }
     }
     #endregion
