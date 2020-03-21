@@ -105,24 +105,24 @@ namespace Sem2IntroProjectWaterfall0._1
         }
 
 
-        public  List<StockItem> GetRestockItems() //good
+        public  List<StockItem> GetRestockItems() //FIXXXXXXX
         {
             List<StockItem> OutOfStockItems = new List<StockItem>();
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
-            {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT StockID FROM stock WHERE currentAmount<threshold", con))
-                {
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
+            //using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            //{
+            //    using (MySqlCommand cmd = new MySqlCommand($"SELECT StockID FROM stock WHERE currentAmount<threshold", con))
+            //    {
+            //        MySqlDataReader dataReader = cmd.ExecuteReader();
 
-                    while (dataReader.Read())
-                    {
-                        OutOfStockItems.Add(new StockItem(dataReader["stockID"].ToString()));
-                    }
-                    cmd.Dispose();
-                    dataReader.Close();
-                }  
-                con.Close();
-            }    
+            //        while (dataReader.Read())
+            //        {
+            //            OutOfStockItems.Add(new StockItem(dataReader["stockID"].ToString()));
+            //        }
+            //        cmd.Dispose();
+            //        dataReader.Close();
+            //    }  
+            //    con.Close();
+            //}    
             return OutOfStockItems;
         }
         // List of all stockitems

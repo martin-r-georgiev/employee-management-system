@@ -106,11 +106,8 @@ namespace Sem2IntroProjectWaterfall0._1
         }
         #endregion
 
-        public StockItem(string stockID)
-        {
-            
-            this.stockID = stockID;
-        }
+        #region Constructors
+        
 
         public StockItem(string stockID,  int treshold, int currentAmmount)
         {
@@ -119,6 +116,7 @@ namespace Sem2IntroProjectWaterfall0._1
             this.threshold = treshold;
             this.currentAmount = currentAmmount;
         }
+
 
         //TO DO: Shorten and clean code
         public StockItem(string name, int threshold, string departmentID, int currentAmount)
@@ -175,6 +173,72 @@ namespace Sem2IntroProjectWaterfall0._1
             conn.Close();
         }
 
+        public StockItem(string name)
+        {
+            this.name = name;
+
+            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
+            MySqlCommand cmd;
+            MySqlDataReader dataReader, reader;
+
+            cmd = new MySqlCommand("SELECT stockID FROM stock_item WHERE name=@name", conn);
+            cmd.Parameters.AddWithValue("@name", this.name);
+            dataReader = cmd.ExecuteReader();
+            if (!dataReader.Read())
+            {
+                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+                {
+                    do
+                    {
+                        this.stockID = GenerateStockID();
+                        cmd = new MySqlCommand($"SELECT stockID FROM stock_item WHERE stockID=@stockID", con);
+                        cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                        reader = cmd.ExecuteReader();
+                    }
+                    while (reader.Read());
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+
+                using (cmd = new MySqlCommand($"INSERT IGNORE stock_item (stockID, name) VALUES (@stockID, @name)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                    cmd.Parameters.AddWithValue("@name", this.name);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+            }
+            else { cmd.Dispose(); dataReader.Close(); }
+        }
+
+        public StockItem(string departmentID, string stockID)
+        {
+            this.departmentID = departmentID;
+            this.stockID = stockID;
+
+            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
+            MySqlCommand cmd;
+            MySqlDataReader dataReader;
+            {
+                using (cmd = new MySqlCommand($"SELECT threshold, currentAmount FROM stock WHERE departmentID=@departmentID AND stockID=@stockID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@departmentID", departmentID);
+                    cmd.Parameters.AddWithValue("@stockID", stockID);
+                    dataReader = cmd.ExecuteReader();
+
+                    if (dataReader.Read())
+                    {
+                        this.threshold = Convert.ToInt32(dataReader.GetString(0));
+                        this.currentAmount = Convert.ToInt32(dataReader.GetString(1));
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+            }
+        }
+        #endregion
+
+        #region Methods
         private string GenerateStockID()
         {
             Guid key = Guid.NewGuid();
@@ -185,5 +249,6 @@ namespace Sem2IntroProjectWaterfall0._1
 
             return GuidString;
         }
+        #endregion
     }
 }
