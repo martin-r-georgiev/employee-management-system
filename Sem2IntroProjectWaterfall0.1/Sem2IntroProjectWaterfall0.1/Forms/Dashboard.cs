@@ -18,6 +18,16 @@ namespace Sem2IntroProjectWaterfall0._1
             lbWorkers.Items.Add("Ivan");
             lbWorkers.Items.Add("John");
             lbWorkers.Items.Add("Peter");
+
+            Inventory newInv = new Inventory("ALeOUe860aghE7oYKzSqQ");
+
+            List<StockItem> list = newInv.GetStockItems();
+
+            foreach(StockItem item in list)
+            {
+                Console.WriteLine($"{item.Name} - {item.DepartmentID} - {item.CurrentAmmount}/{item.Threshold}");
+            }
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)

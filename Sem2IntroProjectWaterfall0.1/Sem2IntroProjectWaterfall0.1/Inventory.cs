@@ -21,16 +21,14 @@ namespace Sem2IntroProjectWaterfall0._1
             items = new List<StockItem>();
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM stock", con))
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM stock WHERE departmentID=@depID", con))
                 {
+                    cmd.Parameters.AddWithValue("@depID", this.departmentId);
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
                     while (dataReader.Read())
                     {
-                        string stockID = dataReader["stockID"].ToString();
-                        int threshold = Convert.ToInt32(dataReader["threshold"]);
-                        int currentammount = Convert.ToInt32(dataReader["currentAmount"]);
-                        items.Add(new StockItem(stockID, threshold, currentammount)); // maybe add name to stock table
+                        items.Add(new StockItem(dataReader.GetString(0), dataReader.GetInt32(2), dataReader.GetInt32(3)));
                     }
                     cmd.Dispose();
                     dataReader.Close();
@@ -43,7 +41,6 @@ namespace Sem2IntroProjectWaterfall0._1
          public void AddItem(StockItem item) //good
         {
             items.Add(item);
-            // no need to add to the database as in order for the item to exist it will have a database entry
         }
 
         public void RemoveItem(StockItem item) //good
@@ -69,39 +66,17 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             items.RemoveAt(getindex(item.StockID));
         }
+
         public void UpdateAmmount(int newAmmount, string StockID) //good
         {
             int indextoupdate=getindex(StockID);
             items[indextoupdate].CurrentAmmount=newAmmount;
-
-            // should be the same as below   grammar
-            /* MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-             using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET currentAmmount = @newAmmount WHERE StockID=@StockID", conn))
-             {
-                 cmd.Parameters.AddWithValue("@newAmmount", newAmmount);
-                 cmd.Parameters.AddWithValue("@StockID", StockID);
-                 cmd.ExecuteNonQuery();
-                 cmd.Dispose();
-             }
-             conn.Close(); // use stockitem instead of this
-             */
         }
+
         public void UpdateTreshhold(int newTreshhold, string StockID)//good
         {
             int indextoupdate=getindex(StockID);
             items[indextoupdate].Threshold=newTreshhold;
-
-            //should be same as below grammar
-            /*  MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-                using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET threshold = @newTreshhold WHERE StockID=@StockID", conn))
-                {
-                    cmd.Parameters.AddWithValue("@Treshold", newTreshhold);
-                    cmd.Parameters.AddWithValue("@StockID", StockID);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                }
-                conn.Close();
-            */
         }
 
 
@@ -150,6 +125,11 @@ namespace Sem2IntroProjectWaterfall0._1
                 con.Close();
             }
             return Allitems;
+        }
+
+        public List<StockItem> GetStockItems()
+        {
+            return items;
         }
 
         #endregion
