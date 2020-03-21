@@ -126,7 +126,26 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             return Allitems;
         }
+        public static List<StockItem> GetAllItemsWithoutDepartment()
+        {
+            List<StockItem> listToSend = new List<StockItem>();
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT stockID FROM stock_item", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
 
+                    while (dataReader.Read())
+                    {
+                        listToSend.Add(new StockItem(dataReader.GetString(0),true));
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                con.Close();
+                return listToSend;
+            }
+        }
         public List<StockItem> GetRestockItemsCurrentDept() //works
         {
             List<StockItem> OutOfStockItems = new List<StockItem>();

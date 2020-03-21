@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace Sem2IntroProjectWaterfall0._1
 {
-    class StockItem
+    public class StockItem
     {
         #region Var and prop
         private string name;
@@ -107,16 +107,6 @@ namespace Sem2IntroProjectWaterfall0._1
         #endregion
 
         #region Constructors
-        
-
-        public StockItem(string stockID,  int treshold, int currentAmmount)
-        {
-
-            this.stockID = stockID;
-            this.threshold = treshold;
-            this.currentAmount = currentAmmount;
-        }
-
 
         //TO DO: Shorten and clean code
         public StockItem(string name, int threshold, string departmentID, int currentAmount)
@@ -247,6 +237,22 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
             }
             conn.Close();
+        }
+        public StockItem(string stockId, bool justLetMeOverload) //If you only need the stock_item data
+        {
+            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
+            MySqlCommand cmd;
+            MySqlDataReader dataReader;
+            this.stockID = stockId;
+            using (cmd = new MySqlCommand($"SELECT name from stock_item WHERE stockID=@stockID", conn))
+            {
+                cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                dataReader = cmd.ExecuteReader();
+
+                if (dataReader.Read()) this.name = dataReader.GetString(0);
+                cmd.Dispose();
+                dataReader.Close();
+            }
         }
         #endregion
 

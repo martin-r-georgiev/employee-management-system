@@ -124,6 +124,12 @@
     <Compile Include="Role.cs" />
     <Compile Include="SqlConnectionHandler.cs" />
     <Compile Include="StockItem.cs" />
+    <Compile Include="Custom Controls\StockUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom Controls\StockUC.Designer.cs">
+      <DependentUpon>StockUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Workshifts.resx">
       <DependentUpon>Workshifts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom Controls\StockUC.resx">
+      <DependentUpon>StockUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

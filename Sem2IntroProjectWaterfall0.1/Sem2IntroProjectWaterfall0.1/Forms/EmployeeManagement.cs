@@ -281,5 +281,20 @@ namespace Sem2IntroProjectWaterfall0._1
                 tbDepartmentEditAddress.Text = selectedDepartment.Address;
             }
         }
+
+        private void btnCreateNewStock_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRemoveItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAssignItemToDepartment_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
