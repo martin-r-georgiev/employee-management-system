@@ -68,7 +68,6 @@ namespace Sem2IntroProjectWaterfall0._1
                         using (cmd = new MySqlCommand($"INSERT INTO stock (stockID, departmentID, threshold,currentAmount) VALUES (@stockID,@departmentID, @threshold, @currentAmount)", con))
                         {
                             cmd.Parameters.AddWithValue("@stockID", item.StockID);
-
                             cmd.Parameters.AddWithValue("@departmentID", this.departmentId);
                             cmd.Parameters.AddWithValue("@threshold", item.Threshold);
                             cmd.Parameters.AddWithValue("@currentAmount",item.CurrentAmmount);

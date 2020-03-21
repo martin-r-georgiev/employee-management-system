@@ -361,7 +361,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void cbRemoveItem_DropDown(object sender, EventArgs e)
         {
-            cbRole.Items.Clear();
+            cbRemoveItem.Items.Clear();
             UpdateStockList();
             foreach (StockItem stock in stonks)
             { cbRemoveItem.Items.Add(stock.Name); }
@@ -380,7 +380,7 @@ namespace Sem2IntroProjectWaterfall0._1
             cbDepartmentAssignItem.Items.Clear();
             UpdateDepartmentList();
             foreach (Department dep in departments)
-            { cbItemAssignItem.Items.Add(dep.Name); }
+            { cbDepartmentAssignItem.Items.Add(dep.Name); }
         }
         public static void ItemAlreadyAdded()
         {

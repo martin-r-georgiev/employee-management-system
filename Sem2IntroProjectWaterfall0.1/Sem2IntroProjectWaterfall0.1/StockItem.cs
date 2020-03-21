@@ -253,6 +253,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 cmd.Dispose();
                 dataReader.Close();
             }
+            conn.Close(); // missed
         }
         #endregion
 
