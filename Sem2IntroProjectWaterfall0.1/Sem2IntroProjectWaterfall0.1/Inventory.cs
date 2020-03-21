@@ -28,7 +28,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
                     while (dataReader.Read())
                     {
-                        items.Add(new StockItem(dataReader.GetString(0), dataReader.GetInt32(2), dataReader.GetInt32(3)));
+                        items.Add(new StockItem(dataReader.GetString(1),dataReader.GetString(0)));
                     }
                     cmd.Dispose();
                     dataReader.Close();

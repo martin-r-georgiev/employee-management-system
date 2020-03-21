@@ -209,6 +209,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
             }
             else { cmd.Dispose(); dataReader.Close(); }
+            conn.Close();
         }
 
         public StockItem(string departmentID, string stockID)
@@ -228,13 +229,24 @@ namespace Sem2IntroProjectWaterfall0._1
 
                     if (dataReader.Read())
                     {
-                        this.threshold = Convert.ToInt32(dataReader.GetString(0));
-                        this.currentAmount = Convert.ToInt32(dataReader.GetString(1));
+                        this.threshold = dataReader.GetInt32(0);
+                        this.currentAmount = dataReader.GetInt32(1);
                     }
                     cmd.Dispose();
                     dataReader.Close();
                 }
+
+                using (cmd = new MySqlCommand($"SELECT name from stock_item WHERE stockID=@stockID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                    dataReader = cmd.ExecuteReader();
+
+                    if(dataReader.Read()) this.name = dataReader.GetString(0);
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
             }
+            conn.Close();
         }
         #endregion
 
