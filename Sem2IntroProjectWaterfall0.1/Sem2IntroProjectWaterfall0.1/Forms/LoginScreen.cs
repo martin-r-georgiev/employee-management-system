@@ -13,11 +13,12 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     public partial class LoginScreen : Form
     {
-        Inventory inventory;
+      
         public LoginScreen()
         {
             InitializeComponent();
-            inventory = new Inventory("H4VapUGLk0it0yrCUBBY5Q");
+          
+            
 
         }
 
@@ -60,6 +61,6 @@ namespace Sem2IntroProjectWaterfall0._1
             else MessageBox.Show("Please fill all required fields before attempting to log in!");
         }
 
-
-    }
+       
+    }   
 }

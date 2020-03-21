@@ -80,30 +80,30 @@ namespace Sem2IntroProjectWaterfall0._1
         }
 
 
-        public  List<StockItem> GetRestockItems() //FIXXXXXXX
+        public static  List<StockItem> GetAllRestockItems() //good
         {
             List<StockItem> OutOfStockItems = new List<StockItem>();
-            //using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
-            //{
-            //    using (MySqlCommand cmd = new MySqlCommand($"SELECT StockID FROM stock WHERE currentAmount<threshold", con))
-            //    {
-            //        MySqlDataReader dataReader = cmd.ExecuteReader();
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT departmentID,stockID FROM stock WHERE currentAmount<threshold", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
 
-            //        while (dataReader.Read())
-            //        {
-            //            OutOfStockItems.Add(new StockItem(dataReader["stockID"].ToString()));
-            //        }
-            //        cmd.Dispose();
-            //        dataReader.Close();
-            //    }  
-            //    con.Close();
-            //}    
+                   while (dataReader.Read())
+                    {
+                        OutOfStockItems.Add(new StockItem(dataReader["departmentID"].ToString(),dataReader["stockID"].ToString()));
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+               }  
+              con.Close();
+            }    
             return OutOfStockItems;
-        }
-        // List of all stockitems
+        }// returns all out of stock items
+        
 
 
-        public  List<StockItem> ListAllItems() //good
+        public static  List<StockItem> ListAllItems() //fixed 
         {
             List<StockItem> Allitems = new List<StockItem>();
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
@@ -115,9 +115,9 @@ namespace Sem2IntroProjectWaterfall0._1
                     while (dataReader.Read())
                     {
                         string stockID = dataReader["stockID"].ToString();
-                        int threshold = Convert.ToInt32(dataReader["threshold"]);
-                        int currentammount = Convert.ToInt32(dataReader["currentAmount"]);
-                        Allitems.Add(new StockItem(stockID, threshold, currentammount)); // maybe add name to stock table
+                        string departmentID =dataReader["departmentID"].ToString();
+                     //   int currentammount = Convert.ToInt32(dataReader["currentAmount"]);
+                        Allitems.Add(new StockItem( departmentID,  stockID)); 
                     }
                     cmd.Dispose();
                     dataReader.Close();
@@ -125,6 +125,28 @@ namespace Sem2IntroProjectWaterfall0._1
                 con.Close();
             }
             return Allitems;
+        }
+
+        public List<StockItem> GetRestockItemsCurrentDept() //works
+        {
+            List<StockItem> OutOfStockItems = new List<StockItem>();
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT stockID FROM stock WHERE currentAmount<threshold and departmentID=@departmentID", con))
+               {
+                    cmd.Parameters.AddWithValue("@departmentID", this.departmentId);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        OutOfStockItems.Add(new StockItem(this.departmentId,dataReader["stockID"].ToString()));
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+               }  
+                con.Close();
+           }    
+            return OutOfStockItems;
         }
 
         public List<StockItem> GetStockItems()
