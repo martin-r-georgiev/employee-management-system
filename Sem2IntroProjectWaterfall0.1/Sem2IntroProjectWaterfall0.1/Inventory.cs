@@ -40,10 +40,91 @@ namespace Sem2IntroProjectWaterfall0._1
         #region Methods
          public void AddItem(StockItem item) //good
         {
-            items.Add(item);
+    
+            
+                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+                {
+                    MySqlCommand cmd;
+                    MySqlDataReader dataReader;
+
+                    cmd = new MySqlCommand($"SELECT stockID FROM stock WHERE stockID=@stockID AND  departmentID=@departmentID ", con);
+                    cmd.Parameters.AddWithValue("@name", item.StockID);
+                    cmd.Parameters.AddWithValue("@departmentID", this.departmentId);
+                    dataReader = cmd.ExecuteReader();
+
+                    if (dataReader.Read())
+                    {
+                        cmd.Dispose();
+                        dataReader.Close();
+                        throw new NameTakenException("The item already exists in the department");
+                        //EmployeeManagement.ItemAlreadyAdded(); incase the error doesnt show up
+                    }
+                    else
+                    {
+                        cmd.Dispose();
+                        dataReader.Close();
+                       
+
+                        using (cmd = new MySqlCommand($"INSERT INTO stock (stockID, departmentID, threshold,currentAmount) VALUES (@stockID,@departmentID, @threshold, @currentAmount)", con))
+                        {
+                            cmd.Parameters.AddWithValue("@stockID", item.StockID);
+
+                            cmd.Parameters.AddWithValue("@departmentID", this.departmentId);
+                            cmd.Parameters.AddWithValue("@threshold", item.Threshold);
+                            cmd.Parameters.AddWithValue("@currentAmount",item.CurrentAmmount);
+                            cmd.ExecuteNonQuery();
+                            cmd.Dispose();
+                          items.Add(item);
+
+                        }
+                    }
+                    con.Close();
+                }
+            
+            
+
         }
 
-        public void RemoveItem(StockItem item) //good
+        public  void RemoveItem(StockItem item) //good
+        {
+
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                MySqlCommand cmd;
+                MySqlDataReader dataReader;
+
+                cmd = new MySqlCommand($"SELECT stockID FROM stock WHERE stockID=@stockID AND  departmentID=@departmentID ", con);
+                cmd.Parameters.AddWithValue("@name", item.StockID);
+                cmd.Parameters.AddWithValue("@departmentID", this.departmentId);
+                dataReader = cmd.ExecuteReader();
+
+                if (!dataReader.Read())
+                {
+                    cmd.Dispose();
+                    dataReader.Close();
+                    throw new NameTakenException("The item already exists in the department");
+                    //EmployeeManagement.ItemAlreadyAdded(); incase the error doesnt show up
+                }
+                else
+                {
+                    cmd.Dispose();
+                    dataReader.Close();
+                    using ( cmd = new MySqlCommand($"DELETE FROM stock WHERE stockID=@stockID AND departmentID=@departmentID", con))
+                    {
+                        cmd.Parameters.AddWithValue("@stockID", item);
+                        cmd.Parameters.AddWithValue("@departmentID", this.departmentId);
+
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+
+
+                }
+                con.Close();
+            }
+        }
+
+        public static void RemoveItemGlobal(StockItem item) //good
         {
             string stockname = item.Name;
             string StockID = item.StockID;
@@ -64,7 +145,6 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 conn.Close();
             }
-            items.RemoveAt(getindex(item.StockID));
         }
 
         public void UpdateAmmount(int newAmmount, string StockID) //good

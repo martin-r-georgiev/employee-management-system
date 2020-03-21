@@ -14,6 +14,7 @@ namespace Sem2IntroProjectWaterfall0._1
     {
         private List<Department> departments;
         private List<Employee> employees;
+        private List<StockItem> stonks;
 
         public EmployeeManagement()
         {
@@ -21,10 +22,13 @@ namespace Sem2IntroProjectWaterfall0._1
             RefreshComboboxes();
             employees = Employee.GetAllEmployees();
             departments = Department.GetAllDepartments();
+            stonks = Inventory.GetAllItemsWithoutDepartment();
         }
 
         private void UpdateDepartmentList() { departments = Department.GetAllDepartments(); }
         private void UpdateEmployeeList() { employees = Employee.GetAllEmployees(); }
+
+        private void UpdateStockList() { stonks = Inventory.GetAllItemsWithoutDepartment(); }
 
         private void ClearEmployeePersonalInfo()
         {
@@ -48,7 +52,7 @@ namespace Sem2IntroProjectWaterfall0._1
         private void cbRole_DropDown(object sender, EventArgs e)
         {
             cbRole.Items.Clear();
-            foreach(Role role in Enum.GetValues(typeof(Role))) { cbRole.Items.Add(role); }
+            foreach (Role role in Enum.GetValues(typeof(Role))) { cbRole.Items.Add(role); }
         }
 
         private void cbDepartments_DropDown(object sender, EventArgs e)
@@ -60,7 +64,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(tbUsername.Text) || string.IsNullOrEmpty(tbPassword.Text) || string.IsNullOrEmpty(tbHourlySalary.Text))
+            if (string.IsNullOrEmpty(tbUsername.Text) || string.IsNullOrEmpty(tbPassword.Text) || string.IsNullOrEmpty(tbHourlySalary.Text))
             {
                 MessageBox.Show("Please fill all required fields and try again.");
             }
@@ -74,7 +78,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     if (!Employee.IsUniqueUsername(tbUsername.Text)) { MessageBox.Show("Username is taken. Please choose another and try again."); return; }
                     try
                     {
-                        Employee newEmployee = new Employee(tbUsername.Text, tbPassword.Text, hourlySalary, (Role) cbRole.SelectedIndex, departments[cbDepartments.SelectedIndex].DepartmentId);
+                        Employee newEmployee = new Employee(tbUsername.Text, tbPassword.Text, hourlySalary, (Role)cbRole.SelectedIndex, departments[cbDepartments.SelectedIndex].DepartmentId);
                         MessageBox.Show("Sucessfully added new employee to the system!");
                         RefreshComboboxes();
                         tbUsername.Clear();
@@ -103,7 +107,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         MessageBox.Show($"Successfully moved {employees[eIndex].Username} to department ({departments[dIndex].Name})");
                     }
                     else MessageBox.Show("Selected employee is already part of this department.");
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -131,6 +135,7 @@ namespace Sem2IntroProjectWaterfall0._1
             cbDepartmentEdit.DisplayMember = "Name";
             cbDepartmentRemove.DataSource = allDepartmentsRemove;
             cbDepartmentRemove.DisplayMember = "Name";
+
         }
 
         private void btnAssignEmployee_Click(object sender, EventArgs e)
@@ -142,7 +147,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 Department oldDepartment = new Department(selectedUser.DepartmentID);
                 oldDepartment.AssignEmployeeTo(selectedUser.UserID, selectedDepartment.DepartmentId);
                 RefreshComboboxes();
-            }catch(Exception exc) { MessageBox.Show(exc.Message); }
+            } catch (Exception exc) { MessageBox.Show(exc.Message); }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -172,7 +177,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             catch (Exception exc) { MessageBox.Show(exc.Message); }
         }
-        
+
         private void btnCreateNewDepartment_Click(object sender, EventArgs e)
         {
             try
@@ -235,7 +240,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void cbPersonalInfoList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbPersonalInfoList.SelectedIndex != -1)
+            if (cbPersonalInfoList.SelectedIndex != -1)
             {
                 int index = cbPersonalInfoList.SelectedIndex;
                 tbFirstName.Text = employees[index].FirstName;
@@ -284,17 +289,135 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnCreateNewStock_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(tbStockCreateName.Text))
+            { StockItem stockItem = new StockItem(tbStockCreateName.Text); }
+            else
+                MessageBox.Show("Enter a name for the stock!");
         }
 
         private void btnRemoveItem_Click(object sender, EventArgs e)
         {
+            if (cbRemoveItem.SelectedIndex > 0)
+            {
+                foreach (StockItem stock in stonks)
+                {
+                    if (stock.Name == cbRemoveItem.SelectedItem.ToString())
+                    {
+                        Inventory.RemoveItemGlobal(stock);// static method to be used to remove items from both tables
+                        break;
+                    }
+                }
 
+            }
+            else
+            {
+                MessageBox.Show("Select an item to be deleted");
+            }
+        }
+
+        private StockItem GetStockItemByName(string name)
+        {
+            foreach (StockItem stock in stonks)
+            {
+                if (stock.Name == name)
+                {
+                    return stock;
+                }
+            }
+            StockItem error=new StockItem("ERROR"); // shouldnt reach this code
+            return error;
+        }
+
+        private Department GetDepartmentByName(string name)
+        {
+            foreach (Department dep in departments)
+            {
+                if (dep.Name == name)
+                {
+                    return dep;
+                }
+            }
+            Department error = new Department("ERROR"); // shouldnt reach this code
+            return error;
         }
 
         private void btnAssignItemToDepartment_Click(object sender, EventArgs e)
         {
+            if (!(numUdCurrentAmmount.Value == 0 || cbDepartmentAssignItem.SelectedIndex < 0 || cbItemAssignItem.SelectedIndex<0)) // idk if they should be 0
+            {
+                string item = cbItemAssignItem.Text;
+                string department = cbDepartmentAssignItem.Text;
 
+                Department DepToAssignTo = GetDepartmentByName(department);
+                StockItem ItemToAssign = GetStockItemByName(item);
+                DepToAssignTo.inventory.AddItem(ItemToAssign);
+
+            }
+            else
+            {
+                MessageBox.Show("Please select values");
+            }
+        }
+
+        private void cbRemoveItem_DropDown(object sender, EventArgs e)
+        {
+            cbRole.Items.Clear();
+            UpdateStockList();
+            foreach (StockItem stock in stonks)
+            { cbRemoveItem.Items.Add(stock.Name); }
+        }
+
+        private void cbItemAssignItem_DropDown(object sender, EventArgs e)
+        {
+            cbItemAssignItem.Items.Clear();
+            UpdateStockList();
+            foreach (StockItem stock in stonks)
+            { cbItemAssignItem.Items.Add(stock.Name); }
+        }
+
+        private void cbDepartmentAssignItem_DropDown(object sender, EventArgs e)
+        {
+            cbDepartmentAssignItem.Items.Clear();
+            UpdateDepartmentList();
+            foreach (Department dep in departments)
+            { cbItemAssignItem.Items.Add(dep.Name); }
+        }
+        public static void ItemAlreadyAdded()
+        {
+            MessageBox.Show("The item is already in the department");
+        }
+
+        private void cbItemRemoveFromDpt_DropDown(object sender, EventArgs e)
+        {
+            cbItemRemoveFromDpt.Items.Clear();
+            UpdateStockList();
+            foreach (StockItem stock in stonks)
+            { cbItemRemoveFromDpt.Items.Add(stock.Name); }
+        }
+
+        private void cbDptRemoveFromDpt_DropDown(object sender, EventArgs e)
+        {
+            cbDptRemoveFromDpt.Items.Clear();
+            UpdateDepartmentList();
+            foreach (Department dep in departments)
+            { cbDptRemoveFromDpt.Items.Add(dep.Name); }
+        }
+
+        private void button1_Click(object sender, EventArgs e) 
+        {
+            if(cbDptRemoveFromDpt.SelectedIndex>0 && cbItemRemoveFromDpt.SelectedIndex>0)
+            {
+                string item = cbItemAssignItem.Text;
+                string department = cbDepartmentAssignItem.Text;
+                // the department and item should be current cuz when opening the comboboxes it updates the list of departments/items
+                Department DepToRemoveFrom = GetDepartmentByName(department);
+                StockItem ItemToRemove = GetStockItemByName(item);
+                DepToRemoveFrom.inventory.RemoveItem(ItemToRemove);
+            }
+            else
+            {
+                MessageBox.Show("Please select an item");
+            }
         }
     }
 }

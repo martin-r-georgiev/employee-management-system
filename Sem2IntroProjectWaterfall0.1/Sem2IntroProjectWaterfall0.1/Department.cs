@@ -15,6 +15,7 @@ namespace Sem2IntroProjectWaterfall0._1
 		private string name;
 		private string address;
 		List<Employee> employees;
+       public Inventory inventory;
 		public List<Employee> Employees
 		{
 			get { return this.employees; }
@@ -74,6 +75,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 this.name = name;
                 this.address = address;
                 employees = new List<Employee>();
+                inventory = new Inventory(this.departmentId);
 
                 using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
                 {
@@ -122,6 +124,8 @@ namespace Sem2IntroProjectWaterfall0._1
         }
         public Department(string departmentId)
         {
+            inventory = new Inventory(this.departmentId);
+
             this.DepartmentId = departmentId;
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {

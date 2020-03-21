@@ -98,30 +98,30 @@
             this.tbDepartmentCreateAddress = new System.Windows.Forms.TextBox();
             this.tbDepartmentCreateName = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.cbRemoveItem = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.tbStockCreateName = new System.Windows.Forms.TextBox();
-            this.btnCreateNewStock = new System.Windows.Forms.Button();
-            this.btnRemoveItem = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.btnAssignItemToDepartment = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.cbItemAssignItem = new System.Windows.Forms.ComboBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.cbDepartmentAssignItem = new System.Windows.Forms.ComboBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.numUdCurrentAmmount = new System.Windows.Forms.NumericUpDown();
-            this.numUdThreshold = new System.Windows.Forms.NumericUpDown();
+            this.button1 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.cbDptRemoveFromDpt = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.cbItemRemoveFromDpt = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.numUdThreshold = new System.Windows.Forms.NumericUpDown();
+            this.numUdCurrentAmmount = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.cbDepartmentAssignItem = new System.Windows.Forms.ComboBox();
+            this.btnAssignItemToDepartment = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cbItemAssignItem = new System.Windows.Forms.ComboBox();
+            this.btnRemoveItem = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.btnCreateNewStock = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tbStockCreateName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbRemoveItem = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gbPersonalInfo.SuspendLayout();
@@ -130,8 +130,8 @@
             this.groupBox2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUdCurrentAmmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUdThreshold)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUdCurrentAmmount)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBack
@@ -911,85 +911,121 @@
             this.tabPage3.Text = "Stocks";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // cbRemoveItem
+            // button1
             // 
-            this.cbRemoveItem.FormattingEnabled = true;
-            this.cbRemoveItem.Location = new System.Drawing.Point(3, 196);
-            this.cbRemoveItem.Margin = new System.Windows.Forms.Padding(2);
-            this.cbRemoveItem.Name = "cbRemoveItem";
-            this.cbRemoveItem.Size = new System.Drawing.Size(169, 21);
-            this.cbRemoveItem.TabIndex = 14;
+            this.button1.Location = new System.Drawing.Point(403, 144);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(169, 24);
+            this.button1.TabIndex = 48;
+            this.button1.Text = "Unassign";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label6
+            // label16
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(23, 25);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(121, 16);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Create New Item";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(455, 91);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(62, 13);
+            this.label16.TabIndex = 47;
+            this.label16.Text = "Department";
             // 
-            // label17
+            // cbDptRemoveFromDpt
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(68, 50);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(35, 13);
-            this.label17.TabIndex = 24;
-            this.label17.Text = "Name";
+            this.cbDptRemoveFromDpt.FormattingEnabled = true;
+            this.cbDptRemoveFromDpt.Location = new System.Drawing.Point(403, 106);
+            this.cbDptRemoveFromDpt.Margin = new System.Windows.Forms.Padding(2);
+            this.cbDptRemoveFromDpt.Name = "cbDptRemoveFromDpt";
+            this.cbDptRemoveFromDpt.Size = new System.Drawing.Size(169, 21);
+            this.cbDptRemoveFromDpt.TabIndex = 46;
+            this.cbDptRemoveFromDpt.DropDown += new System.EventHandler(this.cbDptRemoveFromDpt_DropDown);
             // 
-            // tbStockCreateName
+            // label19
             // 
-            this.tbStockCreateName.Location = new System.Drawing.Point(3, 67);
-            this.tbStockCreateName.Name = "tbStockCreateName";
-            this.tbStockCreateName.Size = new System.Drawing.Size(169, 20);
-            this.tbStockCreateName.TabIndex = 23;
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(468, 50);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(27, 13);
+            this.label19.TabIndex = 45;
+            this.label19.Text = "Item";
             // 
-            // btnCreateNewStock
+            // label20
             // 
-            this.btnCreateNewStock.Location = new System.Drawing.Point(3, 102);
-            this.btnCreateNewStock.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCreateNewStock.Name = "btnCreateNewStock";
-            this.btnCreateNewStock.Size = new System.Drawing.Size(169, 24);
-            this.btnCreateNewStock.TabIndex = 25;
-            this.btnCreateNewStock.Text = "Create";
-            this.btnCreateNewStock.UseVisualStyleBackColor = true;
-            this.btnCreateNewStock.Click += new System.EventHandler(this.btnCreateNewStock_Click);
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(393, 25);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(217, 16);
+            this.label20.TabIndex = 44;
+            this.label20.Text = "Remove Item from Department";
             // 
-            // btnRemoveItem
+            // cbItemRemoveFromDpt
             // 
-            this.btnRemoveItem.Location = new System.Drawing.Point(3, 231);
-            this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRemoveItem.Name = "btnRemoveItem";
-            this.btnRemoveItem.Size = new System.Drawing.Size(169, 24);
-            this.btnRemoveItem.TabIndex = 29;
-            this.btnRemoveItem.Text = "Remove";
-            this.btnRemoveItem.UseVisualStyleBackColor = true;
-            this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
+            this.cbItemRemoveFromDpt.FormattingEnabled = true;
+            this.cbItemRemoveFromDpt.Location = new System.Drawing.Point(403, 65);
+            this.cbItemRemoveFromDpt.Margin = new System.Windows.Forms.Padding(2);
+            this.cbItemRemoveFromDpt.Name = "cbItemRemoveFromDpt";
+            this.cbItemRemoveFromDpt.Size = new System.Drawing.Size(169, 21);
+            this.cbItemRemoveFromDpt.TabIndex = 43;
+            this.cbItemRemoveFromDpt.DropDown += new System.EventHandler(this.cbItemRemoveFromDpt_DropDown);
             // 
-            // label18
+            // numUdThreshold
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(72, 181);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(27, 13);
-            this.label18.TabIndex = 28;
-            this.label18.Text = "Item";
+            this.numUdThreshold.Location = new System.Drawing.Point(191, 197);
+            this.numUdThreshold.Name = "numUdThreshold";
+            this.numUdThreshold.Size = new System.Drawing.Size(169, 20);
+            this.numUdThreshold.TabIndex = 42;
             // 
-            // label21
+            // numUdCurrentAmmount
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(37, 152);
-            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(99, 16);
-            this.label21.TabIndex = 26;
-            this.label21.Text = "Remove Item";
+            this.numUdCurrentAmmount.Location = new System.Drawing.Point(191, 152);
+            this.numUdCurrentAmmount.Name = "numUdCurrentAmmount";
+            this.numUdCurrentAmmount.Size = new System.Drawing.Size(169, 20);
+            this.numUdCurrentAmmount.TabIndex = 41;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(244, 180);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(54, 13);
+            this.label26.TabIndex = 40;
+            this.label26.Text = "Threshold";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(229, 136);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(80, 13);
+            this.label25.TabIndex = 38;
+            this.label25.Text = "Current Amount";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(243, 91);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(62, 13);
+            this.label24.TabIndex = 36;
+            this.label24.Text = "Department";
+            // 
+            // cbDepartmentAssignItem
+            // 
+            this.cbDepartmentAssignItem.FormattingEnabled = true;
+            this.cbDepartmentAssignItem.Location = new System.Drawing.Point(191, 106);
+            this.cbDepartmentAssignItem.Margin = new System.Windows.Forms.Padding(2);
+            this.cbDepartmentAssignItem.Name = "cbDepartmentAssignItem";
+            this.cbDepartmentAssignItem.Size = new System.Drawing.Size(169, 21);
+            this.cbDepartmentAssignItem.TabIndex = 35;
+            this.cbDepartmentAssignItem.DropDown += new System.EventHandler(this.cbDepartmentAssignItem_DropDown);
             // 
             // btnAssignItemToDepartment
             // 
@@ -1031,118 +1067,88 @@
             this.cbItemAssignItem.Name = "cbItemAssignItem";
             this.cbItemAssignItem.Size = new System.Drawing.Size(169, 21);
             this.cbItemAssignItem.TabIndex = 31;
+            this.cbItemAssignItem.DropDown += new System.EventHandler(this.cbItemAssignItem_DropDown);
             // 
-            // label24
+            // btnRemoveItem
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(243, 91);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(62, 13);
-            this.label24.TabIndex = 36;
-            this.label24.Text = "Department";
+            this.btnRemoveItem.Location = new System.Drawing.Point(3, 231);
+            this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRemoveItem.Name = "btnRemoveItem";
+            this.btnRemoveItem.Size = new System.Drawing.Size(169, 24);
+            this.btnRemoveItem.TabIndex = 29;
+            this.btnRemoveItem.Text = "Remove";
+            this.btnRemoveItem.UseVisualStyleBackColor = true;
+            this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
             // 
-            // cbDepartmentAssignItem
+            // label18
             // 
-            this.cbDepartmentAssignItem.FormattingEnabled = true;
-            this.cbDepartmentAssignItem.Location = new System.Drawing.Point(191, 106);
-            this.cbDepartmentAssignItem.Margin = new System.Windows.Forms.Padding(2);
-            this.cbDepartmentAssignItem.Name = "cbDepartmentAssignItem";
-            this.cbDepartmentAssignItem.Size = new System.Drawing.Size(169, 21);
-            this.cbDepartmentAssignItem.TabIndex = 35;
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(72, 181);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(27, 13);
+            this.label18.TabIndex = 28;
+            this.label18.Text = "Item";
             // 
-            // label25
+            // label21
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(229, 136);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(80, 13);
-            this.label25.TabIndex = 38;
-            this.label25.Text = "Current Amount";
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(37, 152);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(99, 16);
+            this.label21.TabIndex = 26;
+            this.label21.Text = "Remove Item";
             // 
-            // label26
+            // btnCreateNewStock
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(244, 180);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(54, 13);
-            this.label26.TabIndex = 40;
-            this.label26.Text = "Threshold";
+            this.btnCreateNewStock.Location = new System.Drawing.Point(3, 102);
+            this.btnCreateNewStock.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCreateNewStock.Name = "btnCreateNewStock";
+            this.btnCreateNewStock.Size = new System.Drawing.Size(169, 24);
+            this.btnCreateNewStock.TabIndex = 25;
+            this.btnCreateNewStock.Text = "Create";
+            this.btnCreateNewStock.UseVisualStyleBackColor = true;
+            this.btnCreateNewStock.Click += new System.EventHandler(this.btnCreateNewStock_Click);
             // 
-            // numUdCurrentAmmount
+            // label17
             // 
-            this.numUdCurrentAmmount.Location = new System.Drawing.Point(191, 152);
-            this.numUdCurrentAmmount.Name = "numUdCurrentAmmount";
-            this.numUdCurrentAmmount.Size = new System.Drawing.Size(169, 20);
-            this.numUdCurrentAmmount.TabIndex = 41;
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(68, 50);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(35, 13);
+            this.label17.TabIndex = 24;
+            this.label17.Text = "Name";
             // 
-            // numUdThreshold
+            // tbStockCreateName
             // 
-            this.numUdThreshold.Location = new System.Drawing.Point(191, 197);
-            this.numUdThreshold.Name = "numUdThreshold";
-            this.numUdThreshold.Size = new System.Drawing.Size(169, 20);
-            this.numUdThreshold.TabIndex = 42;
+            this.tbStockCreateName.Location = new System.Drawing.Point(3, 67);
+            this.tbStockCreateName.Name = "tbStockCreateName";
+            this.tbStockCreateName.Size = new System.Drawing.Size(169, 20);
+            this.tbStockCreateName.TabIndex = 23;
             // 
-            // label16
+            // label6
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(455, 91);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(62, 13);
-            this.label16.TabIndex = 47;
-            this.label16.Text = "Department";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(23, 25);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(121, 16);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Create New Item";
             // 
-            // cbDptRemoveFromDpt
+            // cbRemoveItem
             // 
-            this.cbDptRemoveFromDpt.FormattingEnabled = true;
-            this.cbDptRemoveFromDpt.Location = new System.Drawing.Point(403, 106);
-            this.cbDptRemoveFromDpt.Margin = new System.Windows.Forms.Padding(2);
-            this.cbDptRemoveFromDpt.Name = "cbDptRemoveFromDpt";
-            this.cbDptRemoveFromDpt.Size = new System.Drawing.Size(169, 21);
-            this.cbDptRemoveFromDpt.TabIndex = 46;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(468, 50);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(27, 13);
-            this.label19.TabIndex = 45;
-            this.label19.Text = "Item";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(393, 25);
-            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(217, 16);
-            this.label20.TabIndex = 44;
-            this.label20.Text = "Remove Item from Department";
-            // 
-            // cbItemRemoveFromDpt
-            // 
-            this.cbItemRemoveFromDpt.FormattingEnabled = true;
-            this.cbItemRemoveFromDpt.Location = new System.Drawing.Point(403, 65);
-            this.cbItemRemoveFromDpt.Margin = new System.Windows.Forms.Padding(2);
-            this.cbItemRemoveFromDpt.Name = "cbItemRemoveFromDpt";
-            this.cbItemRemoveFromDpt.Size = new System.Drawing.Size(169, 21);
-            this.cbItemRemoveFromDpt.TabIndex = 43;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(403, 144);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 24);
-            this.button1.TabIndex = 48;
-            this.button1.Text = "Unassign";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cbRemoveItem.FormattingEnabled = true;
+            this.cbRemoveItem.Location = new System.Drawing.Point(3, 196);
+            this.cbRemoveItem.Margin = new System.Windows.Forms.Padding(2);
+            this.cbRemoveItem.Name = "cbRemoveItem";
+            this.cbRemoveItem.Size = new System.Drawing.Size(169, 21);
+            this.cbRemoveItem.TabIndex = 14;
+            this.cbRemoveItem.DropDown += new System.EventHandler(this.cbRemoveItem_DropDown);
             // 
             // EmployeeManagement
             // 
@@ -1167,8 +1173,8 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUdCurrentAmmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUdThreshold)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUdCurrentAmmount)).EndInit();
             this.ResumeLayout(false);
 
         }
