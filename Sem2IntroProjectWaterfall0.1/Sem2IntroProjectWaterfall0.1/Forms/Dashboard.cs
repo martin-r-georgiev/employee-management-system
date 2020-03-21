@@ -67,7 +67,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void BtnCheckin_Click(object sender, EventArgs e)
         {
-          
+            StockItem item = new StockItem("Samsung S2");
         }
     }
 }
