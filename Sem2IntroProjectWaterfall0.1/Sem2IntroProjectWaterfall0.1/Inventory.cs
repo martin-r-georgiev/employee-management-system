@@ -12,6 +12,12 @@ namespace Sem2IntroProjectWaterfall0._1
         List<StockItem> items;
         #region variables + properties
         private string departmentId;
+
+        public string DepartmentId
+        {
+            get { return this.departmentId; }
+            private set { }
+        }
         #endregion
 
         #region Constructors
@@ -38,47 +44,56 @@ namespace Sem2IntroProjectWaterfall0._1
         }
         #endregion
         #region Methods
-         public void AddItem(StockItem item) //good
+         public void AddItem(StockItem item,int Threshold,int CurrentAmmount) //good
         {
-    
-            
-                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+
+           
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                MySqlCommand cmd;
+                MySqlDataReader dataReader;
+
+                cmd = new MySqlCommand($"SELECT stockID FROM stock WHERE stockID=@stockID AND  departmentID=@departmentID ", con);
+                cmd.Parameters.AddWithValue("@name", item.StockID);
+                cmd.Parameters.AddWithValue("@departmentID", this.departmentId);
+                dataReader = cmd.ExecuteReader(); 
+
+                if (dataReader.Read())
                 {
-                    MySqlCommand cmd;
-                    MySqlDataReader dataReader;
-
-                    cmd = new MySqlCommand($"SELECT stockID FROM stock WHERE stockID=@stockID AND  departmentID=@departmentID ", con);
-                    cmd.Parameters.AddWithValue("@name", item.StockID);
-                    cmd.Parameters.AddWithValue("@departmentID", this.departmentId);
-                    dataReader = cmd.ExecuteReader();
-
-                    if (dataReader.Read())
-                    {
-                        cmd.Dispose();
-                        dataReader.Close();
-                        throw new NameTakenException("The item already exists in the department");
-                        //EmployeeManagement.ItemAlreadyAdded(); incase the error doesnt show up
-                    }
-                    else
-                    {
-                        cmd.Dispose();
-                        dataReader.Close();
-                       
-
-                        using (cmd = new MySqlCommand($"INSERT INTO stock (stockID, departmentID, threshold,currentAmount) VALUES (@stockID,@departmentID, @threshold, @currentAmount)", con))
-                        {
-                            cmd.Parameters.AddWithValue("@stockID", item.StockID);
-                            cmd.Parameters.AddWithValue("@departmentID", this.departmentId);
-                            cmd.Parameters.AddWithValue("@threshold", item.Threshold);
-                            cmd.Parameters.AddWithValue("@currentAmount",item.CurrentAmmount);
-                            cmd.ExecuteNonQuery();
-                            cmd.Dispose();
-                          items.Add(item);
-
-                        }
-                    }
-                    con.Close();
+                   
+                    cmd.Dispose();
+                    dataReader.Close();
+                    throw new NameTakenException("The item already exists in the department");
+                    //EmployeeManagement.ItemAlreadyAdded(); incase the error doesnt show up
                 }
+                else
+                {
+                    cmd.Dispose();
+                    dataReader.Close();
+
+                    using (cmd = new MySqlCommand($"INSERT INTO stock (stockID, departmentID, threshold,currentAmount) VALUES (@stockID,@departmentID, @threshold, @currentAmount)", con))
+                    {
+
+                        // should not error checeking it before hand
+                        cmd.Parameters.AddWithValue("@stockID", item.StockID);
+                        cmd.Parameters.AddWithValue("@departmentID", this.departmentId);
+                        cmd.Parameters.AddWithValue("@threshold", Threshold);
+                        cmd.Parameters.AddWithValue("@currentAmount", CurrentAmmount);
+                        cmd.ExecuteNonQuery(); /// crash here somereason should be fixed
+                        cmd.Dispose();
+                        items.Add(item);
+                    }
+                            
+                            
+
+
+                        
+                    
+
+
+                    con.Close();
+                }//else
+            }//first using
             
             
 
@@ -86,7 +101,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public  void RemoveItem(StockItem item) //good
         {
-
+            // maybe working
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
                 MySqlCommand cmd;
@@ -182,7 +197,7 @@ namespace Sem2IntroProjectWaterfall0._1
         
 
 
-        public static  List<StockItem> ListAllItems() //fixed 
+        public static  List<StockItem> ListAllItemsFromStock() //prob neeeds treshold/ammount
         {
             List<StockItem> Allitems = new List<StockItem>();
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
@@ -197,6 +212,54 @@ namespace Sem2IntroProjectWaterfall0._1
                         string departmentID =dataReader["departmentID"].ToString();
                      //   int currentammount = Convert.ToInt32(dataReader["currentAmount"]);
                         Allitems.Add(new StockItem( departmentID,  stockID)); 
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                con.Close();
+            }
+            return Allitems;
+        }
+        
+        public static bool IsItemThere(string stockID, string departmentID)
+        {
+            List<StockItem> Allitems = new List<StockItem>();
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM stock where departmentID=@departmentID AND stockID=@stockID", con))
+                {
+                    cmd.Parameters.AddWithValue("@stockID", stockID);
+                    cmd.Parameters.AddWithValue("@departmentID", departmentID);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        return false;
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                con.Close();
+            }
+            return true;
+        }
+
+
+        public static List<StockItem> ListAllItemsFromStockItem() //fixed 
+        {
+            List<StockItem> Allitems = new List<StockItem>();
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM stock_item", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        string stockID = dataReader["stockID"].ToString();
+                        string name = dataReader["name"].ToString();
+                        //   int currentammount = Convert.ToInt32(dataReader["currentAmount"]);
+                        Allitems.Add(new StockItem(stockID, name,true));
                     }
                     cmd.Dispose();
                     dataReader.Close();
@@ -225,7 +288,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 return listToSend;
             }
         }
-        public List<StockItem> GetRestockItemsCurrentDept() //works
+        public List<StockItem> GetRestockItemsCurrentDept() // crashing prob sql
         {
             List<StockItem> OutOfStockItems = new List<StockItem>();
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
