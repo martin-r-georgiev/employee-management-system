@@ -32,6 +32,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gbPersonalInfo = new System.Windows.Forms.GroupBox();
+            this.rbFemale = new System.Windows.Forms.RadioButton();
+            this.rbMale = new System.Windows.Forms.RadioButton();
+            this.label27 = new System.Windows.Forms.Label();
             this.btnClearPersonalInfo = new System.Windows.Forms.Button();
             this.lblBirthday = new System.Windows.Forms.Label();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
@@ -152,7 +155,7 @@
             this.tabControl1.Location = new System.Drawing.Point(58, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(706, 424);
+            this.tabControl1.Size = new System.Drawing.Size(722, 440);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -164,13 +167,16 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(698, 398);
+            this.tabPage1.Size = new System.Drawing.Size(714, 414);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Employees";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // gbPersonalInfo
             // 
+            this.gbPersonalInfo.Controls.Add(this.rbFemale);
+            this.gbPersonalInfo.Controls.Add(this.rbMale);
+            this.gbPersonalInfo.Controls.Add(this.label27);
             this.gbPersonalInfo.Controls.Add(this.btnClearPersonalInfo);
             this.gbPersonalInfo.Controls.Add(this.lblBirthday);
             this.gbPersonalInfo.Controls.Add(this.dtpBirthday);
@@ -193,10 +199,42 @@
             this.gbPersonalInfo.Margin = new System.Windows.Forms.Padding(2);
             this.gbPersonalInfo.Name = "gbPersonalInfo";
             this.gbPersonalInfo.Padding = new System.Windows.Forms.Padding(2);
-            this.gbPersonalInfo.Size = new System.Drawing.Size(361, 317);
+            this.gbPersonalInfo.Size = new System.Drawing.Size(378, 331);
             this.gbPersonalInfo.TabIndex = 25;
             this.gbPersonalInfo.TabStop = false;
             this.gbPersonalInfo.Text = "Set/Change Personal Information";
+            // 
+            // rbFemale
+            // 
+            this.rbFemale.AutoSize = true;
+            this.rbFemale.Location = new System.Drawing.Point(174, 166);
+            this.rbFemale.Name = "rbFemale";
+            this.rbFemale.Size = new System.Drawing.Size(59, 17);
+            this.rbFemale.TabIndex = 48;
+            this.rbFemale.Text = "Female";
+            this.rbFemale.UseVisualStyleBackColor = true;
+            // 
+            // rbMale
+            // 
+            this.rbMale.AutoSize = true;
+            this.rbMale.Checked = true;
+            this.rbMale.Location = new System.Drawing.Point(111, 166);
+            this.rbMale.Name = "rbMale";
+            this.rbMale.Size = new System.Drawing.Size(48, 17);
+            this.rbMale.TabIndex = 47;
+            this.rbMale.TabStop = true;
+            this.rbMale.Text = "Male";
+            this.rbMale.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(57, 166);
+            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(45, 13);
+            this.label27.TabIndex = 46;
+            this.label27.Text = "Gender:";
             // 
             // btnClearPersonalInfo
             // 
@@ -212,7 +250,7 @@
             // lblBirthday
             // 
             this.lblBirthday.AutoSize = true;
-            this.lblBirthday.Location = new System.Drawing.Point(54, 263);
+            this.lblBirthday.Location = new System.Drawing.Point(54, 280);
             this.lblBirthday.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBirthday.Name = "lblBirthday";
             this.lblBirthday.Size = new System.Drawing.Size(57, 13);
@@ -221,7 +259,7 @@
             // 
             // dtpBirthday
             // 
-            this.dtpBirthday.Location = new System.Drawing.Point(111, 259);
+            this.dtpBirthday.Location = new System.Drawing.Point(111, 276);
             this.dtpBirthday.Margin = new System.Windows.Forms.Padding(2);
             this.dtpBirthday.Name = "dtpBirthday";
             this.dtpBirthday.Size = new System.Drawing.Size(198, 20);
@@ -229,7 +267,7 @@
             // 
             // btnUpdateEmployee
             // 
-            this.btnUpdateEmployee.Location = new System.Drawing.Point(57, 292);
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(59, 300);
             this.btnUpdateEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
             this.btnUpdateEmployee.Size = new System.Drawing.Size(250, 20);
@@ -240,7 +278,7 @@
             // 
             // tbEmail
             // 
-            this.tbEmail.Location = new System.Drawing.Point(57, 228);
+            this.tbEmail.Location = new System.Drawing.Point(59, 247);
             this.tbEmail.Margin = new System.Windows.Forms.Padding(2);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(252, 20);
@@ -249,7 +287,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(55, 212);
+            this.lblEmail.Location = new System.Drawing.Point(57, 231);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(35, 13);
@@ -258,7 +296,7 @@
             // 
             // tbAddress
             // 
-            this.tbAddress.Location = new System.Drawing.Point(57, 185);
+            this.tbAddress.Location = new System.Drawing.Point(59, 204);
             this.tbAddress.Margin = new System.Windows.Forms.Padding(2);
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.Size = new System.Drawing.Size(252, 20);
@@ -267,7 +305,7 @@
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(55, 169);
+            this.lblAddress.Location = new System.Drawing.Point(57, 188);
             this.lblAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(45, 13);
@@ -380,14 +418,14 @@
             this.gbAssignUser.Margin = new System.Windows.Forms.Padding(2);
             this.gbAssignUser.Name = "gbAssignUser";
             this.gbAssignUser.Padding = new System.Windows.Forms.Padding(2);
-            this.gbAssignUser.Size = new System.Drawing.Size(307, 152);
+            this.gbAssignUser.Size = new System.Drawing.Size(307, 165);
             this.gbAssignUser.TabIndex = 24;
             this.gbAssignUser.TabStop = false;
             this.gbAssignUser.Text = "Move employee to different department";
             // 
             // btnMoveEmployee
             // 
-            this.btnMoveEmployee.Location = new System.Drawing.Point(115, 107);
+            this.btnMoveEmployee.Location = new System.Drawing.Point(115, 126);
             this.btnMoveEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.btnMoveEmployee.Name = "btnMoveEmployee";
             this.btnMoveEmployee.Size = new System.Drawing.Size(175, 28);
@@ -523,6 +561,7 @@
             this.cbDepartments.Size = new System.Drawing.Size(158, 21);
             this.cbDepartments.TabIndex = 24;
             this.cbDepartments.DropDown += new System.EventHandler(this.cbDepartments_DropDown);
+            this.cbDepartments.SelectedIndexChanged += new System.EventHandler(this.CbDepartments_SelectedIndexChanged);
             // 
             // tbHourlySalary
             // 
@@ -595,9 +634,9 @@
             this.lblHourlySalary.Location = new System.Drawing.Point(13, 115);
             this.lblHourlySalary.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHourlySalary.Name = "lblHourlySalary";
-            this.lblHourlySalary.Size = new System.Drawing.Size(72, 13);
+            this.lblHourlySalary.Size = new System.Drawing.Size(92, 13);
             this.lblHourlySalary.TabIndex = 6;
-            this.lblHourlySalary.Text = "Hourly Salary:";
+            this.lblHourlySalary.Text = "Hourly Salary in €:";
             // 
             // lblHouseUnit
             // 
@@ -638,7 +677,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(698, 398);
+            this.tabPage2.Size = new System.Drawing.Size(714, 414);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Departments";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -906,7 +945,7 @@
             this.tabPage3.Controls.Add(this.cbRemoveItem);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(698, 398);
+            this.tabPage3.Size = new System.Drawing.Size(714, 414);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Stocks";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1154,11 +1193,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 438);
+            this.ClientSize = new System.Drawing.Size(792, 464);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnBack);
             this.Name = "EmployeeManagement";
             this.Text = "EmployeeManagement";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeManagement_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.gbPersonalInfo.ResumeLayout(false);
@@ -1275,5 +1315,8 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox cbItemRemoveFromDpt;
+        private System.Windows.Forms.RadioButton rbFemale;
+        private System.Windows.Forms.RadioButton rbMale;
+        private System.Windows.Forms.Label label27;
     }
 }

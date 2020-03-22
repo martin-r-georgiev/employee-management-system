@@ -40,7 +40,7 @@
             this.btnLogin.Location = new System.Drawing.Point(53, 197);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(213, 23);
-            this.btnLogin.TabIndex = 0;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -50,14 +50,14 @@
             this.tbUsername.Location = new System.Drawing.Point(53, 90);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(213, 20);
-            this.tbUsername.TabIndex = 1;
+            this.tbUsername.TabIndex = 0;
             // 
             // tbPassword
             // 
             this.tbPassword.Location = new System.Drawing.Point(53, 148);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(213, 20);
-            this.tbPassword.TabIndex = 2;
+            this.tbPassword.TabIndex = 1;
             this.tbPassword.UseSystemPasswordChar = true;
             // 
             // label1
@@ -90,6 +90,7 @@
             this.Controls.Add(this.btnLogin);
             this.Name = "LoginScreen";
             this.Text = "Login Screen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginScreen_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

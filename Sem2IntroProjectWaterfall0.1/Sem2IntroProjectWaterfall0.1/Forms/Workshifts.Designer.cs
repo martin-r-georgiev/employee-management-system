@@ -294,6 +294,7 @@
             this.Controls.Add(this.btnBack);
             this.Name = "Workshifts";
             this.Text = "Workshifts";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Workshifts_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

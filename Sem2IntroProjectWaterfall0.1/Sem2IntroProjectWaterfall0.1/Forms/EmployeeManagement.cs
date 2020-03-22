@@ -15,6 +15,7 @@ namespace Sem2IntroProjectWaterfall0._1
         private List<Department> departments;
         private List<Employee> employees;
         private List<StockItem> stonks;
+        
 
         public EmployeeManagement()
         {
@@ -256,11 +257,12 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
+            bool gender = false; if (rbFemale.Checked == true) { gender = true; }   // TEST TEST TEST
             if (cbPersonalInfoList.SelectedIndex != -1)
             {
                 try
                 {
-                    employees[cbPersonalInfoList.SelectedIndex].SetPersonalInfo(tbFirstName.Text, tbLastName.Text, tbNationality.Text, tbAddress.Text, tbEmail.Text, tbPhoneNumber.Text, dtpBirthday.Value, false);
+                    employees[cbPersonalInfoList.SelectedIndex].SetPersonalInfo(tbFirstName.Text, tbLastName.Text, tbNationality.Text, tbAddress.Text, tbEmail.Text, tbPhoneNumber.Text, dtpBirthday.Value, gender);
                     MessageBox.Show("Successfully updated employee personal information.");
                     ClearEmployeePersonalInfo();
                 }
@@ -281,9 +283,10 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             if (cbDepartmentEdit.SelectedIndex > -1)
             {
-                Department selectedDepartment = (Department)cbDepartmentEdit.SelectedItem;
-                tbDepartmentEditName.Text = selectedDepartment.Name;
-                tbDepartmentEditAddress.Text = selectedDepartment.Address;
+                //FIX
+                //Department selectedDepartment = (Department)cbDepartmentEdit.SelectedItem;
+                //tbDepartmentEditName.Text = selectedDepartment.Name;
+                //tbDepartmentEditAddress.Text = selectedDepartment.Address;
             }
         }
 
@@ -418,6 +421,16 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 MessageBox.Show("Please select an item");
             }
+        }
+
+        private void EmployeeManagement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
+        }
+
+        private void CbDepartments_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

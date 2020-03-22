@@ -16,5 +16,10 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             InitializeComponent();
         }
+
+        private void StatisticsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
+        }
     }
 }

@@ -17,15 +17,14 @@ namespace Sem2IntroProjectWaterfall0._1
         public LoginScreen()
         {
             InitializeComponent();
-          
-            
+            this.AcceptButton = btnLogin;
+
 
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //Assigns ENTER key press to trigger btnLogin method
-            this.AcceptButton = btnLogin;
+           
 
             if (!string.IsNullOrEmpty(tbUsername.Text) && !string.IsNullOrEmpty(tbPassword.Text))
             {
@@ -61,6 +60,9 @@ namespace Sem2IntroProjectWaterfall0._1
             else MessageBox.Show("Please fill all required fields before attempting to log in!");
         }
 
-       
+        private void LoginScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
+        }
     }   
 }

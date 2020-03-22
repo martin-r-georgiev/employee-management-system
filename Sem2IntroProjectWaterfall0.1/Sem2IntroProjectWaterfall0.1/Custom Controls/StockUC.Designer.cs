@@ -36,6 +36,8 @@
             this.lblThreshold = new System.Windows.Forms.Label();
             this.lblCurrentAmount = new System.Windows.Forms.Label();
             this.lblStockName = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbThreshold
@@ -110,11 +112,31 @@
             this.lblStockName.TabIndex = 10;
             this.lblStockName.Text = "DVD Players";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(168, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Threshold:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(140, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Current:";
+            // 
             // StockUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Yellow;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.tbThreshold);
             this.Controls.Add(this.tbCurrentAmount);
             this.Controls.Add(this.btnIncrease);
@@ -139,5 +161,7 @@
         private System.Windows.Forms.Label lblThreshold;
         private System.Windows.Forms.Label lblCurrentAmount;
         private System.Windows.Forms.Label lblStockName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

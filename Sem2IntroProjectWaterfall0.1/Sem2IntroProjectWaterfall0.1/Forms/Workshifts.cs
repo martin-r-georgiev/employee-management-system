@@ -23,5 +23,10 @@ namespace Sem2IntroProjectWaterfall0._1
             newScreen.Show();
             this.Close();
         }
+
+        private void Workshifts_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
+        }
     }
 }

@@ -103,6 +103,7 @@
             this.Controls.Add(this.chart1);
             this.Name = "StatisticsForm";
             this.Text = "StatisticsForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StatisticsForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

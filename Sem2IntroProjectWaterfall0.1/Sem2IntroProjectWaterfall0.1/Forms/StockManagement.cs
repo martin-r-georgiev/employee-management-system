@@ -14,9 +14,12 @@ namespace Sem2IntroProjectWaterfall0._1
     {
         Employee loggedInEmployee;
         Inventory currentInventory;
+        List<Department> departments;
+
         public StockManagement()
         {
             InitializeComponent();
+            departments = Department.GetAllDepartments();
             loggedInEmployee = new Employee(LoggedInUser.userID);
             currentInventory = new Inventory(loggedInEmployee.DepartmentID);
             foreach (StockItem s in currentInventory.GetStockItems())
@@ -44,5 +47,31 @@ namespace Sem2IntroProjectWaterfall0._1
             foreach (StockItem s in currentInventory.GetRestockItemsCurrentDept())
                     pnlStocks.Controls.Add(new StockUC(s));
         }
+
+        private void StockManagement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
+
+        private void CbDepartments_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pnlStocks.Controls.Clear();
+            if (cbDepartments.SelectedIndex > -1)
+            {
+                currentInventory = new Inventory(departments[cbDepartments.SelectedIndex].DepartmentId);
+                foreach (StockItem s in currentInventory.GetStockItems())
+                    pnlStocks.Controls.Add(new StockUC(s));
+            }
+            
+        }
+
+        private void CbDepartments_DropDown(object sender, EventArgs e)
+        {
+            cbDepartments.Items.Clear();
+            UpdateDepartmentList();
+            foreach (Department department in departments) { cbDepartments.Items.Add(department.Name); }
+        }
+
+        private void UpdateDepartmentList() { departments = Department.GetAllDepartments(); }
     }
 }

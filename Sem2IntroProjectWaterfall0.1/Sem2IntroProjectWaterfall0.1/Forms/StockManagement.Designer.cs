@@ -32,6 +32,8 @@
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.btnShowRestock = new System.Windows.Forms.Button();
             this.pnlStocks = new System.Windows.Forms.FlowLayoutPanel();
+            this.cbDepartments = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnBack
@@ -65,22 +67,45 @@
             // pnlStocks
             // 
             this.pnlStocks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.pnlStocks.Location = new System.Drawing.Point(12, 48);
+            this.pnlStocks.Location = new System.Drawing.Point(12, 79);
             this.pnlStocks.Name = "pnlStocks";
             this.pnlStocks.Size = new System.Drawing.Size(306, 390);
             this.pnlStocks.TabIndex = 5;
+            // 
+            // cbDepartments
+            // 
+            this.cbDepartments.FormattingEnabled = true;
+            this.cbDepartments.Location = new System.Drawing.Point(82, 43);
+            this.cbDepartments.Margin = new System.Windows.Forms.Padding(2);
+            this.cbDepartments.Name = "cbDepartments";
+            this.cbDepartments.Size = new System.Drawing.Size(173, 21);
+            this.cbDepartments.TabIndex = 25;
+            this.cbDepartments.DropDown += new System.EventHandler(this.CbDepartments_DropDown);
+            this.cbDepartments.SelectedIndexChanged += new System.EventHandler(this.CbDepartments_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Department:";
             // 
             // StockManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 450);
+            this.ClientSize = new System.Drawing.Size(330, 481);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbDepartments);
             this.Controls.Add(this.pnlStocks);
             this.Controls.Add(this.btnShowRestock);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.btnBack);
             this.Name = "StockManagement";
             this.Text = "StockManagement";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StockManagement_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -92,5 +117,7 @@
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Button btnShowRestock;
         private System.Windows.Forms.FlowLayoutPanel pnlStocks;
+        private System.Windows.Forms.ComboBox cbDepartments;
+        private System.Windows.Forms.Label label1;
     }
 }

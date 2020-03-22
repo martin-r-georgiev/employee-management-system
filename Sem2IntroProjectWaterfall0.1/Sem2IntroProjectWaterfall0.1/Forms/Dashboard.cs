@@ -59,5 +59,10 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             StockItem item = new StockItem("Samsung S2");
         }
+
+        private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
     }
 }

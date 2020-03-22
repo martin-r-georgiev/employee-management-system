@@ -29,5 +29,9 @@ namespace Sem2IntroProjectWaterfall0._1
             StatisticsForm newForm = new StatisticsForm();
             newForm.Show();
         }
+
+        private void EmployeeListing_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
     }
 }
