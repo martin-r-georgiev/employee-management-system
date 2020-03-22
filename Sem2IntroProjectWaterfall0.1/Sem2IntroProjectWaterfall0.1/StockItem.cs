@@ -249,12 +249,19 @@ namespace Sem2IntroProjectWaterfall0._1
                 cmd.Parameters.AddWithValue("@stockID", this.stockID);
                 dataReader = cmd.ExecuteReader();
 
-                if (dataReader.Read()) this.name = dataReader.GetString(0);
+                if (dataReader.Read()) this.name = dataReader["name"].ToString();
                 cmd.Dispose();
                 dataReader.Close();
             }
             conn.Close(); // missed
         }
+
+        public StockItem( string stockID,string name,bool bruh) // i use this cuz it was crashing 
+        {
+            this.stockID = stockID;
+            this.name = name;
+        }
+
         #endregion
 
         #region Methods

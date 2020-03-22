@@ -15,21 +15,47 @@ namespace Sem2IntroProjectWaterfall0._1
         private List<Department> departments;
         private List<Employee> employees;
         private List<StockItem> stonks;
-        
-
+        private List<Inventory> inventories = new List<Inventory>();
         public EmployeeManagement()
         {
             InitializeComponent();
             RefreshComboboxes();
             employees = Employee.GetAllEmployees();
             departments = Department.GetAllDepartments();
-            stonks = Inventory.GetAllItemsWithoutDepartment();
+            //stonks = Inventory.ListAllItemsFromStockItem(); // might cause crash but it might be servers comment out in case it crashes
+            UpdateInventoryList();
         }
 
         private void UpdateDepartmentList() { departments = Department.GetAllDepartments(); }
         private void UpdateEmployeeList() { employees = Employee.GetAllEmployees(); }
 
-        private void UpdateStockList() { stonks = Inventory.GetAllItemsWithoutDepartment(); }
+        private void UpdateStockList() { stonks = Inventory.ListAllItemsFromStockItem(); }
+
+        private void UpdateInventoryList()
+        {
+            int i = 0;
+            foreach (Department dep in departments)
+            {
+                if (i < inventories.Count())
+                {
+                    if (!(inventories[i].DepartmentId == dep.DepartmentId) && (departments.Count() > inventories.Count()))
+                    {
+                        Inventory toadd = new Inventory(dep.DepartmentId);
+                        inventories.Add(toadd);
+                    }
+                }
+                else
+                {
+                    Inventory toadd = new Inventory(dep.DepartmentId);
+                    inventories.Add(toadd);
+                }
+
+                i++;
+
+
+
+            }
+        }
 
         private void ClearEmployeePersonalInfo()
         {
@@ -327,7 +353,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     return stock;
                 }
             }
-            StockItem error=new StockItem("ERROR"); // shouldnt reach this code
+            StockItem error = new StockItem("ERROR"); // shouldnt reach this code
             return error;
         }
 
@@ -344,16 +370,57 @@ namespace Sem2IntroProjectWaterfall0._1
             return error;
         }
 
+        private int GetDepartmentIndexInInventory(string departmentID)
+        {
+            int i = 0;
+            foreach (Inventory inv in inventories)
+            {
+                if (inv.DepartmentId == departmentID)
+                {
+                    return i;
+                }
+                i++;
+
+            }
+            return -1;
+        }
+        private string GetDepIDByName(string name)
+        {
+            foreach (Department dep in departments)
+            {
+                if (name == dep.Name)
+                {
+                    return dep.DepartmentId;
+                }
+               
+
+            }
+            return "error";
+        }
+
+
+
+            
+
+
         private void btnAssignItemToDepartment_Click(object sender, EventArgs e)
         {
             if (!(numUdCurrentAmmount.Value == 0 || cbDepartmentAssignItem.SelectedIndex < 0 || cbItemAssignItem.SelectedIndex<0)) // idk if they should be 0
             {
                 string item = cbItemAssignItem.Text;
-                string department = cbDepartmentAssignItem.Text;
-
-                Department DepToAssignTo = GetDepartmentByName(department);
+                string departmentname = cbDepartmentAssignItem.Text;
+                string departmentid = GetDepIDByName(departmentname);
+                int indexInInventory = GetDepartmentIndexInInventory(departmentid);
+                //Department DepToAssignTo = GetDepartmentByName(department); 
                 StockItem ItemToAssign = GetStockItemByName(item);
-                DepToAssignTo.inventory.AddItem(ItemToAssign);
+                if (Inventory.IsItemThere(ItemToAssign.StockID, departmentid))
+                {
+                    inventories[indexInInventory].AddItem(ItemToAssign, Convert.ToInt32(numUdThreshold.Value), Convert.ToInt32(numUdCurrentAmmount.Value));
+                }
+                else
+                {
+                    MessageBox.Show("Item already assigd");
+                }
 
             }
             else
@@ -410,12 +477,21 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             if(cbDptRemoveFromDpt.SelectedIndex>0 && cbItemRemoveFromDpt.SelectedIndex>0)
             {
-                string item = cbItemAssignItem.Text;
-                string department = cbDepartmentAssignItem.Text;
-                // the department and item should be current cuz when opening the comboboxes it updates the list of departments/items
-                Department DepToRemoveFrom = GetDepartmentByName(department);
-                StockItem ItemToRemove = GetStockItemByName(item);
-                DepToRemoveFrom.inventory.RemoveItem(ItemToRemove);
+               
+                string item = cbItemRemoveFromDpt.Text;
+                string departmentname = cbDptRemoveFromDpt.Text;
+                string departmentid = GetDepIDByName(departmentname);
+                int indexInInventory = GetDepartmentIndexInInventory(departmentid);
+                //Department DepToAssignTo = GetDepartmentByName(department); 
+                StockItem ItemToAssign = GetStockItemByName(item);
+                if (!Inventory.IsItemThere(ItemToAssign.StockID, departmentid))
+                {
+                    inventories[indexInInventory].RemoveItem(ItemToAssign);
+                }
+                else
+                {
+                    MessageBox.Show("Item doesnt exist");
+                }
             }
             else
             {
