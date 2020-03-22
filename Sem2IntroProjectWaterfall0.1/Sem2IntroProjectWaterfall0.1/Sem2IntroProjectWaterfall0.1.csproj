@@ -101,6 +101,8 @@
     <Compile Include="Exceptions\InvalidEntryException.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="LoggedInUser.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="LoggingLevels.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\StatisticsForm.cs">

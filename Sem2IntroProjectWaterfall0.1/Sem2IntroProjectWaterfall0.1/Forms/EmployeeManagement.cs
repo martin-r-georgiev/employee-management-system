@@ -22,7 +22,7 @@ namespace Sem2IntroProjectWaterfall0._1
             RefreshComboboxes();
             employees = Employee.GetAllEmployees();
             departments = Department.GetAllDepartments();
-           stonks = Inventory.ListAllItemsFromStockItem(); // might cause crash but it might be servers comment out in case it crashes
+            //stonks = Inventory.ListAllItemsFromStockItem(); // might cause crash but it might be servers comment out in case it crashes
             UpdateInventoryList();
         }
 
