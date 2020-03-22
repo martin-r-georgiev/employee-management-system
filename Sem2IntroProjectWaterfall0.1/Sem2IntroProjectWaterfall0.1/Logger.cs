@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Sem2IntroProjectWaterfall0._1
 {
-    class Logger
+    public class Logger
     {
         private LoggingLevels loggingLevel;
         private string fileName;

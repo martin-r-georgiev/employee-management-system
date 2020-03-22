@@ -13,13 +13,11 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     public partial class LoginScreen : Form
     {
-      
+        public static Logger logger = new Logger(LoggingLevels.INFO);
         public LoginScreen()
         {
             InitializeComponent();
             this.AcceptButton = btnLogin;
-
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
