@@ -13,7 +13,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             get
             {
-                return @"server=studmysql01.fhict.local;userid=dbi426060;database=dbi426060;password=SuperSecurePassword; Allow User Variables = true;";
+                return @"server=studmysql01.fhict.local;userid=dbi426060;database=dbi426060;password=SuperSecurePassword;";
             }
         }
 

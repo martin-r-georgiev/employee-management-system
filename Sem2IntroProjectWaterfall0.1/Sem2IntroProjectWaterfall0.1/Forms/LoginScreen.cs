@@ -14,6 +14,7 @@ namespace Sem2IntroProjectWaterfall0._1
     public partial class LoginScreen : Form
     {
         public static Logger logger = new Logger(LoggingLevels.INFO);
+
         public LoginScreen()
         {
             InitializeComponent();
@@ -22,8 +23,6 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
-
             if (!string.IsNullOrEmpty(tbUsername.Text) && !string.IsNullOrEmpty(tbPassword.Text))
             {
                 using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
@@ -56,11 +55,6 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
             }
             else MessageBox.Show("Please fill all required fields before attempting to log in!");
-        }
-
-        private void LoginScreen_FormClosing(object sender, FormClosingEventArgs e)
-        {
-           
         }
     }   
 }

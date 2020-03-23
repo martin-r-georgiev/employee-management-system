@@ -65,7 +65,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
-        public int CurrentAmmount
+        public int CurrentAmount
         {
             get { return this.currentAmount; }
             set
@@ -163,109 +163,83 @@ namespace Sem2IntroProjectWaterfall0._1
             conn.Close();
         }
 
-        public StockItem(string name)
-        {
-            this.name = name;
-
-            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader, reader;
-
-            cmd = new MySqlCommand("SELECT stockID FROM stock_item WHERE name=@name", conn);
-            cmd.Parameters.AddWithValue("@name", this.name);
-            dataReader = cmd.ExecuteReader();
-            if (!dataReader.Read())
-            {
-                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
-                {
-                    do
-                    {
-                        this.stockID = GenerateStockID();
-                        cmd = new MySqlCommand($"SELECT stockID FROM stock_item WHERE stockID=@stockID", con);
-                        cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                        reader = cmd.ExecuteReader();
-                    }
-                    while (reader.Read());
-                    cmd.Dispose();
-                    dataReader.Close();
-                }
-
-                using (cmd = new MySqlCommand($"INSERT IGNORE stock_item (stockID, name) VALUES (@stockID, @name)", conn))
-                {
-                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                    cmd.Parameters.AddWithValue("@name", this.name);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                }
-            }
-            else { cmd.Dispose(); dataReader.Close(); }
-            conn.Close();
-        }
-
         public StockItem(string departmentID, string stockID)
         {
             this.departmentID = departmentID;
             this.stockID = stockID;
 
-            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader;
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                using (cmd = new MySqlCommand($"SELECT threshold, currentAmount FROM stock WHERE departmentID=@departmentID AND stockID=@stockID", conn))
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT s.threshold, s.currentAmount, i.name FROM stock as s INNER JOIN stock_item as i ON i.stockID = s.stockID WHERE s.departmentID=@departmentID AND s.stockID=@stockID", conn))
                 {
-                    cmd.Parameters.AddWithValue("@departmentID", departmentID);
-                    cmd.Parameters.AddWithValue("@stockID", stockID);
-                    dataReader = cmd.ExecuteReader();
-
+                    cmd.Parameters.AddWithValue("@departmentID", this.departmentID);
+                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
                     if (dataReader.Read())
                     {
                         this.threshold = dataReader.GetInt32(0);
                         this.currentAmount = dataReader.GetInt32(1);
+                        this.name = dataReader.GetString(2);
                     }
                     cmd.Dispose();
                     dataReader.Close();
                 }
+                conn.Close();
+            }
+        }
 
-                using (cmd = new MySqlCommand($"SELECT name from stock_item WHERE stockID=@stockID", conn))
+        public StockItem(string name)
+        {
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                MySqlCommand cmd;
+                MySqlDataReader dataReader, reader;
+
+                cmd = new MySqlCommand("SELECT stockID, name FROM stock_item WHERE name=@name", conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                dataReader = cmd.ExecuteReader();
+                if (!dataReader.Read())
                 {
-                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                    dataReader = cmd.ExecuteReader();
-
-                    if(dataReader.Read()) this.name = dataReader.GetString(0);
+                    this.name = name;
+                    using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+                    {
+                        do
+                        {
+                            this.stockID = StockItem.GenerateStockID();
+                            cmd = new MySqlCommand($"SELECT stockID FROM stock_item WHERE stockID=@stockID", con);
+                            cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                            reader = cmd.ExecuteReader(); 
+                        }
+                        while (reader.Read());
+                        cmd.Dispose();
+                        dataReader.Close();
+                        dataReader.Dispose();
+                        con.Close();
+                    }
+                    using (MySqlCommand cmdInner = new MySqlCommand($"INSERT IGNORE stock_item (stockID, name) VALUES (@stockID, @name)", conn))
+                    {
+                        cmdInner.Parameters.AddWithValue("@stockID", this.stockID);
+                        cmdInner.Parameters.AddWithValue("@name", name);
+                        cmdInner.ExecuteNonQuery();
+                        cmdInner.Dispose();
+                    }
+                }
+                else
+                {
+                    this.stockID = dataReader.GetString(0);
+                    this.name = dataReader.GetString(1);
                     cmd.Dispose();
                     dataReader.Close();
+                    dataReader.Dispose();
                 }
+                conn.Close();
             }
-            conn.Close();
-        }
-        public StockItem(string stockId, bool justLetMeOverload) //If you only need the stock_item data
-        {
-            MySqlConnection conn = SqlConnectionHandler.GetSqlConnection();
-            MySqlCommand cmd;
-            MySqlDataReader dataReader;
-            this.stockID = stockId;
-            using (cmd = new MySqlCommand($"SELECT name from stock_item WHERE stockID=@stockID", conn))
-            {
-                cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                dataReader = cmd.ExecuteReader();
-
-                if (dataReader.Read()) this.name = dataReader["name"].ToString();
-                cmd.Dispose();
-                dataReader.Close();
-            }
-            conn.Close(); // missed
-        }
-
-        public StockItem( string stockID,string name,bool bruh) // i use this cuz it was crashing 
-        {
-            this.stockID = stockID;
-            this.name = name;
         }
 
         #endregion
 
         #region Methods
-        private string GenerateStockID()
+        private static string GenerateStockID()
         {
             Guid key = Guid.NewGuid();
             string GuidString = Convert.ToBase64String(key.ToByteArray());
@@ -275,6 +249,48 @@ namespace Sem2IntroProjectWaterfall0._1
 
             return GuidString;
         }
+
+        public static void NewItem(string name)
+        {
+            using(MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                MySqlCommand cmd;
+                MySqlDataReader dataReader, reader;
+
+                cmd = new MySqlCommand("SELECT stockID FROM stock_item WHERE name=@name", conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                dataReader = cmd.ExecuteReader();
+                string stockID = "";
+                if (!dataReader.Read())
+                {
+                    using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+                    {
+                        do
+                        {
+                            stockID = StockItem.GenerateStockID();
+                            cmd = new MySqlCommand($"SELECT stockID FROM stock_item WHERE stockID=@stockID", con);
+                            cmd.Parameters.AddWithValue("@stockID", stockID);
+                            reader = cmd.ExecuteReader();
+                        }
+                        while (reader.Read());
+                        cmd.Dispose();
+                        dataReader.Close();
+                        con.Close();
+                    }
+
+                    using (cmd = new MySqlCommand($"INSERT IGNORE stock_item (stockID, name) VALUES (@stockID, @name)", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@stockID", stockID);
+                        cmd.Parameters.AddWithValue("@name", name);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                }
+                else { cmd.Dispose(); dataReader.Close(); }
+                conn.Close();
+            }
+        }
+
         #endregion
     }
 }

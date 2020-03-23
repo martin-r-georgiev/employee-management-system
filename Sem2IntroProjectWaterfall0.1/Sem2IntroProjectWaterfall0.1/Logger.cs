@@ -12,7 +12,6 @@ namespace Sem2IntroProjectWaterfall0._1
         private LoggingLevels loggingLevel;
         private string fileName;
         
-
         public LoggingLevels LoggingLevel
         {
             get { return this.loggingLevel; }

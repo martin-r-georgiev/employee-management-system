@@ -22,7 +22,7 @@ namespace Sem2IntroProjectWaterfall0._1
             departments = Department.GetAllDepartments();
             loggedInEmployee = new Employee(LoggedInUser.userID);
             currentInventory = new Inventory(loggedInEmployee.DepartmentID);
-            foreach (StockItem s in currentInventory.GetStockItems())
+            foreach (StockItem s in currentInventory.Items)
                 pnlStocks.Controls.Add(new StockUC(s));
         }
 
@@ -36,7 +36,7 @@ namespace Sem2IntroProjectWaterfall0._1
         private void tbSearch_TextChanged(object sender, EventArgs e)
         {
             pnlStocks.Controls.Clear();
-            foreach (StockItem s in currentInventory.GetStockItems())
+            foreach (StockItem s in currentInventory.Items)
                 if (s.Name.Contains(tbSearch.Text))
                     pnlStocks.Controls.Add(new StockUC(s));
         }
@@ -48,21 +48,15 @@ namespace Sem2IntroProjectWaterfall0._1
                     pnlStocks.Controls.Add(new StockUC(s));
         }
 
-        private void StockManagement_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-        }
-
         private void CbDepartments_SelectedIndexChanged(object sender, EventArgs e)
         {
             pnlStocks.Controls.Clear();
-            if (cbDepartments.SelectedIndex > -1)
+            if (cbDepartments.SelectedIndex != -1)
             {
                 currentInventory = new Inventory(departments[cbDepartments.SelectedIndex].DepartmentId);
-                foreach (StockItem s in currentInventory.GetStockItems())
+                foreach (StockItem s in currentInventory.Items)
                     pnlStocks.Controls.Add(new StockUC(s));
             }
-            
         }
 
         private void CbDepartments_DropDown(object sender, EventArgs e)

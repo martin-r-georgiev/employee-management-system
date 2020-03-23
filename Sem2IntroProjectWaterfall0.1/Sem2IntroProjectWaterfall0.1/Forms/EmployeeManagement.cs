@@ -14,48 +14,22 @@ namespace Sem2IntroProjectWaterfall0._1
     {
         private List<Department> departments;
         private List<Employee> employees;
-        private List<StockItem> stonks;
-        private List<Inventory> inventories = new List<Inventory>();
+        private List<StockItem> stocks;
+
         public EmployeeManagement()
         {
             InitializeComponent();
             RefreshComboboxes();
             employees = Employee.GetAllEmployees();
             departments = Department.GetAllDepartments();
-            //stonks = Inventory.ListAllItemsFromStockItem(); // might cause crash but it might be servers comment out in case it crashes
-            UpdateInventoryList();
+            stocks = Inventory.ListAllItemsFromStockItem();
         }
 
         private void UpdateDepartmentList() { departments = Department.GetAllDepartments(); }
+
         private void UpdateEmployeeList() { employees = Employee.GetAllEmployees(); }
 
-        private void UpdateStockList() { stonks = Inventory.ListAllItemsFromStockItem(); }
-
-        private void UpdateInventoryList()
-        {
-            int i = 0;
-            foreach (Department dep in departments)
-            {
-                if (i < inventories.Count())
-                {
-                    if (!(inventories[i].DepartmentId == dep.DepartmentId) && (departments.Count() > inventories.Count()))
-                    {
-                        Inventory toadd = new Inventory(dep.DepartmentId);
-                        inventories.Add(toadd);
-                    }
-                }
-                else
-                {
-                    Inventory toadd = new Inventory(dep.DepartmentId);
-                    inventories.Add(toadd);
-                }
-
-                i++;
-
-
-
-            }
-        }
+        private void UpdateStockList() { stocks = Inventory.ListAllItemsFromStockItem(); }
 
         private void ClearEmployeePersonalInfo()
         {
@@ -283,7 +257,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
-            bool gender = false; if (rbFemale.Checked == true) { gender = true; }   // TEST TEST TEST
+            bool gender = false; if (rbFemale.Checked == true) { gender = true; }
             if (cbPersonalInfoList.SelectedIndex != -1)
             {
                 try
@@ -309,204 +283,122 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             if (cbDepartmentEdit.SelectedIndex > -1)
             {
-                //FIX
-                //Department selectedDepartment = (Department)cbDepartmentEdit.SelectedItem;
-                //tbDepartmentEditName.Text = selectedDepartment.Name;
-                //tbDepartmentEditAddress.Text = selectedDepartment.Address;
+                Department selectedDepartment = (Department)cbDepartmentEdit.SelectedItem;
+                tbDepartmentEditName.Text = selectedDepartment.Name;
+                tbDepartmentEditAddress.Text = selectedDepartment.Address;
             }
         }
+
+        //Add item controls
 
         private void btnCreateNewStock_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(tbStockCreateName.Text))
-            { StockItem stockItem = new StockItem(tbStockCreateName.Text); }
-            else
-                MessageBox.Show("Enter a name for the stock!");
+            {
+                StockItem.NewItem(tbStockCreateName.Text);
+                MessageBox.Show("Successfully added new item.");
+                tbStockCreateName.Clear();
+            }
+            else MessageBox.Show("Enter a name for the stock!");
         }
 
-        private void btnRemoveItem_Click(object sender, EventArgs e)
-        {
-            if (cbRemoveItem.SelectedIndex > 0)
-            {
-                foreach (StockItem stock in stonks)
-                {
-                    if (stock.Name == cbRemoveItem.SelectedItem.ToString())
-                    {
-                        Inventory.RemoveItemGlobal(stock);// static method to be used to remove items from both tables
-                        break;
-                    }
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Select an item to be deleted");
-            }
-        }
-
-        private StockItem GetStockItemByName(string name)
-        {
-            foreach (StockItem stock in stonks)
-            {
-                if (stock.Name == name)
-                {
-                    return stock;
-                }
-            }
-            StockItem error = new StockItem("ERROR"); // shouldnt reach this code
-            return error;
-        }
-
-        private Department GetDepartmentByName(string name)
-        {
-            foreach (Department dep in departments)
-            {
-                if (dep.Name == name)
-                {
-                    return dep;
-                }
-            }
-            Department error = new Department("ERROR"); // shouldnt reach this code
-            return error;
-        }
-
-        private int GetDepartmentIndexInInventory(string departmentID)
-        {
-            int i = 0;
-            foreach (Inventory inv in inventories)
-            {
-                if (inv.DepartmentId == departmentID)
-                {
-                    return i;
-                }
-                i++;
-
-            }
-            return -1;
-        }
-        private string GetDepIDByName(string name)
-        {
-            foreach (Department dep in departments)
-            {
-                if (name == dep.Name)
-                {
-                    return dep.DepartmentId;
-                }
-               
-
-            }
-            return "error";
-        }
-
-
-
-            
-
-
-        private void btnAssignItemToDepartment_Click(object sender, EventArgs e)
-        {
-            if (!(numUdCurrentAmmount.Value == 0 || cbDepartmentAssignItem.SelectedIndex < 0 || cbItemAssignItem.SelectedIndex<0)) // idk if they should be 0
-            {
-                string item = cbItemAssignItem.Text;
-                string departmentname = cbDepartmentAssignItem.Text;
-                string departmentid = GetDepIDByName(departmentname);
-                int indexInInventory = GetDepartmentIndexInInventory(departmentid);
-                //Department DepToAssignTo = GetDepartmentByName(department); 
-                StockItem ItemToAssign = GetStockItemByName(item);
-                if (Inventory.IsItemThere(ItemToAssign.StockID, departmentid))
-                {
-                    inventories[indexInInventory].AddItem(ItemToAssign, Convert.ToInt32(numUdThreshold.Value), Convert.ToInt32(numUdCurrentAmmount.Value));
-                }
-                else
-                {
-                    MessageBox.Show("Item already assigd");
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Please select values");
-            }
-        }
+        //Remove item controls
 
         private void cbRemoveItem_DropDown(object sender, EventArgs e)
         {
             cbRemoveItem.Items.Clear();
             UpdateStockList();
-            foreach (StockItem stock in stonks)
-            { cbRemoveItem.Items.Add(stock.Name); }
+            foreach (StockItem stock in stocks) cbRemoveItem.Items.Add(stock.Name);
         }
+
+        private void btnRemoveItem_Click(object sender, EventArgs e)
+        {
+            if (cbRemoveItem.SelectedIndex != -1)
+            {
+                foreach (StockItem stock in stocks)
+                {
+                    if (stock.Name == cbRemoveItem.SelectedItem.ToString())
+                    {
+                        Inventory.RemoveItemGlobal(stock.StockID);
+                        MessageBox.Show("Successfully removed item from system.");
+                        cbRemoveItem.SelectedIndex = -1;
+                        break;
+                    }
+                }
+            }
+            else MessageBox.Show("Select an item to be deleted");
+        }
+
+        //Assign item to department
 
         private void cbItemAssignItem_DropDown(object sender, EventArgs e)
         {
             cbItemAssignItem.Items.Clear();
             UpdateStockList();
-            foreach (StockItem stock in stonks)
-            { cbItemAssignItem.Items.Add(stock.Name); }
+            foreach (StockItem stock in stocks) cbItemAssignItem.Items.Add(stock.Name);
         }
 
         private void cbDepartmentAssignItem_DropDown(object sender, EventArgs e)
         {
             cbDepartmentAssignItem.Items.Clear();
             UpdateDepartmentList();
-            foreach (Department dep in departments)
-            { cbDepartmentAssignItem.Items.Add(dep.Name); }
+            foreach (Department dep in departments) cbDepartmentAssignItem.Items.Add(dep.Name);
         }
-        public static void ItemAlreadyAdded()
+
+        private void btnAssignItemToDepartment_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("The item is already in the department");
+            if (cbDepartmentAssignItem.SelectedIndex != -1 && cbItemAssignItem.SelectedIndex != -1)
+            {
+                if (numUdCurrentAmmount.Value >= 0 && numUdThreshold.Value >= 0)
+                {
+                    int iIndex = cbItemAssignItem.SelectedIndex, dIndex = cbDepartmentAssignItem.SelectedIndex;
+                    if (!Inventory.Exists(stocks[iIndex].StockID, departments[dIndex].DepartmentId))
+                    {
+                        int threshold = Convert.ToInt32(numUdThreshold.Value), currentAmount = Convert.ToInt32(numUdCurrentAmmount.Value);
+                        Inventory.AddItem(stocks[iIndex].StockID, departments[dIndex].DepartmentId, threshold, currentAmount);
+                        MessageBox.Show($"Successfully added item to department {departments[dIndex].Name}");
+                        cbDepartmentAssignItem.SelectedIndex = -1;
+                        cbItemAssignItem.SelectedIndex = -1;
+                    }
+                    else MessageBox.Show("This item already exists in this department.");
+                }
+                else MessageBox.Show("The threshold and the current amount of items can only be positive values.");
+            }
+            else MessageBox.Show("Please select an item and a department and try again.");
         }
+
+        //Removing item from department
 
         private void cbItemRemoveFromDpt_DropDown(object sender, EventArgs e)
         {
             cbItemRemoveFromDpt.Items.Clear();
             UpdateStockList();
-            foreach (StockItem stock in stonks)
-            { cbItemRemoveFromDpt.Items.Add(stock.Name); }
+            foreach (StockItem stock in stocks) cbItemRemoveFromDpt.Items.Add(stock.Name);
         }
 
         private void cbDptRemoveFromDpt_DropDown(object sender, EventArgs e)
         {
             cbDptRemoveFromDpt.Items.Clear();
             UpdateDepartmentList();
-            foreach (Department dep in departments)
-            { cbDptRemoveFromDpt.Items.Add(dep.Name); }
+            foreach (Department dep in departments) cbDptRemoveFromDpt.Items.Add(dep.Name);
         }
 
-        private void button1_Click(object sender, EventArgs e) 
+        private void btnRemoveItemFromDep_Click(object sender, EventArgs e)
         {
-            if(cbDptRemoveFromDpt.SelectedIndex>0 && cbItemRemoveFromDpt.SelectedIndex>0)
+            if (cbDptRemoveFromDpt.SelectedIndex != -1 && cbItemRemoveFromDpt.SelectedIndex != -1)
             {
-               
-                string item = cbItemRemoveFromDpt.Text;
-                string departmentname = cbDptRemoveFromDpt.Text;
-                string departmentid = GetDepIDByName(departmentname);
-                int indexInInventory = GetDepartmentIndexInInventory(departmentid);
-                //Department DepToAssignTo = GetDepartmentByName(department); 
-                StockItem ItemToAssign = GetStockItemByName(item);
-                if (!Inventory.IsItemThere(ItemToAssign.StockID, departmentid))
+                int iIndex = cbItemRemoveFromDpt.SelectedIndex, dIndex = cbDptRemoveFromDpt.SelectedIndex;
+                if (Inventory.Exists(stocks[iIndex].StockID, departments[dIndex].DepartmentId))
                 {
-                    inventories[indexInInventory].RemoveItem(ItemToAssign);
+                    Inventory.RemoveItem(stocks[iIndex].StockID, departments[dIndex].DepartmentId);
+                    MessageBox.Show($"Successfully removed item from department {departments[dIndex].Name}");
+                    cbDptRemoveFromDpt.SelectedIndex = -1;
+                    cbItemRemoveFromDpt.SelectedIndex = -1;
                 }
-                else
-                {
-                    MessageBox.Show("Item doesnt exist");
-                }
+                else MessageBox.Show("Selected item is not part of this department.");
+                
             }
-            else
-            {
-                MessageBox.Show("Please select an item");
-            }
-        }
-
-        private void EmployeeManagement_FormClosing(object sender, FormClosingEventArgs e)
-        {
-           
-        }
-
-        private void CbDepartments_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            else MessageBox.Show("Please select an item and a department and try again.");
         }
     }
 }

@@ -18,27 +18,27 @@ namespace Sem2IntroProjectWaterfall0._1
             InitializeComponent();
             selectedItem = item;
             this.lblStockName.Text = item.Name;
-            this.lblCurrentAmount.Text = item.CurrentAmmount.ToString();
+            this.lblCurrentAmount.Text = item.CurrentAmount.ToString();
             this.lblThreshold.Text = item.Threshold.ToString();
-            if (selectedItem.CurrentAmmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
+            if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
             else lblCurrentAmount.ForeColor = Color.Black;
         }
 
         private void btnDecrease_Click(object sender, EventArgs e)
         {
-            selectedItem.CurrentAmmount--;
-            if (lblCurrentAmount.Visible) this.lblCurrentAmount.Text = selectedItem.CurrentAmmount.ToString();
-            else tbCurrentAmount.Text = selectedItem.CurrentAmmount.ToString();
-            if (selectedItem.CurrentAmmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
+            selectedItem.CurrentAmount--;
+            if (lblCurrentAmount.Visible) this.lblCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+            else tbCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+            if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
             else lblCurrentAmount.ForeColor = Color.Black;
         }
 
         private void btnIncrease_Click(object sender, EventArgs e)
         {
-            selectedItem.CurrentAmmount++;
-            if (lblCurrentAmount.Visible) this.lblCurrentAmount.Text = selectedItem.CurrentAmmount.ToString();
-            else tbCurrentAmount.Text = selectedItem.CurrentAmmount.ToString();
-            if (selectedItem.CurrentAmmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
+            selectedItem.CurrentAmount++;
+            if (lblCurrentAmount.Visible) this.lblCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+            else tbCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+            if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
             else lblCurrentAmount.ForeColor = Color.Black;
         }
 
@@ -46,7 +46,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             this.lblCurrentAmount.Visible = false;
             this.tbCurrentAmount.Visible = true;
-            this.tbCurrentAmount.Text = selectedItem.CurrentAmmount.ToString();
+            this.tbCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
         }
 
         private void lblThreshold_DoubleClick(object sender, EventArgs e)
@@ -60,11 +60,11 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.selectedItem.CurrentAmmount = Convert.ToInt32(tbCurrentAmount.Text);
+                this.selectedItem.CurrentAmount = Convert.ToInt32(tbCurrentAmount.Text);
                 this.lblCurrentAmount.Visible = true;
                 this.tbCurrentAmount.Visible = false;
-                this.lblCurrentAmount.Text = selectedItem.CurrentAmmount.ToString();
-                if (selectedItem.CurrentAmmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
+                this.lblCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+                if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
                 else lblCurrentAmount.ForeColor = Color.Black;
             }
         }
@@ -77,7 +77,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 this.lblThreshold.Visible = true;
                 this.tbThreshold.Visible = false;
                 this.lblThreshold.Text = selectedItem.Threshold.ToString();
-                if (selectedItem.CurrentAmmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
+                if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
                 else lblCurrentAmount.ForeColor = Color.Black;
             }
         }
