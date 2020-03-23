@@ -47,7 +47,7 @@ namespace Sem2IntroProjectWaterfall0._1
             StreamWriter sw = null;
             try
             {
-                Directory.CreateDirectory("\\logs");
+                Directory.CreateDirectory("logs");
                 fs = new FileStream(Path.Combine("logs", fileName), FileMode.OpenOrCreate, FileAccess.Write);
                 sw = new StreamWriter(fs);
 
