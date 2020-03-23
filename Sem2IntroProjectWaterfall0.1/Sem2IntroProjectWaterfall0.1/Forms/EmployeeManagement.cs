@@ -98,25 +98,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnMoveEmployee_Click(object sender, EventArgs e)
         {
-            if (cbEmployeeList.SelectedIndex != -1 && cbDepartmentList.SelectedIndex != -1)
-            {
-                try
-                {
-                    int eIndex = cbEmployeeList.SelectedIndex, dIndex = cbDepartmentList.SelectedIndex;
-                    if (employees[eIndex].DepartmentID != departments[dIndex].DepartmentId)
-                    {
-                        employees[eIndex].DepartmentID = departments[dIndex].DepartmentId;
-                        MessageBox.Show($"Successfully moved {employees[eIndex].Username} to department ({departments[dIndex].Name})");
-                    }
-                    else MessageBox.Show("Selected employee is already part of this department.");
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString(), $"Failed to move employee", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else MessageBox.Show("Missing information in required fields. Please check for mistakes and try again.");
         }
 
         void RefreshComboboxes()
@@ -194,16 +176,12 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void cbEmployeeList_DropDown(object sender, EventArgs e)
         {
-            cbEmployeeList.Items.Clear();
-            UpdateEmployeeList();
-            foreach (Employee employee in employees) { cbEmployeeList.Items.Add($"{employee.Name} ({employee.Username})"); }
+
         }
 
         private void cbDepartmentList_DropDown(object sender, EventArgs e)
         {
-            cbDepartmentList.Items.Clear();
-            UpdateDepartmentList();
-            foreach (Department department in departments) { cbDepartmentList.Items.Add(department.Name); }
+
         }
 
         private void cbRemoveList_DropDown(object sender, EventArgs e)
