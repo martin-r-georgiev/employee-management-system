@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Sem2IntroProjectWaterfall0._1
 {
@@ -262,9 +263,19 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 try
                 {
-                    employees[cbPersonalInfoList.SelectedIndex].SetPersonalInfo(tbFirstName.Text, tbLastName.Text, tbNationality.Text, tbAddress.Text, tbEmail.Text, tbPhoneNumber.Text, dtpBirthday.Value, gender);
-                    MessageBox.Show("Successfully updated employee personal information.");
-                    ClearEmployeePersonalInfo();
+                    Regex emailValidation = new Regex(@"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
+                    Regex nameValidation = new Regex(@"\d+");
+                    if (!nameValidation.IsMatch(tbFirstName.Text) && !nameValidation.IsMatch(tbLastName.Text))
+                    {
+                        if (emailValidation.IsMatch(tbEmail.Text))
+                        {
+                            employees[cbPersonalInfoList.SelectedIndex].SetPersonalInfo(tbFirstName.Text, tbLastName.Text, tbNationality.Text, tbAddress.Text, tbEmail.Text, tbPhoneNumber.Text, dtpBirthday.Value, gender);
+                            MessageBox.Show("Successfully updated employee personal information.");
+                            ClearEmployeePersonalInfo();
+                        }
+                        else MessageBox.Show("Invalid e-mail address. Please check back for any mistakes and try again.");
+                    }
+                    else MessageBox.Show("Invalid first name/surname. Digits are not accepted");
                 }
                 catch (Exception ex)
                 {
