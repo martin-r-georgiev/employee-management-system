@@ -37,7 +37,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             pnlStocks.Controls.Clear();
             foreach (StockItem s in currentInventory.Items)
-                if (s.Name.Contains(tbSearch.Text) || s.Name.ToLower().Contains(tbSearch.Text.ToLower()))
+                if (s.Name.ToLower().Contains(tbSearch.Text.ToLower()))
                     pnlStocks.Controls.Add(new StockUC(s));
         }
 
