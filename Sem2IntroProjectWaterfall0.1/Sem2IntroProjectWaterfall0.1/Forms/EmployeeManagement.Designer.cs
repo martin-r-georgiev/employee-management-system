@@ -77,54 +77,54 @@
             this.lblHouseUnit = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblEditAddress = new System.Windows.Forms.Label();
+            this.lblEditName = new System.Windows.Forms.Label();
             this.tbDepartmentEditAddress = new System.Windows.Forms.TextBox();
             this.tbDepartmentEditName = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblEditDep = new System.Windows.Forms.Label();
             this.cbDepartmentEdit = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblRemoveDep = new System.Windows.Forms.Label();
             this.btnDepartmentRemove = new System.Windows.Forms.Button();
             this.cbDepartmentRemove = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblDepartmentMove = new System.Windows.Forms.Label();
+            this.lblEmployeeMove = new System.Windows.Forms.Label();
             this.btnAssignEmployee = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.cbDepartmentAssign = new System.Windows.Forms.ComboBox();
             this.cbEmployeeAssign = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblNewAddress = new System.Windows.Forms.Label();
             this.btnCreateNewDepartment = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNewDepName = new System.Windows.Forms.Label();
             this.tbDepartmentCreateAddress = new System.Windows.Forms.TextBox();
             this.tbDepartmentCreateName = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnRemoveItemFromDep = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lblRemoveDepDepartment = new System.Windows.Forms.Label();
             this.cbDptRemoveFromDpt = new System.Windows.Forms.ComboBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.lblRemoveDepItem = new System.Windows.Forms.Label();
             this.cbItemRemoveFromDpt = new System.Windows.Forms.ComboBox();
             this.numUdThreshold = new System.Windows.Forms.NumericUpDown();
             this.numUdCurrentAmmount = new System.Windows.Forms.NumericUpDown();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
+            this.lblAddDepThreshold = new System.Windows.Forms.Label();
+            this.lblAddDepCAmount = new System.Windows.Forms.Label();
+            this.lblAddDepDepartment = new System.Windows.Forms.Label();
             this.cbDepartmentAssignItem = new System.Windows.Forms.ComboBox();
             this.btnAssignItemToDepartment = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
+            this.lblAddDepItem = new System.Windows.Forms.Label();
             this.cbItemAssignItem = new System.Windows.Forms.ComboBox();
             this.btnRemoveItem = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.lblRemoveItem = new System.Windows.Forms.Label();
             this.btnCreateNewStock = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
+            this.lblNewStockName = new System.Windows.Forms.Label();
             this.tbStockCreateName = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.cbRemoveItem = new System.Windows.Forms.ComboBox();
+            this.gbNewDepartment = new System.Windows.Forms.GroupBox();
+            this.gbEditDepartment = new System.Windows.Forms.GroupBox();
+            this.gbRemoveDepartment = new System.Windows.Forms.GroupBox();
+            this.gbMoveEmployee = new System.Windows.Forms.GroupBox();
+            this.gbNewStockItem = new System.Windows.Forms.GroupBox();
+            this.gbRemoveItemGlobally = new System.Windows.Forms.GroupBox();
+            this.gbAssignItem = new System.Windows.Forms.GroupBox();
+            this.gbItemRemoval = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gbPersonalInfo.SuspendLayout();
@@ -135,12 +135,20 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUdThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUdCurrentAmmount)).BeginInit();
+            this.gbNewDepartment.SuspendLayout();
+            this.gbEditDepartment.SuspendLayout();
+            this.gbRemoveDepartment.SuspendLayout();
+            this.gbMoveEmployee.SuspendLayout();
+            this.gbNewStockItem.SuspendLayout();
+            this.gbRemoveItemGlobally.SuspendLayout();
+            this.gbAssignItem.SuspendLayout();
+            this.gbItemRemoval.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBack
             // 
             this.btnBack.Location = new System.Drawing.Point(16, 15);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(53, 47);
             this.btnBack.TabIndex = 1;
@@ -154,7 +162,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(77, 15);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(963, 542);
@@ -167,9 +175,9 @@
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(955, 513);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Employees";
@@ -211,7 +219,7 @@
             // 
             this.rbFemale.AutoSize = true;
             this.rbFemale.Location = new System.Drawing.Point(232, 204);
-            this.rbFemale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbFemale.Margin = new System.Windows.Forms.Padding(4);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.Size = new System.Drawing.Size(75, 21);
             this.rbFemale.TabIndex = 48;
@@ -223,7 +231,7 @@
             this.rbMale.AutoSize = true;
             this.rbMale.Checked = true;
             this.rbMale.Location = new System.Drawing.Point(148, 204);
-            this.rbMale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbMale.Margin = new System.Windows.Forms.Padding(4);
             this.rbMale.Name = "rbMale";
             this.rbMale.Size = new System.Drawing.Size(59, 21);
             this.rbMale.TabIndex = 47;
@@ -476,9 +484,9 @@
             this.groupBox1.Controls.Add(this.btnRemoveEmployee);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(441, 25);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(481, 65);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
@@ -529,9 +537,9 @@
             this.groupBox2.Controls.Add(this.lblHourlySalary);
             this.groupBox2.Controls.Add(this.lblHouseUnit);
             this.groupBox2.Location = new System.Drawing.Point(24, 18);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(409, 274);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
@@ -641,34 +649,14 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btnEdit);
-            this.tabPage2.Controls.Add(this.label14);
-            this.tabPage2.Controls.Add(this.label15);
-            this.tabPage2.Controls.Add(this.tbDepartmentEditAddress);
-            this.tabPage2.Controls.Add(this.tbDepartmentEditName);
-            this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.label13);
-            this.tabPage2.Controls.Add(this.cbDepartmentEdit);
-            this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.btnDepartmentRemove);
-            this.tabPage2.Controls.Add(this.cbDepartmentRemove);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.btnAssignEmployee);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.cbDepartmentAssign);
-            this.tabPage2.Controls.Add(this.cbEmployeeAssign);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.btnCreateNewDepartment);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.tbDepartmentCreateAddress);
-            this.tabPage2.Controls.Add(this.tbDepartmentCreateName);
+            this.tabPage2.Controls.Add(this.gbMoveEmployee);
+            this.tabPage2.Controls.Add(this.gbRemoveDepartment);
+            this.tabPage2.Controls.Add(this.gbEditDepartment);
+            this.tabPage2.Controls.Add(this.gbNewDepartment);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(955, 513);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Departments";
@@ -676,105 +664,86 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(245, 244);
+            this.btnEdit.Location = new System.Drawing.Point(109, 303);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(169, 23);
+            this.btnEdit.Size = new System.Drawing.Size(234, 36);
             this.btnEdit.TabIndex = 22;
             this.btnEdit.Text = "Confirm";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // label14
+            // lblEditAddress
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(305, 142);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 17);
-            this.label14.TabIndex = 21;
-            this.label14.Text = "Address";
+            this.lblEditAddress.AutoSize = true;
+            this.lblEditAddress.Location = new System.Drawing.Point(17, 118);
+            this.lblEditAddress.Name = "lblEditAddress";
+            this.lblEditAddress.Size = new System.Drawing.Size(64, 17);
+            this.lblEditAddress.TabIndex = 21;
+            this.lblEditAddress.Text = "Address:";
             // 
-            // label15
+            // lblEditName
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(305, 94);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(45, 17);
-            this.label15.TabIndex = 20;
-            this.label15.Text = "Name";
+            this.lblEditName.AutoSize = true;
+            this.lblEditName.Location = new System.Drawing.Point(17, 78);
+            this.lblEditName.Name = "lblEditName";
+            this.lblEditName.Size = new System.Drawing.Size(49, 17);
+            this.lblEditName.TabIndex = 20;
+            this.lblEditName.Text = "Name:";
             // 
             // tbDepartmentEditAddress
             // 
-            this.tbDepartmentEditAddress.Location = new System.Drawing.Point(245, 158);
+            this.tbDepartmentEditAddress.Location = new System.Drawing.Point(109, 115);
             this.tbDepartmentEditAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDepartmentEditAddress.Multiline = true;
             this.tbDepartmentEditAddress.Name = "tbDepartmentEditAddress";
-            this.tbDepartmentEditAddress.Size = new System.Drawing.Size(169, 61);
+            this.tbDepartmentEditAddress.Size = new System.Drawing.Size(234, 165);
             this.tbDepartmentEditAddress.TabIndex = 19;
             // 
             // tbDepartmentEditName
             // 
-            this.tbDepartmentEditName.Location = new System.Drawing.Point(245, 112);
+            this.tbDepartmentEditName.Location = new System.Drawing.Point(109, 75);
             this.tbDepartmentEditName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDepartmentEditName.Name = "tbDepartmentEditName";
-            this.tbDepartmentEditName.Size = new System.Drawing.Size(169, 22);
+            this.tbDepartmentEditName.Size = new System.Drawing.Size(234, 22);
             this.tbDepartmentEditName.TabIndex = 18;
             // 
-            // label12
+            // lblEditDep
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(267, 18);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(146, 20);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Edit Department";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(297, 46);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(82, 17);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "Department";
+            this.lblEditDep.AutoSize = true;
+            this.lblEditDep.Location = new System.Drawing.Point(17, 35);
+            this.lblEditDep.Name = "lblEditDep";
+            this.lblEditDep.Size = new System.Drawing.Size(86, 17);
+            this.lblEditDep.TabIndex = 16;
+            this.lblEditDep.Text = "Department:";
             // 
             // cbDepartmentEdit
             // 
+            this.cbDepartmentEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartmentEdit.FormattingEnabled = true;
-            this.cbDepartmentEdit.Location = new System.Drawing.Point(245, 66);
+            this.cbDepartmentEdit.Location = new System.Drawing.Point(109, 32);
             this.cbDepartmentEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDepartmentEdit.Name = "cbDepartmentEdit";
-            this.cbDepartmentEdit.Size = new System.Drawing.Size(169, 24);
+            this.cbDepartmentEdit.Size = new System.Drawing.Size(234, 24);
             this.cbDepartmentEdit.TabIndex = 15;
             this.cbDepartmentEdit.SelectedIndexChanged += new System.EventHandler(this.cbDepartmentEdit_SelectedIndexChanged);
             // 
-            // label11
+            // lblRemoveDep
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(253, 286);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(180, 20);
-            this.label11.TabIndex = 14;
-            this.label11.Text = "Remove Department";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(297, 332);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(82, 17);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "Department";
+            this.lblRemoveDep.AutoSize = true;
+            this.lblRemoveDep.Location = new System.Drawing.Point(238, 41);
+            this.lblRemoveDep.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRemoveDep.Name = "lblRemoveDep";
+            this.lblRemoveDep.Size = new System.Drawing.Size(86, 17);
+            this.lblRemoveDep.TabIndex = 13;
+            this.lblRemoveDep.Text = "Department:";
             // 
             // btnDepartmentRemove
             // 
-            this.btnDepartmentRemove.Location = new System.Drawing.Point(256, 383);
+            this.btnDepartmentRemove.Location = new System.Drawing.Point(574, 38);
             this.btnDepartmentRemove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDepartmentRemove.Name = "btnDepartmentRemove";
-            this.btnDepartmentRemove.Size = new System.Drawing.Size(169, 23);
+            this.btnDepartmentRemove.Size = new System.Drawing.Size(170, 25);
             this.btnDepartmentRemove.TabIndex = 12;
             this.btnDepartmentRemove.Text = "Remove";
             this.btnDepartmentRemove.UseVisualStyleBackColor = true;
@@ -782,153 +751,117 @@
             // 
             // cbDepartmentRemove
             // 
+            this.cbDepartmentRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartmentRemove.FormattingEnabled = true;
-            this.cbDepartmentRemove.Location = new System.Drawing.Point(227, 352);
-            this.cbDepartmentRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbDepartmentRemove.Location = new System.Drawing.Point(332, 38);
+            this.cbDepartmentRemove.Margin = new System.Windows.Forms.Padding(4);
             this.cbDepartmentRemove.Name = "cbDepartmentRemove";
             this.cbDepartmentRemove.Size = new System.Drawing.Size(224, 24);
             this.cbDepartmentRemove.TabIndex = 11;
             // 
-            // label9
+            // lblDepartmentMove
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(57, 353);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(82, 17);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Department";
+            this.lblDepartmentMove.AutoSize = true;
+            this.lblDepartmentMove.Location = new System.Drawing.Point(17, 169);
+            this.lblDepartmentMove.Name = "lblDepartmentMove";
+            this.lblDepartmentMove.Size = new System.Drawing.Size(86, 17);
+            this.lblDepartmentMove.TabIndex = 10;
+            this.lblDepartmentMove.Text = "Department:";
             // 
-            // label8
+            // lblEmployeeMove
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(69, 293);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 17);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Employee";
+            this.lblEmployeeMove.AutoSize = true;
+            this.lblEmployeeMove.Location = new System.Drawing.Point(17, 89);
+            this.lblEmployeeMove.Name = "lblEmployeeMove";
+            this.lblEmployeeMove.Size = new System.Drawing.Size(74, 17);
+            this.lblEmployeeMove.TabIndex = 9;
+            this.lblEmployeeMove.Text = "Employee:";
             // 
             // btnAssignEmployee
             // 
-            this.btnAssignEmployee.Location = new System.Drawing.Point(17, 414);
+            this.btnAssignEmployee.Location = new System.Drawing.Point(14, 262);
             this.btnAssignEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAssignEmployee.Name = "btnAssignEmployee";
-            this.btnAssignEmployee.Size = new System.Drawing.Size(169, 23);
+            this.btnAssignEmployee.Size = new System.Drawing.Size(196, 39);
             this.btnAssignEmployee.TabIndex = 8;
             this.btnAssignEmployee.Text = "Assign";
             this.btnAssignEmployee.UseVisualStyleBackColor = true;
             this.btnAssignEmployee.Click += new System.EventHandler(this.btnAssignEmployee_Click);
             // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(13, 215);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(172, 91);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Assign an employee to another department";
-            // 
             // cbDepartmentAssign
             // 
+            this.cbDepartmentAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartmentAssign.FormattingEnabled = true;
-            this.cbDepartmentAssign.Location = new System.Drawing.Point(17, 383);
+            this.cbDepartmentAssign.Location = new System.Drawing.Point(14, 205);
             this.cbDepartmentAssign.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDepartmentAssign.Name = "cbDepartmentAssign";
-            this.cbDepartmentAssign.Size = new System.Drawing.Size(169, 24);
+            this.cbDepartmentAssign.Size = new System.Drawing.Size(196, 24);
             this.cbDepartmentAssign.TabIndex = 6;
             // 
             // cbEmployeeAssign
             // 
+            this.cbEmployeeAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEmployeeAssign.FormattingEnabled = true;
-            this.cbEmployeeAssign.Location = new System.Drawing.Point(19, 313);
+            this.cbEmployeeAssign.Location = new System.Drawing.Point(14, 122);
             this.cbEmployeeAssign.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbEmployeeAssign.Name = "cbEmployeeAssign";
-            this.cbEmployeeAssign.Size = new System.Drawing.Size(169, 24);
+            this.cbEmployeeAssign.Size = new System.Drawing.Size(196, 24);
             this.cbEmployeeAssign.TabIndex = 3;
             // 
-            // label5
+            // lblNewAddress
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(75, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 17);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Address";
+            this.lblNewAddress.AutoSize = true;
+            this.lblNewAddress.Location = new System.Drawing.Point(17, 86);
+            this.lblNewAddress.Name = "lblNewAddress";
+            this.lblNewAddress.Size = new System.Drawing.Size(64, 17);
+            this.lblNewAddress.TabIndex = 5;
+            this.lblNewAddress.Text = "Address:";
             // 
             // btnCreateNewDepartment
             // 
-            this.btnCreateNewDepartment.Location = new System.Drawing.Point(15, 190);
+            this.btnCreateNewDepartment.Location = new System.Drawing.Point(83, 303);
             this.btnCreateNewDepartment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCreateNewDepartment.Name = "btnCreateNewDepartment";
-            this.btnCreateNewDepartment.Size = new System.Drawing.Size(169, 23);
+            this.btnCreateNewDepartment.Size = new System.Drawing.Size(224, 36);
             this.btnCreateNewDepartment.TabIndex = 4;
             this.btnCreateNewDepartment.Text = "Create";
             this.btnCreateNewDepartment.UseVisualStyleBackColor = true;
             this.btnCreateNewDepartment.Click += new System.EventHandler(this.btnCreateNewDepartment_Click);
             // 
-            // label2
+            // lblNewDepName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(211, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Create New Department";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(91, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Name";
+            this.lblNewDepName.AutoSize = true;
+            this.lblNewDepName.Location = new System.Drawing.Point(17, 47);
+            this.lblNewDepName.Name = "lblNewDepName";
+            this.lblNewDepName.Size = new System.Drawing.Size(49, 17);
+            this.lblNewDepName.TabIndex = 2;
+            this.lblNewDepName.Text = "Name:";
             // 
             // tbDepartmentCreateAddress
             // 
-            this.tbDepartmentCreateAddress.Location = new System.Drawing.Point(15, 112);
+            this.tbDepartmentCreateAddress.Location = new System.Drawing.Point(83, 83);
             this.tbDepartmentCreateAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDepartmentCreateAddress.Multiline = true;
             this.tbDepartmentCreateAddress.Name = "tbDepartmentCreateAddress";
-            this.tbDepartmentCreateAddress.Size = new System.Drawing.Size(169, 61);
+            this.tbDepartmentCreateAddress.Size = new System.Drawing.Size(224, 197);
             this.tbDepartmentCreateAddress.TabIndex = 1;
             // 
             // tbDepartmentCreateName
             // 
-            this.tbDepartmentCreateName.Location = new System.Drawing.Point(4, 66);
-            this.tbDepartmentCreateName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbDepartmentCreateName.Location = new System.Drawing.Point(83, 44);
+            this.tbDepartmentCreateName.Margin = new System.Windows.Forms.Padding(4);
             this.tbDepartmentCreateName.Name = "tbDepartmentCreateName";
             this.tbDepartmentCreateName.Size = new System.Drawing.Size(224, 22);
             this.tbDepartmentCreateName.TabIndex = 0;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.btnRemoveItemFromDep);
-            this.tabPage3.Controls.Add(this.label16);
-            this.tabPage3.Controls.Add(this.cbDptRemoveFromDpt);
-            this.tabPage3.Controls.Add(this.label19);
-            this.tabPage3.Controls.Add(this.label20);
-            this.tabPage3.Controls.Add(this.cbItemRemoveFromDpt);
-            this.tabPage3.Controls.Add(this.numUdThreshold);
-            this.tabPage3.Controls.Add(this.numUdCurrentAmmount);
-            this.tabPage3.Controls.Add(this.label26);
-            this.tabPage3.Controls.Add(this.label25);
-            this.tabPage3.Controls.Add(this.label24);
-            this.tabPage3.Controls.Add(this.cbDepartmentAssignItem);
-            this.tabPage3.Controls.Add(this.btnAssignItemToDepartment);
-            this.tabPage3.Controls.Add(this.label22);
-            this.tabPage3.Controls.Add(this.label23);
-            this.tabPage3.Controls.Add(this.cbItemAssignItem);
-            this.tabPage3.Controls.Add(this.btnRemoveItem);
-            this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Controls.Add(this.label21);
-            this.tabPage3.Controls.Add(this.btnCreateNewStock);
-            this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.tbStockCreateName);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.cbRemoveItem);
+            this.tabPage3.Controls.Add(this.gbItemRemoval);
+            this.tabPage3.Controls.Add(this.gbAssignItem);
+            this.tabPage3.Controls.Add(this.gbRemoveItemGlobally);
+            this.tabPage3.Controls.Add(this.gbNewStockItem);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(955, 513);
             this.tabPage3.TabIndex = 2;
@@ -937,57 +870,49 @@
             // 
             // btnRemoveItemFromDep
             // 
-            this.btnRemoveItemFromDep.Location = new System.Drawing.Point(537, 177);
+            this.btnRemoveItemFromDep.Location = new System.Drawing.Point(162, 171);
             this.btnRemoveItemFromDep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemoveItemFromDep.Name = "btnRemoveItemFromDep";
-            this.btnRemoveItemFromDep.Size = new System.Drawing.Size(225, 30);
+            this.btnRemoveItemFromDep.Size = new System.Drawing.Size(224, 30);
             this.btnRemoveItemFromDep.TabIndex = 48;
             this.btnRemoveItemFromDep.Text = "Unassign";
             this.btnRemoveItemFromDep.UseVisualStyleBackColor = true;
             this.btnRemoveItemFromDep.Click += new System.EventHandler(this.btnRemoveItemFromDep_Click);
             // 
-            // label16
+            // lblRemoveDepDepartment
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(607, 112);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(82, 17);
-            this.label16.TabIndex = 47;
-            this.label16.Text = "Department";
+            this.lblRemoveDepDepartment.AutoSize = true;
+            this.lblRemoveDepDepartment.Location = new System.Drawing.Point(25, 119);
+            this.lblRemoveDepDepartment.Name = "lblRemoveDepDepartment";
+            this.lblRemoveDepDepartment.Size = new System.Drawing.Size(86, 17);
+            this.lblRemoveDepDepartment.TabIndex = 47;
+            this.lblRemoveDepDepartment.Text = "Department:";
             // 
             // cbDptRemoveFromDpt
             // 
+            this.cbDptRemoveFromDpt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDptRemoveFromDpt.FormattingEnabled = true;
-            this.cbDptRemoveFromDpt.Location = new System.Drawing.Point(537, 130);
+            this.cbDptRemoveFromDpt.Location = new System.Drawing.Point(162, 116);
             this.cbDptRemoveFromDpt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDptRemoveFromDpt.Name = "cbDptRemoveFromDpt";
             this.cbDptRemoveFromDpt.Size = new System.Drawing.Size(224, 24);
             this.cbDptRemoveFromDpt.TabIndex = 46;
             this.cbDptRemoveFromDpt.DropDown += new System.EventHandler(this.cbDptRemoveFromDpt_DropDown);
             // 
-            // label19
+            // lblRemoveDepItem
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(624, 62);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(34, 17);
-            this.label19.TabIndex = 45;
-            this.label19.Text = "Item";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(524, 31);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(266, 20);
-            this.label20.TabIndex = 44;
-            this.label20.Text = "Remove Item from Department";
+            this.lblRemoveDepItem.AutoSize = true;
+            this.lblRemoveDepItem.Location = new System.Drawing.Point(25, 66);
+            this.lblRemoveDepItem.Name = "lblRemoveDepItem";
+            this.lblRemoveDepItem.Size = new System.Drawing.Size(38, 17);
+            this.lblRemoveDepItem.TabIndex = 45;
+            this.lblRemoveDepItem.Text = "Item:";
             // 
             // cbItemRemoveFromDpt
             // 
+            this.cbItemRemoveFromDpt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbItemRemoveFromDpt.FormattingEnabled = true;
-            this.cbItemRemoveFromDpt.Location = new System.Drawing.Point(537, 80);
+            this.cbItemRemoveFromDpt.Location = new System.Drawing.Point(162, 63);
             this.cbItemRemoveFromDpt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbItemRemoveFromDpt.Name = "cbItemRemoveFromDpt";
             this.cbItemRemoveFromDpt.Size = new System.Drawing.Size(224, 24);
@@ -996,51 +921,52 @@
             // 
             // numUdThreshold
             // 
-            this.numUdThreshold.Location = new System.Drawing.Point(255, 242);
-            this.numUdThreshold.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numUdThreshold.Location = new System.Drawing.Point(162, 207);
+            this.numUdThreshold.Margin = new System.Windows.Forms.Padding(4);
             this.numUdThreshold.Name = "numUdThreshold";
-            this.numUdThreshold.Size = new System.Drawing.Size(225, 22);
+            this.numUdThreshold.Size = new System.Drawing.Size(199, 22);
             this.numUdThreshold.TabIndex = 42;
             // 
             // numUdCurrentAmmount
             // 
-            this.numUdCurrentAmmount.Location = new System.Drawing.Point(255, 187);
-            this.numUdCurrentAmmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numUdCurrentAmmount.Location = new System.Drawing.Point(162, 152);
+            this.numUdCurrentAmmount.Margin = new System.Windows.Forms.Padding(4);
             this.numUdCurrentAmmount.Name = "numUdCurrentAmmount";
-            this.numUdCurrentAmmount.Size = new System.Drawing.Size(225, 22);
+            this.numUdCurrentAmmount.Size = new System.Drawing.Size(199, 22);
             this.numUdCurrentAmmount.TabIndex = 41;
             // 
-            // label26
+            // lblAddDepThreshold
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(325, 222);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(72, 17);
-            this.label26.TabIndex = 40;
-            this.label26.Text = "Threshold";
+            this.lblAddDepThreshold.AutoSize = true;
+            this.lblAddDepThreshold.Location = new System.Drawing.Point(17, 209);
+            this.lblAddDepThreshold.Name = "lblAddDepThreshold";
+            this.lblAddDepThreshold.Size = new System.Drawing.Size(76, 17);
+            this.lblAddDepThreshold.TabIndex = 40;
+            this.lblAddDepThreshold.Text = "Threshold:";
             // 
-            // label25
+            // lblAddDepCAmount
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(305, 167);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(107, 17);
-            this.label25.TabIndex = 38;
-            this.label25.Text = "Current Amount";
+            this.lblAddDepCAmount.AutoSize = true;
+            this.lblAddDepCAmount.Location = new System.Drawing.Point(17, 154);
+            this.lblAddDepCAmount.Name = "lblAddDepCAmount";
+            this.lblAddDepCAmount.Size = new System.Drawing.Size(111, 17);
+            this.lblAddDepCAmount.TabIndex = 38;
+            this.lblAddDepCAmount.Text = "Current Amount:";
             // 
-            // label24
+            // lblAddDepDepartment
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(324, 112);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(82, 17);
-            this.label24.TabIndex = 36;
-            this.label24.Text = "Department";
+            this.lblAddDepDepartment.AutoSize = true;
+            this.lblAddDepDepartment.Location = new System.Drawing.Point(17, 98);
+            this.lblAddDepDepartment.Name = "lblAddDepDepartment";
+            this.lblAddDepDepartment.Size = new System.Drawing.Size(86, 17);
+            this.lblAddDepDepartment.TabIndex = 36;
+            this.lblAddDepDepartment.Text = "Department:";
             // 
             // cbDepartmentAssignItem
             // 
+            this.cbDepartmentAssignItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartmentAssignItem.FormattingEnabled = true;
-            this.cbDepartmentAssignItem.Location = new System.Drawing.Point(255, 130);
+            this.cbDepartmentAssignItem.Location = new System.Drawing.Point(137, 95);
             this.cbDepartmentAssignItem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDepartmentAssignItem.Name = "cbDepartmentAssignItem";
             this.cbDepartmentAssignItem.Size = new System.Drawing.Size(224, 24);
@@ -1049,38 +975,29 @@
             // 
             // btnAssignItemToDepartment
             // 
-            this.btnAssignItemToDepartment.Location = new System.Drawing.Point(255, 284);
+            this.btnAssignItemToDepartment.Location = new System.Drawing.Point(162, 253);
             this.btnAssignItemToDepartment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAssignItemToDepartment.Name = "btnAssignItemToDepartment";
-            this.btnAssignItemToDepartment.Size = new System.Drawing.Size(225, 30);
+            this.btnAssignItemToDepartment.Size = new System.Drawing.Size(199, 30);
             this.btnAssignItemToDepartment.TabIndex = 34;
             this.btnAssignItemToDepartment.Text = "Assign";
             this.btnAssignItemToDepartment.UseVisualStyleBackColor = true;
             this.btnAssignItemToDepartment.Click += new System.EventHandler(this.btnAssignItemToDepartment_Click);
             // 
-            // label22
+            // lblAddDepItem
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(341, 62);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(34, 17);
-            this.label22.TabIndex = 33;
-            this.label22.Text = "Item";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(245, 31);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(234, 20);
-            this.label23.TabIndex = 32;
-            this.label23.Text = "Assign Item to Department";
+            this.lblAddDepItem.AutoSize = true;
+            this.lblAddDepItem.Location = new System.Drawing.Point(17, 48);
+            this.lblAddDepItem.Name = "lblAddDepItem";
+            this.lblAddDepItem.Size = new System.Drawing.Size(38, 17);
+            this.lblAddDepItem.TabIndex = 33;
+            this.lblAddDepItem.Text = "Item:";
             // 
             // cbItemAssignItem
             // 
+            this.cbItemAssignItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbItemAssignItem.FormattingEnabled = true;
-            this.cbItemAssignItem.Location = new System.Drawing.Point(255, 80);
+            this.cbItemAssignItem.Location = new System.Drawing.Point(137, 45);
             this.cbItemAssignItem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbItemAssignItem.Name = "cbItemAssignItem";
             this.cbItemAssignItem.Size = new System.Drawing.Size(224, 24);
@@ -1089,81 +1006,174 @@
             // 
             // btnRemoveItem
             // 
-            this.btnRemoveItem.Location = new System.Drawing.Point(4, 284);
+            this.btnRemoveItem.Location = new System.Drawing.Point(132, 110);
             this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemoveItem.Name = "btnRemoveItem";
-            this.btnRemoveItem.Size = new System.Drawing.Size(225, 30);
+            this.btnRemoveItem.Size = new System.Drawing.Size(254, 30);
             this.btnRemoveItem.TabIndex = 29;
             this.btnRemoveItem.Text = "Remove";
             this.btnRemoveItem.UseVisualStyleBackColor = true;
             this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
             // 
-            // label18
+            // lblRemoveItem
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(96, 223);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(34, 17);
-            this.label18.TabIndex = 28;
-            this.label18.Text = "Item";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(49, 187);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(118, 20);
-            this.label21.TabIndex = 26;
-            this.label21.Text = "Remove Item";
+            this.lblRemoveItem.AutoSize = true;
+            this.lblRemoveItem.Location = new System.Drawing.Point(25, 72);
+            this.lblRemoveItem.Name = "lblRemoveItem";
+            this.lblRemoveItem.Size = new System.Drawing.Size(38, 17);
+            this.lblRemoveItem.TabIndex = 28;
+            this.lblRemoveItem.Text = "Item:";
             // 
             // btnCreateNewStock
             // 
-            this.btnCreateNewStock.Location = new System.Drawing.Point(4, 126);
+            this.btnCreateNewStock.Location = new System.Drawing.Point(74, 79);
             this.btnCreateNewStock.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCreateNewStock.Name = "btnCreateNewStock";
-            this.btnCreateNewStock.Size = new System.Drawing.Size(225, 30);
+            this.btnCreateNewStock.Size = new System.Drawing.Size(277, 30);
             this.btnCreateNewStock.TabIndex = 25;
             this.btnCreateNewStock.Text = "Create";
             this.btnCreateNewStock.UseVisualStyleBackColor = true;
             this.btnCreateNewStock.Click += new System.EventHandler(this.btnCreateNewStock_Click);
             // 
-            // label17
+            // lblNewStockName
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(91, 62);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(45, 17);
-            this.label17.TabIndex = 24;
-            this.label17.Text = "Name";
+            this.lblNewStockName.AutoSize = true;
+            this.lblNewStockName.Location = new System.Drawing.Point(18, 36);
+            this.lblNewStockName.Name = "lblNewStockName";
+            this.lblNewStockName.Size = new System.Drawing.Size(49, 17);
+            this.lblNewStockName.TabIndex = 24;
+            this.lblNewStockName.Text = "Name:";
             // 
             // tbStockCreateName
             // 
-            this.tbStockCreateName.Location = new System.Drawing.Point(4, 82);
-            this.tbStockCreateName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbStockCreateName.Location = new System.Drawing.Point(74, 33);
+            this.tbStockCreateName.Margin = new System.Windows.Forms.Padding(4);
             this.tbStockCreateName.Name = "tbStockCreateName";
-            this.tbStockCreateName.Size = new System.Drawing.Size(224, 22);
+            this.tbStockCreateName.Size = new System.Drawing.Size(277, 22);
             this.tbStockCreateName.TabIndex = 23;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(31, 31);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(149, 20);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Create New Item";
             // 
             // cbRemoveItem
             // 
+            this.cbRemoveItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRemoveItem.FormattingEnabled = true;
-            this.cbRemoveItem.Location = new System.Drawing.Point(4, 241);
+            this.cbRemoveItem.Location = new System.Drawing.Point(132, 69);
             this.cbRemoveItem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbRemoveItem.Name = "cbRemoveItem";
-            this.cbRemoveItem.Size = new System.Drawing.Size(224, 24);
+            this.cbRemoveItem.Size = new System.Drawing.Size(254, 24);
             this.cbRemoveItem.TabIndex = 14;
             this.cbRemoveItem.DropDown += new System.EventHandler(this.cbRemoveItem_DropDown);
+            // 
+            // gbNewDepartment
+            // 
+            this.gbNewDepartment.Controls.Add(this.tbDepartmentCreateName);
+            this.gbNewDepartment.Controls.Add(this.lblNewDepName);
+            this.gbNewDepartment.Controls.Add(this.lblNewAddress);
+            this.gbNewDepartment.Controls.Add(this.tbDepartmentCreateAddress);
+            this.gbNewDepartment.Controls.Add(this.btnCreateNewDepartment);
+            this.gbNewDepartment.Location = new System.Drawing.Point(14, 26);
+            this.gbNewDepartment.Name = "gbNewDepartment";
+            this.gbNewDepartment.Size = new System.Drawing.Size(342, 363);
+            this.gbNewDepartment.TabIndex = 23;
+            this.gbNewDepartment.TabStop = false;
+            this.gbNewDepartment.Text = "Create new department";
+            // 
+            // gbEditDepartment
+            // 
+            this.gbEditDepartment.Controls.Add(this.lblEditDep);
+            this.gbEditDepartment.Controls.Add(this.cbDepartmentEdit);
+            this.gbEditDepartment.Controls.Add(this.btnEdit);
+            this.gbEditDepartment.Controls.Add(this.lblEditName);
+            this.gbEditDepartment.Controls.Add(this.tbDepartmentEditAddress);
+            this.gbEditDepartment.Controls.Add(this.lblEditAddress);
+            this.gbEditDepartment.Controls.Add(this.tbDepartmentEditName);
+            this.gbEditDepartment.Location = new System.Drawing.Point(366, 26);
+            this.gbEditDepartment.Name = "gbEditDepartment";
+            this.gbEditDepartment.Size = new System.Drawing.Size(364, 363);
+            this.gbEditDepartment.TabIndex = 24;
+            this.gbEditDepartment.TabStop = false;
+            this.gbEditDepartment.Text = "Edit Department";
+            // 
+            // gbRemoveDepartment
+            // 
+            this.gbRemoveDepartment.Controls.Add(this.lblRemoveDep);
+            this.gbRemoveDepartment.Controls.Add(this.cbDepartmentRemove);
+            this.gbRemoveDepartment.Controls.Add(this.btnDepartmentRemove);
+            this.gbRemoveDepartment.Location = new System.Drawing.Point(14, 401);
+            this.gbRemoveDepartment.Name = "gbRemoveDepartment";
+            this.gbRemoveDepartment.Size = new System.Drawing.Size(932, 100);
+            this.gbRemoveDepartment.TabIndex = 25;
+            this.gbRemoveDepartment.TabStop = false;
+            this.gbRemoveDepartment.Text = "Remove department";
+            // 
+            // gbMoveEmployee
+            // 
+            this.gbMoveEmployee.Controls.Add(this.lblEmployeeMove);
+            this.gbMoveEmployee.Controls.Add(this.cbEmployeeAssign);
+            this.gbMoveEmployee.Controls.Add(this.lblDepartmentMove);
+            this.gbMoveEmployee.Controls.Add(this.cbDepartmentAssign);
+            this.gbMoveEmployee.Controls.Add(this.btnAssignEmployee);
+            this.gbMoveEmployee.Location = new System.Drawing.Point(736, 26);
+            this.gbMoveEmployee.Name = "gbMoveEmployee";
+            this.gbMoveEmployee.Size = new System.Drawing.Size(216, 363);
+            this.gbMoveEmployee.TabIndex = 26;
+            this.gbMoveEmployee.TabStop = false;
+            this.gbMoveEmployee.Text = "Assign employee to another department";
+            // 
+            // gbNewStockItem
+            // 
+            this.gbNewStockItem.Controls.Add(this.lblNewStockName);
+            this.gbNewStockItem.Controls.Add(this.tbStockCreateName);
+            this.gbNewStockItem.Controls.Add(this.btnCreateNewStock);
+            this.gbNewStockItem.Location = new System.Drawing.Point(57, 31);
+            this.gbNewStockItem.Name = "gbNewStockItem";
+            this.gbNewStockItem.Size = new System.Drawing.Size(391, 132);
+            this.gbNewStockItem.TabIndex = 49;
+            this.gbNewStockItem.TabStop = false;
+            this.gbNewStockItem.Text = "Create new stock item";
+            // 
+            // gbRemoveItemGlobally
+            // 
+            this.gbRemoveItemGlobally.Controls.Add(this.lblRemoveItem);
+            this.gbRemoveItemGlobally.Controls.Add(this.cbRemoveItem);
+            this.gbRemoveItemGlobally.Controls.Add(this.btnRemoveItem);
+            this.gbRemoveItemGlobally.Location = new System.Drawing.Point(473, 292);
+            this.gbRemoveItemGlobally.Name = "gbRemoveItemGlobally";
+            this.gbRemoveItemGlobally.Size = new System.Drawing.Size(420, 200);
+            this.gbRemoveItemGlobally.TabIndex = 50;
+            this.gbRemoveItemGlobally.TabStop = false;
+            this.gbRemoveItemGlobally.Text = "Remove Item from system";
+            // 
+            // gbAssignItem
+            // 
+            this.gbAssignItem.Controls.Add(this.lblAddDepItem);
+            this.gbAssignItem.Controls.Add(this.cbItemAssignItem);
+            this.gbAssignItem.Controls.Add(this.btnAssignItemToDepartment);
+            this.gbAssignItem.Controls.Add(this.cbDepartmentAssignItem);
+            this.gbAssignItem.Controls.Add(this.lblAddDepDepartment);
+            this.gbAssignItem.Controls.Add(this.lblAddDepCAmount);
+            this.gbAssignItem.Controls.Add(this.lblAddDepThreshold);
+            this.gbAssignItem.Controls.Add(this.numUdCurrentAmmount);
+            this.gbAssignItem.Controls.Add(this.numUdThreshold);
+            this.gbAssignItem.Location = new System.Drawing.Point(57, 183);
+            this.gbAssignItem.Name = "gbAssignItem";
+            this.gbAssignItem.Size = new System.Drawing.Size(391, 309);
+            this.gbAssignItem.TabIndex = 51;
+            this.gbAssignItem.TabStop = false;
+            this.gbAssignItem.Text = "Add item to department";
+            // 
+            // gbItemRemoval
+            // 
+            this.gbItemRemoval.Controls.Add(this.lblRemoveDepItem);
+            this.gbItemRemoval.Controls.Add(this.cbItemRemoveFromDpt);
+            this.gbItemRemoval.Controls.Add(this.cbDptRemoveFromDpt);
+            this.gbItemRemoval.Controls.Add(this.lblRemoveDepDepartment);
+            this.gbItemRemoval.Controls.Add(this.btnRemoveItemFromDep);
+            this.gbItemRemoval.Location = new System.Drawing.Point(473, 31);
+            this.gbItemRemoval.Name = "gbItemRemoval";
+            this.gbItemRemoval.Size = new System.Drawing.Size(420, 245);
+            this.gbItemRemoval.TabIndex = 52;
+            this.gbItemRemoval.TabStop = false;
+            this.gbItemRemoval.Text = "Remove Item from Department";
             // 
             // EmployeeManagement
             // 
@@ -1172,7 +1182,7 @@
             this.ClientSize = new System.Drawing.Size(1056, 571);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnBack);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EmployeeManagement";
             this.Text = "EmployeeManagement";
             this.tabControl1.ResumeLayout(false);
@@ -1186,11 +1196,25 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUdThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUdCurrentAmmount)).EndInit();
+            this.gbNewDepartment.ResumeLayout(false);
+            this.gbNewDepartment.PerformLayout();
+            this.gbEditDepartment.ResumeLayout(false);
+            this.gbEditDepartment.PerformLayout();
+            this.gbRemoveDepartment.ResumeLayout(false);
+            this.gbRemoveDepartment.PerformLayout();
+            this.gbMoveEmployee.ResumeLayout(false);
+            this.gbMoveEmployee.PerformLayout();
+            this.gbNewStockItem.ResumeLayout(false);
+            this.gbNewStockItem.PerformLayout();
+            this.gbRemoveItemGlobally.ResumeLayout(false);
+            this.gbRemoveItemGlobally.PerformLayout();
+            this.gbAssignItem.ResumeLayout(false);
+            this.gbAssignItem.PerformLayout();
+            this.gbItemRemoval.ResumeLayout(false);
+            this.gbItemRemoval.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1213,26 +1237,22 @@
         private System.Windows.Forms.Label lblHouseUnit;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnCreateNewDepartment;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNewDepName;
         private System.Windows.Forms.TextBox tbDepartmentCreateAddress;
         private System.Windows.Forms.TextBox tbDepartmentCreateName;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblDepartmentMove;
+        private System.Windows.Forms.Label lblEmployeeMove;
         private System.Windows.Forms.Button btnAssignEmployee;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbDepartmentAssign;
         private System.Windows.Forms.ComboBox cbEmployeeAssign;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblNewAddress;
+        private System.Windows.Forms.Label lblEditAddress;
+        private System.Windows.Forms.Label lblEditName;
         private System.Windows.Forms.TextBox tbDepartmentEditAddress;
         private System.Windows.Forms.TextBox tbDepartmentEditName;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblEditDep;
         private System.Windows.Forms.ComboBox cbDepartmentEdit;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblRemoveDep;
         private System.Windows.Forms.Button btnDepartmentRemove;
         private System.Windows.Forms.ComboBox cbDepartmentRemove;
         private System.Windows.Forms.Button btnEdit;
@@ -1269,30 +1289,34 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.NumericUpDown numUdThreshold;
         private System.Windows.Forms.NumericUpDown numUdCurrentAmmount;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label lblAddDepThreshold;
+        private System.Windows.Forms.Label lblAddDepCAmount;
+        private System.Windows.Forms.Label lblAddDepDepartment;
         private System.Windows.Forms.ComboBox cbDepartmentAssignItem;
         private System.Windows.Forms.Button btnAssignItemToDepartment;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lblAddDepItem;
         private System.Windows.Forms.ComboBox cbItemAssignItem;
         private System.Windows.Forms.Button btnRemoveItem;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label lblRemoveItem;
         private System.Windows.Forms.Button btnCreateNewStock;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblNewStockName;
         private System.Windows.Forms.TextBox tbStockCreateName;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbRemoveItem;
         private System.Windows.Forms.Button btnRemoveItemFromDep;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblRemoveDepDepartment;
         private System.Windows.Forms.ComboBox cbDptRemoveFromDpt;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblRemoveDepItem;
         private System.Windows.Forms.ComboBox cbItemRemoveFromDpt;
         private System.Windows.Forms.RadioButton rbFemale;
         private System.Windows.Forms.RadioButton rbMale;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.GroupBox gbNewDepartment;
+        private System.Windows.Forms.GroupBox gbEditDepartment;
+        private System.Windows.Forms.GroupBox gbRemoveDepartment;
+        private System.Windows.Forms.GroupBox gbMoveEmployee;
+        private System.Windows.Forms.GroupBox gbNewStockItem;
+        private System.Windows.Forms.GroupBox gbRemoveItemGlobally;
+        private System.Windows.Forms.GroupBox gbAssignItem;
+        private System.Windows.Forms.GroupBox gbItemRemoval;
     }
 }
