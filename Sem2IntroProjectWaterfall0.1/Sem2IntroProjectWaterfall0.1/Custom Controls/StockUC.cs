@@ -26,18 +26,62 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnDecrease_Click(object sender, EventArgs e)
         {
-            selectedItem.CurrentAmount--;
-            if (lblCurrentAmount.Visible) this.lblCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
-            else tbCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
-            if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
-            else lblCurrentAmount.ForeColor = Color.Black;
+            if (selectedItem.CurrentAmount > 0)
+            {
+
+                if (lblCurrentAmount.Visible)
+                {
+                    selectedItem.CurrentAmount--;
+                    this.lblCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+                }
+                else
+                {
+                    if (int.TryParse(tbCurrentAmount.Text, out int amount))
+                    {
+                        if (amount > 0)
+                        {
+                            amount--;
+                            this.selectedItem.CurrentAmount = amount;
+                            tbCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+                        }
+                        else
+                        {
+                            selectedItem.CurrentAmount--;
+                            this.tbCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+                        }
+                    }
+                    else MessageBox.Show("Please enter a valid value");             
+                }
+                if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
+                else lblCurrentAmount.ForeColor = Color.Black;
+            }
+            else MessageBox.Show("Current ammount cannot be negative!");
         }
 
         private void btnIncrease_Click(object sender, EventArgs e)
         {
-            selectedItem.CurrentAmount++;
-            if (lblCurrentAmount.Visible) this.lblCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
-            else tbCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+            if (lblCurrentAmount.Visible)
+            {
+                selectedItem.CurrentAmount++;
+                this.lblCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+            }
+            else
+            {
+                if (int.TryParse(tbCurrentAmount.Text, out int ammount))
+                {
+                    if (ammount >= 0)
+                    {
+                        ammount++;
+                        selectedItem.CurrentAmount = ammount;
+                        this.tbCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+                    } else
+                    {
+                        selectedItem.CurrentAmount++;
+                        this.tbCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+                    }
+                }
+                else MessageBox.Show("Please enter a valid value!");
+            }
             if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
             else lblCurrentAmount.ForeColor = Color.Black;
         }
@@ -60,12 +104,20 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.selectedItem.CurrentAmount = Convert.ToInt32(tbCurrentAmount.Text);
-                this.lblCurrentAmount.Visible = true;
-                this.tbCurrentAmount.Visible = false;
-                this.lblCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
-                if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
-                else lblCurrentAmount.ForeColor = Color.Black;
+                if (int.TryParse(this.tbCurrentAmount.Text, out int currentAmmount))
+                {
+                    if (currentAmmount >= 0)
+                    {
+                        this.selectedItem.CurrentAmount = currentAmmount;
+                        this.lblCurrentAmount.Visible = true;
+                        this.tbCurrentAmount.Visible = false;
+                        this.lblCurrentAmount.Text = selectedItem.CurrentAmount.ToString();
+                        if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
+                        else lblCurrentAmount.ForeColor = Color.Black;
+                    }
+                    else MessageBox.Show("Please enter a positive value");
+                }
+                else MessageBox.Show("Please enter a valid value");
             }
         }
 
@@ -73,12 +125,20 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.selectedItem.Threshold = Convert.ToInt32(tbThreshold.Text);
-                this.lblThreshold.Visible = true;
-                this.tbThreshold.Visible = false;
-                this.lblThreshold.Text = selectedItem.Threshold.ToString();
-                if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
-                else lblCurrentAmount.ForeColor = Color.Black;
+                if (int.TryParse(tbThreshold.Text, out int threshold))
+                {
+                    if (threshold >= 0)
+                    {
+                        this.selectedItem.Threshold = Convert.ToInt32(tbThreshold.Text);
+                        this.lblThreshold.Visible = true;
+                        this.tbThreshold.Visible = false;
+                        this.lblThreshold.Text = selectedItem.Threshold.ToString();
+                        if (selectedItem.CurrentAmount < selectedItem.Threshold) lblCurrentAmount.ForeColor = Color.Red;
+                        else lblCurrentAmount.ForeColor = Color.Black;
+                    }
+                    else MessageBox.Show("Please enter a positive value");
+                }
+                else MessageBox.Show("Please enter a valid value");
             }
         }
     }

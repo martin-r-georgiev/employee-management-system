@@ -119,6 +119,7 @@
             this.lblNewStockName = new System.Windows.Forms.Label();
             this.tbStockCreateName = new System.Windows.Forms.TextBox();
             this.btnCreateNewStock = new System.Windows.Forms.Button();
+            this.cbPassVisible = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gbPersonalInfo.SuspendLayout();
@@ -166,7 +167,7 @@
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(714, 414);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Employees";
@@ -196,9 +197,9 @@
             this.gbPersonalInfo.Controls.Add(this.cbPersonalInfoList);
             this.gbPersonalInfo.Controls.Add(this.label3);
             this.gbPersonalInfo.Location = new System.Drawing.Point(331, 78);
-            this.gbPersonalInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbPersonalInfo.Margin = new System.Windows.Forms.Padding(2);
             this.gbPersonalInfo.Name = "gbPersonalInfo";
-            this.gbPersonalInfo.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbPersonalInfo.Padding = new System.Windows.Forms.Padding(2);
             this.gbPersonalInfo.Size = new System.Drawing.Size(378, 331);
             this.gbPersonalInfo.TabIndex = 25;
             this.gbPersonalInfo.TabStop = false;
@@ -239,7 +240,7 @@
             // btnClearPersonalInfo
             // 
             this.btnClearPersonalInfo.Location = new System.Drawing.Point(312, 30);
-            this.btnClearPersonalInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClearPersonalInfo.Margin = new System.Windows.Forms.Padding(2);
             this.btnClearPersonalInfo.Name = "btnClearPersonalInfo";
             this.btnClearPersonalInfo.Size = new System.Drawing.Size(43, 20);
             this.btnClearPersonalInfo.TabIndex = 45;
@@ -260,7 +261,7 @@
             // dtpBirthday
             // 
             this.dtpBirthday.Location = new System.Drawing.Point(111, 276);
-            this.dtpBirthday.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpBirthday.Margin = new System.Windows.Forms.Padding(2);
             this.dtpBirthday.Name = "dtpBirthday";
             this.dtpBirthday.Size = new System.Drawing.Size(198, 20);
             this.dtpBirthday.TabIndex = 43;
@@ -268,7 +269,7 @@
             // btnUpdateEmployee
             // 
             this.btnUpdateEmployee.Location = new System.Drawing.Point(59, 300);
-            this.btnUpdateEmployee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdateEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
             this.btnUpdateEmployee.Size = new System.Drawing.Size(250, 20);
             this.btnUpdateEmployee.TabIndex = 29;
@@ -279,7 +280,7 @@
             // tbEmail
             // 
             this.tbEmail.Location = new System.Drawing.Point(59, 247);
-            this.tbEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbEmail.Margin = new System.Windows.Forms.Padding(2);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(252, 20);
             this.tbEmail.TabIndex = 42;
@@ -297,7 +298,7 @@
             // tbAddress
             // 
             this.tbAddress.Location = new System.Drawing.Point(59, 204);
-            this.tbAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbAddress.Margin = new System.Windows.Forms.Padding(2);
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.Size = new System.Drawing.Size(252, 20);
             this.tbAddress.TabIndex = 40;
@@ -325,7 +326,7 @@
             // tbPhoneNumber
             // 
             this.tbPhoneNumber.Location = new System.Drawing.Point(197, 136);
-            this.tbPhoneNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbPhoneNumber.Margin = new System.Windows.Forms.Padding(2);
             this.tbPhoneNumber.Name = "tbPhoneNumber";
             this.tbPhoneNumber.Size = new System.Drawing.Size(111, 20);
             this.tbPhoneNumber.TabIndex = 37;
@@ -333,7 +334,7 @@
             // tbNationality
             // 
             this.tbNationality.Location = new System.Drawing.Point(57, 136);
-            this.tbNationality.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbNationality.Margin = new System.Windows.Forms.Padding(2);
             this.tbNationality.Name = "tbNationality";
             this.tbNationality.Size = new System.Drawing.Size(111, 20);
             this.tbNationality.TabIndex = 36;
@@ -351,7 +352,7 @@
             // tbLastName
             // 
             this.tbLastName.Location = new System.Drawing.Point(197, 86);
-            this.tbLastName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbLastName.Margin = new System.Windows.Forms.Padding(2);
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(111, 20);
             this.tbLastName.TabIndex = 34;
@@ -369,7 +370,7 @@
             // tbFirstName
             // 
             this.tbFirstName.Location = new System.Drawing.Point(57, 88);
-            this.tbFirstName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbFirstName.Margin = new System.Windows.Forms.Padding(2);
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(111, 20);
             this.tbFirstName.TabIndex = 32;
@@ -389,7 +390,7 @@
             this.cbPersonalInfoList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPersonalInfoList.FormattingEnabled = true;
             this.cbPersonalInfoList.Location = new System.Drawing.Point(115, 30);
-            this.cbPersonalInfoList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbPersonalInfoList.Margin = new System.Windows.Forms.Padding(2);
             this.cbPersonalInfoList.Name = "cbPersonalInfoList";
             this.cbPersonalInfoList.Size = new System.Drawing.Size(194, 21);
             this.cbPersonalInfoList.TabIndex = 30;
@@ -423,7 +424,7 @@
             this.cbRemoveList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRemoveList.FormattingEnabled = true;
             this.cbRemoveList.Location = new System.Drawing.Point(73, 20);
-            this.cbRemoveList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbRemoveList.Margin = new System.Windows.Forms.Padding(2);
             this.cbRemoveList.Name = "cbRemoveList";
             this.cbRemoveList.Size = new System.Drawing.Size(176, 21);
             this.cbRemoveList.TabIndex = 28;
@@ -432,7 +433,7 @@
             // btnRemoveEmployee
             // 
             this.btnRemoveEmployee.Location = new System.Drawing.Point(252, 20);
-            this.btnRemoveEmployee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemoveEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveEmployee.Name = "btnRemoveEmployee";
             this.btnRemoveEmployee.Size = new System.Drawing.Size(104, 20);
             this.btnRemoveEmployee.TabIndex = 27;
@@ -452,6 +453,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbPassVisible);
             this.groupBox2.Controls.Add(this.btnAddEmployee);
             this.groupBox2.Controls.Add(this.cbDepartments);
             this.groupBox2.Controls.Add(this.tbHourlySalary);
@@ -473,7 +475,7 @@
             // btnAddEmployee
             // 
             this.btnAddEmployee.Location = new System.Drawing.Point(110, 197);
-            this.btnAddEmployee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddEmployee.Name = "btnAddEmployee";
             this.btnAddEmployee.Size = new System.Drawing.Size(157, 28);
             this.btnAddEmployee.TabIndex = 25;
@@ -486,7 +488,7 @@
             this.cbDepartments.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartments.FormattingEnabled = true;
             this.cbDepartments.Location = new System.Drawing.Point(110, 157);
-            this.cbDepartments.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbDepartments.Margin = new System.Windows.Forms.Padding(2);
             this.cbDepartments.Name = "cbDepartments";
             this.cbDepartments.Size = new System.Drawing.Size(158, 21);
             this.cbDepartments.TabIndex = 24;
@@ -495,7 +497,7 @@
             // tbHourlySalary
             // 
             this.tbHourlySalary.Location = new System.Drawing.Point(110, 129);
-            this.tbHourlySalary.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbHourlySalary.Margin = new System.Windows.Forms.Padding(2);
             this.tbHourlySalary.Name = "tbHourlySalary";
             this.tbHourlySalary.Size = new System.Drawing.Size(80, 20);
             this.tbHourlySalary.TabIndex = 23;
@@ -505,7 +507,7 @@
             this.cbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRole.FormattingEnabled = true;
             this.cbRole.Location = new System.Drawing.Point(110, 98);
-            this.cbRole.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbRole.Margin = new System.Windows.Forms.Padding(2);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(158, 21);
             this.cbRole.TabIndex = 22;
@@ -514,15 +516,16 @@
             // tbPassword
             // 
             this.tbPassword.Location = new System.Drawing.Point(110, 69);
-            this.tbPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(2);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(158, 20);
             this.tbPassword.TabIndex = 21;
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // tbUsername
             // 
             this.tbUsername.Location = new System.Drawing.Point(110, 41);
-            this.tbUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbUsername.Margin = new System.Windows.Forms.Padding(2);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(158, 20);
             this.tbUsername.TabIndex = 20;
@@ -585,7 +588,7 @@
             this.tabPage2.Controls.Add(this.gbNewDepartment);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(714, 414);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Departments";
@@ -599,9 +602,9 @@
             this.gbMoveEmployee.Controls.Add(this.cbDepartmentAssign);
             this.gbMoveEmployee.Controls.Add(this.btnAssignEmployee);
             this.gbMoveEmployee.Location = new System.Drawing.Point(552, 21);
-            this.gbMoveEmployee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbMoveEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.gbMoveEmployee.Name = "gbMoveEmployee";
-            this.gbMoveEmployee.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbMoveEmployee.Padding = new System.Windows.Forms.Padding(2);
             this.gbMoveEmployee.Size = new System.Drawing.Size(162, 295);
             this.gbMoveEmployee.TabIndex = 26;
             this.gbMoveEmployee.TabStop = false;
@@ -622,7 +625,7 @@
             this.cbEmployeeAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEmployeeAssign.FormattingEnabled = true;
             this.cbEmployeeAssign.Location = new System.Drawing.Point(10, 99);
-            this.cbEmployeeAssign.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbEmployeeAssign.Margin = new System.Windows.Forms.Padding(2);
             this.cbEmployeeAssign.Name = "cbEmployeeAssign";
             this.cbEmployeeAssign.Size = new System.Drawing.Size(148, 21);
             this.cbEmployeeAssign.TabIndex = 3;
@@ -642,7 +645,7 @@
             this.cbDepartmentAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartmentAssign.FormattingEnabled = true;
             this.cbDepartmentAssign.Location = new System.Drawing.Point(10, 167);
-            this.cbDepartmentAssign.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbDepartmentAssign.Margin = new System.Windows.Forms.Padding(2);
             this.cbDepartmentAssign.Name = "cbDepartmentAssign";
             this.cbDepartmentAssign.Size = new System.Drawing.Size(148, 21);
             this.cbDepartmentAssign.TabIndex = 6;
@@ -650,7 +653,7 @@
             // btnAssignEmployee
             // 
             this.btnAssignEmployee.Location = new System.Drawing.Point(10, 213);
-            this.btnAssignEmployee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAssignEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.btnAssignEmployee.Name = "btnAssignEmployee";
             this.btnAssignEmployee.Size = new System.Drawing.Size(147, 32);
             this.btnAssignEmployee.TabIndex = 8;
@@ -664,9 +667,9 @@
             this.gbRemoveDepartment.Controls.Add(this.cbDepartmentRemove);
             this.gbRemoveDepartment.Controls.Add(this.btnDepartmentRemove);
             this.gbRemoveDepartment.Location = new System.Drawing.Point(10, 326);
-            this.gbRemoveDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbRemoveDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.gbRemoveDepartment.Name = "gbRemoveDepartment";
-            this.gbRemoveDepartment.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbRemoveDepartment.Padding = new System.Windows.Forms.Padding(2);
             this.gbRemoveDepartment.Size = new System.Drawing.Size(699, 81);
             this.gbRemoveDepartment.TabIndex = 25;
             this.gbRemoveDepartment.TabStop = false;
@@ -693,7 +696,7 @@
             // btnDepartmentRemove
             // 
             this.btnDepartmentRemove.Location = new System.Drawing.Point(430, 31);
-            this.btnDepartmentRemove.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDepartmentRemove.Margin = new System.Windows.Forms.Padding(2);
             this.btnDepartmentRemove.Name = "btnDepartmentRemove";
             this.btnDepartmentRemove.Size = new System.Drawing.Size(128, 20);
             this.btnDepartmentRemove.TabIndex = 12;
@@ -711,9 +714,9 @@
             this.gbEditDepartment.Controls.Add(this.lblEditAddress);
             this.gbEditDepartment.Controls.Add(this.tbDepartmentEditName);
             this.gbEditDepartment.Location = new System.Drawing.Point(274, 21);
-            this.gbEditDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbEditDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.gbEditDepartment.Name = "gbEditDepartment";
-            this.gbEditDepartment.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbEditDepartment.Padding = new System.Windows.Forms.Padding(2);
             this.gbEditDepartment.Size = new System.Drawing.Size(273, 295);
             this.gbEditDepartment.TabIndex = 24;
             this.gbEditDepartment.TabStop = false;
@@ -734,7 +737,7 @@
             this.cbDepartmentEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartmentEdit.FormattingEnabled = true;
             this.cbDepartmentEdit.Location = new System.Drawing.Point(82, 26);
-            this.cbDepartmentEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbDepartmentEdit.Margin = new System.Windows.Forms.Padding(2);
             this.cbDepartmentEdit.Name = "cbDepartmentEdit";
             this.cbDepartmentEdit.Size = new System.Drawing.Size(176, 21);
             this.cbDepartmentEdit.TabIndex = 15;
@@ -743,7 +746,7 @@
             // btnEdit
             // 
             this.btnEdit.Location = new System.Drawing.Point(82, 246);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(176, 29);
             this.btnEdit.TabIndex = 22;
@@ -764,7 +767,7 @@
             // tbDepartmentEditAddress
             // 
             this.tbDepartmentEditAddress.Location = new System.Drawing.Point(82, 93);
-            this.tbDepartmentEditAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbDepartmentEditAddress.Margin = new System.Windows.Forms.Padding(2);
             this.tbDepartmentEditAddress.Multiline = true;
             this.tbDepartmentEditAddress.Name = "tbDepartmentEditAddress";
             this.tbDepartmentEditAddress.Size = new System.Drawing.Size(176, 135);
@@ -783,7 +786,7 @@
             // tbDepartmentEditName
             // 
             this.tbDepartmentEditName.Location = new System.Drawing.Point(82, 61);
-            this.tbDepartmentEditName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbDepartmentEditName.Margin = new System.Windows.Forms.Padding(2);
             this.tbDepartmentEditName.Name = "tbDepartmentEditName";
             this.tbDepartmentEditName.Size = new System.Drawing.Size(176, 20);
             this.tbDepartmentEditName.TabIndex = 18;
@@ -796,9 +799,9 @@
             this.gbNewDepartment.Controls.Add(this.tbDepartmentCreateAddress);
             this.gbNewDepartment.Controls.Add(this.btnCreateNewDepartment);
             this.gbNewDepartment.Location = new System.Drawing.Point(10, 21);
-            this.gbNewDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbNewDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.gbNewDepartment.Name = "gbNewDepartment";
-            this.gbNewDepartment.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbNewDepartment.Padding = new System.Windows.Forms.Padding(2);
             this.gbNewDepartment.Size = new System.Drawing.Size(256, 295);
             this.gbNewDepartment.TabIndex = 23;
             this.gbNewDepartment.TabStop = false;
@@ -834,7 +837,7 @@
             // tbDepartmentCreateAddress
             // 
             this.tbDepartmentCreateAddress.Location = new System.Drawing.Point(62, 67);
-            this.tbDepartmentCreateAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbDepartmentCreateAddress.Margin = new System.Windows.Forms.Padding(2);
             this.tbDepartmentCreateAddress.Multiline = true;
             this.tbDepartmentCreateAddress.Name = "tbDepartmentCreateAddress";
             this.tbDepartmentCreateAddress.Size = new System.Drawing.Size(169, 161);
@@ -843,7 +846,7 @@
             // btnCreateNewDepartment
             // 
             this.btnCreateNewDepartment.Location = new System.Drawing.Point(62, 246);
-            this.btnCreateNewDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCreateNewDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreateNewDepartment.Name = "btnCreateNewDepartment";
             this.btnCreateNewDepartment.Size = new System.Drawing.Size(168, 29);
             this.btnCreateNewDepartment.TabIndex = 4;
@@ -872,9 +875,9 @@
             this.gbItemRemoval.Controls.Add(this.lblRemoveDepDepartment);
             this.gbItemRemoval.Controls.Add(this.btnRemoveItemFromDep);
             this.gbItemRemoval.Location = new System.Drawing.Point(355, 25);
-            this.gbItemRemoval.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbItemRemoval.Margin = new System.Windows.Forms.Padding(2);
             this.gbItemRemoval.Name = "gbItemRemoval";
-            this.gbItemRemoval.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbItemRemoval.Padding = new System.Windows.Forms.Padding(2);
             this.gbItemRemoval.Size = new System.Drawing.Size(315, 199);
             this.gbItemRemoval.TabIndex = 52;
             this.gbItemRemoval.TabStop = false;
@@ -895,7 +898,7 @@
             this.cbItemRemoveFromDpt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbItemRemoveFromDpt.FormattingEnabled = true;
             this.cbItemRemoveFromDpt.Location = new System.Drawing.Point(122, 51);
-            this.cbItemRemoveFromDpt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbItemRemoveFromDpt.Margin = new System.Windows.Forms.Padding(2);
             this.cbItemRemoveFromDpt.Name = "cbItemRemoveFromDpt";
             this.cbItemRemoveFromDpt.Size = new System.Drawing.Size(169, 21);
             this.cbItemRemoveFromDpt.TabIndex = 43;
@@ -906,7 +909,7 @@
             this.cbDptRemoveFromDpt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDptRemoveFromDpt.FormattingEnabled = true;
             this.cbDptRemoveFromDpt.Location = new System.Drawing.Point(122, 94);
-            this.cbDptRemoveFromDpt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbDptRemoveFromDpt.Margin = new System.Windows.Forms.Padding(2);
             this.cbDptRemoveFromDpt.Name = "cbDptRemoveFromDpt";
             this.cbDptRemoveFromDpt.Size = new System.Drawing.Size(169, 21);
             this.cbDptRemoveFromDpt.TabIndex = 46;
@@ -925,7 +928,7 @@
             // btnRemoveItemFromDep
             // 
             this.btnRemoveItemFromDep.Location = new System.Drawing.Point(122, 139);
-            this.btnRemoveItemFromDep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemoveItemFromDep.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveItemFromDep.Name = "btnRemoveItemFromDep";
             this.btnRemoveItemFromDep.Size = new System.Drawing.Size(168, 24);
             this.btnRemoveItemFromDep.TabIndex = 48;
@@ -945,9 +948,9 @@
             this.gbAssignItem.Controls.Add(this.numUdCurrentAmmount);
             this.gbAssignItem.Controls.Add(this.numUdThreshold);
             this.gbAssignItem.Location = new System.Drawing.Point(43, 149);
-            this.gbAssignItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbAssignItem.Margin = new System.Windows.Forms.Padding(2);
             this.gbAssignItem.Name = "gbAssignItem";
-            this.gbAssignItem.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbAssignItem.Padding = new System.Windows.Forms.Padding(2);
             this.gbAssignItem.Size = new System.Drawing.Size(293, 251);
             this.gbAssignItem.TabIndex = 51;
             this.gbAssignItem.TabStop = false;
@@ -968,7 +971,7 @@
             this.cbItemAssignItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbItemAssignItem.FormattingEnabled = true;
             this.cbItemAssignItem.Location = new System.Drawing.Point(103, 37);
-            this.cbItemAssignItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbItemAssignItem.Margin = new System.Windows.Forms.Padding(2);
             this.cbItemAssignItem.Name = "cbItemAssignItem";
             this.cbItemAssignItem.Size = new System.Drawing.Size(169, 21);
             this.cbItemAssignItem.TabIndex = 31;
@@ -977,7 +980,7 @@
             // btnAssignItemToDepartment
             // 
             this.btnAssignItemToDepartment.Location = new System.Drawing.Point(122, 206);
-            this.btnAssignItemToDepartment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAssignItemToDepartment.Margin = new System.Windows.Forms.Padding(2);
             this.btnAssignItemToDepartment.Name = "btnAssignItemToDepartment";
             this.btnAssignItemToDepartment.Size = new System.Drawing.Size(149, 24);
             this.btnAssignItemToDepartment.TabIndex = 34;
@@ -990,7 +993,7 @@
             this.cbDepartmentAssignItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartmentAssignItem.FormattingEnabled = true;
             this.cbDepartmentAssignItem.Location = new System.Drawing.Point(103, 77);
-            this.cbDepartmentAssignItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbDepartmentAssignItem.Margin = new System.Windows.Forms.Padding(2);
             this.cbDepartmentAssignItem.Name = "cbDepartmentAssignItem";
             this.cbDepartmentAssignItem.Size = new System.Drawing.Size(169, 21);
             this.cbDepartmentAssignItem.TabIndex = 35;
@@ -1046,9 +1049,9 @@
             this.gbRemoveItemGlobally.Controls.Add(this.cbRemoveItem);
             this.gbRemoveItemGlobally.Controls.Add(this.btnRemoveItem);
             this.gbRemoveItemGlobally.Location = new System.Drawing.Point(355, 237);
-            this.gbRemoveItemGlobally.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbRemoveItemGlobally.Margin = new System.Windows.Forms.Padding(2);
             this.gbRemoveItemGlobally.Name = "gbRemoveItemGlobally";
-            this.gbRemoveItemGlobally.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbRemoveItemGlobally.Padding = new System.Windows.Forms.Padding(2);
             this.gbRemoveItemGlobally.Size = new System.Drawing.Size(315, 162);
             this.gbRemoveItemGlobally.TabIndex = 50;
             this.gbRemoveItemGlobally.TabStop = false;
@@ -1069,7 +1072,7 @@
             this.cbRemoveItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRemoveItem.FormattingEnabled = true;
             this.cbRemoveItem.Location = new System.Drawing.Point(99, 56);
-            this.cbRemoveItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbRemoveItem.Margin = new System.Windows.Forms.Padding(2);
             this.cbRemoveItem.Name = "cbRemoveItem";
             this.cbRemoveItem.Size = new System.Drawing.Size(192, 21);
             this.cbRemoveItem.TabIndex = 14;
@@ -1078,7 +1081,7 @@
             // btnRemoveItem
             // 
             this.btnRemoveItem.Location = new System.Drawing.Point(99, 89);
-            this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveItem.Name = "btnRemoveItem";
             this.btnRemoveItem.Size = new System.Drawing.Size(190, 24);
             this.btnRemoveItem.TabIndex = 29;
@@ -1092,9 +1095,9 @@
             this.gbNewStockItem.Controls.Add(this.tbStockCreateName);
             this.gbNewStockItem.Controls.Add(this.btnCreateNewStock);
             this.gbNewStockItem.Location = new System.Drawing.Point(43, 25);
-            this.gbNewStockItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbNewStockItem.Margin = new System.Windows.Forms.Padding(2);
             this.gbNewStockItem.Name = "gbNewStockItem";
-            this.gbNewStockItem.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbNewStockItem.Padding = new System.Windows.Forms.Padding(2);
             this.gbNewStockItem.Size = new System.Drawing.Size(293, 107);
             this.gbNewStockItem.TabIndex = 49;
             this.gbNewStockItem.TabStop = false;
@@ -1120,13 +1123,23 @@
             // btnCreateNewStock
             // 
             this.btnCreateNewStock.Location = new System.Drawing.Point(56, 64);
-            this.btnCreateNewStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCreateNewStock.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreateNewStock.Name = "btnCreateNewStock";
             this.btnCreateNewStock.Size = new System.Drawing.Size(208, 24);
             this.btnCreateNewStock.TabIndex = 25;
             this.btnCreateNewStock.Text = "Create";
             this.btnCreateNewStock.UseVisualStyleBackColor = true;
             this.btnCreateNewStock.Click += new System.EventHandler(this.btnCreateNewStock_Click);
+            // 
+            // cbPassVisible
+            // 
+            this.cbPassVisible.AutoSize = true;
+            this.cbPassVisible.Location = new System.Drawing.Point(273, 72);
+            this.cbPassVisible.Name = "cbPassVisible";
+            this.cbPassVisible.Size = new System.Drawing.Size(15, 14);
+            this.cbPassVisible.TabIndex = 3;
+            this.cbPassVisible.UseVisualStyleBackColor = true;
+            this.cbPassVisible.CheckedChanged += new System.EventHandler(this.cbPassVisible_CheckedChanged);
             // 
             // EmployeeManagement
             // 
@@ -1262,5 +1275,6 @@
         private System.Windows.Forms.GroupBox gbRemoveItemGlobally;
         private System.Windows.Forms.GroupBox gbAssignItem;
         private System.Windows.Forms.GroupBox gbItemRemoval;
+        private System.Windows.Forms.CheckBox cbPassVisible;
     }
 }

@@ -83,6 +83,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 decimal hourlySalary;
                 if (Decimal.TryParse(tbHourlySalary.Text, out hourlySalary))
                 {
+                    if (hourlySalary < 0) { MessageBox.Show("Please enter a positive salary"); return; }
                     if (cbDepartments.SelectedIndex == -1) { MessageBox.Show("Please select a department and try again."); return; }
                     if (cbRole.SelectedIndex == -1) { MessageBox.Show("Please select a role and try again."); return; }
                     if (!Employee.IsUniqueUsername(tbUsername.Text)) { MessageBox.Show("Username is taken. Please choose another and try again."); return; }
@@ -426,6 +427,12 @@ namespace Sem2IntroProjectWaterfall0._1
                 
             }
             else MessageBox.Show("Please select an item and a department and try again.");
+        }
+
+        private void cbPassVisible_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPassVisible.Checked) tbPassword.UseSystemPasswordChar = false;
+            else tbPassword.UseSystemPasswordChar = true;
         }
     }
 }
