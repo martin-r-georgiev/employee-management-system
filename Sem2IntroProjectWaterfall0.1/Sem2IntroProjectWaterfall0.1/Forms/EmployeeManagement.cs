@@ -63,10 +63,18 @@ namespace Sem2IntroProjectWaterfall0._1
             UpdateDepartmentList();
             foreach (Department department in departments) { cbDepartments.Items.Add(department.Name); }
         }
+        private bool checkforwhitespace(string input)
+        {
+            string pattern = @"^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+            Regex rg = new Regex(pattern);
+            if (rg.IsMatch(input))
+                return true;
+            return false;
 
+        }
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbUsername.Text) || string.IsNullOrEmpty(tbPassword.Text) || string.IsNullOrEmpty(tbHourlySalary.Text))
+            if (!checkforwhitespace(tbUsername.Text) || string.IsNullOrEmpty(tbPassword.Text) || string.IsNullOrEmpty(tbHourlySalary.Text))
             {
                 MessageBox.Show("Please fill all required fields and try again.");
             }
@@ -164,14 +172,21 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnCreateNewDepartment_Click(object sender, EventArgs e)
         {
-            try
+            if (checkforwhitespace(tbDepartmentCreateName.Text))
             {
-                Department newDepartment = new Department(tbDepartmentCreateName.Text, tbDepartmentCreateAddress.Text);
-                RefreshComboboxes();
-                tbDepartmentCreateAddress.Clear();
-                tbDepartmentCreateName.Clear();
+                try
+                {
+                    Department newDepartment = new Department(tbDepartmentCreateName.Text, tbDepartmentCreateAddress.Text);
+                    RefreshComboboxes();
+                    tbDepartmentCreateAddress.Clear();
+                    tbDepartmentCreateName.Clear();
+                }
+                catch (Exception exc) { MessageBox.Show(exc.Message); }
             }
-            catch (Exception exc) { MessageBox.Show(exc.Message); }
+            else
+            {
+                MessageBox.Show("Please enter a valid name, adress");
+            }
         }
 
         private void cbEmployeeList_DropDown(object sender, EventArgs e)
@@ -243,13 +258,26 @@ namespace Sem2IntroProjectWaterfall0._1
                 {
                     Regex emailValidation = new Regex(@"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
                     Regex nameValidation = new Regex(@"\d+");
+                    Regex phoneValidation = new Regex(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$");
                     if (!nameValidation.IsMatch(tbFirstName.Text) && !nameValidation.IsMatch(tbLastName.Text))
                     {
                         if (emailValidation.IsMatch(tbEmail.Text))
                         {
-                            employees[cbPersonalInfoList.SelectedIndex].SetPersonalInfo(tbFirstName.Text, tbLastName.Text, tbNationality.Text, tbAddress.Text, tbEmail.Text, tbPhoneNumber.Text, dtpBirthday.Value, gender);
-                            MessageBox.Show("Successfully updated employee personal information.");
-                            ClearEmployeePersonalInfo();
+                            if (phoneValidation.IsMatch(tbPhoneNumber.Text))
+                            {
+                                if (dtpBirthday.Value.Date <= System.DateTime.Now.Date)
+                                {
+                                    employees[cbPersonalInfoList.SelectedIndex].SetPersonalInfo(tbFirstName.Text, tbLastName.Text, tbNationality.Text, tbAddress.Text, tbEmail.Text, tbPhoneNumber.Text, dtpBirthday.Value, gender);
+                                    MessageBox.Show("Successfully updated employee personal information.");
+                                    ClearEmployeePersonalInfo();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid birth date . Please check back for any mistakes and try again.");
+                                }
+                            }
+                            else MessageBox.Show("Invalid phone number . Please check back for any mistakes and try again.");
+
                         }
                         else MessageBox.Show("Invalid e-mail address. Please check back for any mistakes and try again.");
                     }
@@ -280,9 +308,19 @@ namespace Sem2IntroProjectWaterfall0._1
 
         //Add item controls
 
+        private bool checkforwhitespacestockitem(string input)
+        {
+            string pattern = @"^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._][\w\s-]+(?<![_.])$";
+            Regex rg = new Regex(pattern);
+            if (rg.IsMatch(input))
+                return true;
+            return false;
+
+        }
+
         private void btnCreateNewStock_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(tbStockCreateName.Text))
+            if (checkforwhitespacestockitem(tbStockCreateName.Text))
             {
                 StockItem.NewItem(tbStockCreateName.Text);
                 MessageBox.Show("Successfully added new item.");
