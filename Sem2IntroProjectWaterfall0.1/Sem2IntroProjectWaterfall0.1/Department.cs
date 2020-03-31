@@ -309,14 +309,9 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void AssignEmployeeTo(string userID, string newDepartmentId)
         {
-            bool atleastOneWorking = (this.employees.Count > 1) ? true : false;
-
-            if (atleastOneWorking)
-            {
-                foreach (Employee e in Employee.GetAllEmployees())
-                    if (e.UserID == userID)
-                        e.DepartmentID = newDepartmentId;
-            } else throw new MinimalEmployeesException("You must always have one employee in a department!");
+            foreach (Employee e in Employee.GetAllEmployees())
+                if (e.UserID == userID)
+                    e.DepartmentID = newDepartmentId;
         }
     }
     #endregion
