@@ -265,26 +265,30 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void RemoveFromDatabase()
         {
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            if (employees.Count == 0) 
             {
-                foreach (Employee e in employees) { e.RemoveFromDatabase(); }
-                //First we clear the employees in the department that were not previously moved, then we delete the actual department
+                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+                {
 
-                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM stock WHERE departmentID=@departmentID", con))
-                {
-                    cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    //First we clear the employees in the department that were not previously moved, then we delete the actual department
+
+                    using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM stock WHERE departmentID=@departmentID", con))
+                    {
+                        cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    //Then we delete all stocks of the current department
+                    using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM department WHERE departmentID=@departmentID", con))
+                    {
+                        cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    con.Close();
                 }
-                //Then we delete all stocks of the current department
-                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM department WHERE departmentID=@departmentID", con))
-                {
-                    cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                }
-                con.Close();
             }
+            else throw new MinimalEmployeesException("You still have employees in this department!");
         }
         
         public static List<Department> GetAllDepartments()
