@@ -69,6 +69,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custom Controls\WorkshiftUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom Controls\WorkshiftUC.Designer.cs">
+      <DependentUpon>WorkshiftUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Forms\Dashboard.cs">
@@ -132,6 +138,11 @@
     <Compile Include="Custom Controls\StockUC.Designer.cs">
       <DependentUpon>StockUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorkshiftDatabaseHandler.cs" />
+    <Compile Include="WorkshiftUnit.cs" />
+    <EmbeddedResource Include="Custom Controls\WorkshiftUC.resx">
+      <DependentUpon>WorkshiftUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
