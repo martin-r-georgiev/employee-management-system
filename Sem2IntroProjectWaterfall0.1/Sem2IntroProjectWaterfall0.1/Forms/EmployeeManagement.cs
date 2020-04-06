@@ -100,10 +100,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
-        private void btnMoveEmployee_Click(object sender, EventArgs e)
-        {
 
-        }
         private void btnAssignEmployee_Click(object sender, EventArgs e)
         {
             try
@@ -160,17 +157,6 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             catch (MinimalEmployeesException ex) { MessageBox.Show(ex.Message); }
             catch (Exception exc) { MessageBox.Show(exc.Message); }
-        }
-
-
-        private void cbEmployeeList_DropDown(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbDepartmentList_DropDown(object sender, EventArgs e)
-        {
-
         }
 
         private void btnRemoveEmployee_Click(object sender, EventArgs e)
@@ -305,11 +291,19 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 if (cbDepartmentAssignItem.SelectedIndex != -1 && cbItemAssignItem.SelectedIndex != -1)
                 {
-                    int iIndex = cbItemAssignItem.SelectedIndex, dIndex = cbDepartmentAssignItem.SelectedIndex;
-                    if (Inventory.Exists(stocks[iIndex].StockID, departments[dIndex].DepartmentId))
+                    UpdateDepartmentList();
+                    int iIndex = cbItemAssignItem.SelectedIndex;
+                    string selectedDepId = "";
+                    foreach (Department dep in departments)
+                        if (dep.Name == cbDepartmentAssignItem.SelectedItem.ToString())
+                        {
+                            selectedDepId = dep.DepartmentId;
+                            break;
+                        }
+                    if (Inventory.Exists(stocks[iIndex].StockID, selectedDepId))
                     {
-                        Inventory.RemoveItem(stocks[iIndex].StockID, departments[dIndex].DepartmentId);
-                        MessageBox.Show($"Successfully removed item from department {departments[dIndex].Name}");
+                        Inventory.RemoveItem(stocks[iIndex].StockID, selectedDepId);
+                        MessageBox.Show($"Successfully removed item from department {cbDepartmentAssignItem.SelectedItem}");
                         cbDepartmentAssignItem.SelectedIndex = -1;
                         cbItemAssignItem.SelectedIndex = -1;
                     }
@@ -346,9 +340,23 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void cbDepartmentAssignItem_DropDown(object sender, EventArgs e)
         {
-            cbDepartmentAssignItem.Items.Clear();
-            UpdateDepartmentList();
-            foreach (Department dep in departments) cbDepartmentAssignItem.Items.Add(dep.Name);
+            if (rbRemove.Checked && cbItemAssignItem.SelectedIndex > -1)
+            {
+                cbDepartmentAssignItem.Items.Clear();
+                StockItem selectedItem = stocks[cbItemAssignItem.SelectedIndex];
+                List<Department> assignedDeps = selectedItem.GetAssignedDepartments();
+                if (assignedDeps.Count > 0)
+                {
+                    foreach (Department d in selectedItem.GetAssignedDepartments())
+                        cbDepartmentAssignItem.Items.Add(d.Name);
+                }
+            }
+            else
+            {
+                cbDepartmentAssignItem.Items.Clear();
+                UpdateDepartmentList();
+                foreach (Department dep in departments) cbDepartmentAssignItem.Items.Add(dep.Name);
+            }
         }
 
         private void btnAssignItemToDepartment_Click(object sender, EventArgs e)
@@ -454,6 +462,7 @@ namespace Sem2IntroProjectWaterfall0._1
             if (rbAdd.Checked)
             {
                 ChangeStockEditMode(true);
+                cbRemoveCompletely.Checked = false;
             } else if (rbRemove.Checked)
             {
                 ChangeStockEditMode(false);

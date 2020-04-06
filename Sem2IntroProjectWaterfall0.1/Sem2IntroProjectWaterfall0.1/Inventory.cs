@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace Sem2IntroProjectWaterfall0._1
 {
-    class Inventory
+    public class Inventory
     {
         List<StockItem> items;
         #region variables + properties
@@ -197,39 +197,6 @@ namespace Sem2IntroProjectWaterfall0._1
                 conn.Close();
             }
         }
-
-        public void UpdateAmmount(int newAmmount, string StockID) //good
-        {
-            int indextoupdate=GetIndex(StockID);
-            items[indextoupdate].CurrentAmount=newAmmount;
-        }
-
-        public void UpdateTreshhold(int newTreshhold, string StockID)//good
-        {
-            int index = GetIndex(StockID);
-            if (index >= 0) items[index].Threshold = newTreshhold;
-        }
-
-        public static List<StockItem> GetAllRestockItems() //good
-        {
-            List<StockItem> OutOfStockItems = new List<StockItem>();
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
-            {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT departmentID,stockID FROM stock WHERE currentAmount<threshold", con))
-                {
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                   while (dataReader.Read())
-                    {
-                        OutOfStockItems.Add(new StockItem(dataReader["departmentID"].ToString(),dataReader["stockID"].ToString()));
-                    }
-                    cmd.Dispose();
-                    dataReader.Close();
-               }  
-              con.Close();
-            }    
-            return OutOfStockItems;
-        }// returns all out of stock items
         
         public static List<StockItem> ListAllItemsFromStock() //prob neeeds treshold/ammount
         {

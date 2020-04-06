@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sem2IntroProjectWaterfall0._1
 {
-    class Department
+    public class Department
     {
 		#region variables + properties
 

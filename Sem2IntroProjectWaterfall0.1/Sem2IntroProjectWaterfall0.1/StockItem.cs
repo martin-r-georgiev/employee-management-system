@@ -291,6 +291,24 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
+        public List<Department> GetAssignedDepartments()
+        {
+            List<Department> listToSend = new List<Department>();
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                MySqlCommand cmd;
+                MySqlDataReader dataReader, reader;
+
+                cmd = new MySqlCommand("SELECT departmentID FROM stock WHERE stockID=@stockid", conn);
+                cmd.Parameters.AddWithValue("@stockid", this.StockID);
+                dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    listToSend.Add(new Department(dataReader.GetString(0)));
+                }
+                return listToSend;
+            }
+        }
         #endregion
     }
 }
