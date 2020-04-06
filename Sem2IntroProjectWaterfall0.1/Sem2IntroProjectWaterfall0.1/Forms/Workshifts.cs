@@ -30,16 +30,15 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             bool isHeader = true;
             flpWorkshifts.Controls.Clear();
-            List<WorkshiftUnit> workshiftList = WorkshiftDatabaseHandler.GetEmployees(time);
-            foreach (WorkshiftUnit info in workshiftList)
+            List<WorkshiftUC> workshiftList = WorkshiftDatabaseHandler.GetEmployees(time);
+            foreach (WorkshiftUC control in workshiftList)
             {
-                WorkshiftUC control = new WorkshiftUC(info.Employee.Name);
                 if (isHeader)
                 {
                     control.ShowHeader();
                     isHeader = false;
                 }
-                control.SetStatus(info.Status, info.Workshift);
+                //control.SetStatus(info.Status, info.Workshift);
                 flpWorkshifts.Controls.Add(control);
             }
         }

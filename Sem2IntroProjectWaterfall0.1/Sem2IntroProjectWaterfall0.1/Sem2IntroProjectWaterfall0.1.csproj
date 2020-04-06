@@ -139,7 +139,6 @@
       <DependentUpon>StockUC.cs</DependentUpon>
     </Compile>
     <Compile Include="WorkshiftDatabaseHandler.cs" />
-    <Compile Include="WorkshiftUnit.cs" />
     <EmbeddedResource Include="Custom Controls\WorkshiftUC.resx">
       <DependentUpon>WorkshiftUC.cs</DependentUpon>
     </EmbeddedResource>

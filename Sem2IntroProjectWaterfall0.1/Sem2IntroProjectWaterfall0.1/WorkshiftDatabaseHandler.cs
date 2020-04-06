@@ -9,9 +9,9 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     public abstract class WorkshiftDatabaseHandler
     {
-        public static List<WorkshiftUnit> GetEmployees(DateTime date)
+        public static List<WorkshiftUC> GetEmployees(DateTime date)
         {
-            List<WorkshiftUnit> items = new List<WorkshiftUnit>();
+            List<WorkshiftUC> items = new List<WorkshiftUC>();
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
                 try
@@ -22,7 +22,14 @@ namespace Sem2IntroProjectWaterfall0._1
                         MySqlDataReader dataReader = cmd.ExecuteReader();
                         while (dataReader.Read())
                         {
-                            items.Add(new WorkshiftUnit(new Employee(dataReader.GetString(0)), dataReader.GetInt16(1), dataReader.GetInt16(2)));
+                            int index = items.FindIndex(item => item.Employee.UserID == dataReader.GetString(0));
+                            if(index == -1)
+                            {
+                                WorkshiftUC newUnit = new WorkshiftUC(new Employee(dataReader.GetString(0)));
+                                newUnit.SetStatus(dataReader.GetInt16(2), dataReader.GetInt16(1));
+                                items.Add(newUnit);
+                            }
+                            else items[index].SetStatus(dataReader.GetInt16(2), dataReader.GetInt16(1));
                         }
                         dataReader.Dispose();
                         cmd.Dispose();

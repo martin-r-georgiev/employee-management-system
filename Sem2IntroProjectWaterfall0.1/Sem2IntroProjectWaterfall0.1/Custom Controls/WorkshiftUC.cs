@@ -12,20 +12,32 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     public partial class WorkshiftUC : UserControl
     {
+        private Employee employee;
+
         public static string shiftOneStart;
         public static string shiftTwoStart;
         public static string shiftThreeStart;
         public static string shiftThreeEnd;
 
-        public WorkshiftUC(string Name)
+        private int?[] statusIndex;
+
+        public Employee Employee
+        {
+            get { return this.employee; }
+        }
+
+
+        public WorkshiftUC(Employee employee)
         {
             InitializeComponent();
+            this.employee = employee;
             panelDateWrapper.Visible = false;
-            lblName.Text = Name;
+            lblName.Text =employee.Name;
             lblShiftStart.Text = shiftOneStart;
             lblShiftMidpointOne.Text = shiftTwoStart;
             lblShiftMidpointTwo.Text = shiftThreeStart;
             lblShiftEnd.Text = shiftThreeEnd;
+            statusIndex = new int?[3];
         }
 
         //Methods
@@ -51,14 +63,17 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void SetStatus(int status, int index)
         {
-            switch(status)
+            if(index < statusIndex.Length && index >= 0)
             {
-                case 0: SetAvailable(index); break;
-                case 1: SetPending(index); break;
-                case 2: SetUnavailable(index); break;
-                case 3: SetMissed(index); break;
-                default: SetAvailable(index); break;
-            }
+                switch (status)
+                {
+                    case 0: SetAvailable(index); statusIndex[index] = status; break;
+                    case 1: SetPending(index); statusIndex[index] = status; break;
+                    case 2: SetUnavailable(index); statusIndex[index] = status; break;
+                    case 3: SetMissed(index); statusIndex[index] = status; break;
+                    default: SetAvailable(index); statusIndex[index] = 0; break;
+                }
+            } 
         }
     }
 }
