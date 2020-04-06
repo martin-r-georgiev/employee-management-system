@@ -24,7 +24,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void UpdateDepartmentList() { departments = Department.GetAllDepartments(); }
 
-        private void UpdateEmployeeList() { employees = Employee.GetAllEmployees(); }
+        private void UpdateEmployeeList() { employees = Employee.GetAllEmployees(true); }
 
         private void UpdateStockList() { stocks = Inventory.ListAllItemsFromStockItem(); }
 

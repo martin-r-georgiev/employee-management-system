@@ -56,5 +56,15 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             else MessageBox.Show("Please fill all required fields before attempting to log in!");
         }
+
+        private void btnTempLogin_Click(object sender, EventArgs e)
+        {
+            LoggedInUser.userID = "AHrsSBGtkCE9kwraDlC5g";
+            LoggedInUser.role = (Role)3;
+            //Opening dashboard on successful login
+            Dashboard newScreen = new Dashboard();
+            newScreen.Show();
+            this.Hide();
+        }
     }   
 }
