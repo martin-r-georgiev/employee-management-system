@@ -18,6 +18,16 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private DateTime startDate, endDate;
 
+        public DateTime StartDate
+        {
+            get { return this.startDate; }
+        }
+
+        public DateTime EndDate
+        {
+            get { return this.endDate; }
+        }
+
         public Employee Employee
         {
             get { return this.employee; }

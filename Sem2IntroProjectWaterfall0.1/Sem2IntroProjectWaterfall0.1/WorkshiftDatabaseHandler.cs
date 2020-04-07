@@ -53,8 +53,8 @@ namespace Sem2IntroProjectWaterfall0._1
                 try
                 {
                     DateTime startDate = DateTimeControls.StartOfWeek(date, DayOfWeek.Monday);
-                    DateTime endDate = startDate.AddDays(7);
-                    using (MySqlCommand cmd = new MySqlCommand($"SELECT userID, workshift, status, date FROM workshifts WHERE date BETWEEN @start AND @end", conn))
+                    DateTime endDate = startDate.AddDays(6);
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT userID, workshift, status, date FROM workshifts WHERE date >= @start AND date <= @end", conn))
                     {
                         cmd.Parameters.AddWithValue("@start", startDate);
                         cmd.Parameters.AddWithValue("@end", endDate);

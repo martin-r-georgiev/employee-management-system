@@ -33,6 +33,8 @@
             this.btnPreviousDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
             this.flpWorkshifts = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnWeekly = new System.Windows.Forms.Button();
+            this.btnDaily = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
@@ -54,7 +56,7 @@
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(347, 24);
             this.lblDate.TabIndex = 22;
-            this.lblDate.Text = "Today";
+            this.lblDate.Text = "<Placeholder> - <Placeholder>";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnPreviousDay
@@ -83,16 +85,38 @@
             // 
             this.flpWorkshifts.AutoSize = true;
             this.flpWorkshifts.Location = new System.Drawing.Point(16, 69);
-            this.flpWorkshifts.MaximumSize = new System.Drawing.Size(949, 461);
+            this.flpWorkshifts.MaximumSize = new System.Drawing.Size(950, 460);
             this.flpWorkshifts.Name = "flpWorkshifts";
-            this.flpWorkshifts.Size = new System.Drawing.Size(949, 461);
+            this.flpWorkshifts.Size = new System.Drawing.Size(950, 460);
             this.flpWorkshifts.TabIndex = 25;
+            // 
+            // btnWeekly
+            // 
+            this.btnWeekly.Location = new System.Drawing.Point(16, 535);
+            this.btnWeekly.Name = "btnWeekly";
+            this.btnWeekly.Size = new System.Drawing.Size(79, 26);
+            this.btnWeekly.TabIndex = 26;
+            this.btnWeekly.Text = "Weekly";
+            this.btnWeekly.UseVisualStyleBackColor = true;
+            this.btnWeekly.Click += new System.EventHandler(this.btnWeekly_Click);
+            // 
+            // btnDaily
+            // 
+            this.btnDaily.Location = new System.Drawing.Point(101, 535);
+            this.btnDaily.Name = "btnDaily";
+            this.btnDaily.Size = new System.Drawing.Size(79, 26);
+            this.btnDaily.TabIndex = 27;
+            this.btnDaily.Text = "Daily";
+            this.btnDaily.UseVisualStyleBackColor = true;
+            this.btnDaily.Click += new System.EventHandler(this.btnDaily_Click);
             // 
             // Workshifts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 542);
+            this.ClientSize = new System.Drawing.Size(984, 573);
+            this.Controls.Add(this.btnDaily);
+            this.Controls.Add(this.btnWeekly);
             this.Controls.Add(this.flpWorkshifts);
             this.Controls.Add(this.btnNextDay);
             this.Controls.Add(this.btnPreviousDay);
@@ -113,5 +137,7 @@
         private System.Windows.Forms.Button btnPreviousDay;
         private System.Windows.Forms.Button btnNextDay;
         private System.Windows.Forms.FlowLayoutPanel flpWorkshifts;
+        private System.Windows.Forms.Button btnWeekly;
+        private System.Windows.Forms.Button btnDaily;
     }
 }

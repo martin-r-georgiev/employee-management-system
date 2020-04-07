@@ -39,7 +39,7 @@
             this.lblShiftOne.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblShiftOne.Location = new System.Drawing.Point(0, 0);
             this.lblShiftOne.Name = "lblShiftOne";
-            this.lblShiftOne.Size = new System.Drawing.Size(33, 20);
+            this.lblShiftOne.Size = new System.Drawing.Size(33, 22);
             this.lblShiftOne.TabIndex = 0;
             // 
             // lblShiftTwo
@@ -49,7 +49,7 @@
             this.lblShiftTwo.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblShiftTwo.Location = new System.Drawing.Point(33, 0);
             this.lblShiftTwo.Name = "lblShiftTwo";
-            this.lblShiftTwo.Size = new System.Drawing.Size(33, 20);
+            this.lblShiftTwo.Size = new System.Drawing.Size(33, 22);
             this.lblShiftTwo.TabIndex = 1;
             // 
             // lblShiftThree
@@ -58,7 +58,7 @@
             this.lblShiftThree.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblShiftThree.Location = new System.Drawing.Point(66, 0);
             this.lblShiftThree.Name = "lblShiftThree";
-            this.lblShiftThree.Size = new System.Drawing.Size(33, 20);
+            this.lblShiftThree.Size = new System.Drawing.Size(33, 22);
             this.lblShiftThree.TabIndex = 2;
             // 
             // WorkshiftCells
@@ -70,9 +70,9 @@
             this.Controls.Add(this.lblShiftThree);
             this.Controls.Add(this.lblShiftTwo);
             this.Controls.Add(this.lblShiftOne);
-            this.MinimumSize = new System.Drawing.Size(100, 20);
+            this.MinimumSize = new System.Drawing.Size(100, 22);
             this.Name = "WorkshiftCells";
-            this.Size = new System.Drawing.Size(100, 20);
+            this.Size = new System.Drawing.Size(100, 22);
             this.ResumeLayout(false);
 
         }
