@@ -32,7 +32,7 @@ namespace Sem2IntroProjectWaterfall0._1
             InitializeComponent();
             this.employee = employee;
             panelDateWrapper.Visible = false;
-            lblName.Text =employee.Name;
+            lblName.Text = employee.Name;
             lblShiftStart.Text = shiftOneStart;
             lblShiftMidpointOne.Text = shiftTwoStart;
             lblShiftMidpointTwo.Text = shiftThreeStart;

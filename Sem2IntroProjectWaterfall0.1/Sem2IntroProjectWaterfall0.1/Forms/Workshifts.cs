@@ -23,7 +23,8 @@ namespace Sem2IntroProjectWaterfall0._1
             WorkshiftUC.shiftTwoStart = "13:00";
             WorkshiftUC.shiftThreeStart = "17:00";
             WorkshiftUC.shiftThreeEnd = "21:00";
-            UpdateWorkshiftPanel(selectedDate);
+            //UpdateWorkshiftPanel(selectedDate);
+            UpdateWeeklyWorkshiftPanel(selectedDate);
         }
 
         void UpdateWorkshiftPanel(DateTime time)
@@ -38,7 +39,22 @@ namespace Sem2IntroProjectWaterfall0._1
                     control.ShowHeader();
                     isHeader = false;
                 }
-                //control.SetStatus(info.Status, info.Workshift);
+                flpWorkshifts.Controls.Add(control);
+            }
+        }
+
+        void UpdateWeeklyWorkshiftPanel(DateTime time)
+        {
+            bool isHeader = true;
+            flpWorkshifts.Controls.Clear();
+            List<WorkshiftWeeklyUC> workshiftList = WorkshiftDatabaseHandler.GetWeeklyEmployees(time);
+            foreach (WorkshiftWeeklyUC control in workshiftList)
+            {
+                if (isHeader)
+                {
+                    control.ShowHeader();
+                    isHeader = false;
+                }
                 flpWorkshifts.Controls.Add(control);
             }
         }
