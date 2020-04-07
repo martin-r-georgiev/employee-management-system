@@ -153,8 +153,8 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             get
             {
-                if (!string.IsNullOrEmpty(this.firstName) || !string.IsNullOrEmpty(this.lastName)) return $"{this.firstName} {this.lastName}";
-                else return "Unknown";
+                if (!string.IsNullOrEmpty(this.firstName) || !string.IsNullOrEmpty(this.lastName)) return $"{this.firstName} {this.lastName} ({this.Username})";
+                else return this.Username;
             }
         }
 
@@ -400,29 +400,69 @@ namespace Sem2IntroProjectWaterfall0._1
                     }
                     cmd.Dispose();
                     dataReader.Close();
-
-                    /*Console.WriteLine($"UserID: {this.UserID}");
-                    Console.WriteLine($"Username: {this.Username}");
-                    Console.WriteLine($"Password: {this.Password}");
-                    Console.WriteLine($"SalaryHourlyRate: {this.SalaryHourlyRate}");
-                    Console.WriteLine($"Role: {this.Role}");
-                    Console.WriteLine($"DepID: {this.DepartmentID}");
-                    Console.WriteLine($"FirstName: {this.FirstName}");
-                    Console.WriteLine($"LastName: {this.LastName}");
-                    Console.WriteLine($"Nationality: {this.Nationality}");
-                    Console.WriteLine($"Address: {this.Address}");
-                    Console.WriteLine($"Email: {this.Email}");
-                    Console.WriteLine($"PhoneNumber: {this.PhoneNumber}");
-                    Console.WriteLine($"DateOfBirth: {this.DateOfBirth}");
-                    Console.WriteLine($"Sex: {this.Sex}");
-                    Console.WriteLine($"StartDate: {this.StartDate}");
-                    Console.WriteLine($"EndDate: {this.EndDate}");*/
                 }
                 conn.Close();
             }
-            
         }
+        public Employee(string userIdentifier, bool needFullDetails)
+        {
+            if (needFullDetails)
+            {
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+                {
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID WHERE u.userID=@userID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userID", userIdentifier);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
 
+                        if (dataReader.Read())
+                        {
+                            this.userID = userIdentifier;
+                            this.username = dataReader.GetString(1);
+                            this.password = dataReader.GetString(2);
+                            this.salaryHourlyRate = dataReader.GetDecimal(3);
+                            this.role = (Role)dataReader.GetInt32(4);
+                            this.departmentID = dataReader.GetString(5);
+                            this.firstName = (dataReader.IsDBNull(7)) ? null : dataReader.GetString(7);
+                            this.lastName = (dataReader.IsDBNull(8)) ? null : dataReader.GetString(8);
+                            this.nationality = (dataReader.IsDBNull(9)) ? null : dataReader.GetString(9);
+                            this.address = (dataReader.IsDBNull(10)) ? null : dataReader.GetString(10);
+                            this.email = (dataReader.IsDBNull(11)) ? null : dataReader.GetString(11);
+                            this.phoneNumber = (dataReader.IsDBNull(12)) ? null : dataReader.GetString(12);
+                            if (!dataReader.IsDBNull(13)) this.dateofBirth = dataReader.GetDateTime(13);
+                            if (!dataReader.IsDBNull(14)) this.sex = dataReader.GetBoolean(14);
+                            if (!dataReader.IsDBNull(15)) this.startDate = dataReader.GetDateTime(15);
+                            if (!dataReader.IsDBNull(16)) this.endDate = dataReader.GetDateTime(16);
+                        }
+                        cmd.Dispose();
+                        dataReader.Close();
+                    }
+                    conn.Close();
+                }
+            } else
+            {
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+                {
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT username,departmentID,firstName,lastName FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID WHERE u.userID=@userID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userID", userIdentifier);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                        if (dataReader.Read())
+                        {
+                            this.userID = userIdentifier;
+                            this.username = dataReader.GetString(0);
+                            this.departmentID = dataReader.GetString(1);
+                            this.firstName = (dataReader.IsDBNull(2)) ? null : dataReader.GetString(2);
+                            this.lastName = (dataReader.IsDBNull(3)) ? null : dataReader.GetString(3);
+                        }
+                        cmd.Dispose();
+                        dataReader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+        }
         #endregion
 
         #region Class methods
@@ -526,28 +566,51 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
-        public static List<Employee> GetAllEmployees()
+        public static List<Employee> GetAllEmployees(bool needFullDetails)
         {
-            List<Employee> allEmployees = new List<Employee>();
-            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            if (needFullDetails)
             {
-                using(MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM users", conn))
+                List<Employee> allEmployees = new List<Employee>();
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-                    while (dataReader.Read())
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM users", conn))
                     {
-                        Employee newEmp = new Employee(dataReader.GetString(0));
-                        Department empDepartment = new Department(newEmp.UserID, true);
-                        if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({empDepartment.Name})";
-                        else newEmp.MainDetails = $"{newEmp.Username} ({empDepartment.Name})";
-                        allEmployees.Add(newEmp);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            Employee newEmp = new Employee(dataReader.GetString(0));
+                            Department empDepartment = new Department(newEmp.UserID, true);
+                            if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({empDepartment.Name})";
+                            else newEmp.MainDetails = $"{newEmp.Username} ({empDepartment.Name})";
+                            allEmployees.Add(newEmp);
+                        }
+                        cmd.Dispose();
+                        dataReader.Close();
                     }
-                    cmd.Dispose();
-                    dataReader.Close();
+                    conn.Close();
+                    return allEmployees;
                 }
-                conn.Close();
-                return allEmployees;
-            }  
+            }
+            else
+            {
+                List<Employee> allEmployees = new List<Employee>();
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+                {
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM users", conn))
+                    {
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            Employee newEmp = new Employee(dataReader.GetString(0),false);
+                            allEmployees.Add(newEmp);
+                        }
+                        cmd.Dispose();
+                        dataReader.Close();
+                    }
+                    conn.Close();
+                    return allEmployees;
+                }
+            }
         }
 
         public static bool IsUniqueUsername(string targetUsername)

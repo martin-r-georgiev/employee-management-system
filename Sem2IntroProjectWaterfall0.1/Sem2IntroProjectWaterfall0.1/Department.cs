@@ -179,7 +179,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         Employee newEmp = new Employee(dataReader.GetString(0));
                         if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({this.Name})";
                         else newEmp.MainDetails = $"{newEmp.Username} ({this.Name})";
-                        employees.Add(newEmp);
+                        employeesToSend.Add(newEmp);
                     }
                     cmd.Dispose();
                     dataReader.Close();
@@ -313,7 +313,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void AssignEmployeeTo(string userID, string newDepartmentId)
         {
-            foreach (Employee e in Employee.GetAllEmployees())
+            foreach (Employee e in Employee.GetAllEmployees(true))
                 if (e.UserID == userID)
                     e.DepartmentID = newDepartmentId;
         }
