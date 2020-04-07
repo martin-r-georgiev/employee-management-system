@@ -139,6 +139,12 @@
       <DependentUpon>StockUC.cs</DependentUpon>
     </Compile>
     <Compile Include="WorkshiftDatabaseHandler.cs" />
+    <Compile Include="WorkshiftWeeklyUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkshiftWeeklyUC.Designer.cs">
+      <DependentUpon>WorkshiftWeeklyUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Custom Controls\WorkshiftUC.resx">
       <DependentUpon>WorkshiftUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Controls\StockUC.resx">
       <DependentUpon>StockUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkshiftWeeklyUC.resx">
+      <DependentUpon>WorkshiftWeeklyUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
