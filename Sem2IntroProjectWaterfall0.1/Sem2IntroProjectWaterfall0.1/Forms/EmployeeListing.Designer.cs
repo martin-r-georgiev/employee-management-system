@@ -32,19 +32,31 @@
             this.tbEmployeeName = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblEmployeeAttendance = new System.Windows.Forms.Label();
+            this.lblEmployeeSalary = new System.Windows.Forms.Label();
+            this.lblEmployeeName = new System.Windows.Forms.Label();
+            this.lblEmployeeDepartment = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnStatistics = new System.Windows.Forms.Button();
             this.pnlEmployees = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnShowAll = new System.Windows.Forms.Button();
             this.cbDepartments = new System.Windows.Forms.ComboBox();
+            this.lblEmployeeNationality = new System.Windows.Forms.Label();
+            this.lblEmployeeAddress = new System.Windows.Forms.Label();
+            this.lblEmployeeEmail = new System.Windows.Forms.Label();
+            this.lblEmployeePhone = new System.Windows.Forms.Label();
+            this.lblEmployeeAge = new System.Windows.Forms.Label();
+            this.lblEmployeeGender = new System.Windows.Forms.Label();
+            this.lblEmployeeRole = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblEmployeeWorkingSince = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBack
@@ -76,78 +88,64 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel4.Controls.Add(this.label10);
-            this.panel4.Controls.Add(this.label9);
-            this.panel4.Controls.Add(this.label8);
-            this.panel4.Controls.Add(this.label7);
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.label5);
+            this.panel4.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel4.Controls.Add(this.groupBox3);
+            this.panel4.Controls.Add(this.groupBox2);
+            this.panel4.Controls.Add(this.groupBox1);
             this.panel4.Controls.Add(this.pictureBox3);
             this.panel4.Location = new System.Drawing.Point(12, 56);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(451, 382);
             this.panel4.TabIndex = 6;
             // 
-            // label10
+            // lblEmployeeAttendance
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(10, 197);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(173, 24);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "Username: pecata3";
+            this.lblEmployeeAttendance.AutoSize = true;
+            this.lblEmployeeAttendance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeAttendance.Location = new System.Drawing.Point(6, 60);
+            this.lblEmployeeAttendance.Name = "lblEmployeeAttendance";
+            this.lblEmployeeAttendance.Size = new System.Drawing.Size(108, 16);
+            this.lblEmployeeAttendance.TabIndex = 5;
+            this.lblEmployeeAttendance.Text = "Attendance: 56%";
             // 
-            // label9
+            // lblEmployeeSalary
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(10, 266);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(151, 24);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Attendance: 56%";
+            this.lblEmployeeSalary.AutoSize = true;
+            this.lblEmployeeSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeSalary.Location = new System.Drawing.Point(6, 95);
+            this.lblEmployeeSalary.Name = "lblEmployeeSalary";
+            this.lblEmployeeSalary.Size = new System.Drawing.Size(50, 16);
+            this.lblEmployeeSalary.TabIndex = 4;
+            this.lblEmployeeSalary.Text = "Salary:";
             // 
-            // label8
+            // lblEmployeeName
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(10, 232);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(131, 24);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Salary: 18000$";
+            this.lblEmployeeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeName.Location = new System.Drawing.Point(6, 25);
+            this.lblEmployeeName.Name = "lblEmployeeName";
+            this.lblEmployeeName.Size = new System.Drawing.Size(242, 35);
+            this.lblEmployeeName.TabIndex = 3;
+            this.lblEmployeeName.Text = "Name: ";
             // 
-            // label7
+            // lblEmployeeDepartment
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(191, 17);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(155, 24);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "First Name: Peter";
+            this.lblEmployeeDepartment.AutoSize = true;
+            this.lblEmployeeDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeDepartment.Location = new System.Drawing.Point(6, 60);
+            this.lblEmployeeDepartment.Name = "lblEmployeeDepartment";
+            this.lblEmployeeDepartment.Size = new System.Drawing.Size(98, 20);
+            this.lblEmployeeDepartment.TabIndex = 1;
+            this.lblEmployeeDepartment.Text = "Department:";
             // 
-            // label6
+            // pictureBox3
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(191, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(162, 24);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Last Name: Steele";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(191, 112);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(127, 24);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Department: 1";
+            this.pictureBox3.Image = global::Sem2IntroProjectWaterfall0._1.Properties.Resources._20667482_young_harbor_container_depot_worker;
+            this.pictureBox3.Location = new System.Drawing.Point(13, 17);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(170, 118);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
             // 
             // btnStatistics
             // 
@@ -166,16 +164,6 @@
             this.pnlEmployees.Name = "pnlEmployees";
             this.pnlEmployees.Size = new System.Drawing.Size(319, 382);
             this.pnlEmployees.TabIndex = 7;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Sem2IntroProjectWaterfall0._1.Properties.Resources._20667482_young_harbor_container_depot_worker;
-            this.pictureBox3.Location = new System.Drawing.Point(13, 17);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(170, 164);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
             // 
             // btnShowAll
             // 
@@ -197,6 +185,123 @@
             this.cbDepartments.DropDown += new System.EventHandler(this.cbDepartments_DropDown);
             this.cbDepartments.SelectedIndexChanged += new System.EventHandler(this.cbDepartments_SelectedIndexChanged);
             // 
+            // lblEmployeeNationality
+            // 
+            this.lblEmployeeNationality.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeNationality.Location = new System.Drawing.Point(6, 165);
+            this.lblEmployeeNationality.Name = "lblEmployeeNationality";
+            this.lblEmployeeNationality.Size = new System.Drawing.Size(242, 48);
+            this.lblEmployeeNationality.TabIndex = 8;
+            this.lblEmployeeNationality.Text = "Nationality: ";
+            // 
+            // lblEmployeeAddress
+            // 
+            this.lblEmployeeAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeAddress.Location = new System.Drawing.Point(6, 66);
+            this.lblEmployeeAddress.Name = "lblEmployeeAddress";
+            this.lblEmployeeAddress.Size = new System.Drawing.Size(235, 49);
+            this.lblEmployeeAddress.TabIndex = 9;
+            this.lblEmployeeAddress.Text = "Address:  ";
+            // 
+            // lblEmployeeEmail
+            // 
+            this.lblEmployeeEmail.AutoSize = true;
+            this.lblEmployeeEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeEmail.Location = new System.Drawing.Point(8, 16);
+            this.lblEmployeeEmail.Name = "lblEmployeeEmail";
+            this.lblEmployeeEmail.Size = new System.Drawing.Size(48, 16);
+            this.lblEmployeeEmail.TabIndex = 10;
+            this.lblEmployeeEmail.Text = "Email: ";
+            // 
+            // lblEmployeePhone
+            // 
+            this.lblEmployeePhone.AutoSize = true;
+            this.lblEmployeePhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeePhone.Location = new System.Drawing.Point(8, 41);
+            this.lblEmployeePhone.Name = "lblEmployeePhone";
+            this.lblEmployeePhone.Size = new System.Drawing.Size(101, 16);
+            this.lblEmployeePhone.TabIndex = 11;
+            this.lblEmployeePhone.Text = "Phone Number:";
+            // 
+            // lblEmployeeAge
+            // 
+            this.lblEmployeeAge.AutoSize = true;
+            this.lblEmployeeAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeAge.Location = new System.Drawing.Point(6, 95);
+            this.lblEmployeeAge.Name = "lblEmployeeAge";
+            this.lblEmployeeAge.Size = new System.Drawing.Size(50, 20);
+            this.lblEmployeeAge.TabIndex = 12;
+            this.lblEmployeeAge.Text = "Age:  ";
+            // 
+            // lblEmployeeGender
+            // 
+            this.lblEmployeeGender.AutoSize = true;
+            this.lblEmployeeGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeGender.Location = new System.Drawing.Point(6, 130);
+            this.lblEmployeeGender.Name = "lblEmployeeGender";
+            this.lblEmployeeGender.Size = new System.Drawing.Size(71, 20);
+            this.lblEmployeeGender.TabIndex = 13;
+            this.lblEmployeeGender.Text = "Gender: ";
+            // 
+            // lblEmployeeRole
+            // 
+            this.lblEmployeeRole.AutoSize = true;
+            this.lblEmployeeRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeRole.Location = new System.Drawing.Point(6, 25);
+            this.lblEmployeeRole.Name = "lblEmployeeRole";
+            this.lblEmployeeRole.Size = new System.Drawing.Size(43, 16);
+            this.lblEmployeeRole.TabIndex = 14;
+            this.lblEmployeeRole.Text = "Role: ";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblEmployeeName);
+            this.groupBox1.Controls.Add(this.lblEmployeeDepartment);
+            this.groupBox1.Controls.Add(this.lblEmployeeGender);
+            this.groupBox1.Controls.Add(this.lblEmployeeNationality);
+            this.groupBox1.Controls.Add(this.lblEmployeeAge);
+            this.groupBox1.Location = new System.Drawing.Point(13, 141);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(254, 238);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Personal Details";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblEmployeeAddress);
+            this.groupBox2.Controls.Add(this.lblEmployeeEmail);
+            this.groupBox2.Controls.Add(this.lblEmployeePhone);
+            this.groupBox2.Location = new System.Drawing.Point(189, 17);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(249, 118);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Contact Info";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lblEmployeeWorkingSince);
+            this.groupBox3.Controls.Add(this.lblEmployeeSalary);
+            this.groupBox3.Controls.Add(this.lblEmployeeAttendance);
+            this.groupBox3.Controls.Add(this.lblEmployeeRole);
+            this.groupBox3.Location = new System.Drawing.Point(277, 141);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(161, 238);
+            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Other";
+            // 
+            // lblEmployeeWorkingSince
+            // 
+            this.lblEmployeeWorkingSince.AutoSize = true;
+            this.lblEmployeeWorkingSince.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeWorkingSince.Location = new System.Drawing.Point(6, 130);
+            this.lblEmployeeWorkingSince.Name = "lblEmployeeWorkingSince";
+            this.lblEmployeeWorkingSince.Size = new System.Drawing.Size(96, 16);
+            this.lblEmployeeWorkingSince.TabIndex = 15;
+            this.lblEmployeeWorkingSince.Text = "Working since:";
+            // 
             // EmployeeListing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -213,8 +318,13 @@
             this.Name = "EmployeeListing";
             this.Text = "EmployeeListing";
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,15 +337,24 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblEmployeeAttendance;
+        private System.Windows.Forms.Label lblEmployeeSalary;
+        private System.Windows.Forms.Label lblEmployeeName;
+        private System.Windows.Forms.Label lblEmployeeDepartment;
         private System.Windows.Forms.Button btnStatistics;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.FlowLayoutPanel pnlEmployees;
         private System.Windows.Forms.Button btnShowAll;
         private System.Windows.Forms.ComboBox cbDepartments;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label lblEmployeeRole;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblEmployeeAddress;
+        private System.Windows.Forms.Label lblEmployeeEmail;
+        private System.Windows.Forms.Label lblEmployeePhone;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblEmployeeGender;
+        private System.Windows.Forms.Label lblEmployeeNationality;
+        private System.Windows.Forms.Label lblEmployeeAge;
+        private System.Windows.Forms.Label lblEmployeeWorkingSince;
     }
 }
