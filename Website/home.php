@@ -18,6 +18,7 @@ if (!isset($_SESSION["username"]))
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/2f1dc81eac.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
@@ -29,13 +30,13 @@ if (!isset($_SESSION["username"]))
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a href="#" class="nav-link">Home</a>
+            <a href="home.php" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Profile</a>
+            <a href="profile.php" class="nav-link">Profile</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Schedule</a>
+            <a href="schedule.php" class="nav-link">Schedule</a>
           </li>
           <li class="nav-item">
             <a href="logout.php" class="nav-link">Logout</a>
