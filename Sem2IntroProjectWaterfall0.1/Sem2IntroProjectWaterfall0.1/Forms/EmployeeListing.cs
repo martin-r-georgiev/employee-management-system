@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,6 +70,28 @@ namespace Sem2IntroProjectWaterfall0._1
             cbDepartments.Items.Add("All");
             foreach (Department d in Department.GetAllDepartments())
                 cbDepartments.Items.Add(d.Name);
+        }
+        public void RefreshGUI(Employee selectedEmployee)
+        {
+            //lblEmployeeAttendance;
+            lblEmployeeAddress.Text = $"Address: {selectedEmployee.Address}" ;
+
+            int age = DateTime.Today.Year - selectedEmployee.DateOfBirth.Year;
+            if (age > 100) lblEmployeeAge.Text = $"Age: Unknown";
+            else lblEmployeeAge.Text = $"Age: {age}";
+
+            lblEmployeeDepartment.Text = "Department: " + new Department(selectedEmployee.DepartmentID).Name;
+            lblEmployeeEmail.Text = $"E-mail: {selectedEmployee.Email}";
+
+            if (selectedEmployee.Sex) lblEmployeeGender.Text = $"Gender: Female";
+            else lblEmployeeGender.Text = $"Gender: Male";
+
+            lblEmployeeName.Text = $"Name: {selectedEmployee.FirstName} {selectedEmployee.LastName}";
+            lblEmployeeNationality.Text = $"Nationality: {selectedEmployee.Nationality}";
+            lblEmployeePhone.Text = $"Phone: {selectedEmployee.PhoneNumber}";
+            lblEmployeeRole.Text = $"Role: {selectedEmployee.Role}";
+            lblEmployeeSalary.Text = $"Salary: ${selectedEmployee.SalaryHourlyRate}/hr";
+            lblEmployeeWorkingSince.Text = Employee.CalculateWorkingSince(selectedEmployee);
         }
     }
 }

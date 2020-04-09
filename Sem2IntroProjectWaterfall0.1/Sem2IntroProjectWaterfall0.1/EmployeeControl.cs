@@ -47,5 +47,12 @@ namespace Sem2IntroProjectWaterfall0._1
             this.lblEmployee.Font = new Font(lblEmployee.Font.FontFamily, 9, FontStyle.Bold);
             this.Size = new Size(313, 43);
         }
+
+        private void EmployeeControl_MouseClick(object sender, MouseEventArgs e)
+        {
+            EmployeeListing pForm = (EmployeeListing)this.ParentForm;
+            Employee fullEmployee = new Employee(this.SelectedEmployee.UserID, true);
+            pForm.RefreshGUI(fullEmployee);
+        }
     }
 }

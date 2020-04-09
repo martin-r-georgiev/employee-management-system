@@ -160,7 +160,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public string FirstName
         {
-            get { return this.firstName; }
+            get { if (String.IsNullOrEmpty(firstName)) return "Unknown";
+                else return this.firstName; }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -206,7 +207,9 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public string Nationality
         {
-            get { return this.nationality; }
+            get {
+                if (String.IsNullOrEmpty(nationality)) return "Unknown";
+                else return this.nationality; }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -229,7 +232,9 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public string Address
         {
-            get { return this.address; }
+            get {
+                if (String.IsNullOrEmpty(address)) return "Unknown";
+                else return this.address; }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -252,7 +257,9 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public string Email
         {
-            get { return this.email; }
+            get {
+                if (String.IsNullOrEmpty(email)) return "Unknown";
+                else return this.email; }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -275,7 +282,9 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public string PhoneNumber
         {
-            get { return this.phoneNumber; }
+            get {
+                if (String.IsNullOrEmpty(phoneNumber)) return "Unknown";
+                else return this.phoneNumber; }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -298,7 +307,9 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public DateTime DateOfBirth
         {
-            get { return this.dateofBirth; }
+            get {
+                return this.dateofBirth; 
+            }
         }
 
         public bool Sex
@@ -630,6 +641,37 @@ namespace Sem2IntroProjectWaterfall0._1
                 return result;
             }
         }
+        public static string CalculateWorkingSince(Employee selectedEmployee)
+        {
+            string s = "";
+            if (selectedEmployee.StartDate.HasValue)
+            {
+                int workingSince = DateTime.Today.Year - selectedEmployee.StartDate.Value.Year;
+                if (workingSince > 0)
+                {
+                    s = $"Working since: {workingSince} years";
+                    if (workingSince == 1) s.Replace("years", "year");
+                }
+                else
+                {
+                    workingSince = DateTime.Today.Month - selectedEmployee.StartDate.Value.Month;
+                    if (workingSince > 0)
+                    {
+                        s = $"Working since: {workingSince} months";
+                        if (workingSince == 1) s.Replace("months", "month");
+                    }
+                    else
+                    {
+                        workingSince = DateTime.Today.Day - selectedEmployee.StartDate.Value.Day;
+                        s = $"Working since: {workingSince} days";
+                        if (workingSince == 1) s.Replace("days", "day");
+                    }
+                }
+            }
+            else s = $"Working since: Unknown";
+            return s;
+        }
+        
         #endregion
     }
 }
