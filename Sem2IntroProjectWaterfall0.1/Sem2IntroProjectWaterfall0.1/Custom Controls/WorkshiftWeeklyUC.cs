@@ -13,7 +13,6 @@ namespace Sem2IntroProjectWaterfall0._1
     public partial class WorkshiftWeeklyUC : UserControl
     {
         private Employee employee;
-        private int?[] statusIndex;
         private List<WorkshiftCells> workshiftCells;
 
         private DateTime startDate, endDate;
@@ -40,21 +39,21 @@ namespace Sem2IntroProjectWaterfall0._1
             this.startDate = start;
             this.endDate = end;
             lblName.Text = employee.Name;
-            statusIndex = new int?[21];
             workshiftCells = new List<WorkshiftCells>();
             DateTime date_iterator = start;
             for(int i = 0; i < 7; i++)
             {
-                WorkshiftCells newCell = new WorkshiftCells();
+                WorkshiftCells newCell = new WorkshiftCells(date_iterator, this.employee.UserID);
+                workshiftCells.Add(newCell);
                 switch (i)
                 {
-                    case 0: workshiftCells.Add(newCell); panelMonday.Controls.Add(newCell); lblMondayDate.Text = date_iterator.ToString("dd"); break;
-                    case 1: workshiftCells.Add(newCell); panelTuesday.Controls.Add(newCell); lblTuesdayDate.Text = date_iterator.ToString("dd"); break;
-                    case 2: workshiftCells.Add(newCell); panelWednesday.Controls.Add(newCell); lblWednesdayDate.Text = date_iterator.ToString("dd"); break;
-                    case 3: workshiftCells.Add(newCell); panelThursday.Controls.Add(newCell); lblThursdayDate.Text = date_iterator.ToString("dd"); break;
-                    case 4: workshiftCells.Add(newCell); panelFriday.Controls.Add(newCell); lblFridayDate.Text = date_iterator.ToString("dd"); break;
-                    case 5: workshiftCells.Add(newCell); panelSaturday.Controls.Add(newCell); lblSaturdayDate.Text = date_iterator.ToString("dd"); break;
-                    case 6: workshiftCells.Add(newCell); panelSunday.Controls.Add(newCell); lblSundayDate.Text = date_iterator.ToString("dd"); break;
+                    case 0: panelMonday.Controls.Add(newCell); lblMondayDate.Text = date_iterator.ToString("dd"); break;
+                    case 1: panelTuesday.Controls.Add(newCell); lblTuesdayDate.Text = date_iterator.ToString("dd"); break;
+                    case 2: panelWednesday.Controls.Add(newCell); lblWednesdayDate.Text = date_iterator.ToString("dd"); break;
+                    case 3: panelThursday.Controls.Add(newCell); lblThursdayDate.Text = date_iterator.ToString("dd"); break;
+                    case 4: panelFriday.Controls.Add(newCell); lblFridayDate.Text = date_iterator.ToString("dd"); break;
+                    case 5: panelSaturday.Controls.Add(newCell); lblSaturdayDate.Text = date_iterator.ToString("dd"); break;
+                    case 6: panelSunday.Controls.Add(newCell); lblSundayDate.Text = date_iterator.ToString("dd"); break;
                 }
                 IsToday(date_iterator);
                 date_iterator = date_iterator.AddDays(1);
@@ -63,18 +62,15 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void SetStatus(DayOfWeek weekday, int status, int index)
         {
-            if (index < statusIndex.Length && index >= 0)
+            switch ((int)weekday)
             {
-                switch ((int)weekday)
-                {
-                    case 0: workshiftCells[0].SetStatus(status, index); statusIndex[(int)weekday + index] = status; break;
-                    case 1: workshiftCells[1].SetStatus(status, index); statusIndex[(int)weekday + index] = status; break;
-                    case 2: workshiftCells[2].SetStatus(status, index); statusIndex[(int)weekday + index] = status; break;
-                    case 3: workshiftCells[3].SetStatus(status, index); statusIndex[(int)weekday + index] = status; break;
-                    case 4: workshiftCells[4].SetStatus(status, index); statusIndex[(int)weekday + index] = status; break;
-                    case 5: workshiftCells[5].SetStatus(status, index); statusIndex[(int)weekday + index] = status; break;
-                    case 6: workshiftCells[6].SetStatus(status, index); statusIndex[(int)weekday + index] = status; break;
-                }
+                case 0: workshiftCells[6].SetStatus(status, index); break;
+                case 1: workshiftCells[0].SetStatus(status, index); break;
+                case 2: workshiftCells[1].SetStatus(status, index); break;
+                case 3: workshiftCells[2].SetStatus(status, index); break;
+                case 4: workshiftCells[3].SetStatus(status, index); break;
+                case 5: workshiftCells[4].SetStatus(status, index); break;
+                case 6: workshiftCells[5].SetStatus(status, index); break;
             }
         }
 

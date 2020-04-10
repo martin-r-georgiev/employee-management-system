@@ -25,7 +25,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             int index = items.FindIndex(item => item.Employee.UserID == dataReader.GetString(0));
                             if(index == -1)
                             {
-                                WorkshiftUC newUnit = new WorkshiftUC(new Employee(dataReader.GetString(0)));
+                                WorkshiftUC newUnit = new WorkshiftUC(new Employee(dataReader.GetString(0), false), date);
                                 newUnit.SetStatus(dataReader.GetInt16(2), dataReader.GetInt16(1));
                                 items.Add(newUnit);
                             }
@@ -64,7 +64,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             int index = items.FindIndex(item => item.Employee.UserID == dataReader.GetString(0));
                             if (index == -1)
                             {
-                                WorkshiftWeeklyUC newUnit = new WorkshiftWeeklyUC(new Employee(dataReader.GetString(0)), startDate, endDate);
+                                WorkshiftWeeklyUC newUnit = new WorkshiftWeeklyUC(new Employee(dataReader.GetString(0), false), startDate, endDate);
                                 newUnit.SetStatus(dataReader.GetDateTime(3).DayOfWeek,dataReader.GetInt16(2), dataReader.GetInt16(1));
                                 items.Add(newUnit);
                             }
