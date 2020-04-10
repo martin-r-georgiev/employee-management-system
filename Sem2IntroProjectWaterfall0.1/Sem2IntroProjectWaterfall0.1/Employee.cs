@@ -160,8 +160,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public string FirstName
         {
-            get { if (String.IsNullOrEmpty(firstName)) return "Unknown";
-                else return this.firstName; }
+            get {return this.firstName; }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -208,8 +207,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public string Nationality
         {
             get {
-                if (String.IsNullOrEmpty(nationality)) return "Unknown";
-                else return this.nationality; }
+                 return this.nationality; }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -233,8 +231,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public string Address
         {
             get {
-                if (String.IsNullOrEmpty(address)) return "Unknown";
-                else return this.address; }
+                return this.address; }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -258,8 +255,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public string Email
         {
             get {
-                if (String.IsNullOrEmpty(email)) return "Unknown";
-                else return this.email; }
+                return this.email; }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -283,8 +279,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public string PhoneNumber
         {
             get {
-                if (String.IsNullOrEmpty(phoneNumber)) return "Unknown";
-                else return this.phoneNumber; }
+                return this.phoneNumber; }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -310,13 +305,43 @@ namespace Sem2IntroProjectWaterfall0._1
             get {
                 return this.dateofBirth; 
             }
+            set
+            {
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+                {
+                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees SET dateOfBirth=@dateOfBirth WHERE userID=@userID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dateOfBirth", value);
+                        cmd.Parameters.AddWithValue("@userID", this.userID);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    conn.Close();
+                    this.dateofBirth = value;
+                }
+                this.dateofBirth = value;
+            }
         }
 
         public bool Sex
         {
             //Binary: 0 = Male, 1 = Female
             get { return this.sex; }
-            private set { this.sex = value; }
+            private set
+            {
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees SET sex=@sex WHERE userID=@userID", conn))
+                        {
+                            cmd.Parameters.AddWithValue("@sex", value);
+                            cmd.Parameters.AddWithValue("@userID", this.userID);
+                            cmd.ExecuteNonQuery();
+                            cmd.Dispose();
+                        }
+                        conn.Close();
+                        this.sex = value;
+                }
+                this.sex = value; }
         }
 
         public Nullable<DateTime> StartDate
@@ -347,7 +372,7 @@ namespace Sem2IntroProjectWaterfall0._1
             this.salaryHourlyRate = newSalaryRate;
             this.role = newRole;
             this.departmentID = newDepID;
-
+            this.StartDate = DateTime.Today;
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
                 MySqlCommand cmd;
@@ -374,6 +399,13 @@ namespace Sem2IntroProjectWaterfall0._1
                     cmd.Parameters.AddWithValue("@salary", this.salaryHourlyRate);
                     cmd.Parameters.AddWithValue("@role", this.role);
                     cmd.Parameters.AddWithValue("@depID", this.departmentID);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                using (cmd = new MySqlCommand($"INSERT INTO employees(userID,startDate) VALUES (@userID, @startDate)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userID", this.userID);
+                    cmd.Parameters.AddWithValue("@startDate", this.StartDate);
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
@@ -512,7 +544,11 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"REPLACE INTO employees (userID, firstName, lastName, nationality, address, email, phoneNumber, dateOfBirth, sex) VALUES (@userID, @fName, @lName, @nat, @address, @email, @pNum, @birthDate, @sex)", conn))
+                using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees " +
+                    $"SET userID=@userID, firstName=@fName, " +
+                    $"lastName=@lName, nationality=@nat, address=@address, email=@email, " +
+                    $"phoneNumber=@pNum, dateOfBirth=@birthDate, sex=@sex " +
+                    $"WHERE userID =@userID", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", this.userID);
                     cmd.Parameters.AddWithValue("@fName", fName);
@@ -529,7 +565,6 @@ namespace Sem2IntroProjectWaterfall0._1
                 conn.Close();
             }
         }
-
         public Employee GetEmployee(string userIdentifier)
         {
             return new Employee(userIdentifier);
@@ -641,7 +676,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 return result;
             }
         }
-        public static string CalculateWorkingSince(Employee selectedEmployee)
+        public static string CalculateWorkingSince(Employee selectedEmployee) //Used for the employee listing label
         {
             string s = "";
             if (selectedEmployee.StartDate.HasValue)

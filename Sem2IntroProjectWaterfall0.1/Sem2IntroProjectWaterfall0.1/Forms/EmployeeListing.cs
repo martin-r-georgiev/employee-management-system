@@ -20,6 +20,7 @@ namespace Sem2IntroProjectWaterfall0._1
             displayedEmployees = loggedInDepartment.GetAllEmployees();
             foreach (Employee e in displayedEmployees)
                 pnlEmployees.Controls.Add(new EmployeeControl(e));
+            if (LoggedInUser.role >= Role.Manager) cbDepartments.Visible = true;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -74,24 +75,29 @@ namespace Sem2IntroProjectWaterfall0._1
         public void RefreshGUI(Employee selectedEmployee)
         {
             //lblEmployeeAttendance;
-            lblEmployeeAddress.Text = $"Address: {selectedEmployee.Address}" ;
+            
+            lblEmployeeRole.Text = $"Role: {selectedEmployee.Role}";
+            lblEmployeeSalary.Text = $"Salary: ${selectedEmployee.SalaryHourlyRate}/hr";
+            lblEmployeeWorkingSince.Text = Employee.CalculateWorkingSince(selectedEmployee);
+            lblEmployeeDepartment.Text = "Department: " + new Department(selectedEmployee.DepartmentID).Name;
 
             int age = DateTime.Today.Year - selectedEmployee.DateOfBirth.Year;
             if (age > 100) lblEmployeeAge.Text = $"Age: Unknown";
             else lblEmployeeAge.Text = $"Age: {age}";
 
-            lblEmployeeDepartment.Text = "Department: " + new Department(selectedEmployee.DepartmentID).Name;
-            lblEmployeeEmail.Text = $"E-mail: {selectedEmployee.Email}";
 
-            if (selectedEmployee.Sex) lblEmployeeGender.Text = $"Gender: Female";
-            else lblEmployeeGender.Text = $"Gender: Male";
-
-            lblEmployeeName.Text = $"Name: {selectedEmployee.FirstName} {selectedEmployee.LastName}";
-            lblEmployeeNationality.Text = $"Nationality: {selectedEmployee.Nationality}";
-            lblEmployeePhone.Text = $"Phone: {selectedEmployee.PhoneNumber}";
-            lblEmployeeRole.Text = $"Role: {selectedEmployee.Role}";
-            lblEmployeeSalary.Text = $"Salary: ${selectedEmployee.SalaryHourlyRate}/hr";
-            lblEmployeeWorkingSince.Text = Employee.CalculateWorkingSince(selectedEmployee);
+            if (selectedEmployee.Sex == null) lblEmployeeGender.Text = "Gender: Unknown";
+            else
+            {
+                if (selectedEmployee.Sex) lblEmployeeGender.Text = $"Gender: Female";
+                else lblEmployeeGender.Text = $"Gender: Male";
+            }
+            lblEmployeeEmail.Text = String.IsNullOrEmpty(selectedEmployee.Email) ? "E-mail: Unknown" : $"E-mail: {selectedEmployee.Email}";
+            lblEmployeeAddress.Text = String.IsNullOrEmpty(selectedEmployee.Address) ? "Address: Unknown" : $"Address: {selectedEmployee.Address}";
+            lblEmployeeName.Text = String.IsNullOrEmpty(selectedEmployee.FirstName) ? "Name: Unknown" : $"Name: {selectedEmployee.FirstName} {selectedEmployee.LastName}";
+            lblEmployeeNationality.Text = String.IsNullOrEmpty(selectedEmployee.Nationality) ? "Nationality: Unknown" : $"Nationality: {selectedEmployee.Nationality}";
+            lblEmployeePhone.Text = String.IsNullOrEmpty(selectedEmployee.PhoneNumber) ? "Phone: Unknown" : $"Phone: {selectedEmployee.PhoneNumber}";
+            
         }
     }
 }

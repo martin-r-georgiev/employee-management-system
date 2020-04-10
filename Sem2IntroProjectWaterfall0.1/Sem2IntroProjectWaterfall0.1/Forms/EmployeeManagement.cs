@@ -56,6 +56,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             cbRole.Items.Clear();
             foreach (Role role in Enum.GetValues(typeof(Role))) { cbRole.Items.Add(role); }
+            cbRole.Items.Remove(Role.Owner);
         }
 
         private void cbDepartments_DropDown(object sender, EventArgs e)
@@ -199,6 +200,10 @@ namespace Sem2IntroProjectWaterfall0._1
                 Department oldDepartment = new Department(selectedUser.DepartmentID);
                 oldDepartment.AssignEmployeeTo(selectedUser.UserID, selectedDepartment.DepartmentId);
             } catch (Exception exc) { MessageBox.Show(exc.Message); }
+            finally
+            {
+                cbEmployeeAssign.SelectedIndex = -1;
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -242,7 +247,14 @@ namespace Sem2IntroProjectWaterfall0._1
             try
             {
                 Department selectedDepartment = departments[cbDepartmentEdit.SelectedIndex];
+                foreach (Employee emp in selectedDepartment.GetAllEmployees())
+                    if (emp.Role >= LoggedInUser.role)
+                    {
+                        MessageBox.Show("Cannot remove a department if there is someone with the same of higher role than you. Please contact the owner!");
+                        return;
+                    }
                 selectedDepartment.RemoveFromDatabase();
+                cbDepartmentEdit.SelectedIndex = -1;
             }
             catch (MinimalEmployeesException ex) { MessageBox.Show(ex.Message); }
             catch (Exception exc) { MessageBox.Show(exc.Message); }
@@ -250,22 +262,30 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnRemoveEmployee_Click(object sender, EventArgs e)
         {
-            if (cbPersonalInfoList.SelectedIndex != -1)
+            var result = MessageBox.Show("Are you sure you want to delete this employee?", "Confirm", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                try
+                if (cbPersonalInfoList.SelectedIndex != -1)
                 {
-                    int index = cbPersonalInfoList.SelectedIndex;
-                    employees[index].RemoveFromDatabase();
-                    employees.RemoveAt(index);
-                    MessageBox.Show($"Employee successfully removed from the system.");
-                    cbPersonalInfoList.SelectedIndex = -1;
+                    try
+                    {
+                        int index = cbPersonalInfoList.SelectedIndex;
+                        if (LoggedInUser.role > employees[index].Role)
+                        {
+                            employees[index].RemoveFromDatabase();
+                            employees.RemoveAt(index);
+                            MessageBox.Show($"Employee successfully removed from the system.");
+                            cbPersonalInfoList.SelectedIndex = -1;
+                        }
+                        else MessageBox.Show("Can only remove employees with a lower role than you!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), $"Failed to remove employee", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString(), $"Failed to remove employee", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                else MessageBox.Show("Please select an employee and try again.");
             }
-            else MessageBox.Show("Please select an employee and try again.");
         }
 
 

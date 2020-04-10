@@ -137,6 +137,12 @@ namespace Sem2IntroProjectWaterfall0._1
             panelState = 1;
         }
 
+        private void btnChangePreferences_Click(object sender, EventArgs e)
+        {
+            PreferencesNew fsd = new PreferencesNew();
+            fsd.Show();
+        }
+
         private void btnWeekly_Click(object sender, EventArgs e)
         {
             lblDate.Text = $"{startDate.ToString("dd MMMM yyyy")} - {endDate.ToString("dd MMMM yyyy")}";
