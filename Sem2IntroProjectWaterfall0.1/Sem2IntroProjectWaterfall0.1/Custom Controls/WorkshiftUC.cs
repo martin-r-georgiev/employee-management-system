@@ -45,10 +45,11 @@ namespace Sem2IntroProjectWaterfall0._1
             this.selectedWorkshiftIndex = null;
 
             if (date.Date <= DateTime.Now.Date) rightClickMenu.Enabled = false;
-            if ((int)LoggedInUser.role > (int)Role.Worker)
+            if ((int)LoggedInUser.role != (int)Role.Worker)
             {
                 panelShiftOne.ContextMenuStrip = panelShiftTwo.ContextMenuStrip = panelShiftThree.ContextMenuStrip = rightClickMenu;
-            }        
+            }
+            else if (LoggedInUser.userID == employee.UserID) panelShiftOne.ContextMenuStrip = panelShiftTwo.ContextMenuStrip = panelShiftThree.ContextMenuStrip = depotRequestMenu;
         }
 
         //Methods
@@ -105,39 +106,62 @@ namespace Sem2IntroProjectWaterfall0._1
         private void rightClickMenu_Opened(object sender, EventArgs e)
         {
             selectedWorkshiftIndex = GetWorkshiftIndex((sender as ContextMenuStrip).SourceControl.Name);
+            int index = (int)selectedWorkshiftIndex;
+            if (statusIndex[index] != 1)
+            {
+                toolStripApproveRequest.Visible = false;
+                toolStripDeclineRequest.Visible = false;
+                toolStripSetAvailable.Visible = true;
+                toolStripSetUnavailable.Visible = true;
+            }
+            else
+            {
+                toolStripApproveRequest.Visible = true;
+                toolStripDeclineRequest.Visible = true;
+                toolStripSetAvailable.Visible = false;
+                toolStripSetUnavailable.Visible = false;
+            }
+
+            if (statusIndex[index] == null || statusIndex[index] == 1) clearToolStripMenuItem.Visible = false;
+            else clearToolStripMenuItem.Visible = true;
+        }
+
+        private void ChangeWorkshiftStatus(int status, int workshiftIndex)
+        {
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM workshifts WHERE userID=@userid AND date = @date AND workshift = @workshift", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userid", this.employee.UserID);
+                    cmd.Parameters.AddWithValue("@date", this.date.Date);
+                    cmd.Parameters.AddWithValue("@workshift", workshiftIndex);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                conn.Close();
+            }
+
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO workshifts (userID, date, workshift, status) VALUES (@userid, @date, @workshift, @status)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userid", this.employee.UserID);
+                    cmd.Parameters.AddWithValue("@date", this.date.Date);
+                    cmd.Parameters.AddWithValue("@workshift", workshiftIndex);
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                conn.Close();
+            }
+            SetStatus(status, workshiftIndex);
         }
 
         private void setAvailableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (selectedWorkshiftIndex != null)
             {
-                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
-                {
-                    using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM workshifts WHERE userID=@userid AND date = @date AND workshift = @workshift", conn))
-                    {
-                        cmd.Parameters.AddWithValue("@userid", this.employee.UserID);
-                        cmd.Parameters.AddWithValue("@date", this.date);
-                        cmd.Parameters.AddWithValue("@workshift", selectedWorkshiftIndex);
-                        cmd.ExecuteNonQuery();
-                        cmd.Dispose();
-                    }
-                    conn.Close();
-                }
-
-                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
-                {
-                    using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO workshifts (userID, date, workshift, status) VALUES (@userid, @date, @workshift, @status)", conn))
-                    {
-                        cmd.Parameters.AddWithValue("@userid", this.employee.UserID);
-                        cmd.Parameters.AddWithValue("@date", this.date);
-                        cmd.Parameters.AddWithValue("@workshift", selectedWorkshiftIndex);
-                        cmd.Parameters.AddWithValue("@status", 0);
-                        cmd.ExecuteNonQuery();
-                        cmd.Dispose();
-                    }
-                    conn.Close();
-                }
-                SetStatus(0, (int)selectedWorkshiftIndex);
+                ChangeWorkshiftStatus(0, (int)selectedWorkshiftIndex);
             }
         }
 
@@ -145,51 +169,59 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             if (selectedWorkshiftIndex != null)
             {
-                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
-                {
-                    using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM workshifts WHERE userID=@userid AND date = @date AND workshift = @workshift", conn))
-                    {
-                        cmd.Parameters.AddWithValue("@userid", this.employee.UserID);
-                        cmd.Parameters.AddWithValue("@date", this.date);
-                        cmd.Parameters.AddWithValue("@workshift", selectedWorkshiftIndex);
-                        cmd.ExecuteNonQuery();
-                        cmd.Dispose();
-                    }
-                    conn.Close();
-                }
-
-                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
-                {
-                    using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO workshifts (userID, date, workshift, status) VALUES (@userid, @date, @workshift, @status)", conn))
-                    {
-                        cmd.Parameters.AddWithValue("@userid", this.employee.UserID);
-                        cmd.Parameters.AddWithValue("@date", this.date);
-                        cmd.Parameters.AddWithValue("@workshift", selectedWorkshiftIndex);
-                        cmd.Parameters.AddWithValue("@status", 2);
-                        cmd.ExecuteNonQuery();
-                        cmd.Dispose();
-                    }
-                    conn.Close();
-                }
-                SetStatus(2, (int)selectedWorkshiftIndex);
+                ChangeWorkshiftStatus(2, (int)selectedWorkshiftIndex);
             }
         }
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            if (selectedWorkshiftIndex != null)
             {
-                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM workshifts WHERE userID=@userid AND date = @date AND workshift = @workshift", conn))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    cmd.Parameters.AddWithValue("@userid", this.employee.UserID);
-                    cmd.Parameters.AddWithValue("@date", this.date);
-                    cmd.Parameters.AddWithValue("@workshift", selectedWorkshiftIndex);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM workshifts WHERE userID=@userid AND date = @date AND workshift = @workshift", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userid", this.employee.UserID);
+                        cmd.Parameters.AddWithValue("@date", this.date.Date);
+                        cmd.Parameters.AddWithValue("@workshift", selectedWorkshiftIndex);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    conn.Close();
                 }
-                conn.Close();
+                SetStatus(-1, (int)selectedWorkshiftIndex);
             }
-            SetStatus(-1, (int)selectedWorkshiftIndex);
+        }
+
+        private void depotRequestMenu_Opened(object sender, EventArgs e)
+        {
+            selectedWorkshiftIndex = GetWorkshiftIndex((sender as ContextMenuStrip).SourceControl.Name);
+            if (statusIndex[(int)selectedWorkshiftIndex] != 0) toolStripRequestCancelation.Enabled = false;
+            else toolStripRequestCancelation.Enabled = true;
+        }
+
+        private void toolStripRequestCancelation_Click(object sender, EventArgs e)
+        {
+            if (selectedWorkshiftIndex != null)
+            {
+                ChangeWorkshiftStatus(1, (int)selectedWorkshiftIndex);
+            }
+        }
+
+        private void toolStripApproveRequest_Click(object sender, EventArgs e)
+        {
+            if (selectedWorkshiftIndex != null)
+            {
+                ChangeWorkshiftStatus(2, (int)selectedWorkshiftIndex);
+            }
+        }
+
+        private void toolStripDeclineRequest_Click(object sender, EventArgs e)
+        {
+            if (selectedWorkshiftIndex != null)
+            {
+                ChangeWorkshiftStatus(0, (int)selectedWorkshiftIndex);
+            }
         }
     }
 }
