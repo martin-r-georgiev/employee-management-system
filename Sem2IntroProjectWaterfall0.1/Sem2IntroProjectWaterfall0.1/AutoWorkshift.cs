@@ -109,8 +109,8 @@ namespace Sem2IntroProjectWaterfall0._1
             else
             {
 
-                pplpershift = 10 * totalemployees / totalshifts;
-                shiftswithextrappl = 10 * totalemployees - pplpershift * totalshifts;
+                pplpershift = (10 * totalemployees / totalshifts) +1;
+                shiftswithextrappl = 8;
                 minimumshifts = 10;
 
 
