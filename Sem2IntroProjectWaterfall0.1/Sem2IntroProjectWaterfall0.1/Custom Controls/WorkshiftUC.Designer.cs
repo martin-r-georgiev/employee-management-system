@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblName = new System.Windows.Forms.Label();
             this.panelShiftTwo = new System.Windows.Forms.Panel();
             this.panelShiftOne = new System.Windows.Forms.Panel();
@@ -39,8 +40,18 @@
             this.lblShiftEnd = new System.Windows.Forms.Label();
             this.panelDateWrapper = new System.Windows.Forms.Panel();
             this.panelWrapperContents = new System.Windows.Forms.Panel();
+            this.rightClickMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripSetAvailable = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSetUnavailable = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.depotRequestMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripRequestCancelation = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripApproveRequest = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDeclineRequest = new System.Windows.Forms.ToolStripMenuItem();
             this.panelDateWrapper.SuspendLayout();
             this.panelWrapperContents.SuspendLayout();
+            this.rightClickMenu.SuspendLayout();
+            this.depotRequestMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblName
@@ -57,6 +68,7 @@
             // 
             this.panelShiftTwo.AutoSize = true;
             this.panelShiftTwo.BackColor = System.Drawing.SystemColors.Control;
+            this.panelShiftTwo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelShiftTwo.Location = new System.Drawing.Point(422, 4);
             this.panelShiftTwo.MinimumSize = new System.Drawing.Size(205, 19);
             this.panelShiftTwo.Name = "panelShiftTwo";
@@ -67,6 +79,7 @@
             // 
             this.panelShiftOne.AutoSize = true;
             this.panelShiftOne.BackColor = System.Drawing.SystemColors.Control;
+            this.panelShiftOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelShiftOne.Location = new System.Drawing.Point(214, 4);
             this.panelShiftOne.MinimumSize = new System.Drawing.Size(205, 19);
             this.panelShiftOne.Name = "panelShiftOne";
@@ -77,6 +90,7 @@
             // 
             this.panelShiftThree.AutoSize = true;
             this.panelShiftThree.BackColor = System.Drawing.SystemColors.Control;
+            this.panelShiftThree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelShiftThree.Location = new System.Drawing.Point(635, 4);
             this.panelShiftThree.MinimumSize = new System.Drawing.Size(205, 19);
             this.panelShiftThree.Name = "panelShiftThree";
@@ -88,7 +102,7 @@
             this.panelDivider.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panelDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelDivider.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelDivider.Location = new System.Drawing.Point(0, 43);
+            this.panelDivider.Location = new System.Drawing.Point(0, 77);
             this.panelDivider.Name = "panelDivider";
             this.panelDivider.Size = new System.Drawing.Size(871, 2);
             this.panelDivider.TabIndex = 7;
@@ -105,7 +119,7 @@
             // lblShiftMidpointOne
             // 
             this.lblShiftMidpointOne.AutoSize = true;
-            this.lblShiftMidpointOne.Location = new System.Drawing.Point(405, 0);
+            this.lblShiftMidpointOne.Location = new System.Drawing.Point(403, 0);
             this.lblShiftMidpointOne.Name = "lblShiftMidpointOne";
             this.lblShiftMidpointOne.Size = new System.Drawing.Size(36, 17);
             this.lblShiftMidpointOne.TabIndex = 9;
@@ -114,7 +128,7 @@
             // lblShiftMidpointTwo
             // 
             this.lblShiftMidpointTwo.AutoSize = true;
-            this.lblShiftMidpointTwo.Location = new System.Drawing.Point(617, 0);
+            this.lblShiftMidpointTwo.Location = new System.Drawing.Point(616, 0);
             this.lblShiftMidpointTwo.Name = "lblShiftMidpointTwo";
             this.lblShiftMidpointTwo.Size = new System.Drawing.Size(36, 17);
             this.lblShiftMidpointTwo.TabIndex = 10;
@@ -152,8 +166,73 @@
             this.panelWrapperContents.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelWrapperContents.Location = new System.Drawing.Point(0, 17);
             this.panelWrapperContents.Name = "panelWrapperContents";
-            this.panelWrapperContents.Size = new System.Drawing.Size(871, 26);
+            this.panelWrapperContents.Size = new System.Drawing.Size(871, 30);
             this.panelWrapperContents.TabIndex = 13;
+            // 
+            // rightClickMenu
+            // 
+            this.rightClickMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.rightClickMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripApproveRequest,
+            this.toolStripDeclineRequest,
+            this.toolStripSetAvailable,
+            this.toolStripSetUnavailable,
+            this.clearToolStripMenuItem});
+            this.rightClickMenu.Name = "rightClickMenu";
+            this.rightClickMenu.Size = new System.Drawing.Size(211, 152);
+            this.rightClickMenu.Opened += new System.EventHandler(this.rightClickMenu_Opened);
+            // 
+            // toolStripSetAvailable
+            // 
+            this.toolStripSetAvailable.Name = "toolStripSetAvailable";
+            this.toolStripSetAvailable.Size = new System.Drawing.Size(210, 24);
+            this.toolStripSetAvailable.Text = "Set Available";
+            this.toolStripSetAvailable.Click += new System.EventHandler(this.setAvailableToolStripMenuItem_Click);
+            // 
+            // toolStripSetUnavailable
+            // 
+            this.toolStripSetUnavailable.Name = "toolStripSetUnavailable";
+            this.toolStripSetUnavailable.Size = new System.Drawing.Size(210, 24);
+            this.toolStripSetUnavailable.Text = "Set Unavailable";
+            this.toolStripSetUnavailable.Click += new System.EventHandler(this.setUnavailableToolStripMenuItem_Click);
+            // 
+            // clearToolStripMenuItem
+            // 
+            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.clearToolStripMenuItem.Text = "Clear";
+            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
+            // depotRequestMenu
+            // 
+            this.depotRequestMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.depotRequestMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripRequestCancelation});
+            this.depotRequestMenu.Name = "depotRequestMenu";
+            this.depotRequestMenu.ShowImageMargin = false;
+            this.depotRequestMenu.Size = new System.Drawing.Size(219, 28);
+            this.depotRequestMenu.Opened += new System.EventHandler(this.depotRequestMenu_Opened);
+            // 
+            // toolStripRequestCancelation
+            // 
+            this.toolStripRequestCancelation.Name = "toolStripRequestCancelation";
+            this.toolStripRequestCancelation.Size = new System.Drawing.Size(218, 24);
+            this.toolStripRequestCancelation.Text = "Request shift cancelation";
+            this.toolStripRequestCancelation.Click += new System.EventHandler(this.toolStripRequestCancelation_Click);
+            // 
+            // toolStripApproveRequest
+            // 
+            this.toolStripApproveRequest.Name = "toolStripApproveRequest";
+            this.toolStripApproveRequest.Size = new System.Drawing.Size(210, 24);
+            this.toolStripApproveRequest.Text = "Approve request";
+            this.toolStripApproveRequest.Click += new System.EventHandler(this.toolStripApproveRequest_Click);
+            // 
+            // toolStripDeclineRequest
+            // 
+            this.toolStripDeclineRequest.Name = "toolStripDeclineRequest";
+            this.toolStripDeclineRequest.Size = new System.Drawing.Size(210, 24);
+            this.toolStripDeclineRequest.Text = "Decline request";
+            this.toolStripDeclineRequest.Click += new System.EventHandler(this.toolStripDeclineRequest_Click);
             // 
             // WorkshiftUC
             // 
@@ -167,11 +246,13 @@
             this.Controls.Add(this.panelDivider);
             this.MinimumSize = new System.Drawing.Size(871, 30);
             this.Name = "WorkshiftUC";
-            this.Size = new System.Drawing.Size(871, 45);
+            this.Size = new System.Drawing.Size(871, 79);
             this.panelDateWrapper.ResumeLayout(false);
             this.panelDateWrapper.PerformLayout();
             this.panelWrapperContents.ResumeLayout(false);
             this.panelWrapperContents.PerformLayout();
+            this.rightClickMenu.ResumeLayout(false);
+            this.depotRequestMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,5 +271,13 @@
         private System.Windows.Forms.Label lblShiftEnd;
         private System.Windows.Forms.Panel panelDateWrapper;
         private System.Windows.Forms.Panel panelWrapperContents;
+        private System.Windows.Forms.ContextMenuStrip rightClickMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripSetAvailable;
+        private System.Windows.Forms.ToolStripMenuItem toolStripSetUnavailable;
+        private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip depotRequestMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripRequestCancelation;
+        private System.Windows.Forms.ToolStripMenuItem toolStripApproveRequest;
+        private System.Windows.Forms.ToolStripMenuItem toolStripDeclineRequest;
     }
 }

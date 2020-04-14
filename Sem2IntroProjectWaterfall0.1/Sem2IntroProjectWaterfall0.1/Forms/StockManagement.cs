@@ -24,6 +24,11 @@ namespace Sem2IntroProjectWaterfall0._1
             currentInventory = new Inventory(loggedInEmployee.DepartmentID);
             foreach (StockItem s in currentInventory.Items)
                 pnlStocks.Controls.Add(new StockUC(s));
+            if (loggedInEmployee.Role >= Role.Manager)
+            {
+                lblDepartment.Visible = true;
+                cbDepartments.Visible = true;
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)

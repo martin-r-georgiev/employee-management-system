@@ -33,14 +33,16 @@
             this.btnPreviousDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
             this.flpWorkshifts = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnToggleView = new System.Windows.Forms.Button();
+            this.btnChangePreferences = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBack
             // 
             this.btnBack.Location = new System.Drawing.Point(16, 15);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(100, 47);
+            this.btnBack.Size = new System.Drawing.Size(100, 29);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -52,15 +54,15 @@
             this.lblDate.Location = new System.Drawing.Point(513, 37);
             this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(347, 24);
+            this.lblDate.Size = new System.Drawing.Size(347, 25);
             this.lblDate.TabIndex = 22;
-            this.lblDate.Text = "Today";
+            this.lblDate.Text = "<Placeholder> - <Placeholder>";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnPreviousDay
             // 
             this.btnPreviousDay.Location = new System.Drawing.Point(868, 37);
-            this.btnPreviousDay.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPreviousDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPreviousDay.Name = "btnPreviousDay";
             this.btnPreviousDay.Size = new System.Drawing.Size(35, 28);
             this.btnPreviousDay.TabIndex = 23;
@@ -71,7 +73,7 @@
             // btnNextDay
             // 
             this.btnNextDay.Location = new System.Drawing.Point(911, 37);
-            this.btnNextDay.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNextDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNextDay.Name = "btnNextDay";
             this.btnNextDay.Size = new System.Drawing.Size(35, 28);
             this.btnNextDay.TabIndex = 24;
@@ -83,22 +85,47 @@
             // 
             this.flpWorkshifts.AutoSize = true;
             this.flpWorkshifts.Location = new System.Drawing.Point(16, 69);
-            this.flpWorkshifts.MaximumSize = new System.Drawing.Size(949, 461);
+            this.flpWorkshifts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flpWorkshifts.MaximumSize = new System.Drawing.Size(949, 460);
             this.flpWorkshifts.Name = "flpWorkshifts";
-            this.flpWorkshifts.Size = new System.Drawing.Size(949, 461);
+            this.flpWorkshifts.Size = new System.Drawing.Size(949, 460);
             this.flpWorkshifts.TabIndex = 25;
+            // 
+            // btnToggleView
+            // 
+            this.btnToggleView.Location = new System.Drawing.Point(16, 535);
+            this.btnToggleView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnToggleView.Name = "btnToggleView";
+            this.btnToggleView.Size = new System.Drawing.Size(152, 26);
+            this.btnToggleView.TabIndex = 26;
+            this.btnToggleView.Text = "Toggle Daily view";
+            this.btnToggleView.UseVisualStyleBackColor = true;
+            this.btnToggleView.Click += new System.EventHandler(this.btnToggleView_Click);
+            // 
+            // btnChangePreferences
+            // 
+            this.btnChangePreferences.Location = new System.Drawing.Point(175, 535);
+            this.btnChangePreferences.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnChangePreferences.Name = "btnChangePreferences";
+            this.btnChangePreferences.Size = new System.Drawing.Size(167, 28);
+            this.btnChangePreferences.TabIndex = 28;
+            this.btnChangePreferences.Text = "Change Preferences";
+            this.btnChangePreferences.UseVisualStyleBackColor = true;
+            this.btnChangePreferences.Click += new System.EventHandler(this.btnChangePreferences_Click);
             // 
             // Workshifts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 542);
+            this.ClientSize = new System.Drawing.Size(984, 574);
+            this.Controls.Add(this.btnChangePreferences);
+            this.Controls.Add(this.btnToggleView);
             this.Controls.Add(this.flpWorkshifts);
             this.Controls.Add(this.btnNextDay);
             this.Controls.Add(this.btnPreviousDay);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.btnBack);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Workshifts";
             this.Text = "Workshifts";
             this.ResumeLayout(false);
@@ -113,5 +140,7 @@
         private System.Windows.Forms.Button btnPreviousDay;
         private System.Windows.Forms.Button btnNextDay;
         private System.Windows.Forms.FlowLayoutPanel flpWorkshifts;
+        private System.Windows.Forms.Button btnToggleView;
+        private System.Windows.Forms.Button btnChangePreferences;
     }
 }

@@ -40,10 +40,9 @@
             // 
             // btnStocks
             // 
-            this.btnStocks.Location = new System.Drawing.Point(129, 123);
-            this.btnStocks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStocks.Location = new System.Drawing.Point(97, 100);
             this.btnStocks.Name = "btnStocks";
-            this.btnStocks.Size = new System.Drawing.Size(107, 98);
+            this.btnStocks.Size = new System.Drawing.Size(80, 80);
             this.btnStocks.TabIndex = 0;
             this.btnStocks.Text = "Stock";
             this.btnStocks.UseVisualStyleBackColor = true;
@@ -51,32 +50,31 @@
             // 
             // btnEmployees
             // 
-            this.btnEmployees.Location = new System.Drawing.Point(129, 229);
-            this.btnEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEmployees.Location = new System.Drawing.Point(183, 186);
             this.btnEmployees.Name = "btnEmployees";
-            this.btnEmployees.Size = new System.Drawing.Size(107, 98);
+            this.btnEmployees.Size = new System.Drawing.Size(80, 80);
             this.btnEmployees.TabIndex = 1;
             this.btnEmployees.Text = "Management";
             this.btnEmployees.UseVisualStyleBackColor = true;
+            this.btnEmployees.Visible = false;
             this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_Click);
             // 
             // btnStatistics
             // 
-            this.btnStatistics.Location = new System.Drawing.Point(244, 123);
-            this.btnStatistics.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStatistics.Location = new System.Drawing.Point(97, 186);
             this.btnStatistics.Name = "btnStatistics";
-            this.btnStatistics.Size = new System.Drawing.Size(107, 98);
+            this.btnStatistics.Size = new System.Drawing.Size(80, 80);
             this.btnStatistics.TabIndex = 2;
             this.btnStatistics.Text = "Statistics";
             this.btnStatistics.UseVisualStyleBackColor = true;
+            this.btnStatistics.Visible = false;
             this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
             // btnWorkshifts
             // 
-            this.btnWorkshifts.Location = new System.Drawing.Point(244, 229);
-            this.btnWorkshifts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnWorkshifts.Location = new System.Drawing.Point(183, 100);
             this.btnWorkshifts.Name = "btnWorkshifts";
-            this.btnWorkshifts.Size = new System.Drawing.Size(107, 98);
+            this.btnWorkshifts.Size = new System.Drawing.Size(80, 80);
             this.btnWorkshifts.TabIndex = 3;
             this.btnWorkshifts.Text = "Work Shifts";
             this.btnWorkshifts.UseVisualStyleBackColor = true;
@@ -84,10 +82,9 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(16, 15);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBack.Location = new System.Drawing.Point(12, 12);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(72, 58);
+            this.btnBack.Size = new System.Drawing.Size(54, 47);
             this.btnBack.TabIndex = 4;
             this.btnBack.Text = "Logout";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -95,40 +92,38 @@
             // 
             // btnCheckin
             // 
-            this.btnCheckin.Location = new System.Drawing.Point(423, 432);
-            this.btnCheckin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCheckin.Location = new System.Drawing.Point(317, 351);
             this.btnCheckin.Name = "btnCheckin";
-            this.btnCheckin.Size = new System.Drawing.Size(207, 28);
+            this.btnCheckin.Size = new System.Drawing.Size(155, 23);
             this.btnCheckin.TabIndex = 5;
             this.btnCheckin.Text = "Check In";
             this.btnCheckin.UseVisualStyleBackColor = true;
+            this.btnCheckin.Visible = false;
             this.btnCheckin.Click += new System.EventHandler(this.BtnCheckin_Click);
             // 
             // lbWorkers
             // 
             this.lbWorkers.FormattingEnabled = true;
-            this.lbWorkers.ItemHeight = 16;
-            this.lbWorkers.Location = new System.Drawing.Point(423, 62);
-            this.lbWorkers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbWorkers.Location = new System.Drawing.Point(317, 50);
             this.lbWorkers.Name = "lbWorkers";
-            this.lbWorkers.Size = new System.Drawing.Size(205, 356);
+            this.lbWorkers.Size = new System.Drawing.Size(155, 290);
             this.lbWorkers.TabIndex = 6;
             // 
             // btnRequests
             // 
-            this.btnRequests.Location = new System.Drawing.Point(423, 26);
-            this.btnRequests.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRequests.Location = new System.Drawing.Point(317, 21);
             this.btnRequests.Name = "btnRequests";
-            this.btnRequests.Size = new System.Drawing.Size(207, 28);
+            this.btnRequests.Size = new System.Drawing.Size(155, 23);
             this.btnRequests.TabIndex = 7;
             this.btnRequests.Text = "Requests";
             this.btnRequests.UseVisualStyleBackColor = true;
+            this.btnRequests.Visible = false;
             // 
             // Dashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 470);
+            this.ClientSize = new System.Drawing.Size(485, 382);
             this.Controls.Add(this.btnRequests);
             this.Controls.Add(this.lbWorkers);
             this.Controls.Add(this.btnCheckin);
@@ -137,7 +132,6 @@
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.btnStocks);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Dashboard";
             this.Text = "Dashboard";
             this.ResumeLayout(false);

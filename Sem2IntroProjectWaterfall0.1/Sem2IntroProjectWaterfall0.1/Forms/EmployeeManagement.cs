@@ -21,6 +21,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             InitializeComponent();
         }
+        #region Auxilary methods
 
         private void UpdateDepartmentList() { departments = Department.GetAllDepartments(); }
 
@@ -39,18 +40,23 @@ namespace Sem2IntroProjectWaterfall0._1
             tbEmail.Clear();
             dtpBirthday.Value = DateTime.Now.Date;
         }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             Dashboard newScreen = new Dashboard();
             newScreen.Show();
             this.Close();
         }
+        #endregion
+
+        #region Employee Controls
+
+        #region Events
 
         private void cbRole_DropDown(object sender, EventArgs e)
         {
             cbRole.Items.Clear();
             foreach (Role role in Enum.GetValues(typeof(Role))) { cbRole.Items.Add(role); }
+            cbRole.Items.Remove(Role.Owner);
         }
 
         private void cbDepartments_DropDown(object sender, EventArgs e)
@@ -59,18 +65,9 @@ namespace Sem2IntroProjectWaterfall0._1
             UpdateDepartmentList();
             foreach (Department department in departments) { cbDepartments.Items.Add(department.Name); }
         }
-        private bool checkforwhitespace(string input)
-        {
-            string pattern = @"^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
-            Regex rg = new Regex(pattern);
-            if (rg.IsMatch(input))
-                return true;
-            return false;
-
-        }
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            if (!checkforwhitespace(tbUsername.Text) || string.IsNullOrEmpty(tbPassword.Text) || string.IsNullOrEmpty(tbHourlySalary.Text))
+            if (!CheckForWhitespace(tbUsername.Text) || string.IsNullOrEmpty(tbPassword.Text) || string.IsNullOrEmpty(tbHourlySalary.Text))
             {
                 MessageBox.Show("Please fill all required fields and try again.");
             }
@@ -99,86 +96,6 @@ namespace Sem2IntroProjectWaterfall0._1
                 else MessageBox.Show("Invalid hourly salary input. Please check for any mistakes and try again.");
             }
         }
-
-
-        private void btnAssignEmployee_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Employee selectedUser = employees[cbEmployeeAssign.SelectedIndex];
-                Department selectedDepartment = departments[cbDepartmentEdit.SelectedIndex];
-                Department oldDepartment = new Department(selectedUser.DepartmentID);
-                oldDepartment.AssignEmployeeTo(selectedUser.UserID, selectedDepartment.DepartmentId);
-            } catch (Exception exc) { MessageBox.Show(exc.Message); }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (rbCreate.Checked)
-            {
-                if (checkforwhitespace(tbDepartmentEditName.Text))
-                {
-                    try
-                    {
-                        Department newDepartment = new Department(tbDepartmentEditName.Text, tbDepartmentEditAddress.Text);
-                        tbDepartmentEditAddress.Clear();
-                        tbDepartmentEditName.Clear();
-                    }
-                    catch (Exception exc) { MessageBox.Show(exc.Message); }
-                }
-                else
-                {
-                    MessageBox.Show("Please enter a valid name, adress");
-                }
-            }
-            else if (rbModify.Checked)
-            {
-                try
-                {
-                    if (tbDepartmentEditAddress.TextLength > 0 && tbDepartmentEditName.TextLength > 0)
-                    {
-                        Department selectedDepartment = departments[cbDepartmentEdit.SelectedIndex];
-                        selectedDepartment.Address = tbDepartmentEditAddress.Text;
-                        selectedDepartment.Name = tbDepartmentEditName.Text;
-                        tbDepartmentEditAddress.Clear();
-                        tbDepartmentEditName.Clear();
-                    }
-                }
-                catch (Exception exc) { MessageBox.Show(exc.Message); }
-            }
-        }
-
-        private void btnDepartmentRemove_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Department selectedDepartment = departments[cbDepartmentEdit.SelectedIndex];
-                selectedDepartment.RemoveFromDatabase();
-            }
-            catch (MinimalEmployeesException ex) { MessageBox.Show(ex.Message); }
-            catch (Exception exc) { MessageBox.Show(exc.Message); }
-        }
-
-        private void btnRemoveEmployee_Click(object sender, EventArgs e)
-        {
-            if (cbPersonalInfoList.SelectedIndex != -1)
-            {
-                try
-                {
-                    int index = cbPersonalInfoList.SelectedIndex;
-                    employees[index].RemoveFromDatabase();
-                    employees.RemoveAt(index);
-                    MessageBox.Show($"Employee successfully removed from the system.");
-                    cbPersonalInfoList.SelectedIndex = -1;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString(), $"Failed to remove employee", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else MessageBox.Show("Please select an employee and try again.");
-        }
-
         private void cbPersonalInfoList_DropDown(object sender, EventArgs e)
         {
             cbPersonalInfoList.Items.Clear();
@@ -248,6 +165,130 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             ClearEmployeePersonalInfo();
         }
+        private void cbPassVisible_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPassVisible.Checked) tbPassword.UseSystemPasswordChar = false;
+            else tbPassword.UseSystemPasswordChar = true;
+        }
+        #endregion
+
+        #region Methods
+        private bool CheckForWhitespace(string input)
+        {
+            string pattern = @"^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+            Regex rg = new Regex(pattern);
+            if (rg.IsMatch(input))
+                return true;
+            return false;
+
+        }
+
+        #endregion
+
+        #endregion
+        #region Department Controls
+
+        #region Events
+
+       
+        private void btnAssignEmployee_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Employee selectedUser = employees[cbEmployeeAssign.SelectedIndex];
+                Department selectedDepartment = departments[cbDepartmentEdit.SelectedIndex];
+                Department oldDepartment = new Department(selectedUser.DepartmentID);
+                oldDepartment.AssignEmployeeTo(selectedUser.UserID, selectedDepartment.DepartmentId);
+            } catch (Exception exc) { MessageBox.Show(exc.Message); }
+            finally
+            {
+                cbEmployeeAssign.SelectedIndex = -1;
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (rbCreate.Checked)
+            {
+                if (CheckForWhitespace(tbDepartmentEditName.Text))
+                {
+                    try
+                    {
+                        Department newDepartment = new Department(tbDepartmentEditName.Text, tbDepartmentEditAddress.Text);
+                        tbDepartmentEditAddress.Clear();
+                        tbDepartmentEditName.Clear();
+                    }
+                    catch (Exception exc) { MessageBox.Show(exc.Message); }
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid name, adress");
+                }
+            }
+            else if (rbModify.Checked)
+            {
+                try
+                {
+                    if (tbDepartmentEditAddress.TextLength > 0 && tbDepartmentEditName.TextLength > 0)
+                    {
+                        Department selectedDepartment = departments[cbDepartmentEdit.SelectedIndex];
+                        selectedDepartment.Address = tbDepartmentEditAddress.Text;
+                        selectedDepartment.Name = tbDepartmentEditName.Text;
+                        tbDepartmentEditAddress.Clear();
+                        tbDepartmentEditName.Clear();
+                    }
+                }
+                catch (Exception exc) { MessageBox.Show(exc.Message); }
+            }
+        }
+
+        private void btnDepartmentRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Department selectedDepartment = departments[cbDepartmentEdit.SelectedIndex];
+                foreach (Employee emp in selectedDepartment.GetAllEmployees())
+                    if (emp.Role >= LoggedInUser.role)
+                    {
+                        MessageBox.Show("Cannot remove a department if there is someone with the same of higher role than you. Please contact the owner!");
+                        return;
+                    }
+                selectedDepartment.RemoveFromDatabase();
+                cbDepartmentEdit.SelectedIndex = -1;
+            }
+            catch (MinimalEmployeesException ex) { MessageBox.Show(ex.Message); }
+            catch (Exception exc) { MessageBox.Show(exc.Message); }
+        }
+
+        private void btnRemoveEmployee_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to delete this employee?", "Confirm", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (cbPersonalInfoList.SelectedIndex != -1)
+                {
+                    try
+                    {
+                        int index = cbPersonalInfoList.SelectedIndex;
+                        if (LoggedInUser.role > employees[index].Role)
+                        {
+                            employees[index].RemoveFromDatabase();
+                            employees.RemoveAt(index);
+                            MessageBox.Show($"Employee successfully removed from the system.");
+                            cbPersonalInfoList.SelectedIndex = -1;
+                        }
+                        else MessageBox.Show("Can only remove employees with a lower role than you!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), $"Failed to remove employee", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else MessageBox.Show("Please select an employee and try again.");
+            }
+        }
+
+
 
         private void cbDepartmentEdit_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -259,18 +300,77 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
-        //Add item controls
-
-        private bool checkforwhitespacestockitem(string input)
+        private void rbCreate_CheckedChanged(object sender, EventArgs e)
         {
-            string pattern = @"^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._][\w\s-]+(?<![_.])$";
-            Regex rg = new Regex(pattern);
-            if (rg.IsMatch(input))
-                return true;
-            return false;
+            if (rbCreate.Checked)
+            {
+                ChangeDepartmentEditMode(true);
+                ClearDepartmentTextboxes();
+            }
+            else if (rbModify.Checked)
+            {
+                ChangeDepartmentEditMode(false);
+                ClearDepartmentTextboxes();
 
+            }
+        }
+        private void cbDepartmentEdit_DropDown(object sender, EventArgs e)
+        {
+            cbDepartmentEdit.Items.Clear();
+            UpdateDepartmentList();
+            foreach (Department department in departments) cbDepartmentEdit.Items.Add(department.Name);
         }
 
+        private void cbEmployeeAssign_DropDown(object sender, EventArgs e)
+        {
+            cbEmployeeAssign.Items.Clear();
+            UpdateEmployeeList();
+            foreach (Employee emp in employees) cbEmployeeAssign.Items.Add(emp.MainDetails);
+        }
+        #endregion
+
+        #region Methods
+        private void ChangeDepartmentEditMode(bool isCreateMode)
+        {
+            lblEditDep.Visible = !isCreateMode;
+            cbDepartmentEdit.Visible = !isCreateMode;
+            pnlAssignEmployee1.Visible = !isCreateMode;
+            pnlAssignEmployee2.Visible = !isCreateMode;
+            lblEmployeeAssign.Visible = !isCreateMode;
+            cbEmployeeAssign.Visible = !isCreateMode;
+            btnAssignEmployee.Visible = !isCreateMode;
+            btnDepartmentRemove.Visible = !isCreateMode;
+            lblEmployeeMove.Visible = !isCreateMode;
+            if (isCreateMode)
+            {
+                btnEdit.Location = new Point(82, 235);
+                btnEdit.Size = new Size(176, 30);
+                tbDepartmentEditName.Location = new Point(82, 54);
+                tbDepartmentEditAddress.Location = new Point(82, 89);
+                lblEditName.Location = new Point(13, 56);
+                lblEditAddress.Location = new Point(13, 91);
+            }
+            else
+            {
+                btnEdit.Location = new Point(173, 339);
+                btnEdit.Size = new Size(85, 43);
+                tbDepartmentEditName.Location = new Point(82, 89);
+                tbDepartmentEditAddress.Location = new Point(82, 121);
+                lblEditName.Location = new Point(13, 91);
+                lblEditAddress.Location = new Point(13, 123);
+            }
+        }
+        void ClearDepartmentTextboxes()
+        {
+            tbDepartmentEditName.Clear();
+            tbDepartmentEditAddress.Clear();
+        }
+        #endregion
+
+        #endregion
+        #region Stock Controls
+
+        #region Events
         private void btnCreateNewStock_Click(object sender, EventArgs e)
         {
             if (checkforwhitespacestockitem(tbStockCreateName.Text))
@@ -381,77 +481,7 @@ namespace Sem2IntroProjectWaterfall0._1
             else MessageBox.Show("Please select an item and a department and try again.");
         }
 
-        //Removing item from department
-
-        private void cbPassVisible_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbPassVisible.Checked) tbPassword.UseSystemPasswordChar = false;
-            else tbPassword.UseSystemPasswordChar = true;
-        }
-
-        private void rbCreate_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbCreate.Checked)
-            {
-                ChangeDepartmentEditMode(true);
-                ClearDepartmentTextboxes();
-            }
-            else if (rbModify.Checked)
-            {
-                ChangeDepartmentEditMode(false);
-                ClearDepartmentTextboxes();
-
-            }
-        }
-        private void ChangeDepartmentEditMode(bool isCreateMode)
-        {
-            lblEditDep.Visible = !isCreateMode;
-            cbDepartmentEdit.Visible = !isCreateMode;
-            pnlAssignEmployee1.Visible = !isCreateMode;
-            pnlAssignEmployee2.Visible = !isCreateMode;
-            lblEmployeeAssign.Visible = !isCreateMode;
-            cbEmployeeAssign.Visible = !isCreateMode;
-            btnAssignEmployee.Visible = !isCreateMode;
-            btnDepartmentRemove.Visible = !isCreateMode;
-            lblEmployeeMove.Visible = !isCreateMode;
-            if (isCreateMode)
-            {
-                btnEdit.Location = new Point(82, 235);
-                btnEdit.Size = new Size(176, 30);
-                tbDepartmentEditName.Location = new Point(82, 54);
-                tbDepartmentEditAddress.Location = new Point(82, 89);
-                lblEditName.Location = new Point(13, 56);
-                lblEditAddress.Location = new Point(13, 91);
-            } else
-            {
-                btnEdit.Location = new Point(173, 339);
-                btnEdit.Size = new Size(85, 43);
-                tbDepartmentEditName.Location = new Point(82,89);
-                tbDepartmentEditAddress.Location = new Point(82,121);
-                lblEditName.Location = new Point(13,91);
-                lblEditAddress.Location = new Point(13, 123);
-            }
-        }
-        void ClearDepartmentTextboxes()
-        {
-            tbDepartmentEditName.Clear();
-            tbDepartmentEditAddress.Clear();
-        }
-
-        private void cbDepartmentEdit_DropDown(object sender, EventArgs e)
-        {
-            cbDepartmentEdit.Items.Clear();
-            UpdateDepartmentList();
-            foreach (Department department in departments) cbDepartmentEdit.Items.Add(department.Name);
-        }
-
-        private void cbEmployeeAssign_DropDown(object sender, EventArgs e)
-        {
-            cbEmployeeAssign.Items.Clear();
-            UpdateEmployeeList();
-            foreach (Employee emp in employees) cbEmployeeAssign.Items.Add(emp.MainDetails);
-        }
-
+        //Removing item from department 
         private void tcManagement_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tcManagement.SelectedIndex == 1) { rbCreate.Checked = true; rbAdd.Checked = true; }
@@ -468,6 +498,23 @@ namespace Sem2IntroProjectWaterfall0._1
                 ChangeStockEditMode(false);
             }
         }
+       
+        private void cbRemoveCompletely_CheckedChanged(object sender, EventArgs e)
+        {
+            cbDepartmentAssignItem.Enabled = !cbRemoveCompletely.Checked;
+        }
+        #endregion
+
+        #region Methods
+        private bool checkforwhitespacestockitem(string input)
+        {
+            string pattern = @"^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._][\w\s-]+(?<![_.])$";
+            Regex rg = new Regex(pattern);
+            if (rg.IsMatch(input))
+                return true;
+            return false;
+
+        }
         void ChangeStockEditMode(bool isAddMode)
         {
             cbRemoveCompletely.Visible = !isAddMode;
@@ -477,20 +524,20 @@ namespace Sem2IntroProjectWaterfall0._1
             numUdCurrentAmmount.Visible = isAddMode;
             numUdThreshold.Visible = isAddMode;
             btnAssignItemToDepartment.Visible = isAddMode;
-            
+
             if (isAddMode)
             {
                 btnAssignItemToDepartment.Size = new Size(256, 24);
-            } else
+            }
+            else
             {
                 btnRemoveItem.Location = new Point(13, 280);
                 btnRemoveItem.Size = new Size(256, 24);
             }
         }
+        #endregion
 
-        private void cbRemoveCompletely_CheckedChanged(object sender, EventArgs e)
-        {
-            cbDepartmentAssignItem.Enabled = !cbRemoveCompletely.Checked;
-        }
+        #endregion
     }
+
 }

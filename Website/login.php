@@ -25,6 +25,21 @@ $result = $statement->fetch();
 if ($result)
 {
     session_start();
+    try {
+      $sql = "SELECT * FROM employees AS e INNER JOIN users AS u ON e.userID = u.userID WHERE u.username = :user;";
+      $statement = $conn->prepare($sql);
+      $statement->bindParam(":user", $user);
+      $statement->execute();
+      $user_info = $statement->fetch(PDO::FETCH_ASSOC);
+    }
+    catch (PDOerrorInfo $e) {}
+    $_SESSION['email']  = $user_info['email'];
+    $_SESSION['firstName'] = $user_info['firstName'];
+    $_SESSION['lastName'] = $user_info['lastName'];
+    $_SESSION['nationality'] = $user_info['nationality'];
+    $_SESSION['address'] = $user_info['address'];
+    $_SESSION['phoneNumber'] = $user_info['phoneNumber'];
+    $_SESSION['dateOfBirth'] = $user_info['dateOfBirth'];
     $_SESSION["username"] = $user;
     header("Location:home.php");
 }

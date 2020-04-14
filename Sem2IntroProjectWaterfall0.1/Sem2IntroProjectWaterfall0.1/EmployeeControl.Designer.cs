@@ -42,6 +42,7 @@
             this.lblEmployee.Size = new System.Drawing.Size(222, 15);
             this.lblEmployee.TabIndex = 0;
             this.lblEmployee.Text = "FirstName LastName (Username)";
+            this.lblEmployee.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EmployeeControl_MouseClick);
             this.lblEmployee.MouseEnter += new System.EventHandler(this.EmployeeControl_MouseEnter);
             this.lblEmployee.MouseLeave += new System.EventHandler(this.EmployeeControl_MouseLeave);
             // 
@@ -55,6 +56,7 @@
             this.lblDepartment.Size = new System.Drawing.Size(106, 15);
             this.lblDepartment.TabIndex = 1;
             this.lblDepartment.Text = "DepartmentName";
+            this.lblDepartment.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EmployeeControl_MouseClick);
             this.lblDepartment.MouseEnter += new System.EventHandler(this.EmployeeControl_MouseEnter);
             this.lblDepartment.MouseLeave += new System.EventHandler(this.EmployeeControl_MouseLeave);
             // 
@@ -67,6 +69,7 @@
             this.Controls.Add(this.lblEmployee);
             this.Name = "EmployeeControl";
             this.Size = new System.Drawing.Size(313, 43);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EmployeeControl_MouseClick);
             this.MouseEnter += new System.EventHandler(this.EmployeeControl_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.EmployeeControl_MouseLeave);
             this.ResumeLayout(false);

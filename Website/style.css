@@ -1,88 +1,6 @@
-/*------------------------------------------------*/
-/*Login page*/
 body {
-  font-family: 'Open Sans';
+  font-family: 'Montserrat';
   background: url(images/forest.jpg) no-repeat center center fixed;
-}
-
-.main-section {
-  margin: auto;
-  margin-top: 150px;
-  padding: 0;
-}
-
-.modal-content {
-  background-color: #1D6161;
-  opacity: 0.94;
-  padding: 0 10px;
-  box-shadow: 0px 0px 10px #073333;
-}
-
-.comp-img {
-  margin-bottom: 30px;
-  margin-top: 15px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group input {
-   height: 45px;
-   border-radius: 8px;
-   border: 0; /*removes inherited border*/
-   font-size: 18px;
-   padding-left: 45px;
-}
-
-.form-group::before {
-  font-family: 'Font Awesome\ 5 Free';
-  content: "\f007";
-  position: absolute;
-  font-size: 21px;
-  color: #1D6161;
-  left: 28px;
-  padding-top: 7px;
-  font-weight: 900;
-}
-
-.form-group:last-of-type::before {
-    content: "\f023";
-}
-
-.btn {
-    width: 50%;
-    margin: 10px 0 15px;
-}
-
-.btn-login {
-  background-color: #269AD3;
-  font-size: 18px;
-  color: #fff;
-  padding: 7px 12px;
-  border-radius: 8px;
-  border-bottom: 3px solid #206FBD;
-}
-
-.btn-login:hover, .btn-login:focus {
-  color: #fff;
-  background-color: #2080AD!important;
-  border-bottom: 3px solid #2080AD!important;
-}
-
-.fas {
-  font-size: 18px;
-  margin-right: 7px;
-}
-
-.forgotten {
-    padding: 10px 0 15px;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.forgotten a {
-  color: #C4D7E5;
 }
 
 /*------------------------------------------*/
@@ -93,7 +11,7 @@ body {
 }
 
 .bg-light {
-  background-color: transparent !important;
+   background-color: transparent !important;
 }
 
 .navbar-nav {
@@ -108,23 +26,44 @@ body {
 }
 
 .nav-link {
-  color: #4A8E8D !important;
+  color: #4A8E8D  !important;
 }
 
 .active a{
-  color: #0D2D1E !important;
-}
-/*------------------------------------------*/
-/*Forgotten Password*/
-.p-recover {
-  padding: 10px 0 15px;
-  font-weight: bold;
-  font-size: 18px;
-  color: #C4D7E5 !important;
+  color: #0D2D1E  !important;
 }
 
 /*------------------------------------------*/
-/*Recover Password*/
-.form-recover::before {
-  content: "\f023"!important;
+/*Profile page*/
+.container {
+  margin-top: 75px;
+  background-color: #EFF8FF;
+  border-radius: 15px;
+  opacity: 0.96;
+  box-shadow: 0px 0px 10px #073333;
+}
+
+h1 {
+  padding: 20px 15px
+}
+
+.row-content {
+  padding: 20px 20px;
+}
+
+.column-one {
+  margin-left: 20px;
+}
+
+.btn-cancel {
+  margin-left: 10px;
+}
+
+.btn-primary {
+  background-color: #269AD3!important;
+  border-color: transparent;
+}
+
+.row-info {
+  margin-top: 20px;
 }

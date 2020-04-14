@@ -18,6 +18,7 @@ namespace Sem2IntroProjectWaterfall0._1
             lbWorkers.Items.Add("Ivan");
             lbWorkers.Items.Add("John");
             lbWorkers.Items.Add("Peter");
+            UpdateRoleGUI();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -58,6 +59,16 @@ namespace Sem2IntroProjectWaterfall0._1
         private void BtnCheckin_Click(object sender, EventArgs e)
         {
             StockItem item = new StockItem("Samsung S2");
+        }
+        private void UpdateRoleGUI()
+        {
+            if (LoggedInUser.role == Role.Worker) btnCheckin.Visible = true;
+            if (LoggedInUser.role >= Role.Manager)
+            {
+                btnRequests.Visible = true;
+                btnStatistics.Visible = true;
+            }
+            if (LoggedInUser.role >= Role.Admin) btnEmployees.Visible = true;
         }
     }
 }

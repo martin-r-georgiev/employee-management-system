@@ -12,22 +12,29 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     public partial class Workshifts : Form
     {
+        //Daily view
         DateTime selectedDate;
+        //Weekly view
+        DateTime startDate, endDate;
+
+        int panelState = 0;
 
         public Workshifts()
         {
             InitializeComponent();
             selectedDate = DateTime.Now;
+            startDate = DateTimeControls.StartOfWeek(selectedDate, DayOfWeek.Monday);
+            endDate = startDate.AddDays(6);
             lblDate.Text = $"{selectedDate.ToString("dddd, dd MMMM yyyy")} (Today)";
+            lblDate.Text = $"{startDate.ToString("dd MMMM yyyy")} - {endDate.ToString("dd MMMM yyyy")}";
             WorkshiftUC.shiftOneStart = "9:00";
             WorkshiftUC.shiftTwoStart = "13:00";
             WorkshiftUC.shiftThreeStart = "17:00";
             WorkshiftUC.shiftThreeEnd = "21:00";
-            //UpdateWorkshiftPanel(selectedDate);
             UpdateWeeklyWorkshiftPanel(selectedDate);
         }
 
-        void UpdateWorkshiftPanel(DateTime time)
+        void UpdateDailyWorkshiftPanel(DateTime time)
         {
             bool isHeader = true;
             flpWorkshifts.Controls.Clear();
@@ -61,8 +68,15 @@ namespace Sem2IntroProjectWaterfall0._1
 
         void UpdateDateText()
         {
-            if (selectedDate.Date.Equals(DateTime.Now.Date)) lblDate.Text = $"{selectedDate.ToString("dddd, dd MMMM yyyy")} (Today)";
-            else lblDate.Text = selectedDate.ToString("dddd, dd MMMM yyyy");
+            switch(panelState)
+            {
+                case 0: lblDate.Text = $"{startDate.ToString("dd MMMM yyyy")} - {endDate.ToString("dd MMMM yyyy")}"; break;
+                case 1:
+                    {
+                        if (selectedDate.Date.Equals(DateTime.Now.Date)) lblDate.Text = $"{selectedDate.ToString("dddd, dd MMMM yyyy")} (Today)";
+                        else lblDate.Text = selectedDate.ToString("dddd, dd MMMM yyyy");
+                    }   break;
+            }        
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -74,18 +88,74 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnPreviousDay_Click(object sender, EventArgs e)
         {
-            selectedDate = selectedDate.AddDays(-1);
-            UpdateWorkshiftPanel(selectedDate);
-            UpdateDateText();
+            switch(panelState)
+            {
+                case 0:
+                    {
+                        startDate = startDate.AddDays(-7);
+                        endDate = endDate.AddDays(-7);
+                        UpdateWeeklyWorkshiftPanel(startDate);
+                        UpdateDateText();
+                    }   break;
+                case 1:
+                    {
+                        selectedDate = selectedDate.AddDays(-1);
+                        UpdateDailyWorkshiftPanel(selectedDate);
+                        UpdateDateText();
+                    }   break;
+            }
         }
 
         private void btnNextDay_Click(object sender, EventArgs e)
         {
-            selectedDate = selectedDate.AddDays(1);
-            UpdateWorkshiftPanel(selectedDate);
-            UpdateDateText();
+            switch (panelState)
+            {
+                case 0:
+                    {
+                        startDate = startDate.AddDays(7);
+                        endDate = endDate.AddDays(7);
+                        UpdateWeeklyWorkshiftPanel(startDate);
+                        UpdateDateText();
+                    }
+                    break;
+                case 1:
+                    {
+                        selectedDate = selectedDate.AddDays(1);
+                        UpdateDailyWorkshiftPanel(selectedDate);
+                        UpdateDateText();
+                    }
+                    break;
+            }
         }
-        
-       
+
+        private void btnToggleView_Click(object sender, EventArgs e)
+        {
+            switch (panelState)
+            {
+                case 0:
+                    {
+                        panelState = 1;
+                        UpdateDateText();
+                        UpdateDailyWorkshiftPanel(selectedDate);
+                        
+                        btnToggleView.Text = "Toggle Weekly view";
+                    }
+                    break;
+                case 1:
+                    {
+                        panelState = 0;
+                        UpdateDateText();
+                        UpdateWeeklyWorkshiftPanel(selectedDate);
+                        btnToggleView.Text = "Toggle Daily view";
+                    }
+                    break;
+            }
+        }
+
+        private void btnChangePreferences_Click(object sender, EventArgs e)
+        {
+            PreferencesNew fsd = new PreferencesNew();
+            fsd.Show();
+        }
     }
 }
