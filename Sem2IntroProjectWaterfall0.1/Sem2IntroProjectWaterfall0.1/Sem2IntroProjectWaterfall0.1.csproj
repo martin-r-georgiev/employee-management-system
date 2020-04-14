@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoWorkshift.cs" />
     <Compile Include="Custom Controls\WorkshiftCells.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,6 +83,8 @@
       <DependentUpon>WorkshiftUC.cs</DependentUpon>
     </Compile>
     <Compile Include="DateTimeControls.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="DaysOfTheWeek.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeControl.cs">
@@ -118,10 +121,12 @@
     <Compile Include="Exceptions\MinimalEmployeesException.cs" />
     <Compile Include="HashManager.cs" />
     <Compile Include="Exceptions\InvalidEntryException.cs" />
+    <Compile Include="ShiftsWorked.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="LoggedInUser.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LoggingLevels.cs" />
+    <Compile Include="Prefrences.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\StatisticsForm.cs">
@@ -151,6 +156,7 @@
     <Compile Include="Custom Controls\StockUC.Designer.cs">
       <DependentUpon>StockUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorkshiftData.cs" />
     <Compile Include="WorkshiftDatabaseHandler.cs" />
     <Compile Include="Custom Controls\WorkshiftWeeklyUC.cs">
       <SubType>UserControl</SubType>
