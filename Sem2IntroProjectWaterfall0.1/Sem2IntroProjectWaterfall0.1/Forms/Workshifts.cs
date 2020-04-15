@@ -18,6 +18,7 @@ namespace Sem2IntroProjectWaterfall0._1
         DateTime startDate, endDate;
 
         int panelState = 0;
+        AutoWorkshift ScheduleGenerator = new AutoWorkshift();
 
         public Workshifts()
         {
@@ -32,8 +33,17 @@ namespace Sem2IntroProjectWaterfall0._1
             WorkshiftUC.shiftThreeStart = "17:00";
             WorkshiftUC.shiftThreeEnd = "21:00";
             UpdateWeeklyWorkshiftPanel(selectedDate);
+            ScheduleChecker();  
+            
         }
-
+        public void ScheduleChecker()
+        {
+            string message= ScheduleGenerator.GenerateAndUpload();
+            if(message!="")
+            {
+                MessageBox.Show(message);
+            }
+        }
         void UpdateDailyWorkshiftPanel(DateTime time)
         {
             bool isHeader = true;

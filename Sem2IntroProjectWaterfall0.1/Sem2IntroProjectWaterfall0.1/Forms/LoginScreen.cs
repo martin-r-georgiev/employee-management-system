@@ -20,16 +20,17 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             InitializeComponent();
             this.AcceptButton = btnLogin;
-            AutoWorkshift generate = new AutoWorkshift();
-             workshiftss= generate.GenerateWorkshiftSchedule();
-            testingworkshift();
-            // generate.ExportToDatabase();
+            //AutoWorkshift generate = new AutoWorkshift();
+             //workshiftss= generate.GenerateWorkshiftSchedule();
+            //testingworkshift();
+            //generate.ExportToDatabase();
          }
 
         private void testingworkshift()
         {
             string message = "";
-            foreach (WorkshiftData w in workshiftss)
+            List<WorkshiftData> sortedlist= workshiftss.OrderBy(workshiftss => workshiftss.Date).ToList(); 
+            foreach (WorkshiftData w in sortedlist)
             {
                 message = message +w.Date.ToString("yyyy/MM/dd")+" "+ w.Day + " " + w.Workshift + " " + w.UserID +" "+w.DepartmentID+"\n";
             }

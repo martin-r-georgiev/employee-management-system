@@ -11,7 +11,7 @@ namespace Sem2IntroProjectWaterfall0._1
     {
         
         List<Prefrence> prefrences = new List<Prefrence>(); // copy of the database's prefence table 
-        List<WorkshiftData> Schedule = new List<WorkshiftData>();// the schedule that will be uploaded to the database; contains all departments 
+       public List<WorkshiftData> Schedule = new List<WorkshiftData>();// the schedule that will be uploaded to the database; contains all departments 
         DateTime nextmonday = DateTime.Now.StartOfWeek(DayOfWeek.Monday); // gets the current weeks monday
         List<string> departments = new List<string>(); // storing the department IDs to be used for workshift generation per departmetn
 
@@ -21,61 +21,29 @@ namespace Sem2IntroProjectWaterfall0._1
         {
 
             Prefrence toadd;
-            toadd = new Prefrence("John1", "2020-03-20", 0, "Tuesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John1", "2020-03-20", 1, "Tuesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John1", "2020-03-20", 2, "Tuesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John1", "2020-03-20", 0, "Monday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John1", "2020-03-20", 1, "Monday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John1", "2020-03-20", 2, "Monday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John1", "2020-03-20", 0, "Wednesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John1", "2020-03-20", 1, "Wednesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John1", "2020-03-20", 2, "Wednesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John1", "2020-03-20", 1, "Friday", "dep1"); prefrences.Add(toadd);
+           
 
-            toadd = new Prefrence("John2", "2020-03-20", 0, "Tuesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John2", "2020-03-20", 1, "Tuesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John2", "2020-03-20", 2, "Tuesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John2", "2020-03-20", 0, "Monday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John2", "2020-03-20", 1, "Monday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John2", "2020-03-20", 2, "Monday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John2", "2020-03-20", 0, "Wednesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John2", "2020-03-20", 1, "Wednesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John2", "2020-03-20", 2, "Wednesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John2", "2020-03-20", 1, "Friday", "dep1"); prefrences.Add(toadd);
-
-            toadd = new Prefrence("John3", "2020-03-20", 0, "Tuesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John3", "2020-03-20", 1, "Tuesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John3", "2020-03-20", 2, "Tuesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John3", "2020-03-20", 0, "Monday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John3", "2020-03-20", 1, "Monday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John3", "2020-03-20", 2, "Monday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John3", "2020-03-20", 0, "Wednesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John3", "2020-03-20", 1, "Wednesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John3", "2020-03-20", 2, "Wednesday", "dep1"); prefrences.Add(toadd);
-            toadd = new Prefrence("John3", "2020-03-20", 1, "Friday", "dep1"); prefrences.Add(toadd);
-
-            toadd = new Prefrence("John4", "2020-03-20", 0, "Tuesday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John4", "2020-03-20", 1, "Tuesday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John4", "2020-03-20", 2, "Tuesday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John4", "2020-03-20", 0, "Monday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John4", "2020-03-20", 1, "Monday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John4", "2020-03-20", 2, "Monday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John4", "2020-03-20", 0, "Friday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John4", "2020-03-20", 1, "Friday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John4", "2020-03-20", 2, "Friday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John4", "2020-03-20", 0, "Thursday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John4", "2020-03-20", 1, "Thursday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John4", "2020-03-20", 2, "Thursday", "dep2"); prefrences.Add(toadd);
             toadd = new Prefrence("John4", "2020-03-20", 0, "Wednesday", "dep2"); prefrences.Add(toadd);
             toadd = new Prefrence("John4", "2020-03-20", 1, "Wednesday", "dep2"); prefrences.Add(toadd);
             toadd = new Prefrence("John4", "2020-03-20", 2, "Wednesday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John4", "2020-03-20", 1, "Friday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John4", "2020-03-20", 1, "Tuesday", "dep2"); prefrences.Add(toadd);
 
-            toadd = new Prefrence("John5", "2020-03-20", 0, "Tuesday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John5", "2020-03-20", 1, "Tuesday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John5", "2020-03-20", 2, "Tuesday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John5", "2020-03-20", 0, "Monday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John5", "2020-03-20", 1, "Monday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John5", "2020-03-20", 2, "Monday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John5", "2020-03-20", 0, "Friday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John5", "2020-03-20", 1, "Friday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John5", "2020-03-20", 2, "Friday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John5", "2020-03-20", 0, "Thursday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John5", "2020-03-20", 1, "Thursday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John5", "2020-03-20", 2, "Thursday", "dep2"); prefrences.Add(toadd);
             toadd = new Prefrence("John5", "2020-03-20", 0, "Wednesday", "dep2"); prefrences.Add(toadd);
             toadd = new Prefrence("John5", "2020-03-20", 1, "Wednesday", "dep2"); prefrences.Add(toadd);
             toadd = new Prefrence("John5", "2020-03-20", 2, "Wednesday", "dep2"); prefrences.Add(toadd);
-            toadd = new Prefrence("John5", "2020-03-20", 1, "Friday", "dep2"); prefrences.Add(toadd);
-            departments.Add("dep1");
+            toadd = new Prefrence("John5", "2020-03-20", 1, "Tuesday", "dep2"); prefrences.Add(toadd);
             departments.Add("dep2");
         }
 
@@ -125,7 +93,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 for (int i = 0; i < 5; i++)
                     for (int j = 0; j < 3; j++)
                     {
-                        if (HasPeopleAssigned(converttoday(i), j, department) == false)// checks if there is anyone assigned on this shift
+                        if (HasPeopleAssigned(converttoday(i), j, department)==false)// checks if there is anyone assigned on this shift
                         {
                             for(int index=0;index<Schedule.Count();index++)
                             {
@@ -136,6 +104,7 @@ namespace Sem2IntroProjectWaterfall0._1
                                     WorkshiftData ToAdd = new WorkshiftData(Schedule[index].UserID, converttodate(i), j, converttoday(i), department);
                                     Schedule.RemoveAt(index);// remove the current guy from his already assigned workshift
                                     Schedule.Add(ToAdd);// add him to this one that requries someone to cover it
+                                    break; 
                                 }
                             }
 
@@ -143,6 +112,37 @@ namespace Sem2IntroProjectWaterfall0._1
                     }
             }
                 return Schedule;
+        }
+
+        public  string GenerateAndUpload() // call this one to generate and upload with checks in regard to not flood the database
+        {
+            string message = "";
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM workshiftsupdate", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    if (dataReader.Read())
+                    {
+                        if (DateTime.Parse(dataReader["nextupdate"].ToString()) <= DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd")))
+                        {
+                            GenerateWorkshiftSchedule();
+                            ExportToDatabase();
+                            message = "Sorry for the wait time, schedule was generating!";
+                        }
+                    }
+                    else
+                    {
+                        GenerateWorkshiftSchedule();
+                        ExportToDatabase();
+                        message = "Sorry for the wait time, schedule was generating!";
+                    }
+                    dataReader.Close();
+                }
+                con.Close();
+            }
+            return message;
         }
 
         public void ExportToDatabase()
@@ -177,15 +177,34 @@ namespace Sem2IntroProjectWaterfall0._1
                           cmd.Dispose();
                           
                         }
-                        con.Close();             
+                  
+                    con.Close();             
                 }
+            }
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                MySqlCommand cmd;
+                using (cmd = new MySqlCommand($"DELETE from workshiftsupdate where 1", con))
+                {
+                   
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                using (cmd = new MySqlCommand($"INSERT INTO workshiftsupdate (nextupdate) VALUES (@nextupdate)", con))
+                {
+                    cmd.Parameters.AddWithValue("@nextupdate", Schedule[Schedule.Count() - 1].Date.ToString("yyyy/MM/dd"));
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+
+                con.Close();
             }
         }
 
-        #endregion
+#endregion
 
-        #region Auxiliary Methods
-        public bool HasMultipleEntries(string day, int workshift)
+#region Auxiliary Methods
+public bool HasMultipleEntries(string day, int workshift)
         {
             int timesfound = 0;
             foreach(WorkshiftData w in Schedule)
