@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
 
 namespace Sem2IntroProjectWaterfall0._1
 {
@@ -53,12 +55,55 @@ namespace Sem2IntroProjectWaterfall0._1
             if (shiftCount != 10) MessageBox.Show("Please pick 10 shifts to your preference", "Workshifts not enough", MessageBoxButtons.OK);
             else
             {
-                MessageBox.Show("Succesfully picked preferences", "Preferences success", MessageBoxButtons.OK);
+               
+                // code here
+                if (CheckIfAlreadyPicked() == false)
+                {
+                    for (int i = 0; i < 15; i++)
+                    {
+                        if (allCbs[i].Checked == true)
+                        {
+                            string day = (i / 3).ToString();
+                            int shift = i % 3;
+                            DateTime DateOfPreferencePick = new DateTime();
+                            DateOfPreferencePick = DateTime.Now;
+                            Prefrence ToAdd = new Prefrence(LoggedInUser.userID, day, shift, DateOfPreferencePick.ToString("yyyy/MM/dd"));
+                            ToAdd.ExpediteToDatabase();
+                        }
+                        MessageBox.Show("Succesfully picked preferences", "Preferences success", MessageBoxButtons.OK);
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You already picked your preferences!");
+                }
 
-                //Code Here
-                this.Close();
             }
         }
+
+        private bool CheckIfAlreadyPicked()
+        {
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM preferences", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        string userID = dataReader["userID"].ToString();
+                        if (userID == LoggedInUser.userID)
+                            return true;
+                    }
+
+                    dataReader.Close();
+                }
+                con.Close();
+            }// load preferences and departments    
+            return false;
+        }
+
         //Still testing
         private void RefreshGUI(int checkBoxIndex, CheckBox mainCheckbox)
         {

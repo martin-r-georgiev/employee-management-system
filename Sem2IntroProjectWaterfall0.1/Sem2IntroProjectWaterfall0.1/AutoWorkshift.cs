@@ -141,7 +141,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         }
                     }
             }
-            return Schedule;
+                return Schedule;
         }
 
         public void ExportToDatabase()
@@ -176,8 +176,7 @@ namespace Sem2IntroProjectWaterfall0._1
                           cmd.Dispose();
                           
                         }
-                        con.Close();
-                    
+                        con.Close();             
                 }
             }
         }
