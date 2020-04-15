@@ -21,8 +21,8 @@ namespace Sem2IntroProjectWaterfall0._1
             InitializeComponent();
             this.AcceptButton = btnLogin;
             AutoWorkshift generate = new AutoWorkshift();
-            workshiftss=generate.GenerateSchedule();
-            //testingworkshift();
+             workshiftss= generate.GenerateWorkshiftSchedule();
+            testingworkshift();
          }
 
         private void testingworkshift()
@@ -30,11 +30,12 @@ namespace Sem2IntroProjectWaterfall0._1
             string message = "";
             foreach (WorkshiftData w in workshiftss)
             {
-                message = message +w.Date+" "+ w.day + " " + w.Workshift + " " + w.UserID +"\n";
+                message = message +w.Date.ToString("yyyy/MM/dd")+" "+ w.Day + " " + w.Workshift + " " + w.UserID +" "+w.DepartmentID+"\n";
             }
             MessageBox.Show(message);
         }
 
+       
 
         private void btnLogin_Click(object sender, EventArgs e)
         {

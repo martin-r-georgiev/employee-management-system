@@ -11,17 +11,28 @@ namespace Sem2IntroProjectWaterfall0._1
     {
         #region Properties+variables
         private string userID;
-        private string date;
+        private DateTime date;
         private int workshift;
-        public string day;
+        private string day;
+        private string departmentID;
         public string UserID
         {
             get { return this.userID; }
             private set { }
         }
-        public string Date
+        public DateTime Date
         {
             get { return this.date; }
+            private set { }
+        }
+        public string Day
+        {
+            get { return this.day; }
+            private set { }
+        }
+        public string DepartmentID
+        {
+            get { return this.departmentID; }
             private set { }
         }
         public int Workshift
@@ -32,16 +43,18 @@ namespace Sem2IntroProjectWaterfall0._1
 
         #endregion
 
-
-        public WorkshiftData(string userID, string date, int workshift, string day)
+        #region Constructors
+        public WorkshiftData(string userID, DateTime date, int workshift, string day,string departmentID)
         {
             this.date = date;
             this.userID = userID;
             this.workshift = workshift;
             this.day = day;
+            this.departmentID = departmentID;
             
            
         }
+        #endregion
     }
 }
 

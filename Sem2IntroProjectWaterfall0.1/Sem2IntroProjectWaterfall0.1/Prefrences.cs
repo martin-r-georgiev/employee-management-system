@@ -20,7 +20,7 @@ namespace Sem2IntroProjectWaterfall0._1
         private int workshift;
         private string day;
         private int shiftsworked;
-        private string depID;
+        private string departmentID;
 
         public string UserID
         {
@@ -28,9 +28,9 @@ namespace Sem2IntroProjectWaterfall0._1
             private set { }
         }
 
-        public string DepID
+        public string DepartmentID
         {
-            get { return this.depID; }
+            get { return this.departmentID; }
             private set { }
         }
         public string Date
@@ -55,18 +55,21 @@ namespace Sem2IntroProjectWaterfall0._1
         }
         #endregion
 
-
-        public Prefrence(string userID, string date, int workshift, string day)
+        #region Constructrors
+        public Prefrence(string userID, string date, int workshift, string day,string departmentID)
         {
             this.date = date;
             this.userID = userID;
             this.workshift = workshift;
             this.day = day;
             this.shiftsworked = 0;
+            this.departmentID = departmentID;
+           
         }
-       
-     }
+        #endregion
 
     }
+
+}
     
 

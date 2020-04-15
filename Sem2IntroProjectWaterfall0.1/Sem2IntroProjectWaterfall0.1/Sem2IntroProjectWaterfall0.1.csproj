@@ -121,7 +121,6 @@
     <Compile Include="Exceptions\MinimalEmployeesException.cs" />
     <Compile Include="HashManager.cs" />
     <Compile Include="Exceptions\InvalidEntryException.cs" />
-    <Compile Include="ShiftsWorked.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="LoggedInUser.cs" />
     <Compile Include="Logger.cs" />
