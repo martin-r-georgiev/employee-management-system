@@ -23,6 +23,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public Workshifts()
         {
             InitializeComponent();
+            ScheduleChecker();
             selectedDate = DateTime.Now;
             startDate = DateTimeControls.StartOfWeek(selectedDate, DayOfWeek.Monday);
             endDate = startDate.AddDays(6);
@@ -33,7 +34,7 @@ namespace Sem2IntroProjectWaterfall0._1
             WorkshiftUC.shiftThreeStart = "17:00";
             WorkshiftUC.shiftThreeEnd = "21:00";
             UpdateWeeklyWorkshiftPanel(selectedDate);
-            ScheduleChecker();  
+             
             
         }
         public void ScheduleChecker()
