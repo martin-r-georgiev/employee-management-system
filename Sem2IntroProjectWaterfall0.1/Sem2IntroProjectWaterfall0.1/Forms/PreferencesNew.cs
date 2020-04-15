@@ -63,16 +63,17 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         if (allCbs[i].Checked == true)
                         {
-                            string day = (i / 3).ToString();
+                            int day = (i / 3);
                             int shift = i % 3;
                             DateTime DateOfPreferencePick = new DateTime();
                             DateOfPreferencePick = DateTime.Now;
                             Prefrence ToAdd = new Prefrence(LoggedInUser.userID, day, shift, DateOfPreferencePick.ToString("yyyy/MM/dd"));
                             ToAdd.ExpediteToDatabase();
                         }
-                        MessageBox.Show("Succesfully picked preferences", "Preferences success", MessageBoxButtons.OK);
+                       
                         this.Close();
                     }
+                    MessageBox.Show("Succesfully picked preferences", "Preferences success", MessageBoxButtons.OK);
                 }
                 else
                 {

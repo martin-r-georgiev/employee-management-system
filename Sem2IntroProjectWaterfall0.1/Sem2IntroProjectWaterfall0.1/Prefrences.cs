@@ -66,11 +66,11 @@ namespace Sem2IntroProjectWaterfall0._1
             this.departmentID = departmentID;
            
         }
-        public Prefrence(string userID, string day, int workshift, string date)
+        public Prefrence(string userID, int day, int workshift, string date)
         {
             this.date = date;
             this.userID = userID;
-            this.day = day;
+            this.day = converttoday(day);
             this.workshift = workshift;
         }
         #endregion
@@ -91,6 +91,43 @@ namespace Sem2IntroProjectWaterfall0._1
 
                 }
                 con.Close();
+            }
+        }
+
+        public string converttoday(int x)
+        {
+            switch (x)
+            {
+                case 0:
+                    return "Monday";
+
+
+                case 1:
+                    return "Tuesday";
+
+
+                case 2:
+                    return "Wednesday";
+
+
+                case 3:
+                    return "Thursday";
+
+
+                case 4:
+                    return "Friday";
+
+                case 5:
+                    return "Saturday";
+
+
+                case 6:
+                    return "Sunday";
+
+                default:
+                    return "Error";
+
+
             }
         }
         #endregion

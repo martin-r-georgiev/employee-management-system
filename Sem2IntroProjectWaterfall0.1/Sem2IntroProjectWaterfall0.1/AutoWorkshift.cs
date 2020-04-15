@@ -95,8 +95,9 @@ namespace Sem2IntroProjectWaterfall0._1
                         int workshift = Convert.ToInt32(dataReader["workshift"]);
                         string departmentID = dataReader["departmentID"].ToString();
                         Prefrence ToAdd = new Prefrence(userID, date, workshift, day,departmentID);
-                        departments.Add(departmentID);
                         prefrences.Add(ToAdd);
+                        if (DepartmentExists(departmentID)==false)
+                            departments.Add(departmentID);
                     }
 
                     dataReader.Close();
@@ -109,8 +110,8 @@ namespace Sem2IntroProjectWaterfall0._1
         #region Main Methods
         public List<WorkshiftData> GenerateWorkshiftSchedule()
         {
-            //LoadDataFromDatabase();
-            LoadManualTestData();
+            LoadDataFromDatabase();
+            //LoadManualTestData();
 
             foreach(string department in departments) // will do this for each department
             {
@@ -296,6 +297,13 @@ namespace Sem2IntroProjectWaterfall0._1
 
 
             }
+        }
+        public bool DepartmentExists(string departmentID)
+        {
+            foreach (string d in departments)
+                if (d == departmentID)
+                    return true;
+            return false;
         }
         #endregion
     }

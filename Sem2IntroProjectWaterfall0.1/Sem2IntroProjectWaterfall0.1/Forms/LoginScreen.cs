@@ -22,7 +22,8 @@ namespace Sem2IntroProjectWaterfall0._1
             this.AcceptButton = btnLogin;
             AutoWorkshift generate = new AutoWorkshift();
              workshiftss= generate.GenerateWorkshiftSchedule();
-            //testingworkshift();
+            testingworkshift();
+            generate.ExportToDatabase();
          }
 
         private void testingworkshift()
