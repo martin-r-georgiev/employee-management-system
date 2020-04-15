@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Sem2IntroProjectWaterfall0._1
 {
@@ -19,6 +20,7 @@ namespace Sem2IntroProjectWaterfall0._1
             lbWorkers.Items.Add("John");
             lbWorkers.Items.Add("Peter");
             UpdateRoleGUI();
+            CheckIfUserHasPreference();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -51,9 +53,18 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnWorkshifts_Click(object sender, EventArgs e)
         {
-            Workshifts newScreen = new Workshifts();
-            newScreen.Show();
-            this.Close();
+            if (CheckIfUserHasPreference() == true)
+            {
+                Workshifts newScreen = new Workshifts();
+                newScreen.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("You don't have any preferences selected. You will be taken to a preference selection page");
+                PreferencesNew fsd = new PreferencesNew();
+                fsd.Show();
+            }
         }
 
         private void BtnCheckin_Click(object sender, EventArgs e)
@@ -69,6 +80,31 @@ namespace Sem2IntroProjectWaterfall0._1
                 btnStatistics.Visible = true;
             }
             if (LoggedInUser.role >= Role.Admin) btnEmployees.Visible = true;
+        }
+        public bool CheckIfUserHasPreference()
+        {
+            int numberofpreferences = 0;
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM preferences where userID=@userID ", con))
+                {
+                    cmd.Parameters.AddWithValue("@userID", LoggedInUser.userID);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    
+                    while (dataReader.Read())
+                    {
+                        numberofpreferences++;
+                    }
+
+                    dataReader.Close();
+                }
+                con.Close();
+            }
+            if(numberofpreferences!=10)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -77,7 +77,35 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 else
                 {
-                    MessageBox.Show("You already picked your preferences!");
+
+                    using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection()) // deletes current preferences
+                    {
+                        MySqlCommand cmd;
+                        using (cmd = new MySqlCommand($"DELETE from preferences where userID=@userID", con))
+                        {
+                            cmd.Parameters.AddWithValue("@userID",LoggedInUser.userID);
+                            cmd.ExecuteNonQuery();
+                            cmd.Dispose();
+                        }
+                        con.Close();
+                    }
+                    for (int i = 0; i < 15; i++) // adds current preferences
+                    {
+                        if (allCbs[i].Checked == true)
+                        {
+                            int day = (i / 3);
+                            int shift = i % 3;
+                            DateTime DateOfPreferencePick = new DateTime();
+                            DateOfPreferencePick = DateTime.Now;
+                            Prefrence ToAdd = new Prefrence(LoggedInUser.userID, day, shift, DateOfPreferencePick.ToString("yyyy/MM/dd"));
+                            ToAdd.ExpediteToDatabase();
+                        }
+
+                        this.Close();
+                    }
+
+
+                    MessageBox.Show("Preferences updated!");
                 }
 
             }

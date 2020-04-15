@@ -122,10 +122,10 @@ namespace Sem2IntroProjectWaterfall0._1
                     WorkshiftData ToAdd = new WorkshiftData(p.UserID,ConvertToDateString(p.Day),p.Workshift,p.Day,p.DepartmentID);
                     Schedule.Add(ToAdd);
                 }
-                for(int i=0;i<5;i++)
-                    for(int j=0;j<3;j++)
+                for (int i = 0; i < 5; i++)
+                    for (int j = 0; j < 3; j++)
                     {
-                        if(HasPeopleAssigned(converttoday(i),j,department)==false)// checks if there is anyone assigned on this shift
+                        if (HasPeopleAssigned(converttoday(i), j, department) == false)// checks if there is anyone assigned on this shift
                         {
                             for(int index=0;index<Schedule.Count();index++)
                             {
