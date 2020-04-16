@@ -33,6 +33,8 @@ namespace Sem2IntroProjectWaterfall0._1
         public WorkshiftUC(Employee employee, DateTime date)
         {
             InitializeComponent();
+            DoubleBuffered = true;
+            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.employee = employee;
             this.date = date;
             panelDateWrapper.Visible = false;
@@ -78,6 +80,16 @@ namespace Sem2IntroProjectWaterfall0._1
                 case 0: panelShiftOne.BackColor = color; break;
                 case 1: panelShiftTwo.BackColor = color; break;
                 case 2: panelShiftThree.BackColor = color; break;
+            }
+
+            if (date.Date < DateTime.Now.Date)
+            {
+                switch (index)
+                {
+                    case 0: panelShiftOne.BackColor = ColorControls.Blend(color, Color.DimGray, 0.5); break;
+                    case 1: panelShiftTwo.BackColor = ColorControls.Blend(color, Color.DimGray, 0.5); break;
+                    case 2: panelShiftThree.BackColor = ColorControls.Blend(color, Color.DimGray, 0.5); break;
+                }
             }
         }
 

@@ -23,6 +23,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public Workshifts()
         {
             InitializeComponent();
+            DoubleBuffered = true;
             ScheduleChecker();
             selectedDate = DateTime.Now;
             startDate = DateTimeControls.StartOfWeek(selectedDate, DayOfWeek.Monday);
@@ -34,8 +35,6 @@ namespace Sem2IntroProjectWaterfall0._1
             WorkshiftUC.shiftThreeStart = "17:00";
             WorkshiftUC.shiftThreeEnd = "21:00";
             UpdateWeeklyWorkshiftPanel(selectedDate);
-             
-            
         }
         public void ScheduleChecker()
         {
@@ -48,6 +47,7 @@ namespace Sem2IntroProjectWaterfall0._1
         void UpdateDailyWorkshiftPanel(DateTime time)
         {
             bool isHeader = true;
+            flpWorkshifts.SuspendLayout();
             flpWorkshifts.Controls.Clear();
             List<WorkshiftUC> workshiftList = WorkshiftDatabaseHandler.GetEmployees(time);
             foreach (WorkshiftUC control in workshiftList)
@@ -59,11 +59,14 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 flpWorkshifts.Controls.Add(control);
             }
+            flpWorkshifts.Refresh();
+            flpWorkshifts.ResumeLayout();
         }
 
         void UpdateWeeklyWorkshiftPanel(DateTime time)
         {
             bool isHeader = true;
+            flpWorkshifts.SuspendLayout();
             flpWorkshifts.Controls.Clear();
             List<WorkshiftWeeklyUC> workshiftList = WorkshiftDatabaseHandler.GetWeeklyEmployees(time);
             foreach (WorkshiftWeeklyUC control in workshiftList)
@@ -75,6 +78,8 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 flpWorkshifts.Controls.Add(control);
             }
+            flpWorkshifts.Refresh();
+            flpWorkshifts.ResumeLayout();
         }
 
         void UpdateDateText()

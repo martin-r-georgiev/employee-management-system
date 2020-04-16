@@ -59,6 +59,16 @@ namespace Sem2IntroProjectWaterfall0._1
                 case 1: lblShiftTwo.BackColor = color; break;
                 case 2: lblShiftThree.BackColor = color; break;
             }
+            
+            if (date.Date < DateTime.Now.Date)
+            {
+                switch (index)
+                {
+                    case 0: lblShiftOne.BackColor = ColorControls.Blend(color, Color.DimGray, 0.5); break;
+                    case 1: lblShiftTwo.BackColor = ColorControls.Blend(color, Color.DimGray, 0.5); break;
+                    case 2: lblShiftThree.BackColor = ColorControls.Blend(color, Color.DimGray, 0.5); break;
+                }       
+            }
         }
 
         public void ClearColor(int index) { SetColor(index, SystemColors.Control); }
