@@ -55,7 +55,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     case 5: panelSaturday.Controls.Add(newCell); lblSaturdayDate.Text = date_iterator.ToString("dd"); break;
                     case 6: panelSunday.Controls.Add(newCell); lblSundayDate.Text = date_iterator.ToString("dd"); break;
                 }
-                IsToday(date_iterator);
+                IsToday(date_iterator.Date);
                 date_iterator = date_iterator.AddDays(1);
             }
         }
@@ -83,15 +83,15 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             if(DateTime.Now.Date.Equals(time))
             {
-                switch((int) DateTimeControls.StartOfWeek(time, DayOfWeek.Monday).DayOfWeek)
+                switch((int) time.DayOfWeek)
                 {
-                    case 0: lblMonday.ForeColor = lblMondayDate.ForeColor = Color.LimeGreen; break;
-                    case 1: lblTuesday.ForeColor = lblTuesdayDate.ForeColor = Color.LimeGreen; break;
-                    case 2: lblWednesday.ForeColor = lblWednesdayDate.ForeColor = Color.LimeGreen; break;
-                    case 3: lblThursday.ForeColor = lblThursdayDate.ForeColor = Color.LimeGreen; break;
-                    case 4: lblFriday.ForeColor = lblFridayDate.ForeColor = Color.LimeGreen; break;
-                    case 5: lblSaturday.ForeColor = lblSaturdayDate.ForeColor = Color.LimeGreen; break;
-                    case 6: lblSunday.ForeColor = lblSundayDate.ForeColor = Color.LimeGreen; break;
+                    case 0: lblSunday.ForeColor = lblSundayDate.ForeColor = Color.LimeGreen; break;
+                    case 1: lblMonday.ForeColor = lblMondayDate.ForeColor = Color.LimeGreen; break;
+                    case 2: lblTuesday.ForeColor = lblTuesdayDate.ForeColor = Color.LimeGreen; break;
+                    case 3: lblWednesday.ForeColor = lblWednesdayDate.ForeColor = Color.LimeGreen; break;
+                    case 4: lblThursday.ForeColor = lblThursdayDate.ForeColor = Color.LimeGreen; break;
+                    case 5: lblFriday.ForeColor = lblFridayDate.ForeColor = Color.LimeGreen; break;
+                    case 6: lblSaturday.ForeColor = lblSaturdayDate.ForeColor = Color.LimeGreen; break;
                 }
             }
         }
