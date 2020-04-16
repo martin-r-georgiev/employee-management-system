@@ -20,7 +20,6 @@ namespace Sem2IntroProjectWaterfall0._1
             lbWorkers.Items.Add("John");
             lbWorkers.Items.Add("Peter");
             UpdateRoleGUI();
-            CheckIfUserHasPreference();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -64,6 +63,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 MessageBox.Show("You don't have any preferences selected. You will be taken to a preference selection page");
                 PreferencesNew fsd = new PreferencesNew();
                 fsd.Show();
+                
             }
         }
 
@@ -106,5 +106,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             return true;
         }
+      
+   
     }
 }

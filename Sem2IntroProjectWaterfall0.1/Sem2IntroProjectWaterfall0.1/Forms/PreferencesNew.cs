@@ -74,6 +74,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         this.Close();
                     }
                     MessageBox.Show("Succesfully picked preferences", "Preferences success", MessageBoxButtons.OK);
+                    UploadPreferences();
                 }
                 else
                 {
@@ -155,6 +156,114 @@ namespace Sem2IntroProjectWaterfall0._1
             if (shiftCount < 10) lblPreferences.ForeColor = Color.FromArgb(192, 64, 0);
             else if (shiftCount > 10) lblPreferences.ForeColor = Color.Red;
             else lblPreferences.ForeColor = Color.Green;
+        }
+
+        public void UploadPreferences()
+        {
+
+            List<Prefrence> prefrences = new List<Prefrence>();
+            List<WorkshiftData> Schedule = new List<WorkshiftData>();
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM preferences WHERE userID=@userID ", con))
+                {
+                    cmd.Parameters.AddWithValue("@userID", LoggedInUser.userID);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string userID = dataReader["userID"].ToString();
+                        string day = dataReader["day"].ToString();
+                        string date = dataReader["date"].ToString();
+                        int workshift = Convert.ToInt32(dataReader["workshift"]);
+                        string departmentID ="";
+                        Prefrence ToAdd = new Prefrence(userID, date, workshift, day, departmentID);
+                        prefrences.Add(ToAdd);
+                    }
+
+                    dataReader.Close();
+                }
+                con.Close();
+            }// load preferences and departments       
+            foreach (Prefrence p in prefrences)
+            {
+                WorkshiftData ToAdd = new WorkshiftData(LoggedInUser.userID, ConvertToDateString(p.Day), p.Workshift, p.Day, p.DepartmentID);
+                Schedule.Add(ToAdd);
+            }
+
+                int entries = Schedule.Count();
+                for (int i = 0; i < entries; i++) // creating the entries for the whole month 
+                {
+                    string userID = Schedule[i].UserID;
+                    DateTime date = Schedule[i].Date;
+                    int workshift = Schedule[i].Workshift;
+                    string day = Schedule[i].Day;
+                    string departmentID = Schedule[i].DepartmentID;
+                    WorkshiftData ToAdd = new WorkshiftData(userID, date.AddDays(7), workshift, day, departmentID); //week2
+                    Schedule.Add(ToAdd);
+                    ToAdd = new WorkshiftData(userID, date.AddDays(14), workshift, day, departmentID); //week3
+                    Schedule.Add(ToAdd);
+
+                }
+            
+
+
+            foreach (WorkshiftData w in Schedule) // actually adding it to the database
+            {
+                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+                {
+                    MySqlCommand cmd;
+                    if (w.Date > DateTime.Now)
+                        using (cmd = new MySqlCommand($"INSERT INTO workshifts (userID, date, workshift) VALUES (@userID,@date, @workshift)", con))
+                        {
+                            cmd.Parameters.AddWithValue("@userID", w.UserID);
+                            cmd.Parameters.AddWithValue("@date", w.Date.ToString("yyyy/MM/dd"));
+                            cmd.Parameters.AddWithValue("@workshift", w.Workshift);
+                            cmd.ExecuteNonQuery();
+                            cmd.Dispose();
+
+                        }
+
+                    con.Close();
+                }
+            }
+        }
+
+        public DateTime ConvertToDateString(string ToConvert)
+        {
+            DateTime nextmonday = DateTime.Now.StartOfWeek(DayOfWeek.Monday); // gets the current weeks monday
+            switch (ToConvert)
+            {
+                case "Monday":
+                    return nextmonday;
+
+
+                case "Tuesday":
+                    return nextmonday.AddDays(1);
+
+
+                case "Wednesday":
+                    return nextmonday.AddDays(2);
+
+
+                case "Thursday":
+                    return nextmonday.AddDays(3);
+
+
+                case "Friday":
+                    return nextmonday.AddDays(4);
+
+                case "Saturday":
+                    return nextmonday.AddDays(5);
+
+
+                case "Sunday":
+                    return nextmonday.AddDays(6);
+
+                default:
+                    return nextmonday.AddDays(7);
+
+
+            }
         }
     }
 }

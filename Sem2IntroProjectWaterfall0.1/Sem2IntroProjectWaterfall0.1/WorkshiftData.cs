@@ -50,9 +50,7 @@ namespace Sem2IntroProjectWaterfall0._1
             this.userID = userID;
             this.workshift = workshift;
             this.day = day;
-            this.departmentID = departmentID;
-            
-           
+            this.departmentID = departmentID;           
         }
         #endregion
     }

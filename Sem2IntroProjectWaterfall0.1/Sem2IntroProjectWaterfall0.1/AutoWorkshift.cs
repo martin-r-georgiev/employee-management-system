@@ -125,12 +125,12 @@ namespace Sem2IntroProjectWaterfall0._1
 
                     if (dataReader.Read())
                     {
-                        if (DateTime.Parse(dataReader["nextupdate"].ToString()) <= DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd")))
-                        {
-                            GenerateWorkshiftSchedule();
-                            ExportToDatabase();
-                            message = "Sorry for the wait time, schedule was generating!";
-                        }
+                            if (DateTime.Parse(dataReader["nextupdate"].ToString()) <= DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd")))
+                            {
+                                GenerateWorkshiftSchedule();
+                                ExportToDatabase();
+                                message = "Sorry for the wait time, schedule was generating!";
+                            }                          
                     }
                     else
                     {
@@ -159,8 +159,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 Schedule.Add(ToAdd);
                 ToAdd = new WorkshiftData(userID, date.AddDays(14), workshift, day, departmentID); //week3
                 Schedule.Add(ToAdd);
-                ToAdd = new WorkshiftData(userID, date.AddDays(21), workshift, day, departmentID); //week4
-                Schedule.Add(ToAdd);
+               
             }
 
             foreach(WorkshiftData w in Schedule) // actually adding it to the database
