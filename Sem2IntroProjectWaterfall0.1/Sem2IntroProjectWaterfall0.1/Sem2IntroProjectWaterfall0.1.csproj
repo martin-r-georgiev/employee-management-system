@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoWorkshift.cs" />
+    <Compile Include="ColorControls.cs" />
     <Compile Include="Custom Controls\WorkshiftCells.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -35,6 +35,8 @@ namespace Sem2IntroProjectWaterfall0._1
         public WorkshiftWeeklyUC(Employee employee, DateTime start, DateTime end)
         {
             InitializeComponent();
+            DoubleBuffered = true;
+            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.employee = employee;
             this.startDate = start;
             this.endDate = end;
