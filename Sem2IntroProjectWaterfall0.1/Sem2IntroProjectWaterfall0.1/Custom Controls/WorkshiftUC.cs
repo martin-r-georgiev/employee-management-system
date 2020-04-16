@@ -44,7 +44,11 @@ namespace Sem2IntroProjectWaterfall0._1
             statusIndex = new int?[3];
             this.selectedWorkshiftIndex = null;
 
-            if (date.Date <= DateTime.Now.Date) rightClickMenu.Enabled = false;
+            if (date.Date <= DateTime.Now.Date)
+            {
+                rightClickMenu.Enabled = false;
+                depotRequestMenu.Enabled = false;
+            }
             if ((int)LoggedInUser.role != (int)Role.Worker)
             {
                 panelShiftOne.ContextMenuStrip = panelShiftTwo.ContextMenuStrip = panelShiftThree.ContextMenuStrip = rightClickMenu;
