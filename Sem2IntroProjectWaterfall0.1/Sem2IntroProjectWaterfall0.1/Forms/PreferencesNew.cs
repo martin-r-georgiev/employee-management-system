@@ -15,11 +15,16 @@ namespace Sem2IntroProjectWaterfall0._1
     public partial class PreferencesNew : Form
     {
         CheckBox[] allCbs;
+        Employee currentEmployee;
+        int employeeWorkshifts;
         public PreferencesNew()
         {
             InitializeComponent();
             allCbs = new CheckBox[] {cbMonM, cbMonA, cbMonE, cbTueM, cbTueA, cbTueE, cbWedM, cbWedA, cbWedE, cbThursdayMorning,
                 cbThursdayAfternoon, cbThursdayEvening, cbFridayMorning, cbFridayAfternoon, cbFridayEvening};
+            currentEmployee = new Employee(LoggedInUser.userID,true);
+            employeeWorkshifts = currentEmployee.WorkHours / 4;
+            lblPreferences.Text = $"0/{employeeWorkshifts}";
         }
 
         private void cbMon_CheckedChanged(object sender, EventArgs e)
@@ -52,10 +57,10 @@ namespace Sem2IntroProjectWaterfall0._1
             int shiftCount = 0;
             foreach (CheckBox cb in allCbs)
                 if (cb.Checked) shiftCount++;
-            if (shiftCount != 10) MessageBox.Show("Please pick 10 shifts to your preference", "Workshifts not enough", MessageBoxButtons.OK);
+            if (shiftCount != employeeWorkshifts) MessageBox.Show($"Please pick shifts to match your work hours ({employeeWorkshifts} shifts)", "Workshifts not enough", MessageBoxButtons.OK);
             else
             {
-               
+
                 // code here
                 if (CheckIfAlreadyPicked() == false)
                 {
@@ -70,7 +75,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             Prefrence ToAdd = new Prefrence(LoggedInUser.userID, day, shift, DateOfPreferencePick.ToString("yyyy/MM/dd"));
                             ToAdd.ExpediteToDatabase();
                         }
-                       
+
                         this.Close();
                     }
                     MessageBox.Show("Succesfully picked preferences", "Preferences success", MessageBoxButtons.OK);
@@ -108,7 +113,6 @@ namespace Sem2IntroProjectWaterfall0._1
 
                     MessageBox.Show("Preferences updated!");
                 }
-
             }
         }
 
@@ -151,10 +155,10 @@ namespace Sem2IntroProjectWaterfall0._1
             int shiftCount = 0;
             foreach (CheckBox cb in allCbs)
                 if (cb.Checked) shiftCount++;
-            lblPreferences.Text = $"{shiftCount}/10";
+            lblPreferences.Text = $"{shiftCount}/{employeeWorkshifts}";
 
-            if (shiftCount < 10) lblPreferences.ForeColor = Color.FromArgb(192, 64, 0);
-            else if (shiftCount > 10) lblPreferences.ForeColor = Color.Red;
+            if (shiftCount < employeeWorkshifts) lblPreferences.ForeColor = Color.FromArgb(192, 64, 0);
+            else if (shiftCount > employeeWorkshifts) lblPreferences.ForeColor = Color.Red;
             else lblPreferences.ForeColor = Color.Green;
         }
 

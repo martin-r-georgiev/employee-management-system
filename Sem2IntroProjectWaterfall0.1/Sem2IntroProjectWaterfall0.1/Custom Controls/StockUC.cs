@@ -95,9 +95,13 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void lblThreshold_DoubleClick(object sender, EventArgs e)
         {
-            this.lblThreshold.Visible = false;
-            this.tbThreshold.Visible = true;
-            this.tbThreshold.Text = selectedItem.Threshold.ToString();
+            if (LoggedInUser.role != Role.Worker)
+            {
+                this.lblThreshold.Visible = false;
+                this.tbThreshold.Visible = true;
+                this.tbThreshold.Text = selectedItem.Threshold.ToString();
+            }
+            else MessageBox.Show("You cannot change the threshold, please contact a manager.");
         }
 
         private void tbCurrentAmount_KeyDown(object sender, KeyEventArgs e)

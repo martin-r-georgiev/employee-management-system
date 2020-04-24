@@ -9,7 +9,7 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     public class AutoWorkshift
     {
-        
+
         List<Prefrence> prefrences = new List<Prefrence>(); // copy of the database's prefence table 
        public List<WorkshiftData> Schedule = new List<WorkshiftData>();// the schedule that will be uploaded to the database; contains all departments 
         DateTime nextmonday = DateTime.Now.StartOfWeek(DayOfWeek.Monday); // gets the current weeks monday
@@ -62,9 +62,9 @@ namespace Sem2IntroProjectWaterfall0._1
                         string date = dataReader["date"].ToString();
                         int workshift = Convert.ToInt32(dataReader["workshift"]);
                         string departmentID = dataReader["departmentID"].ToString();
-                        Prefrence ToAdd = new Prefrence(userID, date, workshift, day,departmentID);
+                        Prefrence ToAdd = new Prefrence(userID, date, workshift, day, departmentID);
                         prefrences.Add(ToAdd);
-                        if (DepartmentExists(departmentID)==false)
+                        if (DepartmentExists(departmentID) == false)
                             departments.Add(departmentID);
                     }
 
@@ -81,13 +81,13 @@ namespace Sem2IntroProjectWaterfall0._1
             LoadDataFromDatabase();
             //LoadManualTestData();
 
-            foreach(string department in departments) // will do this for each department
+            foreach (string department in departments) // will do this for each department
             {
                 List<Prefrence> CurrentDepartmentEmployeesPreferences = GetCurrentDeparmentPreferences(department);
                 // for simplicity's sake making a secondary list of preferences for the current department
-                foreach(Prefrence p in CurrentDepartmentEmployeesPreferences)
+                foreach (Prefrence p in CurrentDepartmentEmployeesPreferences)
                 {
-                    WorkshiftData ToAdd = new WorkshiftData(p.UserID,ConvertToDateString(p.Day),p.Workshift,p.Day,p.DepartmentID);
+                    WorkshiftData ToAdd = new WorkshiftData(p.UserID, ConvertToDateString(p.Day), p.Workshift, p.Day, p.DepartmentID);
                     Schedule.Add(ToAdd);
                 }
                 for (int i = 0; i < 5; i++)
@@ -95,10 +95,10 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         if (HasPeopleAssigned(converttoday(i), j, department)==false)// checks if there is anyone assigned on this shift
                         {
-                            for(int index=0;index<Schedule.Count();index++)
+                            for (int index = 0; index < Schedule.Count(); index++)
                             {
                                 WorkshiftData ToCheck = Schedule[index];
-                                if(HasMultipleEntries(Schedule[i].Day, Schedule[i].Workshift) == true && Schedule[i].DepartmentID==department)
+                                if (HasMultipleEntries(Schedule[i].Day, Schedule[i].Workshift) == true && Schedule[i].DepartmentID == department)
                                 {
                                     //remove this guy from workshift and add it to current
                                     WorkshiftData ToAdd = new WorkshiftData(Schedule[index].UserID, converttodate(i), j, converttoday(i), department);
@@ -111,7 +111,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         }
                     }
             }
-                return Schedule;
+            return Schedule;
         }
 
         public  string GenerateAndUpload() // call this one to generate and upload with checks in regard to not flood the database
@@ -148,21 +148,21 @@ namespace Sem2IntroProjectWaterfall0._1
         public void ExportToDatabase()
         {
             int entries = Schedule.Count();
-            for(int i=0;i<entries;i++) // creating the entries for the whole month 
+            for (int i = 0; i < entries; i++) // creating the entries for the whole month 
             {
                 string userID = Schedule[i].UserID;
                 DateTime date = Schedule[i].Date;
                 int workshift = Schedule[i].Workshift;
                 string day = Schedule[i].Day;
                 string departmentID = Schedule[i].DepartmentID;
-                WorkshiftData ToAdd = new WorkshiftData(userID, date.AddDays(7),workshift, day, departmentID); //week2
+                WorkshiftData ToAdd = new WorkshiftData(userID, date.AddDays(7), workshift, day, departmentID); //week2
                 Schedule.Add(ToAdd);
                 ToAdd = new WorkshiftData(userID, date.AddDays(14), workshift, day, departmentID); //week3
                 Schedule.Add(ToAdd);
                
             }
 
-            foreach(WorkshiftData w in Schedule) // actually adding it to the database
+            foreach (WorkshiftData w in Schedule) // actually adding it to the database
             {
                 using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
                 {
@@ -206,32 +206,32 @@ namespace Sem2IntroProjectWaterfall0._1
 public bool HasMultipleEntries(string day, int workshift)
         {
             int timesfound = 0;
-            foreach(WorkshiftData w in Schedule)
+            foreach (WorkshiftData w in Schedule)
             {
                 if (timesfound == 2)
                     return true;
                 else
                 {
-                    if ( day == w.Day && workshift == w.Workshift)
+                    if (day == w.Day && workshift == w.Workshift)
                         timesfound++;
                 }
             }
             return false;
         }
-        public List<Prefrence> GetCurrentDeparmentPreferences( string departmentID) // will return preferences of emplyoees that are in the provided department 
+        public List<Prefrence> GetCurrentDeparmentPreferences(string departmentID) // will return preferences of emplyoees that are in the provided department 
         {
             List<Prefrence> ToReturn = new List<Prefrence>();
-            foreach(Prefrence p in prefrences)
+            foreach (Prefrence p in prefrences)
             {
                 if (p.DepartmentID == departmentID)
                     ToReturn.Add(p);
             }
             return ToReturn;
         }
-       
-        public bool HasPeopleAssigned(string day, int shift,string departmentID) // checks if the shift has people assigned to it or not, by checking its existence
+
+        public bool HasPeopleAssigned(string day, int shift, string departmentID) // checks if the shift has people assigned to it or not, by checking its existence
         {
-            foreach(WorkshiftData w in Schedule)
+            foreach (WorkshiftData w in Schedule)
             {
                 if (w.Day == day && w.Workshift == shift && w.DepartmentID == departmentID)
                     return true;
@@ -278,7 +278,7 @@ public bool HasMultipleEntries(string day, int workshift)
         public DateTime converttodate(int x)
         {
             return nextmonday.AddDays(x);
-            
+
         }
         public DateTime ConvertToDateString(string ToConvert)
         {

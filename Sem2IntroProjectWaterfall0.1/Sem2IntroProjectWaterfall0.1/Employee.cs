@@ -28,11 +28,34 @@ namespace Sem2IntroProjectWaterfall0._1
         private Nullable<DateTime> startDate;
         private Nullable<DateTime> endDate;
         private string mainDetails;
-
+        private int workHours;
         #endregion
 
         #region Properties
         //Properties
+
+
+        public int WorkHours
+        {
+            get { return workHours; }
+            set {
+                if (value % 4 == 0)
+                {
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees SET workHours=@workHours WHERE userID=@userID", conn))
+                        {
+                            cmd.Parameters.AddWithValue("@workHours", value);
+                            cmd.Parameters.AddWithValue("@userID", this.userID);
+                            cmd.ExecuteNonQuery();
+                            cmd.Dispose();
+                        }
+                        conn.Close();
+                        this.workHours = value;
+                    }
+                }
+            }
+        }
 
         public string UserID
         {
@@ -365,14 +388,16 @@ namespace Sem2IntroProjectWaterfall0._1
         #region Constructors
         //Constructors
 
-        public Employee(string newUsername, string newPassword, decimal newSalaryRate, Role newRole, string newDepID)
+        public Employee(string newUsername, string newPassword, decimal newSalaryRate, Role newRole, string newDepID, int workHours)
         {
             this.username = newUsername;
             this.password = HashManager.GetSha256(newPassword);
             this.salaryHourlyRate = newSalaryRate;
             this.role = newRole;
             this.departmentID = newDepID;
+            this.workHours = workHours;
             this.StartDate = DateTime.Today;
+  
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
                 MySqlCommand cmd;
@@ -402,10 +427,11 @@ namespace Sem2IntroProjectWaterfall0._1
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
-                using (cmd = new MySqlCommand($"INSERT INTO employees(userID,startDate) VALUES (@userID, @startDate)", conn))
+                using (cmd = new MySqlCommand($"INSERT INTO employees(userID,startDate, workHours) VALUES (@userID, @startDate, @workHours)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", this.userID);
                     cmd.Parameters.AddWithValue("@startDate", this.StartDate);
+                    cmd.Parameters.AddWithValue("@workHours", this.workHours);
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
@@ -439,7 +465,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         if (!dataReader.IsDBNull(13)) this.dateofBirth = dataReader.GetDateTime(13);
                         if (!dataReader.IsDBNull(14)) this.sex = dataReader.GetBoolean(14);
                         if (!dataReader.IsDBNull(15)) this.startDate = dataReader.GetDateTime(15);
-                        if (!dataReader.IsDBNull(16)) this.endDate = dataReader.GetDateTime(16);
+                        this.workHours = dataReader.GetInt32(16);
                     }
                     cmd.Dispose();
                     dataReader.Close();
@@ -475,7 +501,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             if (!dataReader.IsDBNull(13)) this.dateofBirth = dataReader.GetDateTime(13);
                             if (!dataReader.IsDBNull(14)) this.sex = dataReader.GetBoolean(14);
                             if (!dataReader.IsDBNull(15)) this.startDate = dataReader.GetDateTime(15);
-                            if (!dataReader.IsDBNull(16)) this.endDate = dataReader.GetDateTime(16);
+                            this.workHours = dataReader.GetInt32(16);
                         }
                         cmd.Dispose();
                         dataReader.Close();

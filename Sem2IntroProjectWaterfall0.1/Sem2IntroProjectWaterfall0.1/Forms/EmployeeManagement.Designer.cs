@@ -108,6 +108,8 @@
             this.tbDepartmentEditAddress = new System.Windows.Forms.TextBox();
             this.lblEditAddress = new System.Windows.Forms.Label();
             this.tbDepartmentEditName = new System.Windows.Forms.TextBox();
+            this.tbWorkhours = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             this.tcManagement.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gbPersonalInfo.SuspendLayout();
@@ -117,6 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUdCurrentAmmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUdThreshold)).BeginInit();
             this.gbEditDepartment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbWorkhours)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBack
@@ -402,6 +405,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.tbWorkhours);
             this.groupBox2.Controls.Add(this.cbPassVisible);
             this.groupBox2.Controls.Add(this.btnAddEmployee);
             this.groupBox2.Controls.Add(this.cbDepartments);
@@ -433,10 +438,10 @@
             // 
             // btnAddEmployee
             // 
-            this.btnAddEmployee.Location = new System.Drawing.Point(105, 195);
+            this.btnAddEmployee.Location = new System.Drawing.Point(105, 223);
             this.btnAddEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddEmployee.Name = "btnAddEmployee";
-            this.btnAddEmployee.Size = new System.Drawing.Size(157, 28);
+            this.btnAddEmployee.Size = new System.Drawing.Size(158, 28);
             this.btnAddEmployee.TabIndex = 25;
             this.btnAddEmployee.Text = "Add Employee";
             this.btnAddEmployee.UseVisualStyleBackColor = true;
@@ -991,6 +996,44 @@
             this.tbDepartmentEditName.Size = new System.Drawing.Size(176, 20);
             this.tbDepartmentEditName.TabIndex = 18;
             // 
+            // tbWorkhours
+            // 
+            this.tbWorkhours.Increment = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.tbWorkhours.Location = new System.Drawing.Point(105, 186);
+            this.tbWorkhours.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.tbWorkhours.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.tbWorkhours.Name = "tbWorkhours";
+            this.tbWorkhours.Size = new System.Drawing.Size(158, 20);
+            this.tbWorkhours.TabIndex = 26;
+            this.tbWorkhours.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 188);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Work Hours:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // EmployeeManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1013,6 +1056,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUdThreshold)).EndInit();
             this.gbEditDepartment.ResumeLayout(false);
             this.gbEditDepartment.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbWorkhours)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1099,5 +1143,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown tbWorkhours;
     }
 }

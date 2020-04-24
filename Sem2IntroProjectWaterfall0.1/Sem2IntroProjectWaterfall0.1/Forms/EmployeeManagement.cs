@@ -74,15 +74,17 @@ namespace Sem2IntroProjectWaterfall0._1
             else
             {
                 decimal hourlySalary;
+                int workHours = Convert.ToInt32(tbWorkhours.Value);
                 if (Decimal.TryParse(tbHourlySalary.Text, out hourlySalary))
                 {
+                    if (workHours % 4 != 0) { MessageBox.Show("Please enter workhours in order to get full workshifts! (A workshift is 4 hours.)"); return; }
                     if (hourlySalary < 0) { MessageBox.Show("Please enter a positive salary"); return; }
                     if (cbDepartments.SelectedIndex == -1) { MessageBox.Show("Please select a department and try again."); return; }
                     if (cbRole.SelectedIndex == -1) { MessageBox.Show("Please select a role and try again."); return; }
                     if (!Employee.IsUniqueUsername(tbUsername.Text)) { MessageBox.Show("Username is taken. Please choose another and try again."); return; }
                     try
                     {
-                        Employee newEmployee = new Employee(tbUsername.Text, tbPassword.Text, hourlySalary, (Role)cbRole.SelectedIndex, departments[cbDepartments.SelectedIndex].DepartmentId);
+                        Employee newEmployee = new Employee(tbUsername.Text, tbPassword.Text, hourlySalary, (Role)cbRole.SelectedIndex, departments[cbDepartments.SelectedIndex].DepartmentId, workHours);
                         MessageBox.Show("Sucessfully added new employee to the system!");
                         tbUsername.Clear();
                         tbPassword.Clear();
