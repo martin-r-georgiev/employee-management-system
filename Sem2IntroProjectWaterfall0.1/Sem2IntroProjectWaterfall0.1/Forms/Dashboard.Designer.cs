@@ -36,6 +36,7 @@
             this.btnCheckin = new System.Windows.Forms.Button();
             this.lbWorkers = new System.Windows.Forms.ListBox();
             this.btnRequests = new System.Windows.Forms.Button();
+            this.pnlNotifications = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // btnStocks
@@ -115,15 +116,27 @@
             this.btnRequests.Name = "btnRequests";
             this.btnRequests.Size = new System.Drawing.Size(155, 23);
             this.btnRequests.TabIndex = 7;
-            this.btnRequests.Text = "Requests";
+            this.btnRequests.Text = "Open Requests";
             this.btnRequests.UseVisualStyleBackColor = true;
             this.btnRequests.Visible = false;
+            this.btnRequests.Click += new System.EventHandler(this.btnRequests_Click);
+            // 
+            // pnlNotifications
+            // 
+            this.pnlNotifications.AutoScroll = true;
+            this.pnlNotifications.BackColor = System.Drawing.Color.White;
+            this.pnlNotifications.Location = new System.Drawing.Point(272, 50);
+            this.pnlNotifications.Name = "pnlNotifications";
+            this.pnlNotifications.Size = new System.Drawing.Size(200, 200);
+            this.pnlNotifications.TabIndex = 8;
+            this.pnlNotifications.Visible = false;
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 382);
+            this.Controls.Add(this.pnlNotifications);
             this.Controls.Add(this.btnRequests);
             this.Controls.Add(this.lbWorkers);
             this.Controls.Add(this.btnCheckin);
@@ -148,5 +161,6 @@
         private System.Windows.Forms.Button btnCheckin;
         private System.Windows.Forms.ListBox lbWorkers;
         private System.Windows.Forms.Button btnRequests;
+        private System.Windows.Forms.FlowLayoutPanel pnlNotifications;
     }
 }

@@ -221,6 +221,7 @@ namespace Sem2IntroProjectWaterfall0._1
             if (selectedWorkshiftIndex != null)
             {
                 ChangeWorkshiftStatus(1, (int)selectedWorkshiftIndex);
+                RescheduleNotification.AddNotification(this.employee.UserID, this.date, (int)selectedWorkshiftIndex);
             }
         }
 
@@ -229,6 +230,8 @@ namespace Sem2IntroProjectWaterfall0._1
             if (selectedWorkshiftIndex != null)
             {
                 ChangeWorkshiftStatus(2, (int)selectedWorkshiftIndex);
+                RescheduleNotification selectedNotification = new RescheduleNotification(this.employee.UserID, this.date.Date, (int)selectedWorkshiftIndex);
+                selectedNotification.RemoveNotification();
             }
         }
 
@@ -237,6 +240,8 @@ namespace Sem2IntroProjectWaterfall0._1
             if (selectedWorkshiftIndex != null)
             {
                 ChangeWorkshiftStatus(0, (int)selectedWorkshiftIndex);
+                RescheduleNotification selectedNotification = new RescheduleNotification(this.employee.UserID, this.date.Date, (int)selectedWorkshiftIndex);
+                selectedNotification.RemoveNotification();
             }
         }
     }

@@ -71,15 +71,29 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
-        public void ClearColor(int index) { SetColor(index, SystemColors.Control); }
+        public void ClearColor(int index)
+        {
+            SetColor(index, SystemColors.Control);
+            
+        }
+        public void SetAvailable(int index)
+        {
+            SetColor(index, Color.PaleGreen);
+        }
+        public void SetMissed(int index)
+        {
+            SetColor(index, Color.Firebrick);
+        }
+        public void SetUnavailable(int index) 
+        { 
+            SetColor(index, Color.Gray);
+        }
 
-        public void SetAvailable(int index) { SetColor(index, Color.PaleGreen); }
+        public void SetPending(int index)
+        { 
+            SetColor(index, Color.Yellow);
 
-        public void SetMissed(int index) { SetColor(index, Color.Firebrick); }
-
-        public void SetUnavailable(int index) { SetColor(index, Color.Gray); }
-
-        public void SetPending(int index) { SetColor(index, Color.Yellow); }
+        }
 
         public void SetStatus(int status, int index)
         {
@@ -127,7 +141,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void toolStripSetAvailable_Click(object sender, EventArgs e)
         {
-            if (selectedWorkshiftIndex!=null)
+            if (selectedWorkshiftIndex != null)
             {
                 ChangeWorkshiftStatus(0, (int)selectedWorkshiftIndex);
             }
@@ -196,6 +210,7 @@ namespace Sem2IntroProjectWaterfall0._1
             if (selectedWorkshiftIndex != null)
             {
                 ChangeWorkshiftStatus(1, (int)selectedWorkshiftIndex);
+                RescheduleNotification.AddNotification(this.employeeID, this.date, (int)selectedWorkshiftIndex);
             }
         }
 
@@ -204,7 +219,10 @@ namespace Sem2IntroProjectWaterfall0._1
             if (selectedWorkshiftIndex != null)
             {
                 ChangeWorkshiftStatus(2, (int)selectedWorkshiftIndex);
+                RescheduleNotification selectedNotification = new RescheduleNotification(this.employeeID, this.date, (int)selectedWorkshiftIndex);
+                selectedNotification.RemoveNotification();
             }
+
         }
 
         private void toolStripDeclineRequest_Click(object sender, EventArgs e)
@@ -212,6 +230,8 @@ namespace Sem2IntroProjectWaterfall0._1
             if (selectedWorkshiftIndex != null)
             {
                 ChangeWorkshiftStatus(0, (int)selectedWorkshiftIndex);
+                RescheduleNotification selectedNotification = new RescheduleNotification(this.employeeID, this.date, (int)selectedWorkshiftIndex);
+                selectedNotification.RemoveNotification();
             }
         }
     }

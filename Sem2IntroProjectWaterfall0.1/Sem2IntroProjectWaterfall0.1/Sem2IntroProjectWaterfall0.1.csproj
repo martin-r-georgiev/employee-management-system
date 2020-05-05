@@ -132,6 +132,12 @@
     <Compile Include="Forms\PreferencesNew.Designer.cs">
       <DependentUpon>PreferencesNew.cs</DependentUpon>
     </Compile>
+    <Compile Include="NotificationUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NotificationUC.Designer.cs">
+      <DependentUpon>NotificationUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Prefrences.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -153,6 +159,7 @@
     <Compile Include="Forms\Workshifts.Designer.cs">
       <DependentUpon>Workshifts.cs</DependentUpon>
     </Compile>
+    <Compile Include="RescheduleNotification.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="SqlConnectionHandler.cs" />
     <Compile Include="StockItem.cs" />
@@ -193,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PreferencesNew.resx">
       <DependentUpon>PreferencesNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotificationUC.resx">
+      <DependentUpon>NotificationUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

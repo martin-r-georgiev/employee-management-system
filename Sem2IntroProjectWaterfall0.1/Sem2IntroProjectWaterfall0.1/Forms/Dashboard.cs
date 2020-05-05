@@ -13,6 +13,7 @@ namespace Sem2IntroProjectWaterfall0._1
 {
     public partial class Dashboard : Form
     {
+        List<RescheduleNotification> notifications;
         public Dashboard()
         {
             InitializeComponent();
@@ -20,6 +21,7 @@ namespace Sem2IntroProjectWaterfall0._1
             lbWorkers.Items.Add("John");
             lbWorkers.Items.Add("Peter");
             UpdateRoleGUI();
+            notifications = new List<RescheduleNotification>();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -106,7 +108,29 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             return true;
         }
-      
-   
+
+        private void btnRequests_Click(object sender, EventArgs e)
+        {
+            if (btnRequests.Text == "Open Requests")
+            {
+                pnlNotifications.Visible = true;
+                btnRequests.Text = "Close Requests";
+                RefreshNotifications();
+                
+            } else if (btnRequests.Text == "Close Requests")
+            {
+                pnlNotifications.Visible = false;
+                btnRequests.Text = "Open Requests";
+            }
+        }
+
+        public void RefreshNotifications()
+        {
+            notifications = RescheduleNotification.GetAllNotifications();
+            if (notifications.Count < 4) pnlNotifications.Size = new Size(200, 20 + 50 * notifications.Count);
+            pnlNotifications.Controls.Clear();
+            foreach (RescheduleNotification n in notifications)
+                pnlNotifications.Controls.Add(new NotificationUC(n));
+        }
     }
 }
