@@ -45,6 +45,8 @@
             this.btnApprove.Text = "Yes";
             this.btnApprove.UseVisualStyleBackColor = true;
             this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
+            this.btnApprove.MouseEnter += new System.EventHandler(this.NotificationUC_MouseEnter);
+            this.btnApprove.MouseLeave += new System.EventHandler(this.NotificationUC_MouseLeave);
             // 
             // btnDeny
             // 
@@ -56,6 +58,8 @@
             this.btnDeny.Text = "No";
             this.btnDeny.UseVisualStyleBackColor = true;
             this.btnDeny.Click += new System.EventHandler(this.btnDeny_Click);
+            this.btnDeny.MouseEnter += new System.EventHandler(this.NotificationUC_MouseEnter);
+            this.btnDeny.MouseLeave += new System.EventHandler(this.NotificationUC_MouseLeave);
             // 
             // lblEmployeeName
             // 
@@ -66,6 +70,8 @@
             this.lblEmployeeName.Size = new System.Drawing.Size(85, 13);
             this.lblEmployeeName.TabIndex = 2;
             this.lblEmployeeName.Text = "Ivan Zvezdev";
+            this.lblEmployeeName.MouseEnter += new System.EventHandler(this.NotificationUC_MouseEnter);
+            this.lblEmployeeName.MouseLeave += new System.EventHandler(this.NotificationUC_MouseLeave);
             // 
             // lblDate
             // 
@@ -76,6 +82,8 @@
             this.lblDate.Size = new System.Drawing.Size(110, 13);
             this.lblDate.TabIndex = 4;
             this.lblDate.Text = "12.05.2020 Afternoon";
+            this.lblDate.MouseEnter += new System.EventHandler(this.NotificationUC_MouseEnter);
+            this.lblDate.MouseLeave += new System.EventHandler(this.NotificationUC_MouseLeave);
             // 
             // panel1
             // 
@@ -84,11 +92,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(10, 50);
             this.panel1.TabIndex = 5;
+            this.panel1.MouseEnter += new System.EventHandler(this.NotificationUC_MouseEnter);
+            this.panel1.MouseLeave += new System.EventHandler(this.NotificationUC_MouseLeave);
             // 
             // NotificationUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.lblEmployeeName);
@@ -96,6 +107,8 @@
             this.Controls.Add(this.btnApprove);
             this.Name = "NotificationUC";
             this.Size = new System.Drawing.Size(175, 50);
+            this.MouseEnter += new System.EventHandler(this.NotificationUC_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.NotificationUC_MouseLeave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

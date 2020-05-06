@@ -21,7 +21,7 @@ namespace Sem2IntroProjectWaterfall0._1
             InitializeComponent();
             this.AcceptButton = btnLogin;
             //AutoWorkshift generate = new AutoWorkshift();
-             //workshiftss= generate.GenerateWorkshiftSchedule();
+            //workshiftss= generate.GenerateWorkshiftSchedule();
             //testingworkshift();
             //generate.ExportToDatabase();
          }
@@ -47,7 +47,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 {
                     try
                     {
-                        using (MySqlCommand cmd = new MySqlCommand($"SELECT userID, username, password, role FROM users WHERE username=@username AND password=@password", conn))
+                        using (MySqlCommand cmd = new MySqlCommand($"SELECT userID, username, password, role, departmentID FROM users WHERE username=@username AND password=@password", conn))
                         {
                             cmd.Parameters.AddWithValue("@username", tbUsername.Text);
                             cmd.Parameters.AddWithValue("@password", HashManager.GetSha256(tbPassword.Text));
@@ -57,6 +57,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             {
                                 LoggedInUser.userID = dataReader.GetString(0);
                                 LoggedInUser.role = (Role)dataReader.GetInt16(3);
+                                LoggedInUser.departmentID = dataReader.GetString(4);
                                 //Opening dashboard on successful login
                                 Dashboard newScreen = new Dashboard();
                                 newScreen.Show();
@@ -79,6 +80,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             LoggedInUser.userID = "AHrsSBGtkCE9kwraDlC5g";
             LoggedInUser.role = (Role)3;
+            LoggedInUser.departmentID = "ebcpNLREqnrQjWbkrNNA";
             //Opening dashboard on successful login
             Dashboard newScreen = new Dashboard();
             newScreen.Show();

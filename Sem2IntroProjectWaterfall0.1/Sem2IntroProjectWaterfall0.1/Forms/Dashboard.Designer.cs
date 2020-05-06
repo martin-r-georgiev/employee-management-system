@@ -99,7 +99,6 @@
             this.btnCheckin.TabIndex = 5;
             this.btnCheckin.Text = "Check In";
             this.btnCheckin.UseVisualStyleBackColor = true;
-            this.btnCheckin.Visible = false;
             this.btnCheckin.Click += new System.EventHandler(this.BtnCheckin_Click);
             // 
             // lbWorkers

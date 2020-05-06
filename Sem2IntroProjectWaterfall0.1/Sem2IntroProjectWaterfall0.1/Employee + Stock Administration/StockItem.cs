@@ -297,7 +297,7 @@ namespace Sem2IntroProjectWaterfall0._1
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
                 MySqlCommand cmd;
-                MySqlDataReader dataReader, reader;
+                MySqlDataReader dataReader;
 
                 cmd = new MySqlCommand("SELECT departmentID FROM stock WHERE stockID=@stockid", conn);
                 cmd.Parameters.AddWithValue("@stockid", this.StockID);

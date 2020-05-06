@@ -45,5 +45,15 @@ namespace Sem2IntroProjectWaterfall0._1
             Dashboard pForm = (Dashboard)this.ParentForm;
             pForm.RefreshNotifications();
         }
+
+        private void NotificationUC_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightGray;
+        }
+
+        private void NotificationUC_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+        }
     }
 }

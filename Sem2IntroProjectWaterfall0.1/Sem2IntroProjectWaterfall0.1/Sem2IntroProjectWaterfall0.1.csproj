@@ -69,8 +69,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoWorkshift.cs" />
-    <Compile Include="ColorControls.cs" />
+    <Compile Include="Workshifts Backend\Attendance.cs" />
+    <Compile Include="Workshifts Backend\CheckIn.cs" />
+    <Compile Include="Workshifts Backend\AutoWorkshift.cs" />
+    <Compile Include="Auxiliary Classes\ColorControls.cs" />
     <Compile Include="Custom Controls\WorkshiftCells.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -83,15 +85,15 @@
     <Compile Include="Custom Controls\WorkshiftUC.Designer.cs">
       <DependentUpon>WorkshiftUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="DateTimeControls.cs" />
-    <Compile Include="DateTimeExtensions.cs" />
-    <Compile Include="DaysOfTheWeek.cs" />
-    <Compile Include="Department.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeControl.cs">
+    <Compile Include="Auxiliary Classes\DateTimeControls.cs" />
+    <Compile Include="Auxiliary Classes\DateTimeExtensions.cs" />
+    <Compile Include="Enums\DaysOfTheWeek.cs" />
+    <Compile Include="Employee + Stock Administration\Department.cs" />
+    <Compile Include="Employee + Stock Administration\Employee.cs" />
+    <Compile Include="Custom Controls\EmployeeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EmployeeControl.Designer.cs">
+    <Compile Include="Custom Controls\EmployeeControl.Designer.cs">
       <DependentUpon>EmployeeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dashboard.cs">
@@ -120,25 +122,25 @@
     </Compile>
     <Compile Include="Exceptions\NameTakenException.cs" />
     <Compile Include="Exceptions\MinimalEmployeesException.cs" />
-    <Compile Include="HashManager.cs" />
+    <Compile Include="Auxiliary Classes\HashManager.cs" />
     <Compile Include="Exceptions\InvalidEntryException.cs" />
-    <Compile Include="Inventory.cs" />
-    <Compile Include="LoggedInUser.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="LoggingLevels.cs" />
+    <Compile Include="Employee + Stock Administration\Inventory.cs" />
+    <Compile Include="Auxiliary Classes\LoggedInUser.cs" />
+    <Compile Include="Auxiliary Classes\Logger.cs" />
+    <Compile Include="Enums\LoggingLevels.cs" />
     <Compile Include="Forms\PreferencesNew.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\PreferencesNew.Designer.cs">
       <DependentUpon>PreferencesNew.cs</DependentUpon>
     </Compile>
-    <Compile Include="NotificationUC.cs">
+    <Compile Include="Custom Controls\NotificationUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NotificationUC.Designer.cs">
+    <Compile Include="Custom Controls\NotificationUC.Designer.cs">
       <DependentUpon>NotificationUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Prefrences.cs" />
+    <Compile Include="Workshifts Backend\Prefrences.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\StatisticsForm.cs">
@@ -159,18 +161,18 @@
     <Compile Include="Forms\Workshifts.Designer.cs">
       <DependentUpon>Workshifts.cs</DependentUpon>
     </Compile>
-    <Compile Include="RescheduleNotification.cs" />
-    <Compile Include="Role.cs" />
-    <Compile Include="SqlConnectionHandler.cs" />
-    <Compile Include="StockItem.cs" />
+    <Compile Include="Workshifts Backend\RescheduleNotification.cs" />
+    <Compile Include="Enums\Role.cs" />
+    <Compile Include="Auxiliary Classes\SqlConnectionHandler.cs" />
+    <Compile Include="Employee + Stock Administration\StockItem.cs" />
     <Compile Include="Custom Controls\StockUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Custom Controls\StockUC.Designer.cs">
       <DependentUpon>StockUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorkshiftData.cs" />
-    <Compile Include="WorkshiftDatabaseHandler.cs" />
+    <Compile Include="Workshifts Backend\WorkshiftData.cs" />
+    <Compile Include="Workshifts Backend\WorkshiftDatabaseHandler.cs" />
     <Compile Include="Custom Controls\WorkshiftWeeklyUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -183,7 +185,7 @@
     <EmbeddedResource Include="Custom Controls\WorkshiftUC.resx">
       <DependentUpon>WorkshiftUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeControl.resx">
+    <EmbeddedResource Include="Custom Controls\EmployeeControl.resx">
       <DependentUpon>EmployeeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dashboard.resx">
@@ -201,7 +203,7 @@
     <EmbeddedResource Include="Forms\PreferencesNew.resx">
       <DependentUpon>PreferencesNew.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NotificationUC.resx">
+    <EmbeddedResource Include="Custom Controls\NotificationUC.resx">
       <DependentUpon>NotificationUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

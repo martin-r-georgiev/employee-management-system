@@ -17,11 +17,9 @@ namespace Sem2IntroProjectWaterfall0._1
         public Dashboard()
         {
             InitializeComponent();
-            lbWorkers.Items.Add("Ivan");
-            lbWorkers.Items.Add("John");
-            lbWorkers.Items.Add("Peter");
             UpdateRoleGUI();
             notifications = new List<RescheduleNotification>();
+            UpdatePresentWorkers();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -71,11 +69,31 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void BtnCheckin_Click(object sender, EventArgs e)
         {
-            StockItem item = new StockItem("Samsung S2");
+            if (btnCheckin.Text == "Check In")
+            {
+                CheckIn.Checkin(LoggedInUser.userID, DateTime.Now);
+                btnCheckin.Text = "Check Out";
+            } else if (btnCheckin.Text == "Check Out")
+            {
+                CheckIn.Checkout(LoggedInUser.userID, DateTime.Now);
+                btnCheckin.Text = "Check In";
+            }
+            UpdatePresentWorkers();
+        }
+        private void UpdatePresentWorkers()
+        {
+            lbWorkers.Items.Clear();
+            foreach (Employee e in CheckIn.GetEmployeesAtWork(LoggedInUser.departmentID))
+            {
+                if (e.FirstName == null) lbWorkers.Items.Add($"{e.Username}");
+                else lbWorkers.Items.Add($"{e.FirstName} {e.LastName}");
+            }
         }
         private void UpdateRoleGUI()
         {
-            if (LoggedInUser.role == Role.Worker) btnCheckin.Visible = true;
+            if (CheckIn.IsAtWork(LoggedInUser.userID)) btnCheckin.Text = "Check Out";
+            else btnCheckin.Text = "Check In";
+
             if (LoggedInUser.role >= Role.Manager)
             {
                 btnRequests.Visible = true;
@@ -126,7 +144,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public void RefreshNotifications()
         {
-            notifications = RescheduleNotification.GetAllNotifications();
+            if (LoggedInUser.role == Role.Owner) notifications = RescheduleNotification.GetAllNotifications();
+            else notifications = RescheduleNotification.GetAllNotifications(LoggedInUser.departmentID);
             if (notifications.Count < 4) pnlNotifications.Size = new Size(200, 20 + 50 * notifications.Count);
             pnlNotifications.Controls.Clear();
             foreach (RescheduleNotification n in notifications)

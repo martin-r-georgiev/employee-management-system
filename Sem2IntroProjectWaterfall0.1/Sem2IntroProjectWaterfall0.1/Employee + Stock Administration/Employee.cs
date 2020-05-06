@@ -29,6 +29,10 @@ namespace Sem2IntroProjectWaterfall0._1
         private Nullable<DateTime> endDate;
         private string mainDetails;
         private int workHours;
+        private double attendance;
+
+        
+
         #endregion
 
         #region Properties
@@ -383,6 +387,25 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return mainDetails; }
             set { mainDetails = value; }
         }
+        public double Attendance
+        {
+            get { return attendance; }
+            set
+            {
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+                {
+                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE employees SET attendance=@attendance WHERE userID=@userID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@attendance", value);
+                        cmd.Parameters.AddWithValue("@userID", this.userID);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    conn.Close();
+                }
+                this.attendance = value;
+            }
+        }
         #endregion
 
         #region Constructors
@@ -427,11 +450,12 @@ namespace Sem2IntroProjectWaterfall0._1
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
-                using (cmd = new MySqlCommand($"INSERT INTO employees(userID,startDate, workHours) VALUES (@userID, @startDate, @workHours)", conn))
+                using (cmd = new MySqlCommand($"INSERT INTO employees(userID,startDate, workHours, attendance) VALUES (@userID, @startDate, @workHours, @attendance)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", this.userID);
                     cmd.Parameters.AddWithValue("@startDate", this.StartDate);
                     cmd.Parameters.AddWithValue("@workHours", this.workHours);
+                    cmd.Parameters.AddWithValue("@attendance", "0.0");
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
@@ -466,6 +490,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         if (!dataReader.IsDBNull(14)) this.sex = dataReader.GetBoolean(14);
                         if (!dataReader.IsDBNull(15)) this.startDate = dataReader.GetDateTime(15);
                         this.workHours = dataReader.GetInt32(16);
+                        if (!dataReader.IsDBNull(17)) this.attendance = Convert.ToDouble(dataReader.GetDecimal(17));
                     }
                     cmd.Dispose();
                     dataReader.Close();
@@ -502,6 +527,8 @@ namespace Sem2IntroProjectWaterfall0._1
                             if (!dataReader.IsDBNull(14)) this.sex = dataReader.GetBoolean(14);
                             if (!dataReader.IsDBNull(15)) this.startDate = dataReader.GetDateTime(15);
                             this.workHours = dataReader.GetInt32(16);
+                            if (!dataReader.IsDBNull(17)) this.attendance = Convert.ToDouble(dataReader.GetDecimal(17));
+
                         }
                         cmd.Dispose();
                         dataReader.Close();

@@ -10,5 +10,6 @@ namespace Sem2IntroProjectWaterfall0._1
     {
         public static string userID;
         public static Role role;
+        public static string departmentID;
     }
 }
