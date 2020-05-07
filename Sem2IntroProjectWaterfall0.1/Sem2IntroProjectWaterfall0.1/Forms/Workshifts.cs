@@ -17,6 +17,9 @@ namespace Sem2IntroProjectWaterfall0._1
         //Weekly view
         DateTime startDate, endDate;
 
+        string selectedDepartmentID;
+        List<Department> departments;
+
         int panelState = 0;
         AutoWorkshift ScheduleGenerator = new AutoWorkshift();
 
@@ -34,7 +37,10 @@ namespace Sem2IntroProjectWaterfall0._1
             WorkshiftUC.shiftTwoStart = "13:00";
             WorkshiftUC.shiftThreeStart = "17:00";
             WorkshiftUC.shiftThreeEnd = "21:00";
-            UpdateWeeklyWorkshiftPanel(selectedDate);
+            selectedDepartmentID = LoggedInUser.departmentID;
+            departments = new List<Department>();
+            UpdateWeeklyWorkshiftPanel(selectedDate, selectedDepartmentID);
+            UpdateDepartmentCombobox();
         }
         public void ScheduleChecker()
         {
@@ -44,12 +50,12 @@ namespace Sem2IntroProjectWaterfall0._1
                 MessageBox.Show(message);
             }
         }
-        void UpdateDailyWorkshiftPanel(DateTime time)
+        void UpdateDailyWorkshiftPanel(DateTime time, string departmentID)
         {
             bool isHeader = true;
             flpWorkshifts.SuspendLayout();
             flpWorkshifts.Controls.Clear();
-            List<WorkshiftUC> workshiftList = WorkshiftDatabaseHandler.GetEmployees(time);
+            List<WorkshiftUC> workshiftList = WorkshiftDatabaseHandler.GetEmployees(time, departmentID);
             foreach (WorkshiftUC control in workshiftList)
             {
                 if (isHeader)
@@ -63,12 +69,12 @@ namespace Sem2IntroProjectWaterfall0._1
             flpWorkshifts.ResumeLayout();
         }
 
-        void UpdateWeeklyWorkshiftPanel(DateTime time)
+        void UpdateWeeklyWorkshiftPanel(DateTime time, string departmentID)
         {
             bool isHeader = true;
             flpWorkshifts.SuspendLayout();
             flpWorkshifts.Controls.Clear();
-            List<WorkshiftWeeklyUC> workshiftList = WorkshiftDatabaseHandler.GetWeeklyEmployees(time);
+            List<WorkshiftWeeklyUC> workshiftList = WorkshiftDatabaseHandler.GetWeeklyEmployees(time, departmentID);
             foreach (WorkshiftWeeklyUC control in workshiftList)
             {
                 if (isHeader)
@@ -95,6 +101,17 @@ namespace Sem2IntroProjectWaterfall0._1
             }        
         }
 
+        void UpdateDepartmentCombobox()
+        {
+            cmbDepartmentSelect.Items.Clear();
+            departments = Department.GetAllDepartments();
+            for (int i = 0; i < departments.Count; i ++)
+            {
+                cmbDepartmentSelect.Items.Add(departments[i].Name);
+                if (departments[i].DepartmentId == selectedDepartmentID) cmbDepartmentSelect.SelectedIndex = i;
+            }        
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             Dashboard newScreen = new Dashboard();
@@ -110,13 +127,13 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         startDate = startDate.AddDays(-7);
                         endDate = endDate.AddDays(-7);
-                        UpdateWeeklyWorkshiftPanel(startDate);
+                        UpdateWeeklyWorkshiftPanel(startDate, selectedDepartmentID);
                         UpdateDateText();
                     }   break;
                 case 1:
                     {
                         selectedDate = selectedDate.AddDays(-1);
-                        UpdateDailyWorkshiftPanel(selectedDate);
+                        UpdateDailyWorkshiftPanel(selectedDate, selectedDepartmentID);
                         UpdateDateText();
                     }   break;
             }
@@ -130,14 +147,14 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         startDate = startDate.AddDays(7);
                         endDate = endDate.AddDays(7);
-                        UpdateWeeklyWorkshiftPanel(startDate);
+                        UpdateWeeklyWorkshiftPanel(startDate, selectedDepartmentID);
                         UpdateDateText();
                     }
                     break;
                 case 1:
                     {
                         selectedDate = selectedDate.AddDays(1);
-                        UpdateDailyWorkshiftPanel(selectedDate);
+                        UpdateDailyWorkshiftPanel(selectedDate, selectedDepartmentID);
                         UpdateDateText();
                     }
                     break;
@@ -152,7 +169,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         panelState = 1;
                         UpdateDateText();
-                        UpdateDailyWorkshiftPanel(selectedDate);
+                        UpdateDailyWorkshiftPanel(selectedDate, selectedDepartmentID);
                         
                         btnToggleView.Text = "Toggle Weekly view";
                     }
@@ -161,10 +178,63 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         panelState = 0;
                         UpdateDateText();
-                        UpdateWeeklyWorkshiftPanel(selectedDate);
+                        UpdateWeeklyWorkshiftPanel(selectedDate, selectedDepartmentID);
                         btnToggleView.Text = "Toggle Daily view";
                     }
                     break;
+            }
+        }
+
+        private void cmbDepartmentSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbDepartmentSelect.SelectedIndex != -1 && departments.Count > cmbDepartmentSelect.SelectedIndex)
+            {
+                selectedDepartmentID = departments[cmbDepartmentSelect.SelectedIndex].DepartmentId;
+                switch (panelState)
+                {
+                    case 0: UpdateWeeklyWorkshiftPanel(startDate, selectedDepartmentID); break;                    
+                    case 1: UpdateDailyWorkshiftPanel(selectedDate, selectedDepartmentID); break;
+                }
+            }
+        }
+
+        private void checkWorkers_CheckedChanged(object sender, EventArgs e)
+        {
+            if(selectedDepartmentID != null)
+            {
+                WorkshiftFilters.ShowWorkers = checkWorkers.Checked;
+                switch (panelState)
+                {
+                    case 0: UpdateWeeklyWorkshiftPanel(startDate, selectedDepartmentID); break;
+                    case 1: UpdateDailyWorkshiftPanel(selectedDate, selectedDepartmentID); break;
+                }
+            }
+        }
+
+        private void checkAdmins_CheckedChanged(object sender, EventArgs e)
+        {
+            if (selectedDepartmentID != null)
+            {
+                WorkshiftFilters.ShowAdmins = checkAdmins.Checked;
+
+                switch (panelState)
+                {
+                    case 0: UpdateWeeklyWorkshiftPanel(startDate, selectedDepartmentID); break;
+                    case 1: UpdateDailyWorkshiftPanel(selectedDate, selectedDepartmentID); break;
+                }
+            }
+        }
+
+        private void checkManagers_CheckedChanged(object sender, EventArgs e)
+        {
+            if (selectedDepartmentID != null)
+            {
+                WorkshiftFilters.ShowManagers = checkManagers.Checked;
+                switch (panelState)
+                {
+                    case 0: UpdateWeeklyWorkshiftPanel(startDate, selectedDepartmentID); break;
+                    case 1: UpdateDailyWorkshiftPanel(selectedDate, selectedDepartmentID); break;
+                }
             }
         }
 

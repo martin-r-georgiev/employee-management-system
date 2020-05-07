@@ -179,6 +179,7 @@
     <Compile Include="Custom Controls\WorkshiftWeeklyUC.Designer.cs">
       <DependentUpon>WorkshiftWeeklyUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Workshifts Backend\WorkshiftFilters.cs" />
     <EmbeddedResource Include="Custom Controls\WorkshiftCells.resx">
       <DependentUpon>WorkshiftCells.cs</DependentUpon>
     </EmbeddedResource>

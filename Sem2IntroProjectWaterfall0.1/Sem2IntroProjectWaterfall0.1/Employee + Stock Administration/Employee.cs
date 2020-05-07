@@ -539,7 +539,7 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    using (MySqlCommand cmd = new MySqlCommand($"SELECT username,departmentID,firstName,lastName FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID WHERE u.userID=@userID", conn))
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT username,departmentID,firstName,lastName,role FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID WHERE u.userID=@userID", conn))
                     {
                         cmd.Parameters.AddWithValue("@userID", userIdentifier);
                         MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -551,6 +551,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             this.departmentID = dataReader.GetString(1);
                             this.firstName = (dataReader.IsDBNull(2)) ? null : dataReader.GetString(2);
                             this.lastName = (dataReader.IsDBNull(3)) ? null : dataReader.GetString(3);
+                            this.role = (Role)dataReader.GetInt32(4);
                         }
                         cmd.Dispose();
                         dataReader.Close();

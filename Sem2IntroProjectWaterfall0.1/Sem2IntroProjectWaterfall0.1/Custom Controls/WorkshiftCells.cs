@@ -71,29 +71,15 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
-        public void ClearColor(int index)
-        {
-            SetColor(index, SystemColors.Control);
-            
-        }
-        public void SetAvailable(int index)
-        {
-            SetColor(index, Color.PaleGreen);
-        }
-        public void SetMissed(int index)
-        {
-            SetColor(index, Color.Firebrick);
-        }
-        public void SetUnavailable(int index) 
-        { 
-            SetColor(index, Color.Gray);
-        }
+        public void ClearColor(int index) { SetColor(index, SystemColors.Control); }
 
-        public void SetPending(int index)
-        { 
-            SetColor(index, Color.Yellow);
+        public void SetAvailable(int index) { SetColor(index, Color.PaleGreen); }
 
-        }
+        public void SetMissed(int index) { SetColor(index, Color.Firebrick); }
+
+        public void SetUnavailable(int index) { SetColor(index, Color.Gray); }
+
+        public void SetPending(int index) { SetColor(index, Color.Yellow); }
 
         public void SetStatus(int status, int index)
         {

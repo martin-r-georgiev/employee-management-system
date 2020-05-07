@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MediaBazaarApplicationWPF.Commands;
 
 namespace MediaBazaarApplicationWPF.ViewModels
 {
@@ -12,10 +13,10 @@ namespace MediaBazaarApplicationWPF.ViewModels
         //Instance variable(s)
         private string _username;
         private string _password;
+
         //private readonly DelegateCommand _changeNameCommand;
         //public ICommand ChangeNameCommand => _changeNameCommand;
-
-        private readonly DelegateCommand _loginCommand;
+        private readonly OnLoginCommand _loginCommand;
         public ICommand LoginCommand => _loginCommand;
 
         public string Username
@@ -45,17 +46,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
         public LoginViewModel()
         {
             //_changeNameCommand = new DelegateCommand(OnChangeName, CanChangeName);
-            _loginCommand = new DelegateCommand(OnLogin, CanClickLogin);
-        }
-
-        private void OnLogin(object commandParameter)
-        {
-            Console.WriteLine($"Tried to login with credentials: {this.Username}, {this.Password}");
-        }
-
-        private bool CanClickLogin(object commandParameter)
-        {
-            return !String.IsNullOrWhiteSpace(this.Username) && !String.IsNullOrWhiteSpace(this.Password);
+            _loginCommand = new OnLoginCommand(this);
         }
 
         //private void OnChangeName(object commandParameter)
