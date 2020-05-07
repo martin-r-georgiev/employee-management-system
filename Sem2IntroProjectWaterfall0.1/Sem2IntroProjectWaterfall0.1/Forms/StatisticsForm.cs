@@ -37,9 +37,17 @@ namespace Sem2IntroProjectWaterfall0._1
                     ClearChart();
                     GetDataForEmplyoeePerRole();
                     break;
-                case 2:
+                case 2: // ItemsPerDepartment
                     ClearChart();
                     GetDataForItemsPerDepartment();
+                    break;
+                case 3: //Prefered Day
+                    ClearChart();
+                    GetDataForPreferedDay();
+                    break;
+                case 4: //Prefered shift
+                    ClearChart();
+                    GetDataForPreferedShift();
                     break;
                 default:
                     break;
@@ -149,8 +157,96 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             AlreadyClear = false;
         }
-#endregion
+
+        private void GetDataForPreferedDay()
+        {
+            int totalSelections = 0;
+            chart1.Titles.Add("Day preferences");
+            chart1.Series.Add("DayPref");
+            chart1.Series["DayPref"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(day) as 'count' FROM preferences ", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        totalSelections = Convert.ToInt32(dataReader["count"]);
+                    }
+
+                    dataReader.Close();
+                }
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(day) as 'count', day FROM preferences GROUP by day", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        int nrOfTimesSelected = Convert.ToInt32(dataReader["count"]);
+                        string day = dataReader["day"].ToString();
+                        int percentage = (nrOfTimesSelected * 100) / totalSelections;
+                        chart1.Series["DayPref"].Points.AddXY(day + " " + nrOfTimesSelected, percentage);
+                    }
+
+                    dataReader.Close();
+                }
+                con.Close();
+            }
+            AlreadyClear = false;
+        }
+
+        private void GetDataForPreferedShift()
+        {
+            int totalSelections = 0;
+            chart1.Titles.Add("Shift preferences");
+            chart1.Series.Add("ShiftPref");
+            chart1.Series["ShiftPref"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(day) as 'count' FROM preferences ", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        totalSelections = Convert.ToInt32(dataReader["count"]);
+                    }
+
+                    dataReader.Close();
+                }
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT count(workshift) as 'count',workshift from preferences GROUP BY workshift", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        int nrOfTimesSelected = Convert.ToInt32(dataReader["count"]);
+                        string workshift = dataReader["workshift"].ToString();
+                        int percentage = (nrOfTimesSelected * 100) / totalSelections;
+                        chart1.Series["ShiftPref"].Points.AddXY(ReturnShiftName(workshift) + " " + nrOfTimesSelected, percentage);
+                    }
+
+                    dataReader.Close();
+                }
+                con.Close();
+            }
+            AlreadyClear = false;
+        }
+
+        #endregion
         #region Auxiliary Methods
+
+        public string ReturnShiftName(string shift)
+        {
+            switch (shift)
+            {
+                case "0": return "Morning";
+                case "1": return "Lunch";
+                case "2": return "Evening";
+                default: return "EEROR";
+            }
+        }
         public string ReturnRole(string role)
         {
             switch(role)

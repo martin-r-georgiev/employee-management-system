@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cbStatistic = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -37,10 +37,10 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(12, 48);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(671, 424);
@@ -53,7 +53,9 @@
             this.cbStatistic.Items.AddRange(new object[] {
             "Emplyoee distribution per department",
             "Emplyoees distribution per role",
-            "Items ussage per deparment"});
+            "Items ussage per deparment",
+            "Day preference",
+            "Shift preference"});
             this.cbStatistic.Location = new System.Drawing.Point(12, 12);
             this.cbStatistic.Name = "cbStatistic";
             this.cbStatistic.Size = new System.Drawing.Size(250, 21);
