@@ -140,14 +140,14 @@ namespace Sem2IntroProjectWaterfall0._1
             chart1.Series.Add("EmplyoeesPerRole");
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(role) as 'Employees', role FROM users GROUP by role", con))
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(role) as 'Employees', role as 'notreservedkeyword' FROM users GROUP by role", con))
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
                     while (dataReader.Read())
                     {
                         string NumberOfEmplyoees = dataReader["Employees"].ToString();
-                        string role = dataReader["role"].ToString();
+                        string role = dataReader["notreservedkeyword"].ToString();
                         chart1.Series["EmplyoeesPerRole"].Points.AddXY(role, NumberOfEmplyoees);
                     }
 
