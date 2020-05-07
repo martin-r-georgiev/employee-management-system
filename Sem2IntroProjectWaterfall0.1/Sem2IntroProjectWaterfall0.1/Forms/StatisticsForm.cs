@@ -48,19 +48,33 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void GetDataForEmplyoeePerDepartment()
         {
+            int totalEmplyoees=0;
             chart1.Titles.Add("Emplyoees per Department");
             chart1.Series.Add("EmplyoeesPerDepartment");
+            chart1.Series["EmplyoeesPerDepartment"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
+                using (MySqlCommand cmd = new MySqlCommand($"select count(userID) as 'Total' from users ", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        totalEmplyoees = Convert.ToInt32(dataReader["total"]);
+                    }
+
+                    dataReader.Close();
+                }
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(users.departmentID) as 'Employees',department.name FROM users INNER JOIN department ON users.departmentID=department.departmentID GROUP BY users.departmentID ", con))
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
                     while (dataReader.Read())
                     {
-                        string NumberOfEmplyoees = dataReader["Employees"].ToString();
+                        int NumberOfEmplyoees = Convert.ToInt32(dataReader["Employees"]);
                         string databaseDepartment = dataReader["name"].ToString();
-                        chart1.Series["EmplyoeesPerDepartment"].Points.AddXY(databaseDepartment, NumberOfEmplyoees);
+                        int percentage = (NumberOfEmplyoees * 100) / totalEmplyoees;
+                        chart1.Series["EmplyoeesPerDepartment"].Points.AddXY(databaseDepartment+" "+NumberOfEmplyoees, percentage);
                     }
 
                     dataReader.Close();
