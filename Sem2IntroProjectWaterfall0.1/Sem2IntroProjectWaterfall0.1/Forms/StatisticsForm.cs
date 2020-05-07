@@ -45,7 +45,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     break;
             }
         }
-
+        #region MethodsToCreateChart
         private void GetDataForEmplyoeePerDepartment()
         {
             int totalEmplyoees=0;
@@ -149,6 +149,8 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             AlreadyClear = false;
         }
+#endregion
+        #region Auxiliary Methods
         public string ReturnRole(string role)
         {
             switch(role)
@@ -178,4 +180,5 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
     }
+    #endregion
 }
