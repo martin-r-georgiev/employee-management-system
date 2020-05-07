@@ -29,13 +29,13 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             switch (cbStatistic.SelectedIndex)
             {
-                case 0: // empyloeePerDepartment
+                case 0: // employeePerDepartment
                     ClearChart();
                     GetDataForEmplyoeePerDepartment();
                     break;
-                case 1: // emplyoeePerRole
+                case 1: // employeePerRole
                     ClearChart();
-                    GetDataForEmplyoeePerRole();
+                    GetDataForEmployeePerRole();
                     break;
                 case 2: // ItemsPerDepartment
                     ClearChart();
@@ -96,7 +96,8 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             List<string> ItemsWithADepartment = new List<string>();
             chart1.Titles.Add("Items distribution per Department");
-            chart1.Series.Add("ItemsPerDepartment");
+            chart1.Series.Add("Items Per Department");
+            
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT stock_item.name, count(stock.departmentID) as 'count'  FROM stock  JOIN stock_item on stock_item.stockID=stock.stockID GROUP BY stock.stockID", con))
@@ -108,7 +109,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         string numberOfDepartmentsItemIsIn = dataReader["count"].ToString();
                         string name = dataReader["name"].ToString();
                         ItemsWithADepartment.Add(name);
-                        chart1.Series["ItemsPerDepartment"].Points.AddXY(name, numberOfDepartmentsItemIsIn);
+                        chart1.Series["Items Per Department"].Points.AddXY(name, numberOfDepartmentsItemIsIn);
                     }
 
                     dataReader.Close();
@@ -123,7 +124,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         string name = dataReader["name"].ToString();
 
                         if (ItemsWithADepartment.IndexOf(name)<0)
-                        chart1.Series["ItemsPerDepartment"].Points.AddXY(name, 0);
+                        chart1.Series["Items Per Department"].Points.AddXY(name, 0);
                     }
 
                     dataReader.Close();
@@ -134,7 +135,7 @@ namespace Sem2IntroProjectWaterfall0._1
             AlreadyClear = false;
         }
 
-        private void GetDataForEmplyoeePerRole() // weird error idk why bruh
+        private void GetDataForEmployeePerRole() // weird error idk why bruh
         {
             chart1.Titles.Add("Emplyoees per Role");
             chart1.Series.Add("EmplyoeesPerRole");
