@@ -31,7 +31,7 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 case 0: // employeePerDepartment
                     ClearChart();
-                    GetDataForEmplyoeePerDepartment();
+                    GetDataForEmployeePerDepartment();
                     break;
                 case 1: // employeePerRole
                     ClearChart();
@@ -54,7 +54,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
         #region MethodsToCreateChart
-        private void GetDataForEmplyoeePerDepartment()
+        private void GetDataForEmployeePerDepartment()
         {
             int totalEmplyoees=0;
             chart1.Titles.Add("Emplyoees per Department");

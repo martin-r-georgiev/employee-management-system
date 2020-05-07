@@ -53,7 +53,7 @@
             this.cbStatistic.Items.AddRange(new object[] {
             "Employee distribution per department",
             "Employees distribution per role",
-            "Items ussage per deparment",
+            "Items usage per deparment",
             "Day preference for employees\t",
             "Shift preference for employees"});
             this.cbStatistic.Location = new System.Drawing.Point(12, 12);
