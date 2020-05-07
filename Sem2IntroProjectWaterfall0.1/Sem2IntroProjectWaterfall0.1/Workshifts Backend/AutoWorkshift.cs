@@ -204,7 +204,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
 #endregion
 
-#region Auxiliary Methods
+        #region Auxiliary Methods
 public bool HasMultipleEntries(string day, int workshift)
         {
             int timesfound = 0;

@@ -120,7 +120,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 con.Close();
             }
-            if(numberofpreferences!=10)
+            if(numberofpreferences==0)
             {
                 return false;
             }
