@@ -41,6 +41,15 @@ namespace Sem2IntroProjectWaterfall0._1
             departments = new List<Department>();
             UpdateWeeklyWorkshiftPanel(selectedDate, selectedDepartmentID);
             UpdateDepartmentCombobox();
+            UpdateRoleControls();
+        }
+        private void UpdateRoleControls()
+        {
+            if (LoggedInUser.role == Role.Worker)
+            {
+                lblDepartmentSelect.Visible = false;
+                cmbDepartmentSelect.Visible = false;
+            }
         }
         public void ScheduleChecker()
         {

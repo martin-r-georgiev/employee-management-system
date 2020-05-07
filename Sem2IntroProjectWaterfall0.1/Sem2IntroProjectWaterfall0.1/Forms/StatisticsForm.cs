@@ -150,7 +150,6 @@ namespace Sem2IntroProjectWaterfall0._1
                         string role = dataReader["notreservedkeyword"].ToString();
                         chart1.Series["EmplyoeesPerRole"].Points.AddXY(role, NumberOfEmplyoees);
                     }
-
                     dataReader.Close();
                 }
                 con.Close();
