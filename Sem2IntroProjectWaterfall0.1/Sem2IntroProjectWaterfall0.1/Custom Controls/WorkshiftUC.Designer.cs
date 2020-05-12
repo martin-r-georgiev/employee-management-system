@@ -41,13 +41,13 @@
             this.panelDateWrapper = new System.Windows.Forms.Panel();
             this.panelWrapperContents = new System.Windows.Forms.Panel();
             this.rightClickMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripApproveRequest = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDeclineRequest = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSetAvailable = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSetUnavailable = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.depotRequestMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripRequestCancelation = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripApproveRequest = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDeclineRequest = new System.Windows.Forms.ToolStripMenuItem();
             this.panelDateWrapper.SuspendLayout();
             this.panelWrapperContents.SuspendLayout();
             this.rightClickMenu.SuspendLayout();
@@ -57,7 +57,7 @@
             // lblName
             // 
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(32, 3);
+            this.lblName.Location = new System.Drawing.Point(32, 2);
             this.lblName.Name = "lblName";
             this.lblName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblName.Size = new System.Drawing.Size(170, 18);
@@ -102,7 +102,7 @@
             this.panelDivider.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panelDivider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelDivider.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelDivider.Location = new System.Drawing.Point(0, 77);
+            this.panelDivider.Location = new System.Drawing.Point(0, 47);
             this.panelDivider.Name = "panelDivider";
             this.panelDivider.Size = new System.Drawing.Size(871, 2);
             this.panelDivider.TabIndex = 7;
@@ -136,7 +136,7 @@
             // 
             // lblShiftEnd
             // 
-            this.lblShiftEnd.Location = new System.Drawing.Point(802, 0);
+            this.lblShiftEnd.Location = new System.Drawing.Point(804, 0);
             this.lblShiftEnd.Name = "lblShiftEnd";
             this.lblShiftEnd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblShiftEnd.Size = new System.Drawing.Size(55, 17);
@@ -179,27 +179,41 @@
             this.toolStripSetUnavailable,
             this.clearToolStripMenuItem});
             this.rightClickMenu.Name = "rightClickMenu";
-            this.rightClickMenu.Size = new System.Drawing.Size(211, 152);
+            this.rightClickMenu.Size = new System.Drawing.Size(189, 124);
             this.rightClickMenu.Opened += new System.EventHandler(this.rightClickMenu_Opened);
+            // 
+            // toolStripApproveRequest
+            // 
+            this.toolStripApproveRequest.Name = "toolStripApproveRequest";
+            this.toolStripApproveRequest.Size = new System.Drawing.Size(188, 24);
+            this.toolStripApproveRequest.Text = "Approve request";
+            this.toolStripApproveRequest.Click += new System.EventHandler(this.toolStripApproveRequest_Click);
+            // 
+            // toolStripDeclineRequest
+            // 
+            this.toolStripDeclineRequest.Name = "toolStripDeclineRequest";
+            this.toolStripDeclineRequest.Size = new System.Drawing.Size(188, 24);
+            this.toolStripDeclineRequest.Text = "Decline request";
+            this.toolStripDeclineRequest.Click += new System.EventHandler(this.toolStripDeclineRequest_Click);
             // 
             // toolStripSetAvailable
             // 
             this.toolStripSetAvailable.Name = "toolStripSetAvailable";
-            this.toolStripSetAvailable.Size = new System.Drawing.Size(210, 24);
+            this.toolStripSetAvailable.Size = new System.Drawing.Size(188, 24);
             this.toolStripSetAvailable.Text = "Set Available";
             this.toolStripSetAvailable.Click += new System.EventHandler(this.setAvailableToolStripMenuItem_Click);
             // 
             // toolStripSetUnavailable
             // 
             this.toolStripSetUnavailable.Name = "toolStripSetUnavailable";
-            this.toolStripSetUnavailable.Size = new System.Drawing.Size(210, 24);
+            this.toolStripSetUnavailable.Size = new System.Drawing.Size(188, 24);
             this.toolStripSetUnavailable.Text = "Set Unavailable";
             this.toolStripSetUnavailable.Click += new System.EventHandler(this.setUnavailableToolStripMenuItem_Click);
             // 
             // clearToolStripMenuItem
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
@@ -220,20 +234,6 @@
             this.toolStripRequestCancelation.Text = "Request shift cancelation";
             this.toolStripRequestCancelation.Click += new System.EventHandler(this.toolStripRequestCancelation_Click);
             // 
-            // toolStripApproveRequest
-            // 
-            this.toolStripApproveRequest.Name = "toolStripApproveRequest";
-            this.toolStripApproveRequest.Size = new System.Drawing.Size(210, 24);
-            this.toolStripApproveRequest.Text = "Approve request";
-            this.toolStripApproveRequest.Click += new System.EventHandler(this.toolStripApproveRequest_Click);
-            // 
-            // toolStripDeclineRequest
-            // 
-            this.toolStripDeclineRequest.Name = "toolStripDeclineRequest";
-            this.toolStripDeclineRequest.Size = new System.Drawing.Size(210, 24);
-            this.toolStripDeclineRequest.Text = "Decline request";
-            this.toolStripDeclineRequest.Click += new System.EventHandler(this.toolStripDeclineRequest_Click);
-            // 
             // WorkshiftUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -246,7 +246,7 @@
             this.Controls.Add(this.panelDivider);
             this.MinimumSize = new System.Drawing.Size(871, 30);
             this.Name = "WorkshiftUC";
-            this.Size = new System.Drawing.Size(871, 79);
+            this.Size = new System.Drawing.Size(871, 49);
             this.panelDateWrapper.ResumeLayout(false);
             this.panelDateWrapper.PerformLayout();
             this.panelWrapperContents.ResumeLayout(false);

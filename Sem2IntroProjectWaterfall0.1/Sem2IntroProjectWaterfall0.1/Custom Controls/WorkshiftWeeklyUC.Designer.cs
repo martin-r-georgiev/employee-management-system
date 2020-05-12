@@ -39,6 +39,27 @@
             this.panelTuesday = new System.Windows.Forms.Panel();
             this.panelMonday = new System.Windows.Forms.Panel();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblMondayShiftThree = new System.Windows.Forms.Label();
+            this.lblMondayShiftTwo = new System.Windows.Forms.Label();
+            this.lblMondayShiftOne = new System.Windows.Forms.Label();
             this.lblSundayDate = new System.Windows.Forms.Label();
             this.lblSaturdayDate = new System.Windows.Forms.Label();
             this.lblFridayDate = new System.Windows.Forms.Label();
@@ -53,27 +74,6 @@
             this.lblTuesday = new System.Windows.Forms.Label();
             this.lblMondayDate = new System.Windows.Forms.Label();
             this.lblMonday = new System.Windows.Forms.Label();
-            this.lblMondayShiftOne = new System.Windows.Forms.Label();
-            this.lblMondayShiftTwo = new System.Windows.Forms.Label();
-            this.lblMondayShiftThree = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.panelContents.SuspendLayout();
             this.panelHeader.SuspendLayout();
             this.SuspendLayout();
@@ -212,6 +212,216 @@
             this.panelHeader.Size = new System.Drawing.Size(940, 62);
             this.panelHeader.TabIndex = 10;
             this.panelHeader.Visible = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label16.Location = new System.Drawing.Point(901, 45);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(17, 17);
+            this.label16.TabIndex = 39;
+            this.label16.Text = "E";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label17.Location = new System.Drawing.Point(867, 45);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(17, 17);
+            this.label17.TabIndex = 38;
+            this.label17.Text = "A";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label18.Location = new System.Drawing.Point(832, 45);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(19, 17);
+            this.label18.TabIndex = 37;
+            this.label18.Text = "M";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label13.Location = new System.Drawing.Point(789, 45);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(17, 17);
+            this.label13.TabIndex = 36;
+            this.label13.Text = "E";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label14.Location = new System.Drawing.Point(755, 45);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(17, 17);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "A";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label15.Location = new System.Drawing.Point(720, 45);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(19, 17);
+            this.label15.TabIndex = 34;
+            this.label15.Text = "M";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label10.Location = new System.Drawing.Point(678, 45);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(17, 17);
+            this.label10.TabIndex = 33;
+            this.label10.Text = "E";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label11.Location = new System.Drawing.Point(644, 45);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(17, 17);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "A";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label12.Location = new System.Drawing.Point(609, 45);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(19, 17);
+            this.label12.TabIndex = 31;
+            this.label12.Text = "M";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label7.Location = new System.Drawing.Point(566, 45);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(17, 17);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "E";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label8.Location = new System.Drawing.Point(532, 45);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(17, 17);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "A";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label9.Location = new System.Drawing.Point(497, 45);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(19, 17);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "M";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label4.Location = new System.Drawing.Point(454, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(17, 17);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "E";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label5.Location = new System.Drawing.Point(420, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(17, 17);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "A";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label6.Location = new System.Drawing.Point(385, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(19, 17);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "M";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label1.Location = new System.Drawing.Point(342, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 17);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "E";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label2.Location = new System.Drawing.Point(308, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(17, 17);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "A";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label3.Location = new System.Drawing.Point(273, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(19, 17);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "M";
+            // 
+            // lblMondayShiftThree
+            // 
+            this.lblMondayShiftThree.AutoSize = true;
+            this.lblMondayShiftThree.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lblMondayShiftThree.Location = new System.Drawing.Point(230, 45);
+            this.lblMondayShiftThree.Name = "lblMondayShiftThree";
+            this.lblMondayShiftThree.Size = new System.Drawing.Size(17, 17);
+            this.lblMondayShiftThree.TabIndex = 21;
+            this.lblMondayShiftThree.Text = "E";
+            // 
+            // lblMondayShiftTwo
+            // 
+            this.lblMondayShiftTwo.AutoSize = true;
+            this.lblMondayShiftTwo.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lblMondayShiftTwo.Location = new System.Drawing.Point(196, 45);
+            this.lblMondayShiftTwo.Name = "lblMondayShiftTwo";
+            this.lblMondayShiftTwo.Size = new System.Drawing.Size(17, 17);
+            this.lblMondayShiftTwo.TabIndex = 20;
+            this.lblMondayShiftTwo.Text = "A";
+            // 
+            // lblMondayShiftOne
+            // 
+            this.lblMondayShiftOne.AutoSize = true;
+            this.lblMondayShiftOne.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lblMondayShiftOne.Location = new System.Drawing.Point(161, 45);
+            this.lblMondayShiftOne.Name = "lblMondayShiftOne";
+            this.lblMondayShiftOne.Size = new System.Drawing.Size(19, 17);
+            this.lblMondayShiftOne.TabIndex = 19;
+            this.lblMondayShiftOne.Text = "M";
             // 
             // lblSundayDate
             // 
@@ -359,216 +569,6 @@
             this.lblMonday.Size = new System.Drawing.Size(58, 17);
             this.lblMonday.TabIndex = 0;
             this.lblMonday.Text = "Monday";
-            // 
-            // lblMondayShiftOne
-            // 
-            this.lblMondayShiftOne.AutoSize = true;
-            this.lblMondayShiftOne.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lblMondayShiftOne.Location = new System.Drawing.Point(161, 45);
-            this.lblMondayShiftOne.Name = "lblMondayShiftOne";
-            this.lblMondayShiftOne.Size = new System.Drawing.Size(19, 17);
-            this.lblMondayShiftOne.TabIndex = 19;
-            this.lblMondayShiftOne.Text = "M";
-            // 
-            // lblMondayShiftTwo
-            // 
-            this.lblMondayShiftTwo.AutoSize = true;
-            this.lblMondayShiftTwo.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lblMondayShiftTwo.Location = new System.Drawing.Point(196, 45);
-            this.lblMondayShiftTwo.Name = "lblMondayShiftTwo";
-            this.lblMondayShiftTwo.Size = new System.Drawing.Size(17, 17);
-            this.lblMondayShiftTwo.TabIndex = 20;
-            this.lblMondayShiftTwo.Text = "A";
-            // 
-            // lblMondayShiftThree
-            // 
-            this.lblMondayShiftThree.AutoSize = true;
-            this.lblMondayShiftThree.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lblMondayShiftThree.Location = new System.Drawing.Point(230, 45);
-            this.lblMondayShiftThree.Name = "lblMondayShiftThree";
-            this.lblMondayShiftThree.Size = new System.Drawing.Size(17, 17);
-            this.lblMondayShiftThree.TabIndex = 21;
-            this.lblMondayShiftThree.Text = "E";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label1.Location = new System.Drawing.Point(342, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 17);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "E";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label2.Location = new System.Drawing.Point(308, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(17, 17);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "A";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label3.Location = new System.Drawing.Point(273, 45);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 17);
-            this.label3.TabIndex = 22;
-            this.label3.Text = "M";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label4.Location = new System.Drawing.Point(454, 45);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 17);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "E";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label5.Location = new System.Drawing.Point(420, 45);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(17, 17);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "A";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label6.Location = new System.Drawing.Point(385, 45);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(19, 17);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "M";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label7.Location = new System.Drawing.Point(566, 45);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 17);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "E";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label8.Location = new System.Drawing.Point(532, 45);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(17, 17);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "A";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label9.Location = new System.Drawing.Point(497, 45);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(19, 17);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "M";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label10.Location = new System.Drawing.Point(678, 45);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(17, 17);
-            this.label10.TabIndex = 33;
-            this.label10.Text = "E";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label11.Location = new System.Drawing.Point(644, 45);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(17, 17);
-            this.label11.TabIndex = 32;
-            this.label11.Text = "A";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label12.Location = new System.Drawing.Point(609, 45);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(19, 17);
-            this.label12.TabIndex = 31;
-            this.label12.Text = "M";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label13.Location = new System.Drawing.Point(789, 45);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(17, 17);
-            this.label13.TabIndex = 36;
-            this.label13.Text = "E";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label14.Location = new System.Drawing.Point(755, 45);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(17, 17);
-            this.label14.TabIndex = 35;
-            this.label14.Text = "A";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label15.Location = new System.Drawing.Point(720, 45);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(19, 17);
-            this.label15.TabIndex = 34;
-            this.label15.Text = "M";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label16.Location = new System.Drawing.Point(901, 45);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(17, 17);
-            this.label16.TabIndex = 39;
-            this.label16.Text = "E";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label17.Location = new System.Drawing.Point(867, 45);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(17, 17);
-            this.label17.TabIndex = 38;
-            this.label17.Text = "A";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label18.Location = new System.Drawing.Point(832, 45);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(19, 17);
-            this.label18.TabIndex = 37;
-            this.label18.Text = "M";
             // 
             // WorkshiftWeeklyUC
             // 
