@@ -19,13 +19,39 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             InitializeComponent();
             departments = Department.GetAllDepartments();
-            //Department loggedInDepartment = new Department(LoggedInUser.userID, true);
-            //displayedEmployees = loggedInDepartment.GetAllEmployees();
             displayedEmployees = Department.GetEmployeesFromDepartmentID(LoggedInUser.departmentID);
+            displayedEmployees.Sort();
             Department selectedDepartment = departments.Find(x => x.DepartmentId == LoggedInUser.departmentID);
-            foreach (Employee e in displayedEmployees)
-                pnlEmployees.Controls.Add(new EmployeeControl(e, selectedDepartment.Name));
+            foreach (Employee e in displayedEmployees) pnlEmployees.Controls.Add(new EmployeeControl(e, selectedDepartment.Name));
             if (LoggedInUser.role >= Role.Manager) cbDepartments.Visible = true;
+
+            cbDepartments.Text = selectedDepartment.Name;
+
+            //Textbox Placeholder Text;
+            this.tbEmployeeName.GotFocus += OnFocus;
+            this.tbEmployeeName.LostFocus += OnDefocus;
+        }
+
+        private void OnFocus(object sender, EventArgs e)
+        {
+            if (tbEmployeeName.Text == "Search for an employee here...")
+            {
+                tbEmployeeName.TextChanged -= tbEmployeeName_TextChanged;
+                tbEmployeeName.Text = "";
+                tbEmployeeName.ForeColor = Color.Black;
+                tbEmployeeName.TextChanged += tbEmployeeName_TextChanged;
+            }
+        }
+
+        private void OnDefocus(object sender, EventArgs e)
+        {
+            if (tbEmployeeName.TextLength == 0)
+            {
+                tbEmployeeName.TextChanged -= tbEmployeeName_TextChanged;
+                tbEmployeeName.Text = "Search for an employee here...";
+                tbEmployeeName.ForeColor = Color.DimGray;
+                tbEmployeeName.TextChanged += tbEmployeeName_TextChanged;
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -41,32 +67,8 @@ namespace Sem2IntroProjectWaterfall0._1
             newForm.Show();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            pnlEmployees.Controls.Clear();
-            foreach (Employee emp in displayedEmployees)
-                if (emp.Name.ToLower().Contains(tbEmployeeName.Text.ToLower()))
-                {
-                    foreach (Department dep in departments)
-                    {
-                        if (emp.DepartmentID == dep.DepartmentId) pnlEmployees.Controls.Add(new EmployeeControl(emp, dep.Name));
-                    }
-                }
-        }
-
-        private void btnShowAll_Click(object sender, EventArgs e)
-        {
-            pnlEmployees.Controls.Clear();
-            foreach (Employee emp in displayedEmployees)
-                foreach (Department dep in departments)
-                {
-                    if (emp.DepartmentID == dep.DepartmentId) pnlEmployees.Controls.Add(new EmployeeControl(emp, dep.Name));
-                }
-        }
-
         private void cbDepartments_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
             //Index 0 is reserved for 'All' departments option
             if (cbDepartments.SelectedIndex == 0)
             {
@@ -77,17 +79,8 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 displayedEmployees = departments[cbDepartments.SelectedIndex - 1].Employees;
             }
+            displayedEmployees.Sort();
 
-            //if (cbDepartments.SelectedItem.ToString() == "All") displayedEmployees = Employee.GetAllEmployees(false);
-            //else
-            //{
-            //    foreach (Department d in departments)
-            //        if (d.Name == cbDepartments.SelectedItem.ToString())
-            //        {
-            //            displayedEmployees = d.GetAllEmployees();
-            //        }    
-            //}
-            
             pnlEmployees.Controls.Clear();
             pnlEmployees.SuspendLayout();
             foreach (Employee emp in displayedEmployees)
@@ -98,8 +91,6 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
             }
             pnlEmployees.ResumeLayout();
-            watch.Stop();
-            Console.WriteLine($"{watch.ElapsedMilliseconds}ms");
         }
 
         private void cbDepartments_DropDown(object sender, EventArgs e)
@@ -115,7 +106,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public void RefreshGUI(Employee selectedEmployee)
         {
             //lblEmployeeAttendance;
-            
+
             lblEmployeeRole.Text = $"Role: {selectedEmployee.Role}";
             lblEmployeeSalary.Text = $"Salary: ${selectedEmployee.SalaryHourlyRate}/hr";
             lblEmployeeWorkingSince.Text = Employee.CalculateWorkingSince(selectedEmployee);
@@ -152,6 +143,12 @@ namespace Sem2IntroProjectWaterfall0._1
                         if (emp.DepartmentID == dep.DepartmentId) pnlEmployees.Controls.Add(new EmployeeControl(emp, dep.Name));
                     }
                 }
+        }
+
+        private void EmployeeListing_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = null;
+            this.OnDefocus(this, EventArgs.Empty);
         }
     }
 }

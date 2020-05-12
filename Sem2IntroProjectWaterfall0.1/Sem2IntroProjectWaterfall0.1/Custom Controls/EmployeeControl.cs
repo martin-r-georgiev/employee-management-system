@@ -18,6 +18,16 @@ namespace Sem2IntroProjectWaterfall0._1
             InitializeComponent();
             SelectedEmployee = emp;
             lblDepartment.Text = depName;
+            lblLetter.Text = emp.Name.Substring(0, 1).ToUpper();
+            switch(emp.Role)
+            {
+                case Role.Worker: lblLetter.BackColor = Color.LightBlue; break;
+                case Role.Manager: lblLetter.BackColor = Color.MediumPurple; break;
+                case Role.Admin: lblLetter.BackColor = Color.YellowGreen; break;
+                case Role.Owner: lblLetter.BackColor = Color.Firebrick; break;
+                default: lblLetter.BackColor = Color.DimGray; break;
+            }
+            roleTooltip.SetToolTip(this.lblLetter, $"Role: {selectedEmployee.Role}");
         }
         public Employee SelectedEmployee
         {
@@ -26,7 +36,6 @@ namespace Sem2IntroProjectWaterfall0._1
             { 
                 selectedEmployee = value;
                 lblEmployee.Text = selectedEmployee.Name;
-                //lblDepartment.Text = new Department(selectedEmployee.DepartmentID).Name;
             }
         }
 
@@ -34,6 +43,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             this.SuspendLayout();
             this.BackColor = Color.LightGray;
+            this.panelSidebar.BackColor = Color.LightGray;
             this.lblDepartment.Font = new Font(lblDepartment.Font.FontFamily, 10, FontStyle.Regular);
             this.lblEmployee.Font = new Font(lblEmployee.Font.FontFamily, 10, FontStyle.Bold);
             this.ResumeLayout();
@@ -43,6 +53,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             this.SuspendLayout();
             this.BackColor = Color.GhostWhite;
+            this.panelSidebar.BackColor = Color.GhostWhite;
             this.lblDepartment.Font = new Font(lblDepartment.Font.FontFamily, 9, FontStyle.Regular);
             this.lblEmployee.Font = new Font(lblEmployee.Font.FontFamily, 9, FontStyle.Bold);
             this.ResumeLayout();

@@ -39,11 +39,13 @@
             // 
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Bottom;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(12, 48);
+            this.chart1.Location = new System.Drawing.Point(0, 47);
+            this.chart1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(671, 424);
+            this.chart1.Size = new System.Drawing.Size(927, 549);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -56,19 +58,21 @@
             "Items usage per deparment",
             "Day preference for employees\t",
             "Shift preference for employees"});
-            this.cbStatistic.Location = new System.Drawing.Point(12, 12);
+            this.cbStatistic.Location = new System.Drawing.Point(16, 15);
+            this.cbStatistic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbStatistic.Name = "cbStatistic";
-            this.cbStatistic.Size = new System.Drawing.Size(250, 21);
+            this.cbStatistic.Size = new System.Drawing.Size(332, 24);
             this.cbStatistic.TabIndex = 8;
             this.cbStatistic.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // StatisticsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 484);
+            this.ClientSize = new System.Drawing.Size(927, 596);
             this.Controls.Add(this.cbStatistic);
             this.Controls.Add(this.chart1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "StatisticsForm";
             this.Text = "StatisticsForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StatisticsForm_FormClosing);

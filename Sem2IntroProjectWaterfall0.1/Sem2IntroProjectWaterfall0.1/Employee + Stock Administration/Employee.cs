@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace Sem2IntroProjectWaterfall0._1
 {
-    public class Employee
+    public class Employee : IComparable<Employee>
     {
         #region Instance Variables
 
@@ -760,7 +760,14 @@ namespace Sem2IntroProjectWaterfall0._1
             else s = $"Working since: Unknown";
             return s;
         }
-        
+
+        public int CompareTo(Employee other)
+        {
+            if (String.Compare(this.Name, other.Name) < 0) return -1;
+            else if (String.Compare(this.Name, other.Name) > 0) return 1;
+            return 0;
+        }
+
         #endregion
     }
 }

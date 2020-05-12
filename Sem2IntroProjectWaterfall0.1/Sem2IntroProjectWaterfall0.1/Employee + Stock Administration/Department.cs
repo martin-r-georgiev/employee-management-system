@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sem2IntroProjectWaterfall0._1
 {
-    public class Department
+    public class Department : IComparable<Department>
     {
 		#region variables + properties
 
@@ -353,6 +353,13 @@ namespace Sem2IntroProjectWaterfall0._1
             foreach (Employee e in Employee.GetAllEmployees(true))
                 if (e.UserID == userID)
                     e.DepartmentID = newDepartmentId;
+        }
+
+        public int CompareTo(Department other)
+        {
+            if (String.Compare(this.Name, other.Name) < 0) return -1;
+            else if (String.Compare(this.Name, other.Name) > 0) return 1;
+            return 0;
         }
     }
     #endregion

@@ -30,7 +30,6 @@
         {
             this.btnBack = new System.Windows.Forms.Button();
             this.tbEmployeeName = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblEmployeeWorkingSince = new System.Windows.Forms.Label();
@@ -50,7 +49,6 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnStatistics = new System.Windows.Forms.Button();
             this.pnlEmployees = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnShowAll = new System.Windows.Forms.Button();
             this.cbDepartments = new System.Windows.Forms.ComboBox();
             this.panel4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -61,10 +59,10 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(16, 15);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBack.Location = new System.Drawing.Point(16, 21);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(100, 47);
+            this.btnBack.Size = new System.Drawing.Size(100, 24);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -72,33 +70,26 @@
             // 
             // tbEmployeeName
             // 
-            this.tbEmployeeName.Location = new System.Drawing.Point(649, 26);
-            this.tbEmployeeName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbEmployeeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbEmployeeName.ForeColor = System.Drawing.Color.DimGray;
+            this.tbEmployeeName.Location = new System.Drawing.Point(792, 22);
+            this.tbEmployeeName.Margin = new System.Windows.Forms.Padding(4);
             this.tbEmployeeName.Name = "tbEmployeeName";
-            this.tbEmployeeName.Size = new System.Drawing.Size(260, 22);
-            this.tbEmployeeName.TabIndex = 0;
+            this.tbEmployeeName.Size = new System.Drawing.Size(283, 24);
+            this.tbEmployeeName.TabIndex = 10;
+            this.tbEmployeeName.TabStop = false;
+            this.tbEmployeeName.Text = "Search for an employee here...";
             this.tbEmployeeName.TextChanged += new System.EventHandler(this.tbEmployeeName_TextChanged);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(919, 24);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(68, 28);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel4.BackColor = System.Drawing.SystemColors.Control;
             this.panel4.Controls.Add(this.groupBox3);
             this.panel4.Controls.Add(this.groupBox2);
             this.panel4.Controls.Add(this.groupBox1);
             this.panel4.Controls.Add(this.pictureBox3);
             this.panel4.Location = new System.Drawing.Point(16, 69);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(601, 470);
             this.panel4.TabIndex = 6;
@@ -110,9 +101,9 @@
             this.groupBox3.Controls.Add(this.lblEmployeeAttendance);
             this.groupBox3.Controls.Add(this.lblEmployeeRole);
             this.groupBox3.Location = new System.Drawing.Point(369, 174);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(215, 293);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
@@ -168,9 +159,9 @@
             this.groupBox2.Controls.Add(this.lblEmployeeEmail);
             this.groupBox2.Controls.Add(this.lblEmployeePhone);
             this.groupBox2.Location = new System.Drawing.Point(252, 21);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(332, 145);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
@@ -193,9 +184,9 @@
             this.lblEmployeeEmail.Location = new System.Drawing.Point(11, 20);
             this.lblEmployeeEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmployeeEmail.Name = "lblEmployeeEmail";
-            this.lblEmployeeEmail.Size = new System.Drawing.Size(61, 20);
+            this.lblEmployeeEmail.Size = new System.Drawing.Size(67, 20);
             this.lblEmployeeEmail.TabIndex = 10;
-            this.lblEmployeeEmail.Text = "Email: ";
+            this.lblEmployeeEmail.Text = "E-mail: ";
             // 
             // lblEmployeePhone
             // 
@@ -216,9 +207,9 @@
             this.groupBox1.Controls.Add(this.lblEmployeeNationality);
             this.groupBox1.Controls.Add(this.lblEmployeeAge);
             this.groupBox1.Location = new System.Drawing.Point(17, 174);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(339, 293);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
@@ -281,7 +272,7 @@
             // 
             this.pictureBox3.Image = global::Sem2IntroProjectWaterfall0._1.Properties.Resources._20667482_young_harbor_container_depot_worker;
             this.pictureBox3.Location = new System.Drawing.Point(17, 21);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(227, 145);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -290,10 +281,10 @@
             // 
             // btnStatistics
             // 
-            this.btnStatistics.Location = new System.Drawing.Point(124, 15);
-            this.btnStatistics.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStatistics.Location = new System.Drawing.Point(446, 21);
+            this.btnStatistics.Margin = new System.Windows.Forms.Padding(4);
             this.btnStatistics.Name = "btnStatistics";
-            this.btnStatistics.Size = new System.Drawing.Size(107, 47);
+            this.btnStatistics.Size = new System.Drawing.Size(171, 25);
             this.btnStatistics.TabIndex = 6;
             this.btnStatistics.Text = "Show Statistics";
             this.btnStatistics.UseVisualStyleBackColor = true;
@@ -305,28 +296,18 @@
             this.pnlEmployees.BackColor = System.Drawing.Color.Silver;
             this.pnlEmployees.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.pnlEmployees.Location = new System.Drawing.Point(625, 69);
-            this.pnlEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlEmployees.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlEmployees.MinimumSize = new System.Drawing.Size(450, 470);
             this.pnlEmployees.Name = "pnlEmployees";
             this.pnlEmployees.Size = new System.Drawing.Size(450, 470);
             this.pnlEmployees.TabIndex = 7;
             this.pnlEmployees.WrapContents = false;
             // 
-            // btnShowAll
-            // 
-            this.btnShowAll.Location = new System.Drawing.Point(995, 24);
-            this.btnShowAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Size = new System.Drawing.Size(80, 28);
-            this.btnShowAll.TabIndex = 8;
-            this.btnShowAll.Text = "Show All";
-            this.btnShowAll.UseVisualStyleBackColor = true;
-            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
-            // 
             // cbDepartments
             // 
             this.cbDepartments.FormattingEnabled = true;
-            this.cbDepartments.Location = new System.Drawing.Point(480, 24);
-            this.cbDepartments.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbDepartments.Location = new System.Drawing.Point(625, 22);
+            this.cbDepartments.Margin = new System.Windows.Forms.Padding(4);
             this.cbDepartments.Name = "cbDepartments";
             this.cbDepartments.Size = new System.Drawing.Size(160, 24);
             this.cbDepartments.TabIndex = 9;
@@ -338,18 +319,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1089, 554);
+            this.ClientSize = new System.Drawing.Size(1092, 553);
             this.Controls.Add(this.cbDepartments);
-            this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.pnlEmployees);
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.tbEmployeeName);
             this.Controls.Add(this.btnBack);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(1110, 600);
+            this.MinimumSize = new System.Drawing.Size(1110, 600);
             this.Name = "EmployeeListing";
             this.Text = "EmployeeListing";
+            this.Click += new System.EventHandler(this.EmployeeListing_Click);
             this.panel4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -367,7 +349,6 @@
 
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.TextBox tbEmployeeName;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lblEmployeeAttendance;
@@ -376,7 +357,6 @@
         private System.Windows.Forms.Label lblEmployeeDepartment;
         private System.Windows.Forms.Button btnStatistics;
         private System.Windows.Forms.FlowLayoutPanel pnlEmployees;
-        private System.Windows.Forms.Button btnShowAll;
         private System.Windows.Forms.ComboBox cbDepartments;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lblEmployeeRole;
