@@ -244,6 +244,7 @@
             this.Controls.Add(this.panelWrapperContents);
             this.Controls.Add(this.panelDateWrapper);
             this.Controls.Add(this.panelDivider);
+            this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(871, 30);
             this.Name = "WorkshiftUC";
             this.Size = new System.Drawing.Size(871, 49);

@@ -29,6 +29,19 @@ namespace Sem2IntroProjectWaterfall0._1
                 lblDepartment.Visible = true;
                 cbDepartments.Visible = true;
             }
+
+            cbDepartments.DataSource = departments;
+            cbDepartments.DisplayMember = "Name";
+
+            UpdateDepartments();
+            for(int i = 0; i < departments.Count; i++)
+            {
+                if (LoggedInUser.departmentID == departments[i].DepartmentId)
+                {
+                    cbDepartments.SelectedIndex = i;
+                    break;
+                }
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -64,8 +77,33 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
-        private void CbDepartments_SelectedIndexChanged(object sender, EventArgs e)
+        private void UpdateDepartments() { departments = Department.GetAllDepartments(); }
+
+        private void pnlStocks_SizeChanged(object sender, EventArgs e)
         {
+            pnlStocks.SuspendLayout();
+            foreach(Control control in pnlStocks.Controls)
+            {
+                control.Width = pnlStocks.ClientSize.Width - 5;
+            }
+            pnlStocks.ResumeLayout();
+        }
+
+        private void pnlStocks_ControlAdded(object sender, ControlEventArgs e)
+        {
+            pnlStocks.SuspendLayout();
+            foreach (Control control in pnlStocks.Controls)
+            {
+                control.Width = pnlStocks.ClientSize.Width - 5;
+            }
+            pnlStocks.ResumeLayout();
+        }
+
+        private void cbDepartments_DropDown(object sender, EventArgs e) { UpdateDepartments(); }
+
+        private void cbDepartments_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pnlStocks.SuspendLayout();
             pnlStocks.Controls.Clear();
             if (cbDepartments.SelectedIndex != -1)
             {
@@ -74,15 +112,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 foreach (StockItem s in currentInventory.Items)
                     pnlStocks.Controls.Add(new StockUC(s));
             }
+            pnlStocks.ResumeLayout();
         }
-
-        private void CbDepartments_DropDown(object sender, EventArgs e)
-        {
-            cbDepartments.Items.Clear();
-            UpdateDepartmentList();
-            foreach (Department department in departments) { cbDepartments.Items.Add(department.Name); }
-        }
-
-        private void UpdateDepartmentList() { departments = Department.GetAllDepartments(); }
     }
 }

@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 
 namespace Sem2IntroProjectWaterfall0._1
 {
-    public partial class WorkshiftUC : UserControl
+    public partial class WorkshiftUC : UserControl, IWorkshifts
     {
         private Employee employee;
 
@@ -61,7 +61,7 @@ namespace Sem2IntroProjectWaterfall0._1
         //Methods
         public void ShowHeader() { panelDateWrapper.Visible = true; }
 
-        private int? GetWorkshiftIndex(string objectName)
+        public int? GetWorkshiftIndex(string objectName)
         {
             int? index = null;
             switch (objectName)
@@ -73,7 +73,7 @@ namespace Sem2IntroProjectWaterfall0._1
             return index;
         }
 
-        private void SetColor(int index, Color color)
+        public void SetColor(int index, Color color)
         {
             switch (index)
             {
@@ -142,7 +142,7 @@ namespace Sem2IntroProjectWaterfall0._1
             else clearToolStripMenuItem.Visible = true;
         }
 
-        private void ChangeWorkshiftStatus(int status, int workshiftIndex)
+        public void ChangeWorkshiftStatus(int status, int workshiftIndex)
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {

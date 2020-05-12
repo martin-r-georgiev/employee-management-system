@@ -140,6 +140,7 @@
     <Compile Include="Custom Controls\NotificationUC.Designer.cs">
       <DependentUpon>NotificationUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Workshifts Backend\IWorkshifts.cs" />
     <Compile Include="Workshifts Backend\Prefrences.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

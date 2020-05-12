@@ -579,6 +579,7 @@
             this.Controls.Add(this.panelContents);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelDivider);
+            this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(940, 20);
             this.Name = "WorkshiftWeeklyUC";
             this.Size = new System.Drawing.Size(940, 95);
