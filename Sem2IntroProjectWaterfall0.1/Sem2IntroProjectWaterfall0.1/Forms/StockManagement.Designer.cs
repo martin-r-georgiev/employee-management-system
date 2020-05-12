@@ -69,6 +69,7 @@
             // 
             // pnlStocks
             // 
+            this.pnlStocks.AutoScroll = true;
             this.pnlStocks.AutoSize = true;
             this.pnlStocks.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlStocks.BackColor = System.Drawing.Color.Silver;

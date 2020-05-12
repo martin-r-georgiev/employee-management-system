@@ -84,7 +84,7 @@ namespace Sem2IntroProjectWaterfall0._1
             pnlStocks.SuspendLayout();
             foreach(Control control in pnlStocks.Controls)
             {
-                control.Width = pnlStocks.ClientSize.Width - 5;
+                control.Width = pnlStocks.ClientSize.Width - 10;
             }
             pnlStocks.ResumeLayout();
         }
@@ -94,7 +94,7 @@ namespace Sem2IntroProjectWaterfall0._1
             pnlStocks.SuspendLayout();
             foreach (Control control in pnlStocks.Controls)
             {
-                control.Width = pnlStocks.ClientSize.Width - 5;
+                control.Width = pnlStocks.ClientSize.Width - 10;
             }
             pnlStocks.ResumeLayout();
         }
