@@ -15,7 +15,7 @@ namespace Sem2IntroProjectWaterfall0._1
 		private string name;
 		private string address;
 		List<Employee> employees;
-       public Inventory inventory;
+        public Inventory inventory;
 		public List<Employee> Employees
 		{
 			get { return this.employees; }
@@ -152,7 +152,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
                     while (dataReader.Read())
                     {
-                        Employee newEmp = new Employee(dataReader.GetString(0));
+                        Employee newEmp = new Employee(dataReader.GetString(0), true);
                         if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({this.Name})";
                         else newEmp.MainDetails = $"{newEmp.Username} ({this.Name})";
                         employees.Add(newEmp);
@@ -163,31 +163,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 con.Close();
             }
         }
-        public List<Employee> GetAllEmployees()
-        {
-            List<Employee> employeesToSend;
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
-            {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con))
-                {
-                    cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-                    employeesToSend = new List<Employee>();
 
-                    while (dataReader.Read())
-                    {
-                        Employee newEmp = new Employee(dataReader.GetString(0));
-                        if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({this.Name})";
-                        else newEmp.MainDetails = $"{newEmp.Username} ({this.Name})";
-                        employeesToSend.Add(newEmp);
-                    }
-                    cmd.Dispose();
-                    dataReader.Close();
-                }
-                con.Close();
-            }
-            return employeesToSend;
-        }
         public Department(string employeeId, bool withEmployeeId) //This constructor doesnt include an employee list
         {
             withEmployeeId = true;
@@ -244,6 +220,67 @@ namespace Sem2IntroProjectWaterfall0._1
         public override string ToString()
         {
             return $"Department {this.Name} on {this.Address} - {this.employees.Count} Workers.";
+        }
+
+        public List<Employee> GetAllEmployees()
+        {
+            List<Employee> employeesToSend;
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con))
+                {
+                    cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    employeesToSend = new List<Employee>();
+
+                    while (dataReader.Read())
+                    {
+                        Employee newEmp = new Employee(dataReader.GetString(0));
+                        if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({this.Name})";
+                        else newEmp.MainDetails = $"{newEmp.Username} ({this.Name})";
+                        employeesToSend.Add(newEmp);
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                con.Close();
+            }
+            return employeesToSend;
+        }
+
+        public Employee GetEmployee(string userID)
+        {
+            foreach(Employee employee in Employees)
+            {
+                if (employee.UserID == userID) return employee;
+            }
+            return null;
+        }
+
+        public static List<Employee> GetEmployeesFromDepartmentID(string depID)
+        {
+            List<Employee> employeesToSend;
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT u.userID, d.name FROM users as u INNER JOIN department as d ON u.departmentID = d.departmentID WHERE d.departmentID=@departmentID", con))
+                {
+                    cmd.Parameters.AddWithValue("@departmentID", depID);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    employeesToSend = new List<Employee>();
+
+                    while (dataReader.Read())
+                    {
+                        Employee newEmp = new Employee(dataReader.GetString(0));
+                        if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({dataReader.GetString(1)})";
+                        else newEmp.MainDetails = $"{newEmp.Username} ({dataReader.GetString(1)})";
+                        employeesToSend.Add(newEmp);
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                con.Close();
+            }
+            return employeesToSend;
         }
 
         public void RemoveEmployee(string userID)

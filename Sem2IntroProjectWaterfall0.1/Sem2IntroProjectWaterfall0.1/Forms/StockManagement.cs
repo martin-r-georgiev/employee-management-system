@@ -19,7 +19,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public StockManagement()
         {
             InitializeComponent();
-            departments = Department.GetAllDepartments();
+            
             loggedInEmployee = new Employee(LoggedInUser.userID);
             currentInventory = new Inventory(loggedInEmployee.DepartmentID);
             foreach (StockItem s in currentInventory.Items)
@@ -30,10 +30,9 @@ namespace Sem2IntroProjectWaterfall0._1
                 cbDepartments.Visible = true;
             }
 
+            departments = Department.GetAllDepartments();
             cbDepartments.DataSource = departments;
             cbDepartments.DisplayMember = "Name";
-
-            UpdateDepartments();
             for(int i = 0; i < departments.Count; i++)
             {
                 if (LoggedInUser.departmentID == departments[i].DepartmentId)

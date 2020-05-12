@@ -14,22 +14,22 @@ namespace Sem2IntroProjectWaterfall0._1
     public partial class LoginScreen : Form
     {
         public static Logger logger = new Logger(LoggingLevels.INFO);
-        List<WorkshiftData> workshiftss;
+        List<WorkshiftData> workshifts;
 
         public LoginScreen()
         {
             InitializeComponent();
             this.AcceptButton = btnLogin;
             //AutoWorkshift generate = new AutoWorkshift();
-            //workshiftss= generate.GenerateWorkshiftSchedule();
+            //workshifts= generate.GenerateWorkshiftSchedule();
             //testingworkshift();
             //generate.ExportToDatabase();
          }
 
-        private void testingworkshift()
+        private void WorkshiftTest()
         {
             string message = "";
-            List<WorkshiftData> sortedlist= workshiftss.OrderBy(workshiftss => workshiftss.Date).ToList(); 
+            List<WorkshiftData> sortedlist= workshifts.OrderBy(workshifts => workshifts.Date).ToList(); 
             foreach (WorkshiftData w in sortedlist)
             {
                 message = message +w.Date.ToString("yyyy/MM/dd")+" "+ w.Day + " " + w.Workshift + " " + w.UserID +" "+w.DepartmentID+"\n";

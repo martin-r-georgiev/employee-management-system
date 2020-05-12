@@ -13,46 +13,45 @@ namespace Sem2IntroProjectWaterfall0._1
     public partial class EmployeeControl : UserControl
     {
         Employee selectedEmployee;
-        public EmployeeControl(Employee emp)
+        public EmployeeControl(Employee emp, string depName)
         {
             InitializeComponent();
             SelectedEmployee = emp;
+            lblDepartment.Text = depName;
         }
         public Employee SelectedEmployee
         {
             get { return selectedEmployee; }
-            set { 
+            set
+            { 
                 selectedEmployee = value;
                 lblEmployee.Text = selectedEmployee.Name;
-                lblDepartment.Text = new Department(selectedEmployee.DepartmentID).Name;
+                //lblDepartment.Text = new Department(selectedEmployee.DepartmentID).Name;
             }
         }
 
         private void EmployeeControl_MouseEnter(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(192, 255, 255);
-            this.lblDepartment.BackColor = Color.FromArgb(192, 255, 255);
-            this.lblEmployee.BackColor = Color.FromArgb(192, 255, 255);
+            this.SuspendLayout();
+            this.BackColor = Color.LightGray;
             this.lblDepartment.Font = new Font(lblDepartment.Font.FontFamily, 10, FontStyle.Regular);
             this.lblEmployee.Font = new Font(lblEmployee.Font.FontFamily, 10, FontStyle.Bold);
-            this.Size = new Size(313, 50);
+            this.ResumeLayout();
         }
 
         private void EmployeeControl_MouseLeave(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(128, 255, 255);
-            this.lblDepartment.BackColor = Color.FromArgb(128, 255, 255);
-            this.lblEmployee.BackColor = Color.FromArgb(128, 255, 255);
+            this.SuspendLayout();
+            this.BackColor = Color.GhostWhite;
             this.lblDepartment.Font = new Font(lblDepartment.Font.FontFamily, 9, FontStyle.Regular);
             this.lblEmployee.Font = new Font(lblEmployee.Font.FontFamily, 9, FontStyle.Bold);
-            this.Size = new Size(313, 43);
+            this.ResumeLayout();
         }
 
         private void EmployeeControl_MouseClick(object sender, MouseEventArgs e)
         {
             EmployeeListing pForm = (EmployeeListing)this.ParentForm;
-            Employee fullEmployee = new Employee(this.SelectedEmployee.UserID, true);
-            pForm.RefreshGUI(fullEmployee);
+            pForm.RefreshGUI(SelectedEmployee);
         }
     }
 }

@@ -39,7 +39,7 @@
             // btnBack
             // 
             this.btnBack.Location = new System.Drawing.Point(16, 22);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(60, 25);
             this.btnBack.TabIndex = 0;
@@ -50,7 +50,7 @@
             // tbSearch
             // 
             this.tbSearch.Location = new System.Drawing.Point(84, 22);
-            this.tbSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(255, 22);
             this.tbSearch.TabIndex = 2;
@@ -59,7 +59,7 @@
             // btnShowRestock
             // 
             this.btnShowRestock.Location = new System.Drawing.Point(348, 22);
-            this.btnShowRestock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnShowRestock.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowRestock.Name = "btnShowRestock";
             this.btnShowRestock.Size = new System.Drawing.Size(76, 25);
             this.btnShowRestock.TabIndex = 4;
@@ -69,14 +69,13 @@
             // 
             // pnlStocks
             // 
-            this.pnlStocks.AutoScroll = true;
             this.pnlStocks.AutoSize = true;
             this.pnlStocks.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlStocks.BackColor = System.Drawing.Color.Silver;
             this.pnlStocks.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlStocks.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.pnlStocks.Location = new System.Drawing.Point(0, 93);
-            this.pnlStocks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlStocks.Margin = new System.Windows.Forms.Padding(4);
             this.pnlStocks.MinimumSize = new System.Drawing.Size(440, 500);
             this.pnlStocks.Name = "pnlStocks";
             this.pnlStocks.Size = new System.Drawing.Size(457, 500);
@@ -119,7 +118,7 @@
             this.Controls.Add(this.btnShowRestock);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.btnBack);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(800, 640);
             this.MinimumSize = new System.Drawing.Size(475, 640);
             this.Name = "StockManagement";

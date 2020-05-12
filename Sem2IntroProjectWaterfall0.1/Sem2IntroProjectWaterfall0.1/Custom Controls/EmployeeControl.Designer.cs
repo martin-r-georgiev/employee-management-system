@@ -34,12 +34,15 @@
             // 
             // lblEmployee
             // 
-            this.lblEmployee.AutoSize = true;
-            this.lblEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEmployee.AutoEllipsis = true;
             this.lblEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployee.Location = new System.Drawing.Point(7, 5);
+            this.lblEmployee.Location = new System.Drawing.Point(0, 0);
+            this.lblEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmployee.Name = "lblEmployee";
-            this.lblEmployee.Size = new System.Drawing.Size(222, 15);
+            this.lblEmployee.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblEmployee.Size = new System.Drawing.Size(417, 28);
             this.lblEmployee.TabIndex = 0;
             this.lblEmployee.Text = "FirstName LastName (Username)";
             this.lblEmployee.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EmployeeControl_MouseClick);
@@ -48,12 +51,12 @@
             // 
             // lblDepartment
             // 
-            this.lblDepartment.AutoSize = true;
-            this.lblDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblDepartment.AutoEllipsis = true;
             this.lblDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartment.Location = new System.Drawing.Point(7, 24);
+            this.lblDepartment.Location = new System.Drawing.Point(0, 30);
+            this.lblDepartment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDepartment.Name = "lblDepartment";
-            this.lblDepartment.Size = new System.Drawing.Size(106, 15);
+            this.lblDepartment.Size = new System.Drawing.Size(417, 22);
             this.lblDepartment.TabIndex = 1;
             this.lblDepartment.Text = "DepartmentName";
             this.lblDepartment.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EmployeeControl_MouseClick);
@@ -62,18 +65,19 @@
             // 
             // EmployeeControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.GhostWhite;
             this.Controls.Add(this.lblDepartment);
             this.Controls.Add(this.lblEmployee);
+            this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "EmployeeControl";
-            this.Size = new System.Drawing.Size(313, 43);
+            this.Size = new System.Drawing.Size(417, 55);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EmployeeControl_MouseClick);
             this.MouseEnter += new System.EventHandler(this.EmployeeControl_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.EmployeeControl_MouseLeave);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
