@@ -105,5 +105,18 @@ namespace Sem2IntroProjectWaterfall0._1
 			}
 			return isAtWork;
 		}
+		public static void ClearNotificationsBefore(DateTime time)
+		{
+			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+			{
+				using (MySqlCommand cmd = new MySqlCommand(@"DELETE FROM `notifications` WHERE date < @date", conn))
+				{
+					cmd.Parameters.AddWithValue("@date", time);
+					cmd.ExecuteNonQuery();
+					cmd.Dispose();
+				}
+				conn.Close();
+			}
+		}
 	}
 }

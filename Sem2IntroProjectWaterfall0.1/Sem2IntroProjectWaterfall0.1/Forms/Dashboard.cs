@@ -20,6 +20,7 @@ namespace Sem2IntroProjectWaterfall0._1
             UpdateRoleGUI();
             notifications = new List<RescheduleNotification>();
             UpdatePresentWorkers();
+            if (LoggedInUser.role != Role.Worker) CheckIn.ClearNotificationsBefore(DateTime.Now);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
