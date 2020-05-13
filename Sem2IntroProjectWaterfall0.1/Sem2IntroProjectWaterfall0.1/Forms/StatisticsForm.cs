@@ -18,6 +18,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public StatisticsForm()
         {
             InitializeComponent();
+            GetDataForGeneral();
         }
 
         private void StatisticsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -32,28 +33,124 @@ namespace Sem2IntroProjectWaterfall0._1
                 case 0: // employeePerDepartment
                     ClearChart();
                     GetDataForEmployeePerDepartment();
+                    chart1.Visible = true;
+                    gbGeneralStat.Visible = false;
                     break;
                 case 1: // employeePerRole
                     ClearChart();
                     GetDataForEmployeePerRole();
+                    chart1.Visible = true;
+                    gbGeneralStat.Visible = false;
                     break;
                 case 2: // ItemsPerDepartment
                     ClearChart();
                     GetDataForItemsPerDepartment();
+                    chart1.Visible = true;
+                    gbGeneralStat.Visible = false;
                     break;
                 case 3: //Prefered Day
                     ClearChart();
                     GetDataForPreferedDay();
+                    chart1.Visible = true;
+                    gbGeneralStat.Visible = false;
                     break;
                 case 4: //Prefered shift
                     ClearChart();
                     GetDataForPreferedShift();
+                    chart1.Visible = true;
+                    gbGeneralStat.Visible = false;
+                    break;
+                case 5:   // General Statistics aka text
+                    chart1.Visible = false;
+                    gbGeneralStat.Visible = true;
+                    GetDataForGeneral();
                     break;
                 default:
                     break;
             }
         }
         #region MethodsToCreateChart
+        private void GetDataForGeneral()
+        {
+            double totalEmplyoees = 0;
+
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"select count(userID) as 'Total' from users ", con)) // just getting the total emplyoees
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        totalEmplyoees = Convert.ToDouble(dataReader["total"]);
+                    }
+
+                    dataReader.Close();
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT sum(YEAR(CURRENT_TIMESTAMP) - YEAR(dateofBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateofBirth, 5))) as age ,sum(employees.Workhours) as 'total',sum(users.salary) as 'salary'  from employees INNER JOIN users  on employees.userID=users.userID ", con))
+                {// Average hours,salary per all of them
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        double totalHours= Convert.ToDouble(dataReader["total"]);
+                        double salary = Convert.ToDouble(dataReader["salary"]);
+                        double age = Convert.ToDouble(dataReader["age"]);
+                        lbAge.Text = "Average employee age is " + (age / totalEmplyoees).ToString("0.##") + ".";
+                        lbHours.Text = "Average hours worked are " + (totalHours / totalEmplyoees).ToString("0.##")+".";
+                        lbSalary.Text = "Average salary for an employee is " + (salary / totalEmplyoees).ToString("0.##") + ".";
+                    }
+
+                    dataReader.Close();
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT users.role, sum(YEAR(CURRENT_TIMESTAMP) - YEAR(dateofBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateofBirth, 5))) as age,sum(users.salary) as 'salary',sum(employees.workHours) as 'hours', count(users.role) as 'emp'   from employees INNER JOIN users on employees.userID=users.userID group by role", con)) // average hours per role
+                {// doing average salary and  hoursworked for each role
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                       if(dataReader["role"].ToString()=="0")
+                        {
+                            double hours= Convert.ToDouble(dataReader["hours"]);
+                            double emp= Convert.ToDouble(dataReader["emp"]);
+                            double salary = Convert.ToDouble(dataReader["salary"]);
+                            double age = Convert.ToDouble(dataReader["age"]);
+                            lbAgeWorker.Text = "Average Worker age is " + (age / emp).ToString("0.##") + ".";
+                            lbSalaryWorker.Text = "Average salary for a Worker is " + (salary / emp).ToString("0.##") + ".";
+                            lbHoursWorker.Text = "Average hours worked for a Worker are " + (hours / emp).ToString("0.##") + ".";
+                        }
+                        if (dataReader["role"].ToString() == "1")
+                        {
+                            double hours = Convert.ToDouble(dataReader["hours"]);
+                            double emp = Convert.ToDouble(dataReader["emp"]);
+                            double salary = Convert.ToDouble(dataReader["salary"]);
+                            double age = Convert.ToDouble(dataReader["age"]);
+                            lbAgeManager.Text = "Average Manager age is " + (age / emp).ToString("0.##") + ".";
+                            lbSalaryManager.Text = "Average salary for a Manager is " + (salary / emp).ToString("0.##") + ".";
+                            lbHoursManager.Text = "Average hours worked for a Manager are " + (hours / emp).ToString("0.##") + ".";
+                        }
+                        if (dataReader["role"].ToString() == "2")
+                        {
+                            double hours = Convert.ToDouble(dataReader["hours"]);
+                            double emp = Convert.ToDouble(dataReader["emp"]);
+                            double salary = Convert.ToDouble(dataReader["salary"]);
+                            double age = Convert.ToDouble(dataReader["age"]);
+                            lbAgeAdmin.Text = "Average Admin age is " + (age / emp).ToString("0.##") + ".";
+                            lbSalaryAdmin.Text = "Average salary for an Admin is " + (salary / emp).ToString("0.##") + ".";
+                            lbHoursAdmin.Text = "Average hours worked for an Admin are " + (hours / emp).ToString("0.##") + ".";
+                        }
+
+                    }
+
+                    dataReader.Close();
+                }
+
+
+                con.Close();
+            }
+        }
         private void GetDataForEmployeePerDepartment()
         {
             int totalEmplyoees=0;
@@ -274,6 +371,11 @@ namespace Sem2IntroProjectWaterfall0._1
                 chart1.Series.RemoveAt(0);
                 AlreadyClear = true;
             }
+        }
+
+        private void gbGeneralStat_Enter(object sender, EventArgs e)
+        {
+
         }
     }
     #endregion
