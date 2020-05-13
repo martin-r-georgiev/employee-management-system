@@ -153,7 +153,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         public static List<RescheduleNotification> GetAllNotifications(string departmentID)
         {
-            Department selectedDepartment = new Department(departmentID);
+            Department selectedDepartment = new Department(departmentID, true);
             List<RescheduleNotification> notifications = new List<RescheduleNotification>();
             foreach (Employee e in selectedDepartment.Employees)
             {

@@ -127,7 +127,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                             if (DateTime.Parse(dataReader["nextupdate"].ToString()) <= DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd")))
                             {
-                            Attendance.UpdateAllAttendance();
+                                Attendance.UpdateAllAttendance();
                                 GenerateWorkshiftSchedule();
                                 ExportToDatabase();
                                 message = "Sorry for the wait time, schedule was generating!";

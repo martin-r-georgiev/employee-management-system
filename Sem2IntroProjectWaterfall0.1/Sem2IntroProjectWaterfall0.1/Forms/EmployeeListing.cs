@@ -110,7 +110,7 @@ namespace Sem2IntroProjectWaterfall0._1
             lblEmployeeRole.Text = $"Role: {selectedEmployee.Role}";
             lblEmployeeSalary.Text = $"Salary: ${selectedEmployee.SalaryHourlyRate}/hr";
             lblEmployeeWorkingSince.Text = Employee.CalculateWorkingSince(selectedEmployee);
-            lblEmployeeDepartment.Text = "Department: " + new Department(selectedEmployee.DepartmentID).Name;
+            lblEmployeeDepartment.Text = "Department: " + new Department(selectedEmployee.DepartmentID, false).Name;
 
             int age = DateTime.Today.Year - selectedEmployee.DateOfBirth.Year;
             if (age > 100) lblEmployeeAge.Text = $"Age: Unknown";

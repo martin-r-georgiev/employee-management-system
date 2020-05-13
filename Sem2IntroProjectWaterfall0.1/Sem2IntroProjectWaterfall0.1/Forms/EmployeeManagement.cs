@@ -199,7 +199,7 @@ namespace Sem2IntroProjectWaterfall0._1
             {
                 Employee selectedUser = employees[cbEmployeeAssign.SelectedIndex];
                 Department selectedDepartment = departments[cbDepartmentEdit.SelectedIndex];
-                Department oldDepartment = new Department(selectedUser.DepartmentID);
+                Department oldDepartment = new Department(selectedUser.DepartmentID, true);
                 oldDepartment.AssignEmployeeTo(selectedUser.UserID, selectedDepartment.DepartmentId);
             } catch (Exception exc) { MessageBox.Show(exc.Message); }
             finally
