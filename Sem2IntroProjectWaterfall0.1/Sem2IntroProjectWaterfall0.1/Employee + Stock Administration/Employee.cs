@@ -71,7 +71,7 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.username; }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (!string.IsNullOrWhiteSpace(value))
                 {
                     using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
@@ -94,7 +94,7 @@ namespace Sem2IntroProjectWaterfall0._1
             get { return this.password; }
             set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (!string.IsNullOrWhiteSpace(value))
                 {
                     using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
@@ -462,42 +462,6 @@ namespace Sem2IntroProjectWaterfall0._1
                 conn.Close();
             }
         }
-
-        public Employee(string userIdentifier)
-        {
-            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
-            {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID WHERE u.userID=@userID", conn))
-                {
-                    cmd.Parameters.AddWithValue("@userID", userIdentifier);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                    if (dataReader.Read())
-                    {
-                        this.userID = userIdentifier;
-                        this.username = dataReader.GetString(1);
-                        this.password = dataReader.GetString(2);
-                        this.salaryHourlyRate = dataReader.GetDecimal(3);
-                        this.role = (Role)dataReader.GetInt32(4);
-                        this.departmentID = dataReader.GetString(5);
-                        this.firstName = (dataReader.IsDBNull(7)) ? null : dataReader.GetString(7);
-                        this.lastName = (dataReader.IsDBNull(8)) ? null : dataReader.GetString(8);
-                        this.nationality = (dataReader.IsDBNull(9)) ? null : dataReader.GetString(9);
-                        this.address = (dataReader.IsDBNull(10)) ? null : dataReader.GetString(10);
-                        this.email = (dataReader.IsDBNull(11)) ? null : dataReader.GetString(11);
-                        this.phoneNumber = (dataReader.IsDBNull(12)) ? null : dataReader.GetString(12);
-                        if (!dataReader.IsDBNull(13)) this.dateofBirth = dataReader.GetDateTime(13);
-                        if (!dataReader.IsDBNull(14)) this.sex = dataReader.GetBoolean(14);
-                        if (!dataReader.IsDBNull(15)) this.startDate = dataReader.GetDateTime(15);
-                        this.workHours = dataReader.GetInt32(16);
-                        if (!dataReader.IsDBNull(17)) this.attendance = Convert.ToDouble(dataReader.GetDecimal(17));
-                    }
-                    cmd.Dispose();
-                    dataReader.Close();
-                }
-                conn.Close();
-            }
-        }
         public Employee(string userIdentifier, bool needFullDetails)
         {
             if (needFullDetails)
@@ -619,10 +583,6 @@ namespace Sem2IntroProjectWaterfall0._1
                 conn.Close();
             }
         }
-        public Employee GetEmployee(string userIdentifier)
-        {
-            return new Employee(userIdentifier);
-        }
 
         public static void RemoveFromDatabase(string userIdentifier)
         {
@@ -678,8 +638,8 @@ namespace Sem2IntroProjectWaterfall0._1
                         MySqlDataReader dataReader = cmd.ExecuteReader();
                         while (dataReader.Read())
                         {
-                            Employee newEmp = new Employee(dataReader.GetString(0));
-                            Department empDepartment = new Department(newEmp.UserID, true);
+                            Employee newEmp = new Employee(dataReader.GetString(0), true);
+                            Department empDepartment = new Department(newEmp.DepartmentID, true);
                             if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({empDepartment.Name})";
                             else newEmp.MainDetails = $"{newEmp.Username} ({empDepartment.Name})";
                             allEmployees.Add(newEmp);

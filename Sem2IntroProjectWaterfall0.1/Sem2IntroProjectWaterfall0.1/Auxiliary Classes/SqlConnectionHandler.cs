@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace Sem2IntroProjectWaterfall0._1
 {
-    class SqlConnectionHandler
+    public class SqlConnectionHandler
     {
         public static string ServerConnection
         {

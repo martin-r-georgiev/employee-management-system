@@ -304,7 +304,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    listToSend.Add(new Department(dataReader.GetString(0)));
+                    listToSend.Add(new Department(dataReader.GetString(0),true));
                 }
                 return listToSend;
             }

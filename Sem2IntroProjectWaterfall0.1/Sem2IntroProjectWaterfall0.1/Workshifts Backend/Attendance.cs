@@ -22,7 +22,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             if (updateDB)
             {
-                float missedShifts = 0;
+            float missedShifts = 0;
             float totalShifts = 0;
             DateTime endDate = DateTime.Today;
 

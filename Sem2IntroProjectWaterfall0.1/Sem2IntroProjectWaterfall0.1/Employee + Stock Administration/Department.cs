@@ -122,84 +122,70 @@ namespace Sem2IntroProjectWaterfall0._1
             }
             else throw new InvalidEntryException("Please provide the needed details!");
         }
-        public Department(string departmentId)
+        public Department(string departmentId, bool withEmployeeList)
         {
-            inventory = new Inventory(this.departmentId);
-
-            this.DepartmentId = departmentId;
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            if (withEmployeeList)
             {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
-                {
-                    cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                inventory = new Inventory(this.departmentId);
 
-                    if (dataReader.Read())
+                this.DepartmentId = departmentId;
+                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+                {
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
                     {
-                        this.name = dataReader.GetString(0);
-                        this.address = dataReader.GetString(1);
+                        cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                        if (dataReader.Read())
+                        {
+                            this.name = dataReader.GetString(0);
+                            this.address = dataReader.GetString(1);
+                        }
+                        cmd.Dispose();
+                        dataReader.Close();
                     }
-                    cmd.Dispose();
-                    dataReader.Close();
+                    //Get all other properties from department table
+
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con))
+                    {
+                        cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+                        this.employees = new List<Employee>();
+
+                        while (dataReader.Read())
+                        {
+                            Employee newEmp = new Employee(dataReader.GetString(0), true);
+                            if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({this.Name})";
+                            else newEmp.MainDetails = $"{newEmp.Username} ({this.Name})";
+                            employees.Add(newEmp);
+                        }
+                        cmd.Dispose();
+                        dataReader.Close();
+                    }
+                    con.Close();
                 }
-                //Get all other properties from department table
-                
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM users WHERE departmentID=@departmentID", con))
-                {
-                    cmd.Parameters.AddWithValue("@departmentID", this.DepartmentId);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-                    this.employees = new List<Employee>();
-
-                    while (dataReader.Read())
-                    {
-                        Employee newEmp = new Employee(dataReader.GetString(0), true);
-                        if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({this.Name})";
-                        else newEmp.MainDetails = $"{newEmp.Username} ({this.Name})";
-                        employees.Add(newEmp);
-                    }
-                    cmd.Dispose();
-                    dataReader.Close();
-                }   
-                con.Close();
             }
-        }
-
-        public Department(string employeeId, bool withEmployeeId) //This constructor doesnt include an employee list
-        {
-            withEmployeeId = true;
-
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            else
             {
-                MySqlCommand cmd;
-                MySqlDataReader dataReader;
-
-                cmd = new MySqlCommand($"SELECT departmentID FROM users WHERE userID=@userID", con);
-                cmd.Parameters.AddWithValue("@userID", employeeId);
-                dataReader = cmd.ExecuteReader();
-
-                if (dataReader.Read())
+                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
                 {
-                    this.DepartmentId = dataReader.GetString(0);
-                }
-                cmd.Dispose();
-                dataReader.Close();
-                //Get department id from the user
+                    MySqlCommand cmd;
+                    MySqlDataReader dataReader;
+                        using (cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
+                        {
+                            cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
+                            dataReader = cmd.ExecuteReader();
 
-                using (cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
-                {
-                    cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
-                    dataReader = cmd.ExecuteReader();
-
-                    if (dataReader.Read())
-                    {
-                        this.name = dataReader.GetString(0);
-                        this.address = dataReader.GetString(1);
-                    }
+                            if (dataReader.Read())
+                            {
+                                this.name = dataReader.GetString(0);
+                                this.address = dataReader.GetString(1);
+                            }
+                        }
+                        cmd.Dispose();
+                        dataReader.Close();
+                        con.Close();
                 }
-                //Get all other properties from department table
-                cmd.Dispose();
-                dataReader.Close();
-                con.Close();
             }
         }
 
@@ -235,7 +221,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
                     while (dataReader.Read())
                     {
-                        Employee newEmp = new Employee(dataReader.GetString(0));
+                        Employee newEmp = new Employee(dataReader.GetString(0), true);
                         if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({this.Name})";
                         else newEmp.MainDetails = $"{newEmp.Username} ({this.Name})";
                         employeesToSend.Add(newEmp);
@@ -270,7 +256,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
                     while (dataReader.Read())
                     {
-                        Employee newEmp = new Employee(dataReader.GetString(0));
+                        Employee newEmp = new Employee(dataReader.GetString(0), true);
                         if (newEmp.FirstName != null && newEmp.FirstName.Length > 0) newEmp.MainDetails = $"{newEmp.FirstName} {newEmp.LastName} ({dataReader.GetString(1)})";
                         else newEmp.MainDetails = $"{newEmp.Username} ({dataReader.GetString(1)})";
                         employeesToSend.Add(newEmp);
@@ -338,7 +324,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        allDepartments.Add(new Department(dataReader.GetString(0)));
+                        allDepartments.Add(new Department(dataReader.GetString(0),true));
                     }
                     cmd.Dispose();
                     dataReader.Close();

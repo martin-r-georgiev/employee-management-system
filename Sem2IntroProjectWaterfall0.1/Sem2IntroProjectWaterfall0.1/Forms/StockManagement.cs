@@ -20,7 +20,7 @@ namespace Sem2IntroProjectWaterfall0._1
         {
             InitializeComponent();
 
-            loggedInEmployee = new Employee(LoggedInUser.userID);
+            loggedInEmployee = new Employee(LoggedInUser.userID, true);
             currentInventory = new Inventory(loggedInEmployee.DepartmentID);
             foreach (StockItem s in currentInventory.Items)
                 pnlStocks.Controls.Add(new StockUC(s));
