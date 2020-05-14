@@ -42,7 +42,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     cmd.Dispose();
                 }
 
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT w.userID, w.date, MIN(w.workshift), MAX(w.workshift), GROUP_CONCAT(w.id) FROM workshifts as w INNER JOIN users as u ON w.userID=u.userID WHERE w.date >= @start AND w.date < @end AND u.departmentID = @department GROUP BY w.userID, w.date", conn))
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT w.userID, w.date, MIN(w.workshift), MAX(w.workshift), GROUP_CONCAT(w.id ORDER BY w.workshift) FROM workshifts as w INNER JOIN users as u ON w.userID=u.userID WHERE w.date >= @start AND w.date < @end AND u.departmentID = @department GROUP BY w.userID, w.date", conn))
                 {
                     cmd.Parameters.AddWithValue("@start", startDate);
                     cmd.Parameters.AddWithValue("@end", endDate);
@@ -59,18 +59,20 @@ namespace Sem2IntroProjectWaterfall0._1
                         rowIDRaw = rowIDRaw.Replace("(", string.Empty).Replace(")", string.Empty);
                         int[] rowIDs = Array.ConvertAll(rowIDRaw.Split(',').ToArray(), int.Parse);
 
-                        for (int i = 0; i < rowIDs.Length - 1; i++)
-                        {
-                            for (int j = 0; j < rowIDs.Length - i - 1; j++)
-                            {
-                                if (rowIDs[j] > rowIDs[j + 1])
-                                {
-                                    int temp = rowIDs[j];
-                                    rowIDs[j] = rowIDs[j + 1];
-                                    rowIDs[j + 1] = temp;
-                                }
-                            }
-                        }
+                        //Console.WriteLine($"DEBUG: [ROW] {rowIDRaw}");
+
+                        //for (int i = 0; i < rowIDs.Length - 1; i++)
+                        //{
+                        //    for (int j = 0; j < rowIDs.Length - i - 1; j++)
+                        //    {
+                        //        if (rowIDs[j] > rowIDs[j + 1])
+                        //        {
+                        //            int temp = rowIDs[j];
+                        //            rowIDs[j] = rowIDs[j + 1];
+                        //            rowIDs[j + 1] = temp;
+                        //        }
+                        //    }
+                        //}
 
                         int index = checkinUsers.FindIndex(item => item == userID);
                         if (index != -1 && checkinsList[index].Date == timestamp.Date)
