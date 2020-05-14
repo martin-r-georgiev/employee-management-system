@@ -217,9 +217,9 @@ namespace Sem2IntroProjectWaterfall0._1
                             }
                         }
                     }
-                    lbGenderWorker.Text = messagestart + work1+ "and" + work2 + " workers.";
-                    lbGenderManager.Text = messagestart+ manager1+ "and" + manager2 + " managers.";
-                    lbGenderAdmin.Text = messagestart+ admin1+"and"+admin2+" admins.";
+                    lbGenderWorker.Text = messagestart + work1+ " and" + work2 + " workers.";
+                    lbGenderManager.Text = messagestart+ manager1+ " and" + manager2 + " managers.";
+                    lbGenderAdmin.Text = messagestart+ admin1+" and"+admin2+" admins.";
 
                     dataReader.Close();
                 }
