@@ -59,6 +59,19 @@ namespace Sem2IntroProjectWaterfall0._1
                         rowIDRaw = rowIDRaw.Replace("(", string.Empty).Replace(")", string.Empty);
                         int[] rowIDs = Array.ConvertAll(rowIDRaw.Split(',').ToArray(), int.Parse);
 
+                        for (int i = 0; i < rowIDs.Length - 1; i++)
+                        {
+                            for (int j = 0; j < rowIDs.Length - i - 1; j++)
+                            {
+                                if (rowIDs[j] > rowIDs[j + 1])
+                                {
+                                    int temp = rowIDs[j];
+                                    rowIDs[j] = rowIDs[j + 1];
+                                    rowIDs[j + 1] = temp;
+                                }
+                            }
+                        }
+
                         int index = checkinUsers.FindIndex(item => item == userID);
                         if (index != -1 && checkinsList[index].Date == timestamp.Date)
                         {
@@ -70,17 +83,19 @@ namespace Sem2IntroProjectWaterfall0._1
                                 //Console.WriteLine($"DEBUG: {checkinsList[index]} - {timestamp.AddHours(9 + workshiftIndex * 4).AddMinutes(15)}");
                                 if (checkinsList[index] > timestamp.AddHours(9 + workshiftIndex * 4).AddMinutes(15))
                                 {
-                                    //Console.WriteLine($"DEBUG: [CHECKIN] {userID} - {checkinsList[index]} was outside the proposed range. ({timestamp.AddHours(9 + workshiftIndex * 4)})");
+                                    //Console.WriteLine($"DEBUG: [CHECKIN] {userID} - {checkinsList[index]} was outside the proposed range. ({timestamp.AddHours(9 + workshiftIndex * 4)}) | {rowIDs[counter]}");
                                     missedWorkshiftIds.Add(rowIDs[counter]);
                                     counter++;
                                 }
+                                //else Console.WriteLine($"DEBUG: [CHECKIN] {userID} - {checkinsList[index]} on date.");
                                 workshiftIndex++;
                             }
                             if (checkoutsList[index].Date == checkinsList[index].Date && checkoutsList[index] < timestamp.AddHours(13 + workshiftMaxIndex * 4).AddMinutes(-15))
                             {
-                                //Console.WriteLine($"DEBUG: [CHECKOUT] {userID} - {checkoutsList[index]} was outside the proposed range. ({timestamp.AddHours(13 + workshiftMaxIndex * 4)}) | {rowIDs.Length}");
+                                //Console.WriteLine($"DEBUG: [CHECKOUT] {userID} - {checkoutsList[index]} was outside the proposed range. ({timestamp.AddHours(13 + workshiftMaxIndex * 4)}) | {workshiftMaxIndex}");
                                 missedWorkshiftIds.Add(rowIDs[rowIDs.Length - 1]);
                             }
+                            //else Console.WriteLine($"DEBUG: [CHECKOUT] {userID} - {checkoutsList[index]} on date.");
                             checkinUsers.RemoveAt(index);
                             checkinsList.RemoveAt(index);
                             checkoutsList.RemoveAt(index);
@@ -103,6 +118,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         cmd.Parameters.AddWithValue("@available", 0);
                         cmd.Parameters.AddWithValue("@pending", 1);
                         cmd.ExecuteNonQuery();
+                        //Console.WriteLine($"DEBUG: [INDEX] Updated row ID {rowID}");
                         cmd.Dispose();
                     }  
                 }
