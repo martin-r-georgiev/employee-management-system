@@ -11,7 +11,7 @@ namespace Sem2IntroProjectWaterfall0._1
     {
 
         List<Prefrence> prefrences = new List<Prefrence>(); // copy of the database's prefence table 
-       public List<WorkshiftData> Schedule = new List<WorkshiftData>();// the schedule that will be uploaded to the database; contains all departments 
+        public List<WorkshiftData> Schedule = new List<WorkshiftData>();// the schedule that will be uploaded to the database; contains all departments 
         DateTime nextmonday = DateTime.Now.StartOfWeek(DayOfWeek.Monday); // gets the current weeks monday
         List<string> departments = new List<string>(); // storing the department IDs to be used for workshift generation per departmetn
 

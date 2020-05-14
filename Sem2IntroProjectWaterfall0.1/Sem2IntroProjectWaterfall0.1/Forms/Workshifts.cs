@@ -39,7 +39,7 @@ namespace Sem2IntroProjectWaterfall0._1
             WorkshiftUC.shiftThreeEnd = "21:00";
             selectedDepartmentID = LoggedInUser.departmentID;
             departments = new List<Department>();
-            UpdateWeeklyWorkshiftPanel(selectedDate, selectedDepartmentID);
+            //UpdateWeeklyWorkshiftPanel(selectedDate, selectedDepartmentID); Unnecessary - Combobox updates itself and triggers the method anyway
             UpdateDepartmentCombobox();
             UpdateRoleControls();
         }
@@ -64,6 +64,7 @@ namespace Sem2IntroProjectWaterfall0._1
             bool isHeader = true;
             flpWorkshifts.SuspendLayout();
             flpWorkshifts.Controls.Clear();
+            WorkshiftDatabaseHandler.CheckMissedWorkshifts(time, departmentID);
             List<WorkshiftUC> workshiftList = WorkshiftDatabaseHandler.GetEmployees(time, departmentID);
             foreach (WorkshiftUC control in workshiftList)
             {
@@ -83,6 +84,7 @@ namespace Sem2IntroProjectWaterfall0._1
             bool isHeader = true;
             flpWorkshifts.SuspendLayout();
             flpWorkshifts.Controls.Clear();
+            WorkshiftDatabaseHandler.CheckMissedWorkshifts(time, departmentID);
             List<WorkshiftWeeklyUC> workshiftList = WorkshiftDatabaseHandler.GetWeeklyEmployees(time, departmentID);
             foreach (WorkshiftWeeklyUC control in workshiftList)
             {

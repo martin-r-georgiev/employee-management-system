@@ -76,9 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LoginTesting.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EmployeeTesting.cs" />
+    <Compile Include="DepartmentTesting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -173,14 +173,16 @@ namespace Sem2IntroProjectWaterfall0._1
                     MySqlDataReader dataReader;
                         using (cmd = new MySqlCommand($"SELECT name, address FROM department WHERE departmentID=@departmentID", con))
                         {
-                            cmd.Parameters.AddWithValue("@departmentID", DepartmentId);
+                            cmd.Parameters.AddWithValue("@departmentID", departmentId);
                             dataReader = cmd.ExecuteReader();
 
                             if (dataReader.Read())
                             {
                                 this.name = dataReader.GetString(0);
                                 this.address = dataReader.GetString(1);
-                            }
+                            this.DepartmentId = departmentId;
+                            this.employees = new List<Employee>();
+                        }
                         }
                         cmd.Dispose();
                         dataReader.Close();

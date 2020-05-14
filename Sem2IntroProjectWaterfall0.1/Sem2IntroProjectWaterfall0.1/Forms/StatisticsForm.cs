@@ -147,16 +147,127 @@ namespace Sem2IntroProjectWaterfall0._1
                     dataReader.Close();
                 }
 
+                using (MySqlCommand cmd = new MySqlCommand($"  SELECT employees.sex as 'gender',COUNT(employees.sex) as 'number' from employees WHERE employees.sex is not null GROUP by employees.sex ", con))
+                {// Gender for all 
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    string messagestart = "There are ";
+                    string message1 = "";
+                    string message2 = "";
+
+                    while (dataReader.Read())
+                    {
+                       if(dataReader["gender"].ToString()== "False")
+                        {
+                            message1 = message1 + dataReader["number"] + " female";
+                        }else
+                        {
+                            message2= message2 +dataReader["number"] + " male";
+                        }
+                    }
+                    lbGender.Text = messagestart+message1+ " and " + message2 + " employees.";
+                    if (message1=="" || message2 == "")
+                    {
+                        lbGender.Text = messagestart + message1 + message2 + " workers.";
+                    }
+                    else
+                    {
+                        lbGender.Text = messagestart + message1 + " and " + message2 + " workers.";
+                    }
+                    dataReader.Close();
+                }
+
+
+                using (MySqlCommand cmd = new MySqlCommand($" SELECT   users.role,employees.sex as 'gender', COUNT(employees.sex) as 'number' from employees INNER  JOIN users on users.userID=employees.userID where employees.sex is not null GROUP by users.role, employees.sex", con))
+                {// Gender for each role 
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    string messagestart = "There are ";
+                    string work1 = "";
+                    string manager1 = "";
+                    string admin1 = "";
+                    string work2 = "";
+                    string manager2 = "";
+                    string admin2 = "";
+                    while (dataReader.Read())
+                    {
+                        if (dataReader["role"].ToString() == "0")
+                        {
+                            if (dataReader["gender"].ToString() == "False")
+                            {
+                                work1 = work1 + dataReader["number"] + " female";
+                            }
+                            else
+                            {
+                                work2= work2 + dataReader["number"] + " male";
+                               
+                            }
+                        }
+                        if (dataReader["role"].ToString() == "1")
+                        {
+                            if (dataReader["gender"].ToString() == "False")
+                            {
+                                manager1 = manager1 + dataReader["number"] + " female";
+                            }
+                            else
+                            {
+                                manager2 = manager2 + dataReader["number"] + " male";
+                            }
+                        }
+                        if (dataReader["role"].ToString() == "2")
+                        {
+                            if (dataReader["gender"].ToString() == "False")
+                            {
+                                admin1 = admin1 + dataReader["number"] + " female";
+                            }
+                            else
+                            {
+                                admin2 = admin2 + dataReader["number"] + " male";
+                                
+                            }
+                        }
+                    }
+                    if (work1 == "" || work2 == "")
+                    {
+                        lbGenderWorker.Text = messagestart + work1 + work2 + " workers.";
+                    }
+                    else
+                    {
+                        lbGenderWorker.Text = messagestart + work1 + " and " + work2 + " workers.";
+                    }
+                    if (manager1 == "" || manager2 == "")
+                    {
+                        lbGenderManager.Text = messagestart + manager1 +  manager2 + " managers.";
+                    }
+                    else
+                    {
+                        lbGenderManager.Text = messagestart + manager1 + " and " + manager2 + " managers.";
+                    }
+                    if (admin1 == "" || admin2 == "")
+                    {
+                        lbGenderAdmin.Text = messagestart + admin1 +  admin2 + " admins.";
+
+                    }
+                    else
+                    {
+                        lbGenderAdmin.Text = messagestart + admin1 + " and " + admin2 + " admins.";
+                    }
+
+
+                    dataReader.Close();
+                }
+
+
+
 
                 con.Close();
             }
+        
         }
         private void GetDataForEmployeePerDepartment()
         {
             int totalEmplyoees=0;
-            chart1.Titles.Add("Emplyoees per Department");
-            chart1.Series.Add("EmplyoeesPerDepartment");
-            chart1.Series["EmplyoeesPerDepartment"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            chart1.Titles.Add("Employees per Department");
+            chart1.Series.Add("EmployeesPerDepartment");
+            chart1.Series["EmployeesPerDepartment"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
                 using (MySqlCommand cmd = new MySqlCommand($"select count(userID) as 'Total' from users ", con))
@@ -179,7 +290,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         int NumberOfEmplyoees = Convert.ToInt32(dataReader["Employees"]);
                         string databaseDepartment = dataReader["name"].ToString();
                         int percentage = (NumberOfEmplyoees * 100) / totalEmplyoees;
-                        chart1.Series["EmplyoeesPerDepartment"].Points.AddXY(databaseDepartment+" "+NumberOfEmplyoees, percentage);
+                        chart1.Series["EmployeesPerDepartment"].Points.AddXY(databaseDepartment+" "+NumberOfEmplyoees, percentage);
                     }
 
                     dataReader.Close();
@@ -234,8 +345,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void GetDataForEmployeePerRole() // weird error idk why bruh
         {
-            chart1.Titles.Add("Emplyoees per Role");
-            chart1.Series.Add("EmplyoeesPerRole");
+            chart1.Titles.Add("Employees per Role");
+            chart1.Series.Add("EmployeesPerRole");
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(role) as 'Employees', role as 'notreservedkeyword' FROM users GROUP by role", con))
@@ -246,7 +357,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         string NumberOfEmplyoees = dataReader["Employees"].ToString();
                         string role = dataReader["notreservedkeyword"].ToString();
-                        chart1.Series["EmplyoeesPerRole"].Points.AddXY(role, NumberOfEmplyoees);
+                        chart1.Series["EmployeesPerRole"].Points.AddXY(ReturnRole(role), NumberOfEmplyoees);
                     }
                     dataReader.Close();
                 }
