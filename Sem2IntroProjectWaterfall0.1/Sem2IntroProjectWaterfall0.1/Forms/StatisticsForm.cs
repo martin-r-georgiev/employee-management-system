@@ -165,6 +165,14 @@ namespace Sem2IntroProjectWaterfall0._1
                         }
                     }
                     lbGender.Text = messagestart+message1+ " and " + message2 + " employees.";
+                    if (message1=="" || message2 == "")
+                    {
+                        lbGender.Text = messagestart + message1 + message2 + " workers.";
+                    }
+                    else
+                    {
+                        lbGender.Text = messagestart + message1 + " and " + message2 + " workers.";
+                    }
                     dataReader.Close();
                 }
 
@@ -217,9 +225,32 @@ namespace Sem2IntroProjectWaterfall0._1
                             }
                         }
                     }
-                    lbGenderWorker.Text = messagestart + work1+ " and" + work2 + " workers.";
-                    lbGenderManager.Text = messagestart+ manager1+ " and" + manager2 + " managers.";
-                    lbGenderAdmin.Text = messagestart+ admin1+" and"+admin2+" admins.";
+                    if (work1 == "" || work2 == "")
+                    {
+                        lbGenderWorker.Text = messagestart + work1 + work2 + " workers.";
+                    }
+                    else
+                    {
+                        lbGenderWorker.Text = messagestart + work1 + " and " + work2 + " workers.";
+                    }
+                    if (manager1 == "" || manager2 == "")
+                    {
+                        lbGenderManager.Text = messagestart + manager1 +  manager2 + " managers.";
+                    }
+                    else
+                    {
+                        lbGenderManager.Text = messagestart + manager1 + " and " + manager2 + " managers.";
+                    }
+                    if (admin1 == "" || admin2 == "")
+                    {
+                        lbGenderAdmin.Text = messagestart + admin1 +  admin2 + " admins.";
+
+                    }
+                    else
+                    {
+                        lbGenderAdmin.Text = messagestart + admin1 + " and " + admin2 + " admins.";
+                    }
+
 
                     dataReader.Close();
                 }
