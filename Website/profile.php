@@ -19,6 +19,7 @@ if (!isset($_SESSION["username"]))
   <script src="https://kit.fontawesome.com/2f1dc81eac.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <script src="jquery.js"></script>
 </head>
 <body>
   <!--Navbar-->
@@ -129,7 +130,7 @@ if (!isset($_SESSION["username"]))
           <div class="form-group">
             <label class="col-md-6 control-label"></label>
             <div class="col-md-12">
-              <input type="submit" class="btn btn-primary" value="Save Changes">
+              <input type="button" class="btn btn-primary" onclick="updateProfile()" value="Save Changes">
               <span></span>
               <input type="reset" class="btn btn-default btn-cancel" value="Cancel">
             </div>
@@ -138,5 +139,25 @@ if (!isset($_SESSION["username"]))
       </div>
   </div>
 </div>
+<script>
+function updateProfile(){
+  $(document).ready(function () {
+  var email = $('input[name=email]').val();
+  var phoneNum = $('input[name=phoneNum]').val();
+  var address = $('input[name=address]').val();
+  if (email != "" && phoneNum != "" && address != "")
+jQuery.ajax({
+  type: "POST",
+  url: "updateProfile.php",
+  data: {email: email, phoneNum: phoneNum, address: address},
+  success: function(result){
+    alert( 'Updated profile!' );
+    }});
+    else {
+      {alert (' Fill all empty fields!')}
+    }
+  });
+}
+</script>
 </body>
 </html>

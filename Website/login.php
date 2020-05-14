@@ -40,6 +40,7 @@ if ($result)
     $_SESSION['address'] = $user_info['address'];
     $_SESSION['phoneNumber'] = $user_info['phoneNumber'];
     $_SESSION['dateOfBirth'] = $user_info['dateOfBirth'];
+    $_SESSION['userID'] = $user_info['userID'];
     $_SESSION["username"] = $user;
     header("Location:home.php");
 }
