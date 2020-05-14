@@ -76,8 +76,6 @@ foreach ($weekDays as $WeekDay) {
   $year = $dt->format('o');
   $week = $dt->format('W');
   ?>
-  <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week-1).'&year='.$year; ?>">Prev Week</a> <a>|</a>
-  <a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week+1).'&year='.$year; ?>">Next  Week</a>
 	<hr>
 	<div class="row row-content">
   <table class="table table-bordered table-hover">
