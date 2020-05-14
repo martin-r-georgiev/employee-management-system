@@ -23,6 +23,7 @@ namespace Sem2IntroProjectWaterfall0._1
 				conn.Close();
 			}
 		}
+
 		public static void Checkout(string userID, DateTime checkOutTime)
 		{
 			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
