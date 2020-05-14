@@ -207,7 +207,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             }
                             else
                             {
-                                admin = admin +" "+ dataReader["number"] + " male";
+                                admin = admin +" and "+ dataReader["number"] + " male";
                                 
                             }
                         }
