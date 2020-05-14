@@ -63,11 +63,11 @@
             // 
             // lblEmployeeName
             // 
-            this.lblEmployeeName.AutoSize = true;
+            this.lblEmployeeName.AutoEllipsis = true;
             this.lblEmployeeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeName.Location = new System.Drawing.Point(10, 8);
             this.lblEmployeeName.Name = "lblEmployeeName";
-            this.lblEmployeeName.Size = new System.Drawing.Size(85, 13);
+            this.lblEmployeeName.Size = new System.Drawing.Size(110, 17);
             this.lblEmployeeName.TabIndex = 2;
             this.lblEmployeeName.Text = "Ivan Zvezdev";
             this.lblEmployeeName.MouseEnter += new System.EventHandler(this.NotificationUC_MouseEnter);

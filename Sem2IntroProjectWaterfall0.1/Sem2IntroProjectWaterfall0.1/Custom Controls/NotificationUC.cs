@@ -20,7 +20,13 @@ namespace Sem2IntroProjectWaterfall0._1
             InitializeComponent();
             this.notification = currentNotification;
             this.employee = new Employee(currentNotification.UserID,false);
-            lblEmployeeName.Text = this.employee.FirstName + " " + this.employee.LastName;
+
+            if (!string.IsNullOrEmpty(this.employee.FirstName) || !string.IsNullOrEmpty(this.employee.LastName))
+            {
+                lblEmployeeName.Text = this.employee.FirstName + " " + this.employee.LastName;
+            }
+            else lblEmployeeName.Text = this.employee.Username;
+            
             lblDate.Text = this.notification.Date.ToString("dd/MM/yyyy") + " ";
             switch (this.notification.WorkshiftIndex)
             {
