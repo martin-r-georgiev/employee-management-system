@@ -164,7 +164,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             message2= message2 +dataReader["number"] + " male";
                         }
                     }
-                    lbGender.Text = messagestart+message1+ "and" + message2 + " employees.";
+                    lbGender.Text = messagestart+message1+ " and " + message2 + " employees.";
                     dataReader.Close();
                 }
 
