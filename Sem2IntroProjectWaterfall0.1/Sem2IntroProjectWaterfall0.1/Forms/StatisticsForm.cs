@@ -150,7 +150,8 @@ namespace Sem2IntroProjectWaterfall0._1
                 using (MySqlCommand cmd = new MySqlCommand($"  SELECT employees.sex as 'gender',COUNT(employees.sex) as 'number' from employees WHERE employees.sex is not null GROUP by employees.sex ", con))
                 {// Gender for all 
                     MySqlDataReader dataReader = cmd.ExecuteReader();
-                    string message = "There are ";
+                    string messagestart = "There are ";
+                    string message = "";
                     while (dataReader.Read())
                     {
                        if(dataReader["gender"].ToString()== "False")
@@ -158,60 +159,63 @@ namespace Sem2IntroProjectWaterfall0._1
                             message = message + dataReader["number"] + " females";
                         }else
                         {
-                            message = message + " and "+dataReader["number"] + " male employees.";
+                            message = message + " and "+dataReader["number"] + " male";
                         }
                     }
-                    lbGender.Text = message;
+                    lbGender.Text = messagestart+message + " employees.";
                     dataReader.Close();
                 }
 
 
-                using (MySqlCommand cmd = new MySqlCommand($" SELECT   users.role,employees.sex as 'gender', COUNT(employees.sex) as 'number' from employees INNER  JOIN users on users.userID=employees.userID GROUP by users.role, employees.sex", con))
+                using (MySqlCommand cmd = new MySqlCommand($" SELECT   users.role,employees.sex as 'gender', COUNT(employees.sex) as 'number' from employees INNER  JOIN users on users.userID=employees.userID where employees.sex is not null GROUP by users.role, employees.sex", con))
                 {// Gender for each role 
                     MySqlDataReader dataReader = cmd.ExecuteReader();
-                    string message = "There are ";
+                    string messagestart = "There are ";
+                    string work = "";
+                    string manager = "";
+                    string admin = "";
                     while (dataReader.Read())
                     {
                         if (dataReader["role"].ToString() == "0")
                         {
                             if (dataReader["gender"].ToString() == "False")
                             {
-                                message = message + dataReader["number"] + " females";
+                                work = work + dataReader["number"] + " females";
                             }
                             else
                             {
-                                message = message +" and "+ dataReader["number"] + " male Workers.";
-                                lbGenderWorker.Text = message;
-                                message = "There are";
+                                work = work +" and "+ dataReader["number"] + " males";
+                               
                             }
                         }
                         if (dataReader["role"].ToString() == "1")
                         {
                             if (dataReader["gender"].ToString() == "False")
                             {
-                                message = message + dataReader["number"] + " females";
+                                manager = manager + dataReader["number"] + " females";
                             }
                             else
                             {
-                                message = message + " and "+dataReader["number"] + " male Managers.";
-                                lbGenderManager.Text = message;
-                                message = "There are";
+                                manager = manager + " and "+dataReader["number"] + " males";
                             }
                         }
                         if (dataReader["role"].ToString() == "2")
                         {
                             if (dataReader["gender"].ToString() == "False")
                             {
-                                message = message + dataReader["number"] + " females Admins and";
+                                admin = admin + dataReader["number"] + " females Admins and";
                             }
                             else
                             {
-                                message = message +" "+ dataReader["number"] + " male Admins.";
-                                lbGenderAdmin.Text = message;
+                                admin = admin +" "+ dataReader["number"] + " males";
                                 
                             }
                         }
                     }
+                    lbGenderWorker.Text = messagestart + work + " workers.";
+                    lbGenderManager.Text = messagestart+ manager+ " managers.";
+                    lbGenderAdmin.Text = messagestart+ admin+" admins.";
+
                     dataReader.Close();
                 }
 

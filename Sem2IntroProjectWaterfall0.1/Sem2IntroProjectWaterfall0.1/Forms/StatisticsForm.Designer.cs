@@ -219,7 +219,7 @@
             // lbSalary
             // 
             this.lbSalary.AutoSize = true;
-            this.lbSalary.Location = new System.Drawing.Point(18, 31);
+            this.lbSalary.Location = new System.Drawing.Point(15, 31);
             this.lbSalary.Name = "lbSalary";
             this.lbSalary.Size = new System.Drawing.Size(79, 13);
             this.lbSalary.TabIndex = 8;
