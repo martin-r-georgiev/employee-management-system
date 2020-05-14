@@ -189,7 +189,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             }
                             else
                             {
-                                work2= work2 +" and "+ dataReader["number"] + " male";
+                                work2= work2 + dataReader["number"] + " male";
                                
                             }
                         }
@@ -201,7 +201,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             }
                             else
                             {
-                                manager2 = manager2 + " and "+dataReader["number"] + " male";
+                                manager2 = manager2 + dataReader["number"] + " male";
                             }
                         }
                         if (dataReader["role"].ToString() == "2")
