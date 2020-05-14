@@ -151,18 +151,20 @@ namespace Sem2IntroProjectWaterfall0._1
                 {// Gender for all 
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     string messagestart = "There are ";
-                    string message = "";
+                    string message1 = "";
+                    string message2 = "";
+
                     while (dataReader.Read())
                     {
                        if(dataReader["gender"].ToString()== "False")
                         {
-                            message = message + dataReader["number"] + " female";
+                            message1 = message1 + dataReader["number"] + " female";
                         }else
                         {
-                            message = message + " and "+dataReader["number"] + " male";
+                            message2= message2 + " and "+dataReader["number"] + " male";
                         }
                     }
-                    lbGender.Text = messagestart+message + " employees.";
+                    lbGender.Text = messagestart+message1+message2 + " employees.";
                     dataReader.Close();
                 }
 
@@ -171,20 +173,23 @@ namespace Sem2IntroProjectWaterfall0._1
                 {// Gender for each role 
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     string messagestart = "There are ";
-                    string work = "";
-                    string manager = "";
-                    string admin = "";
+                    string work1 = "";
+                    string manager1 = "";
+                    string admin1 = "";
+                    string work2 = "";
+                    string manager2 = "";
+                    string admin2 = "";
                     while (dataReader.Read())
                     {
                         if (dataReader["role"].ToString() == "0")
                         {
                             if (dataReader["gender"].ToString() == "False")
                             {
-                                work = work + dataReader["number"] + " female";
+                                work1 = work1 + dataReader["number"] + " female";
                             }
                             else
                             {
-                                work = work +" and "+ dataReader["number"] + " male";
+                                work2= work2 +" and "+ dataReader["number"] + " male";
                                
                             }
                         }
@@ -192,29 +197,29 @@ namespace Sem2IntroProjectWaterfall0._1
                         {
                             if (dataReader["gender"].ToString() == "False")
                             {
-                                manager = manager + dataReader["number"] + " female";
+                                manager1 = manager1 + dataReader["number"] + " female";
                             }
                             else
                             {
-                                manager = manager + " and "+dataReader["number"] + " male";
+                                manager2 = manager2 + " and "+dataReader["number"] + " male";
                             }
                         }
                         if (dataReader["role"].ToString() == "2")
                         {
                             if (dataReader["gender"].ToString() == "False")
                             {
-                                admin = admin + dataReader["number"] + " female";
+                                admin1 = admin1 + dataReader["number"] + " female";
                             }
                             else
                             {
-                                admin = admin +" and "+ dataReader["number"] + " male";
+                                admin2 = admin2 +" and "+ dataReader["number"] + " male";
                                 
                             }
                         }
                     }
-                    lbGenderWorker.Text = messagestart + work + " workers.";
-                    lbGenderManager.Text = messagestart+ manager+ " managers.";
-                    lbGenderAdmin.Text = messagestart+ admin+" admins.";
+                    lbGenderWorker.Text = messagestart + work1+admin2 + " workers.";
+                    lbGenderManager.Text = messagestart+ manager1+admin2+ " managers.";
+                    lbGenderAdmin.Text = messagestart+ admin1+admin2+" admins.";
 
                     dataReader.Close();
                 }
