@@ -147,7 +147,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     dataReader.Close();
                 }
 
-                using (MySqlCommand cmd = new MySqlCommand($" SELECT employees.sex as 'gender',COUNT(employees.sex) as 'number' from employees GROUP by employees.sex ", con))
+                using (MySqlCommand cmd = new MySqlCommand($"  SELECT employees.sex as 'gender',COUNT(employees.sex) as 'number' from employees WHERE employees.sex is not null GROUP by employees.sex ", con))
                 {// Gender for all 
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     string message = "There are ";
@@ -225,9 +225,9 @@ namespace Sem2IntroProjectWaterfall0._1
         private void GetDataForEmployeePerDepartment()
         {
             int totalEmplyoees=0;
-            chart1.Titles.Add("Emplyoees per Department");
-            chart1.Series.Add("EmplyoeesPerDepartment");
-            chart1.Series["EmplyoeesPerDepartment"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            chart1.Titles.Add("Employees per Department");
+            chart1.Series.Add("EmployeesPerDepartment");
+            chart1.Series["EmployeesPerDepartment"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
                 using (MySqlCommand cmd = new MySqlCommand($"select count(userID) as 'Total' from users ", con))
@@ -250,7 +250,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         int NumberOfEmplyoees = Convert.ToInt32(dataReader["Employees"]);
                         string databaseDepartment = dataReader["name"].ToString();
                         int percentage = (NumberOfEmplyoees * 100) / totalEmplyoees;
-                        chart1.Series["EmplyoeesPerDepartment"].Points.AddXY(databaseDepartment+" "+NumberOfEmplyoees, percentage);
+                        chart1.Series["EmployeesPerDepartment"].Points.AddXY(databaseDepartment+" "+NumberOfEmplyoees, percentage);
                     }
 
                     dataReader.Close();
@@ -305,8 +305,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void GetDataForEmployeePerRole() // weird error idk why bruh
         {
-            chart1.Titles.Add("Emplyoees per Role");
-            chart1.Series.Add("EmplyoeesPerRole");
+            chart1.Titles.Add("Employees per Role");
+            chart1.Series.Add("EmployeesPerRole");
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(role) as 'Employees', role as 'notreservedkeyword' FROM users GROUP by role", con))
@@ -317,7 +317,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                         string NumberOfEmplyoees = dataReader["Employees"].ToString();
                         string role = dataReader["notreservedkeyword"].ToString();
-                        chart1.Series["EmplyoeesPerRole"].Points.AddXY(role, NumberOfEmplyoees);
+                        chart1.Series["EmployeesPerRole"].Points.AddXY(ReturnRole(role), NumberOfEmplyoees);
                     }
                     dataReader.Close();
                 }
