@@ -164,7 +164,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             message2= message2 + " and "+dataReader["number"] + " male";
                         }
                     }
-                    lbGender.Text = messagestart+message1+message2 + " employees.";
+                    lbGender.Text = messagestart+message1+ "and" + message2 + " employees.";
                     dataReader.Close();
                 }
 
@@ -212,14 +212,14 @@ namespace Sem2IntroProjectWaterfall0._1
                             }
                             else
                             {
-                                admin2 = admin2 +" and "+ dataReader["number"] + " male";
+                                admin2 = admin2 + dataReader["number"] + " male";
                                 
                             }
                         }
                     }
-                    lbGenderWorker.Text = messagestart + work1+work2 + " workers.";
-                    lbGenderManager.Text = messagestart+ manager1+manager2+ " managers.";
-                    lbGenderAdmin.Text = messagestart+ admin1+admin2+" admins.";
+                    lbGenderWorker.Text = messagestart + work1+ "and" + work2 + " workers.";
+                    lbGenderManager.Text = messagestart+ manager1+ "and" + manager2 + " managers.";
+                    lbGenderAdmin.Text = messagestart+ admin1+"and"+admin2+" admins.";
 
                     dataReader.Close();
                 }
