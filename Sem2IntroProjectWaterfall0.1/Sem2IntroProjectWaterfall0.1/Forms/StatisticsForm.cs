@@ -156,7 +156,7 @@ namespace Sem2IntroProjectWaterfall0._1
                     {
                        if(dataReader["gender"].ToString()== "False")
                         {
-                            message = message + dataReader["number"] + " females";
+                            message = message + dataReader["number"] + " female";
                         }else
                         {
                             message = message + " and "+dataReader["number"] + " male";
@@ -180,11 +180,11 @@ namespace Sem2IntroProjectWaterfall0._1
                         {
                             if (dataReader["gender"].ToString() == "False")
                             {
-                                work = work + dataReader["number"] + " females";
+                                work = work + dataReader["number"] + " female";
                             }
                             else
                             {
-                                work = work +" and "+ dataReader["number"] + " males";
+                                work = work +" and "+ dataReader["number"] + " male";
                                
                             }
                         }
@@ -192,22 +192,22 @@ namespace Sem2IntroProjectWaterfall0._1
                         {
                             if (dataReader["gender"].ToString() == "False")
                             {
-                                manager = manager + dataReader["number"] + " females";
+                                manager = manager + dataReader["number"] + " female";
                             }
                             else
                             {
-                                manager = manager + " and "+dataReader["number"] + " males";
+                                manager = manager + " and "+dataReader["number"] + " male";
                             }
                         }
                         if (dataReader["role"].ToString() == "2")
                         {
                             if (dataReader["gender"].ToString() == "False")
                             {
-                                admin = admin + dataReader["number"] + " females Admins and";
+                                admin = admin + dataReader["number"] + " female Admins and";
                             }
                             else
                             {
-                                admin = admin +" "+ dataReader["number"] + " males";
+                                admin = admin +" "+ dataReader["number"] + " male";
                                 
                             }
                         }
