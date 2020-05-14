@@ -203,7 +203,7 @@ namespace Sem2IntroProjectWaterfall0._1
                         {
                             if (dataReader["gender"].ToString() == "False")
                             {
-                                admin = admin + dataReader["number"] + " female Admins and";
+                                admin = admin + dataReader["number"] + " female";
                             }
                             else
                             {
