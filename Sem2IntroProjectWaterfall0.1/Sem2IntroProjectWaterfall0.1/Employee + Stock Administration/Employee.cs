@@ -601,7 +601,24 @@ namespace Sem2IntroProjectWaterfall0._1
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
+
+
+                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM preferences WHERE userID=@userID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userid", userIdentifier);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+
+
+                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM workshifts WHERE userID=@userID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userid", userIdentifier);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
                 conn.Close();
+                
             } 
         }
 
