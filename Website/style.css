@@ -67,3 +67,9 @@ h1 {
 .row-info {
   margin-top: 20px;
 }
+/*------------------------------------------*/
+/*Schedule page*/
+.status-green { background-color: #98FB98!important; }
+.status-yellow { background-color: #FFFF00!important; }
+.status-grey { background-color: 	#808080!important; }
+.status-red { background-color: #B22222!important; }

@@ -39,8 +39,5 @@ $_SESSION['email']  = $user_info['email'];
 $_SESSION['address'] = $user_info['address'];
 $_SESSION['phoneNumber'] = $user_info['phoneNumber'];
 
-echo("Information updated...");
-exit(header( "refresh:3; url=profile.php" ));
-
 $conn = null;
 ?>
