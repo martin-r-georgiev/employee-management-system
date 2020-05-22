@@ -35,9 +35,9 @@ namespace MediaBazaarApplicationWPF.Commands
                             if (dataReader.Read())
                             {
                                 LoggedInUser.userID = dataReader.GetString(0);
-                                LoggedInUser.role = (Role)dataReader.GetInt16(3);
+                                LoggedInUser.role = (EmployeeRole)dataReader.GetInt16(3);
                                 //Opening dashboard on successful login
-                                //Most likely bad practice. Ask Georgiana
+                                //Most likely bad practice. Might be changed in future version of the app
                                 var newWindow = new DashboardView();
                                 newWindow.Show();
                                 (parameter as LoginView).Close();

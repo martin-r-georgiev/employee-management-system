@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediaBazaarApplicationWPF
 {
-    public enum Role
+    public enum EmployeeRole
     {
         Worker,
         Manager,

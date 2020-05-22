@@ -58,9 +58,12 @@
     </ApplicationDefinition>
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\OnLoginCommand.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeDatabaseHandler.cs" />
+    <Compile Include="EmployeeManager.cs" />
     <Compile Include="HashManager.cs" />
     <Compile Include="LoggedInUser.cs" />
-    <Compile Include="Role.cs" />
+    <Compile Include="EmployeeRole.cs" />
     <Compile Include="SQLConnectionHandler.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />

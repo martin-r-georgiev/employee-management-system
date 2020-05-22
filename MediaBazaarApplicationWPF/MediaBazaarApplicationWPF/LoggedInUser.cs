@@ -9,6 +9,6 @@ namespace MediaBazaarApplicationWPF
     class LoggedInUser
     {
         public static string userID;
-        public static Role role;
+        public static EmployeeRole role;
     }
 }
