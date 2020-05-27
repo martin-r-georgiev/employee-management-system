@@ -87,6 +87,7 @@
             this.btnTempLogin.TabIndex = 5;
             this.btnTempLogin.Text = "Test login";
             this.btnTempLogin.UseVisualStyleBackColor = true;
+            this.btnTempLogin.Visible = false;
             this.btnTempLogin.Click += new System.EventHandler(this.btnTempLogin_Click);
             // 
             // LoginScreen
