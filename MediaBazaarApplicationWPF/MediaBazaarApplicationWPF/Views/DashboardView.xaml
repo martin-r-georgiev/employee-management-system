@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
         mc:Ignorable="d"
         Title="DashboardView" Height="450" Width="800">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -31,20 +36,20 @@
         
         <!-- Row 1 -->
         <!--<TextBlock Text="{Binding Path=Test}"/>-->
-        <Button Content="Logout" Grid.Row="1" Grid.Column="1" Padding="5 2"/>
-        <Button Content="Requests" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Padding="5 2" HorizontalAlignment="Right"/>
+        <Button Name="LogoutButton" Content="Logout" Grid.Row="1" Grid.Column="1" Padding="5 2" Click="LogoutButton_Click"/>
+        <Button Content="Requests" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Padding="5 2" HorizontalAlignment="Right" Visibility="{Binding BtnRequests, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
         
         <!-- Row 2 -->
         <WrapPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center">
-            <Button Content="Stock"  Padding="5 2" Margin="10"/>
-            <Button Content="Work Shifts"  Padding="5 2" Margin="10"/>
+            <Button Name="StockButton" Content="Stock"  Padding="5 2" Margin="10" Visibility="{Binding BtnStockVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}" Click="StockButton_Click"/>
+            <Button Name="WorkshiftsButton" Content="Work Shifts"  Padding="5 2" Margin="10" Visibility="{Binding BtnWorkshiftsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}" Click="WorkshiftsButton_Click"/>
         </WrapPanel>
 
         <ListBox Grid.Row="2" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" MinHeight="200" MinWidth="100" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         <!-- Row 3 -->
         <WrapPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center">
-            <Button Content="Statistics"  Padding="5 2" Margin="10"/>
-            <Button Content="Management"  Padding="5 2" Margin="10"/>
+            <Button Name="StatisticsButton" Content="Statistics"  Padding="5 2" Margin="10" Visibility="{Binding BtnStatisticsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}" Click="StatisticsButton_Click"/>
+            <Button Name="ManagementButton" Content="Management"  Padding="5 2" Margin="10" Visibility="{Binding BtnManagementVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}" Click="ManagementButton_Click"/>
         </WrapPanel>
         
     </Grid>

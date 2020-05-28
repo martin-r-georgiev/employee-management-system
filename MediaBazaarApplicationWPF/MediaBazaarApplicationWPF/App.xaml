@@ -9,5 +9,8 @@
         <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
             <views:DashboardView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:WorkshiftsViewModel}">
+            <views:WorkshiftsView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

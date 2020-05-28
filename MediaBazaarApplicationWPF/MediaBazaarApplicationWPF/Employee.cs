@@ -86,6 +86,12 @@ namespace MediaBazaarApplicationWPF
             set { this.departmentID = value; }
         }
 
+        public string DepartmentName
+        {
+            get { return this.departmentName; }
+            set { this.departmentName = value; }
+        }
+
         public string FirstName
         {
             get { return this.firstName; }

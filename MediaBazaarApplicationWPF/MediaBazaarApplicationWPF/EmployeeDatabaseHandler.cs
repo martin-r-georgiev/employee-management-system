@@ -38,6 +38,35 @@ namespace MediaBazaarApplicationWPF
             }
         }
 
+        public static void UpdateDatabaseEntry(Employee employee)
+        {
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(@"UPDATE users as u INNER JOIN employees as e ON u.userID = e.userID
+                       SET u.username = @username, u.password = @password, u.salary = @salary, u.role = @role, u.department = @depID,
+                           e.firstName = @fName, e.lastName = @lName, e.address = @address, e.phoneNumber = @phone, e.workHours = @workHours, e.attendance = @attendance
+                       WHERE u.userID = @userID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@username", employee.Username);
+                    cmd.Parameters.AddWithValue("@password", employee.Password);
+                    cmd.Parameters.AddWithValue("@salary", employee.SalaryHourlyRate);
+                    cmd.Parameters.AddWithValue("@role", (int)employee.Role);
+                    cmd.Parameters.AddWithValue("@depID", employee.DepartmentID);
+                    cmd.Parameters.AddWithValue("@fName", employee.FirstName);
+                    cmd.Parameters.AddWithValue("@lName", employee.LastName);
+                    cmd.Parameters.AddWithValue("@address", employee.Address);
+                    cmd.Parameters.AddWithValue("@phone", employee.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@workHours", employee.WorkHours);
+                    cmd.Parameters.AddWithValue("@attendance", employee.Attendance);
+                    cmd.Parameters.AddWithValue("@userID", employee.UserID);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                conn.Close();
+            }
+        }
+
+
         public static void RemoveFromDatabase(string userIdentifier)
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())

@@ -11,9 +11,11 @@ namespace MediaBazaarApplicationWPF
         #region Delegates + Events
 
         public delegate void AddedEmployeeHandler(Employee employee);
+        public delegate void UpdatedEmployeeHandler(Employee employee);
         public delegate void RemovedEmployeeHandler(Employee employee);
 
         public event AddedEmployeeHandler AddedEmployeeEvent;
+        public event UpdatedEmployeeHandler UpdatedEmployeeEvent;
         public event RemovedEmployeeHandler RemovedEmployeeEvent;
         #endregion
 
@@ -44,9 +46,10 @@ namespace MediaBazaarApplicationWPF
             return employee;
         }
 
-        public Employee UpdateEmployee(Employee employee)
+        public void UpdateEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            EmployeeDatabaseHandler.UpdateDatabaseEntry(employee);
+            if (this.UpdatedEmployeeEvent != null) this.UpdatedEmployeeEvent(employee);
         }
 
         public Employee RemoveEmployee(Employee employee)
@@ -63,6 +66,9 @@ namespace MediaBazaarApplicationWPF
             if (this.RemovedEmployeeEvent != null) this.RemovedEmployeeEvent(employee);
             return employee;
         }
+
+        public Employee GetEmployee(string userIdentifier, bool needFullDetails) => EmployeeDatabaseHandler.GetEmployee(userIdentifier, needFullDetails);
+        public List<Employee> GetAllEmployees(bool needFullDetails) => EmployeeDatabaseHandler.GetAllEmployees(needFullDetails);
         #endregion
     }
 }
