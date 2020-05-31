@@ -16,18 +16,15 @@ using System.Windows.Shapes;
 namespace MediaBazaarApplicationWPF.Views
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for WorkshiftsView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class WorkshiftsView : Window
     {
-        public LoginView()
+        public WorkshiftsView()
         {
-            var ViewModel = new LoginViewModel();
-            //ViewModel.FirstName = "Martin";
-
+            var ViewModel = new WorkshiftsViewModel();
             DataContext = ViewModel;
             InitializeComponent();
         }
-
     }
 }

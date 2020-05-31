@@ -32,8 +32,16 @@ namespace Sem2IntroProjectWaterfall0._1
         private double attendance;
         private string pictureURL;
 
-        
 
+
+        #endregion
+
+        #region Delegates + Events
+        public delegate void AddedEmployeeHandler(Employee employee);
+        public delegate void RemovedEmployeeHandler(Employee employee);
+
+        public event AddedEmployeeHandler AddedEmployeeEvent;
+        public event RemovedEmployeeHandler RemovedEmployeeEvent;
         #endregion
 
         #region Properties
@@ -462,7 +470,10 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 conn.Close();
             }
+
+            if (this.AddedEmployeeEvent != null) this.AddedEmployeeEvent(this);
         }
+
         public Employee(string userIdentifier, bool needFullDetails)
         {
             if (needFullDetails)
@@ -628,8 +639,10 @@ namespace Sem2IntroProjectWaterfall0._1
                     cmd.Dispose();
                 }
                 conn.Close();
-                
-            } 
+            }
+
+            Employee employee = new Employee(userIdentifier, false);
+            if (employee.RemovedEmployeeEvent != null) employee.RemovedEmployeeEvent(employee);
         }
 
         public void RemoveFromDatabase()
@@ -651,6 +664,8 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 conn.Close();
             }
+
+            if (this.RemovedEmployeeEvent != null) this.RemovedEmployeeEvent(this);
         }
 
         public static List<Employee> GetAllEmployees(bool needFullDetails)

@@ -58,13 +58,23 @@
     </ApplicationDefinition>
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\OnLoginCommand.cs" />
+    <Compile Include="Employee+Stock Administration Backend\Department.cs" />
+    <Compile Include="Employee+Stock Administration Backend\DepartmentDatabaseHandler.cs" />
+    <Compile Include="Employee+Stock Administration Backend\DepartmentManager.cs" />
+    <Compile Include="Employee+Stock Administration Backend\Employee.cs" />
+    <Compile Include="Employee+Stock Administration Backend\EmployeeDatabaseHandler.cs" />
+    <Compile Include="Employee+Stock Administration Backend\EmployeeManager.cs" />
     <Compile Include="HashManager.cs" />
+    <Compile Include="Exceptions\InvalidEntryException.cs" />
     <Compile Include="LoggedInUser.cs" />
-    <Compile Include="Role.cs" />
+    <Compile Include="EmployeeRole.cs" />
+    <Compile Include="Exceptions\NameTakenException.cs" />
+    <Compile Include="Exceptions\MinimalEmployeesException.cs" />
     <Compile Include="SQLConnectionHandler.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\WorkshiftsViewModel.cs" />
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
     </Compile>
@@ -75,11 +85,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\WorkshiftsView.xaml.cs">
+      <DependentUpon>WorkshiftsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\DashboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorkshiftsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

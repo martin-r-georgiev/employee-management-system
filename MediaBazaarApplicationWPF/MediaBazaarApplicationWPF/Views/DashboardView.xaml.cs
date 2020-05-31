@@ -26,5 +26,34 @@ namespace MediaBazaarApplicationWPF.Views
             DataContext = ViewModel;
             InitializeComponent();
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var LoginView = new LoginView();
+            LoginView.Show();
+            this.Close();
+        }
+
+        private void StockButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WorkshiftsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var WorkshiftsView = new WorkshiftsView();
+            WorkshiftsView.Show();
+            //this.Close();
+        }
+
+        private void StatisticsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ManagementButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

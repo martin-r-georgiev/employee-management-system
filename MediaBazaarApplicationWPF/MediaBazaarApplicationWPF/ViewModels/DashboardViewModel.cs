@@ -8,11 +8,77 @@ namespace MediaBazaarApplicationWPF.ViewModels
 {
     public class DashboardViewModel : BaseViewModel
     {
-        private string _test = "Potato";
+        private bool btnStockVisible, btnWorkshiftsVisible, btnStatisticsVisible, btnManagementVisible, btnRequests;
 
-        public string Test
+        public bool BtnStockVisible
         {
-            get { return _test; }
+            get => this.btnStockVisible;
+            private set
+            {
+                this.btnStockVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool BtnWorkshiftsVisible
+        {
+            get => this.btnWorkshiftsVisible;
+            private set
+            {
+                this.btnWorkshiftsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool BtnStatisticsVisible
+        {
+            get => this.btnStatisticsVisible;
+            private set
+            {
+                this.btnStatisticsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool BtnManagementVisible
+        {
+            get => this.btnManagementVisible;
+            private set
+            {
+                this.btnManagementVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool BtnRequests
+        {
+            get => this.btnRequests;
+            private set
+            {
+                this.btnRequests = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DashboardViewModel()
+        {
+            UpdateRoleGUI();
+        }
+
+        public void UpdateRoleGUI()
+        {
+            if(LoggedInUser.role >= EmployeeRole.Worker)
+            {
+                BtnStockVisible = true;
+                BtnWorkshiftsVisible = true;
+            }
+
+            if (LoggedInUser.role >= EmployeeRole.Manager)
+            {
+                BtnRequests = true;
+                BtnStatisticsVisible = true;
+            }
+            if (LoggedInUser.role >= EmployeeRole.Admin) BtnManagementVisible = true;
         }
     }
 }
