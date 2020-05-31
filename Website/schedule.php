@@ -11,13 +11,12 @@ $colored_days = array();
 //  echo $weekDays[$i];
 //}
 //print_r($weekDays);exit;
+
 foreach ($weekDays as $WeekDay) {
    $combination = $WeekDay->name.'-'.$WeekDay->time;
 
      array_push($colored_days, $combination);
      array_push($colored_days, array('status' => 'status-'.$WeekDay->status));
-
-
 }
 
 //echo json_encode($colored_days);
@@ -46,9 +45,6 @@ foreach ($weekDays as $WeekDay) {
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a href="home.php" class="nav-link">Home</a>
-          </li>
           <li class="nav-item">
             <a href="profile.php" class="nav-link">Profile</a>
           </li>

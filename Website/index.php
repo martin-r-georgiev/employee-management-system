@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION["username"]))
 {
-    header("Location: home.php");
+    header("Location: schedule.php");
     die();
 }
 ?>
@@ -20,6 +20,7 @@ if (isset($_SESSION["username"]))
   <link rel="stylesheet" type="text/css" href="login.css">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
   <script type="text/javascript" src="validation.js"></script>
+  <script src="jquery.js"></script>
 </head>
 <body>
  <div class="modal-dialog text-center">
@@ -28,7 +29,7 @@ if (isset($_SESSION["username"]))
       <div class="col-12 comp-img">
         <img src="images/logo.png" alt="">
       </div>
-      <form class="col-12" action="login.php" method="post" onsubmit="return validateLogin()">
+      <form class="col-12" method="post" onsubmit="return validateLogin()">
         <div class="form-group">
           <input type="text" class="form-control" name="user" placeholder="Enter username">
         </div>
@@ -36,7 +37,7 @@ if (isset($_SESSION["username"]))
           <input type="password" class="form-control" name="pass" placeholder="Enter password">
           <span name="messages" style="color: red;"></span>
         </div>
-        <button type="submit" class="btn btn-login"><i class="fas fa-sign-in-alt"></i>Login</button>
+        <button type="button" onclick="wrongCredentials()" class="btn btn-login"><i class="fas fa-sign-in-alt"></i>Login</button>
       </form>
       <div class="col-12 forgotten">
         <a href="forgotten.php">Forgotten password?</a>
@@ -44,5 +45,35 @@ if (isset($_SESSION["username"]))
      </div> <!-- End of modal content -->
    </div>
 </div>
+<script>
+function wrongCredentials(){
+  $(document).ready(function () {
+  var user = $('input[name=user]').val();
+  var pass = $('input[name=pass]').val();
+jQuery.ajax({
+  type: "POST",
+  url: "login.php",
+  data: {user: user, pass: pass},
+  success: function(result){
+    window.location.href = "schedule.php";
+    }});
+  });
+}
+</script>
+<script>
+$(document).ready(function() {
+function onsuccess(response, status) {
+  $("#onsuccessmsg").html("Status :<b>" + status + '</b><br><br>Response Data :<div id="msg" style="border:5px solid #CCC;padding:15px;">' + response + '</div>');
+}
+$("#uploadform").on('submit', function() {
+  var options = {
+    url: $(this).attr("action"),
+    success: onsuccess
+  };
+  $(this).ajaxSubmit(options);
+  return false;
+});
+});
+</script>
 </body>
 </html>

@@ -31,9 +31,6 @@ if (!isset($_SESSION["username"]))
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a href="home.php" class="nav-link">Home</a>
-          </li>
           <li class="nav-item active">
             <a href="profile.php" class="nav-link">Profile</a>
           </li>
@@ -55,22 +52,24 @@ if (!isset($_SESSION["username"]))
 	<div class="row row-content">
       <!-- left column -->
       <div class="col-md-3">
-        <div class="text-center">
-          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-          <br>
-          <h6>Upload a different photo...</h6>
-          <br>
-          <input type="file">
-        </div>
+        <form action="upload.php" enctype="multipart/form-data" method="POST">
+          <div class="text-center">
+            <img src="<?php echo ($_SESSION["picture"])?>" style="max-width: 170px; max-height: 200px;" class="avatar img-circle" alt="avatar">
+            <br>
+            <br>
+            Choose Image : <input name="img" size="35" type="file"/><br/><br>
+            <input type="submit" class="btn btn-primary" style="float: left" name="submit" value="Upload"/>
+          </div>
+        </form>
       </div>
 
       <!-- edit form column -->
       <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismiss">
+        <!--<div class="alert alert-info alert-dismiss">
           <a class="panel-close close" data-dismiss="alert">×</a>
           <i class="fa fa-coffee"></i>
           This is an <strong>.alert</strong>. Use this to show important messages to the user.
-        </div>
+        </div>-->
         <h3>Personal info</h3>
         <form class="form-horizontal" role="form" method="post" action="updateProfile.php">
           <div class="row row-info">
