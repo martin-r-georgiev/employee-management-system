@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeListing));
             this.btnBack = new System.Windows.Forms.Button();
             this.tbEmployeeName = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -46,7 +47,7 @@
             this.lblEmployeeGender = new System.Windows.Forms.Label();
             this.lblEmployeeNationality = new System.Windows.Forms.Label();
             this.lblEmployeeAge = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pbxAvatar = new System.Windows.Forms.PictureBox();
             this.btnStatistics = new System.Windows.Forms.Button();
             this.pnlEmployees = new System.Windows.Forms.FlowLayoutPanel();
             this.cbDepartments = new System.Windows.Forms.ComboBox();
@@ -54,15 +55,14 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(16, 21);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBack.Location = new System.Drawing.Point(12, 11);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(100, 24);
+            this.btnBack.Size = new System.Drawing.Size(75, 20);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -72,10 +72,9 @@
             // 
             this.tbEmployeeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbEmployeeName.ForeColor = System.Drawing.Color.DimGray;
-            this.tbEmployeeName.Location = new System.Drawing.Point(792, 22);
-            this.tbEmployeeName.Margin = new System.Windows.Forms.Padding(4);
+            this.tbEmployeeName.Location = new System.Drawing.Point(594, 10);
             this.tbEmployeeName.Name = "tbEmployeeName";
-            this.tbEmployeeName.Size = new System.Drawing.Size(283, 24);
+            this.tbEmployeeName.Size = new System.Drawing.Size(213, 21);
             this.tbEmployeeName.TabIndex = 10;
             this.tbEmployeeName.TabStop = false;
             this.tbEmployeeName.Text = "Search for an employee here...";
@@ -87,11 +86,10 @@
             this.panel4.Controls.Add(this.groupBox3);
             this.panel4.Controls.Add(this.groupBox2);
             this.panel4.Controls.Add(this.groupBox1);
-            this.panel4.Controls.Add(this.pictureBox3);
-            this.panel4.Location = new System.Drawing.Point(16, 69);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4);
+            this.panel4.Controls.Add(this.pbxAvatar);
+            this.panel4.Location = new System.Drawing.Point(12, 37);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(601, 470);
+            this.panel4.Size = new System.Drawing.Size(451, 413);
             this.panel4.TabIndex = 6;
             // 
             // groupBox3
@@ -100,11 +98,9 @@
             this.groupBox3.Controls.Add(this.lblEmployeeSalary);
             this.groupBox3.Controls.Add(this.lblEmployeeAttendance);
             this.groupBox3.Controls.Add(this.lblEmployeeRole);
-            this.groupBox3.Location = new System.Drawing.Point(369, 174);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Location = new System.Drawing.Point(277, 211);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(215, 293);
+            this.groupBox3.Size = new System.Drawing.Size(161, 194);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Other";
@@ -113,10 +109,9 @@
             // 
             this.lblEmployeeWorkingSince.AutoSize = true;
             this.lblEmployeeWorkingSince.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeWorkingSince.Location = new System.Drawing.Point(8, 160);
-            this.lblEmployeeWorkingSince.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeWorkingSince.Location = new System.Drawing.Point(6, 130);
             this.lblEmployeeWorkingSince.Name = "lblEmployeeWorkingSince";
-            this.lblEmployeeWorkingSince.Size = new System.Drawing.Size(120, 20);
+            this.lblEmployeeWorkingSince.Size = new System.Drawing.Size(96, 16);
             this.lblEmployeeWorkingSince.TabIndex = 15;
             this.lblEmployeeWorkingSince.Text = "Working since:";
             // 
@@ -124,10 +119,9 @@
             // 
             this.lblEmployeeSalary.AutoSize = true;
             this.lblEmployeeSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeSalary.Location = new System.Drawing.Point(8, 117);
-            this.lblEmployeeSalary.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeSalary.Location = new System.Drawing.Point(6, 95);
             this.lblEmployeeSalary.Name = "lblEmployeeSalary";
-            this.lblEmployeeSalary.Size = new System.Drawing.Size(61, 20);
+            this.lblEmployeeSalary.Size = new System.Drawing.Size(50, 16);
             this.lblEmployeeSalary.TabIndex = 4;
             this.lblEmployeeSalary.Text = "Salary:";
             // 
@@ -135,10 +129,9 @@
             // 
             this.lblEmployeeAttendance.AutoSize = true;
             this.lblEmployeeAttendance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeAttendance.Location = new System.Drawing.Point(8, 74);
-            this.lblEmployeeAttendance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeAttendance.Location = new System.Drawing.Point(6, 60);
             this.lblEmployeeAttendance.Name = "lblEmployeeAttendance";
-            this.lblEmployeeAttendance.Size = new System.Drawing.Size(136, 20);
+            this.lblEmployeeAttendance.Size = new System.Drawing.Size(108, 16);
             this.lblEmployeeAttendance.TabIndex = 5;
             this.lblEmployeeAttendance.Text = "Attendance: 56%";
             // 
@@ -146,10 +139,9 @@
             // 
             this.lblEmployeeRole.AutoSize = true;
             this.lblEmployeeRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeRole.Location = new System.Drawing.Point(8, 31);
-            this.lblEmployeeRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeRole.Location = new System.Drawing.Point(6, 25);
             this.lblEmployeeRole.Name = "lblEmployeeRole";
-            this.lblEmployeeRole.Size = new System.Drawing.Size(53, 20);
+            this.lblEmployeeRole.Size = new System.Drawing.Size(43, 16);
             this.lblEmployeeRole.TabIndex = 14;
             this.lblEmployeeRole.Text = "Role: ";
             // 
@@ -158,11 +150,9 @@
             this.groupBox2.Controls.Add(this.lblEmployeeAddress);
             this.groupBox2.Controls.Add(this.lblEmployeeEmail);
             this.groupBox2.Controls.Add(this.lblEmployeePhone);
-            this.groupBox2.Location = new System.Drawing.Point(252, 21);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(189, 52);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(332, 145);
+            this.groupBox2.Size = new System.Drawing.Size(249, 118);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Contact Info";
@@ -170,10 +160,9 @@
             // lblEmployeeAddress
             // 
             this.lblEmployeeAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeAddress.Location = new System.Drawing.Point(8, 81);
-            this.lblEmployeeAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeAddress.Location = new System.Drawing.Point(6, 66);
             this.lblEmployeeAddress.Name = "lblEmployeeAddress";
-            this.lblEmployeeAddress.Size = new System.Drawing.Size(313, 60);
+            this.lblEmployeeAddress.Size = new System.Drawing.Size(235, 49);
             this.lblEmployeeAddress.TabIndex = 9;
             this.lblEmployeeAddress.Text = "Address:  ";
             // 
@@ -181,10 +170,9 @@
             // 
             this.lblEmployeeEmail.AutoSize = true;
             this.lblEmployeeEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeEmail.Location = new System.Drawing.Point(11, 20);
-            this.lblEmployeeEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeEmail.Location = new System.Drawing.Point(8, 16);
             this.lblEmployeeEmail.Name = "lblEmployeeEmail";
-            this.lblEmployeeEmail.Size = new System.Drawing.Size(67, 20);
+            this.lblEmployeeEmail.Size = new System.Drawing.Size(52, 16);
             this.lblEmployeeEmail.TabIndex = 10;
             this.lblEmployeeEmail.Text = "E-mail: ";
             // 
@@ -192,10 +180,9 @@
             // 
             this.lblEmployeePhone.AutoSize = true;
             this.lblEmployeePhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeePhone.Location = new System.Drawing.Point(11, 50);
-            this.lblEmployeePhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeePhone.Location = new System.Drawing.Point(8, 41);
             this.lblEmployeePhone.Name = "lblEmployeePhone";
-            this.lblEmployeePhone.Size = new System.Drawing.Size(125, 20);
+            this.lblEmployeePhone.Size = new System.Drawing.Size(101, 16);
             this.lblEmployeePhone.TabIndex = 11;
             this.lblEmployeePhone.Text = "Phone Number:";
             // 
@@ -206,11 +193,9 @@
             this.groupBox1.Controls.Add(this.lblEmployeeGender);
             this.groupBox1.Controls.Add(this.lblEmployeeNationality);
             this.groupBox1.Controls.Add(this.lblEmployeeAge);
-            this.groupBox1.Location = new System.Drawing.Point(17, 174);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(12, 211);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(339, 293);
+            this.groupBox1.Size = new System.Drawing.Size(254, 194);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Personal Details";
@@ -218,10 +203,9 @@
             // lblEmployeeName
             // 
             this.lblEmployeeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeName.Location = new System.Drawing.Point(8, 31);
-            this.lblEmployeeName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeName.Location = new System.Drawing.Point(6, 18);
             this.lblEmployeeName.Name = "lblEmployeeName";
-            this.lblEmployeeName.Size = new System.Drawing.Size(323, 43);
+            this.lblEmployeeName.Size = new System.Drawing.Size(242, 30);
             this.lblEmployeeName.TabIndex = 3;
             this.lblEmployeeName.Text = "Name: ";
             // 
@@ -229,10 +213,9 @@
             // 
             this.lblEmployeeDepartment.AutoSize = true;
             this.lblEmployeeDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeDepartment.Location = new System.Drawing.Point(8, 74);
-            this.lblEmployeeDepartment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeDepartment.Location = new System.Drawing.Point(6, 53);
             this.lblEmployeeDepartment.Name = "lblEmployeeDepartment";
-            this.lblEmployeeDepartment.Size = new System.Drawing.Size(119, 25);
+            this.lblEmployeeDepartment.Size = new System.Drawing.Size(98, 20);
             this.lblEmployeeDepartment.TabIndex = 1;
             this.lblEmployeeDepartment.Text = "Department:";
             // 
@@ -240,20 +223,18 @@
             // 
             this.lblEmployeeGender.AutoSize = true;
             this.lblEmployeeGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeGender.Location = new System.Drawing.Point(8, 160);
-            this.lblEmployeeGender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeGender.Location = new System.Drawing.Point(6, 123);
             this.lblEmployeeGender.Name = "lblEmployeeGender";
-            this.lblEmployeeGender.Size = new System.Drawing.Size(88, 25);
+            this.lblEmployeeGender.Size = new System.Drawing.Size(71, 20);
             this.lblEmployeeGender.TabIndex = 13;
             this.lblEmployeeGender.Text = "Gender: ";
             // 
             // lblEmployeeNationality
             // 
             this.lblEmployeeNationality.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeNationality.Location = new System.Drawing.Point(8, 203);
-            this.lblEmployeeNationality.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeNationality.Location = new System.Drawing.Point(6, 158);
             this.lblEmployeeNationality.Name = "lblEmployeeNationality";
-            this.lblEmployeeNationality.Size = new System.Drawing.Size(323, 59);
+            this.lblEmployeeNationality.Size = new System.Drawing.Size(242, 27);
             this.lblEmployeeNationality.TabIndex = 8;
             this.lblEmployeeNationality.Text = "Nationality: ";
             // 
@@ -261,30 +242,27 @@
             // 
             this.lblEmployeeAge.AutoSize = true;
             this.lblEmployeeAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeAge.Location = new System.Drawing.Point(8, 117);
-            this.lblEmployeeAge.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmployeeAge.Location = new System.Drawing.Point(6, 95);
             this.lblEmployeeAge.Name = "lblEmployeeAge";
-            this.lblEmployeeAge.Size = new System.Drawing.Size(64, 25);
+            this.lblEmployeeAge.Size = new System.Drawing.Size(50, 20);
             this.lblEmployeeAge.TabIndex = 12;
             this.lblEmployeeAge.Text = "Age:  ";
             // 
-            // pictureBox3
+            // pbxAvatar
             // 
-            this.pictureBox3.Image = global::Sem2IntroProjectWaterfall0._1.Properties.Resources._20667482_young_harbor_container_depot_worker;
-            this.pictureBox3.Location = new System.Drawing.Point(17, 21);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(227, 145);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
+            this.pbxAvatar.Image = ((System.Drawing.Image)(resources.GetObject("pbxAvatar.Image")));
+            this.pbxAvatar.Location = new System.Drawing.Point(12, 5);
+            this.pbxAvatar.Name = "pbxAvatar";
+            this.pbxAvatar.Size = new System.Drawing.Size(170, 200);
+            this.pbxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxAvatar.TabIndex = 0;
+            this.pbxAvatar.TabStop = false;
             // 
             // btnStatistics
             // 
-            this.btnStatistics.Location = new System.Drawing.Point(446, 21);
-            this.btnStatistics.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStatistics.Location = new System.Drawing.Point(334, 11);
             this.btnStatistics.Name = "btnStatistics";
-            this.btnStatistics.Size = new System.Drawing.Size(171, 25);
+            this.btnStatistics.Size = new System.Drawing.Size(128, 20);
             this.btnStatistics.TabIndex = 6;
             this.btnStatistics.Text = "Show Statistics";
             this.btnStatistics.UseVisualStyleBackColor = true;
@@ -295,21 +273,19 @@
             this.pnlEmployees.AutoScroll = true;
             this.pnlEmployees.BackColor = System.Drawing.Color.Silver;
             this.pnlEmployees.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.pnlEmployees.Location = new System.Drawing.Point(625, 69);
-            this.pnlEmployees.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlEmployees.MinimumSize = new System.Drawing.Size(450, 470);
+            this.pnlEmployees.Location = new System.Drawing.Point(469, 37);
+            this.pnlEmployees.MinimumSize = new System.Drawing.Size(338, 382);
             this.pnlEmployees.Name = "pnlEmployees";
-            this.pnlEmployees.Size = new System.Drawing.Size(450, 470);
+            this.pnlEmployees.Size = new System.Drawing.Size(338, 413);
             this.pnlEmployees.TabIndex = 7;
             this.pnlEmployees.WrapContents = false;
             // 
             // cbDepartments
             // 
             this.cbDepartments.FormattingEnabled = true;
-            this.cbDepartments.Location = new System.Drawing.Point(625, 22);
-            this.cbDepartments.Margin = new System.Windows.Forms.Padding(4);
+            this.cbDepartments.Location = new System.Drawing.Point(469, 10);
             this.cbDepartments.Name = "cbDepartments";
-            this.cbDepartments.Size = new System.Drawing.Size(160, 24);
+            this.cbDepartments.Size = new System.Drawing.Size(121, 21);
             this.cbDepartments.TabIndex = 9;
             this.cbDepartments.Visible = false;
             this.cbDepartments.DropDown += new System.EventHandler(this.cbDepartments_DropDown);
@@ -317,18 +293,17 @@
             // 
             // EmployeeListing
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1092, 553);
+            this.ClientSize = new System.Drawing.Size(820, 456);
             this.Controls.Add(this.cbDepartments);
             this.Controls.Add(this.pnlEmployees);
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.tbEmployeeName);
             this.Controls.Add(this.btnBack);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximumSize = new System.Drawing.Size(1110, 600);
-            this.MinimumSize = new System.Drawing.Size(1110, 600);
+            this.MaximumSize = new System.Drawing.Size(836, 495);
+            this.MinimumSize = new System.Drawing.Size(836, 495);
             this.Name = "EmployeeListing";
             this.Text = "EmployeeListing";
             this.Click += new System.EventHandler(this.EmployeeListing_Click);
@@ -339,7 +314,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAvatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,7 +325,7 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.TextBox tbEmployeeName;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pbxAvatar;
         private System.Windows.Forms.Label lblEmployeeAttendance;
         private System.Windows.Forms.Label lblEmployeeSalary;
         private System.Windows.Forms.Label lblEmployeeName;

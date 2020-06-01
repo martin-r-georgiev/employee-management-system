@@ -116,6 +116,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 tbPhoneNumber.Text = employees[index].PhoneNumber;
                 tbAddress.Text = employees[index].Address;
                 tbEmail.Text = employees[index].Email;
+                tbxChangeSalary.Text = employees[index].SalaryHourlyRate.ToString();
                 if (employees[index].DateOfBirth > dtpBirthday.MinDate && employees[index].DateOfBirth < dtpBirthday.MaxDate) dtpBirthday.Value = employees[index].DateOfBirth;
                 else dtpBirthday.Value = DateTime.Now.Date;
             }
@@ -131,25 +132,29 @@ namespace Sem2IntroProjectWaterfall0._1
                     Regex emailValidation = new Regex(@"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
                     Regex nameValidation = new Regex(@"\d+");
                     Regex phoneValidation = new Regex(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$");
+                    Regex salaryValidation = new Regex(@"^[0-9]+(\.[0-9]{1,2})?$");
                     if (!nameValidation.IsMatch(tbFirstName.Text) && !nameValidation.IsMatch(tbLastName.Text))
                     {
                         if (emailValidation.IsMatch(tbEmail.Text))
                         {
                             if (phoneValidation.IsMatch(tbPhoneNumber.Text))
                             {
-                                if (dtpBirthday.Value.Date <= System.DateTime.Now.Date)
+                                if (salaryValidation.IsMatch(tbxChangeSalary.Text))
                                 {
-                                    employees[cbPersonalInfoList.SelectedIndex].SetPersonalInfo(tbFirstName.Text, tbLastName.Text, tbNationality.Text, tbAddress.Text, tbEmail.Text, tbPhoneNumber.Text, dtpBirthday.Value, gender);
-                                    MessageBox.Show("Successfully updated employee personal information.");
-                                    ClearEmployeePersonalInfo();
+                                    if (dtpBirthday.Value.Date <= System.DateTime.Now.Date)
+                                    {
+                                        employees[cbPersonalInfoList.SelectedIndex].SetPersonalInfo(tbFirstName.Text, tbLastName.Text, tbNationality.Text, tbAddress.Text, tbEmail.Text, tbPhoneNumber.Text, dtpBirthday.Value, gender, Convert.ToDecimal(tbxChangeSalary.Text));
+                                        MessageBox.Show("Successfully updated employee personal information.");
+                                        ClearEmployeePersonalInfo();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Invalid birth date . Please check back for any mistakes and try again.");
+                                    }
                                 }
-                                else
-                                {
-                                    MessageBox.Show("Invalid birth date . Please check back for any mistakes and try again.");
-                                }
+                                else MessageBox.Show("Invalid currency for salary. Please check back for any mistakes and try again.");
                             }
                             else MessageBox.Show("Invalid phone number . Please check back for any mistakes and try again.");
-
                         }
                         else MessageBox.Show("Invalid e-mail address. Please check back for any mistakes and try again.");
                     }

@@ -24,6 +24,7 @@ namespace ProjectWaterfallUnitTests
         private DateTime dateofBirth = new DateTime(2000,1,1);
         private bool sex = true;
         private string depID = "cOAyYEYI90OPfEfVhXAHVA";
+        private decimal salary = 4;
 
         void DeleteTestEmployee(string testUserId)
         {
@@ -168,7 +169,7 @@ namespace ProjectWaterfallUnitTests
         public void SetAllPersonalInfoTest()
         {
             Employee testEmployee = new Employee(username, password, salaryHourlyRate, role, depID, workHours);
-            testEmployee.SetPersonalInfo(firstName, lastName, nationality, address, email, phoneNumber, dateofBirth, sex);
+            testEmployee.SetPersonalInfo(firstName, lastName, nationality, address, email, phoneNumber, dateofBirth, sex, salary);
             testEmployee = new Employee(testEmployee.UserID, true);
 
             Assert.AreEqual(firstName, testEmployee.FirstName);
@@ -178,6 +179,7 @@ namespace ProjectWaterfallUnitTests
             Assert.AreEqual(nationality, testEmployee.Nationality);
             Assert.AreEqual(address, testEmployee.Address);
             Assert.AreEqual(phoneNumber, testEmployee.PhoneNumber);
+            Assert.AreEqual(salary, testEmployee.SalaryHourlyRate);
 
             testEmployee.RemoveFromDatabase();
         }
@@ -199,7 +201,7 @@ namespace ProjectWaterfallUnitTests
         public void TakeCreatedEmployeeFullDetailsTest()
         {
             Employee testEmployee = new Employee(username, password, salaryHourlyRate, role, depID, workHours); //object without personal data
-            testEmployee.SetPersonalInfo(firstName, lastName, nationality, address, email, phoneNumber, dateofBirth, sex); // This only sets the values in the DB, does not give them in the employee object
+            testEmployee.SetPersonalInfo(firstName, lastName, nationality, address, email, phoneNumber, dateofBirth, sex, salary); // This only sets the values in the DB, does not give them in the employee object
             Employee takenEmployee = new Employee(testEmployee.UserID, true); //object with personal data
 
             Assert.AreEqual(username, takenEmployee.Username);
@@ -215,6 +217,7 @@ namespace ProjectWaterfallUnitTests
             Assert.AreEqual(email, takenEmployee.Email);
             Assert.AreEqual(phoneNumber, takenEmployee.PhoneNumber);
             Assert.AreEqual(workHours, takenEmployee.WorkHours);
+            Assert.AreEqual(salary, takenEmployee.SalaryHourlyRate);
 
 
             testEmployee.RemoveFromDatabase();

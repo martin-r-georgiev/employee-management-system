@@ -106,7 +106,7 @@ namespace Sem2IntroProjectWaterfall0._1
         public void RefreshGUI(Employee selectedEmployee)
         {
             //lblEmployeeAttendance;
-
+            pbxAvatar.Load($"{selectedEmployee.GetPictureURL()}");
             lblEmployeeRole.Text = $"Role: {selectedEmployee.Role}";
             lblEmployeeSalary.Text = $"Salary: ${selectedEmployee.SalaryHourlyRate}/hr";
             lblEmployeeWorkingSince.Text = Employee.CalculateWorkingSince(selectedEmployee);

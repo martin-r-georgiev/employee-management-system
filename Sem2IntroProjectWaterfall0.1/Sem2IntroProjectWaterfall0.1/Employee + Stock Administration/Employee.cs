@@ -30,6 +30,7 @@ namespace Sem2IntroProjectWaterfall0._1
         private string mainDetails;
         private int workHours;
         private double attendance;
+        private string pictureURL;
 
 
 
@@ -503,6 +504,7 @@ namespace Sem2IntroProjectWaterfall0._1
                             if (!dataReader.IsDBNull(15)) this.startDate = dataReader.GetDateTime(15);
                             this.workHours = dataReader.GetInt32(16);
                             if (!dataReader.IsDBNull(17)) this.attendance = Convert.ToDouble(dataReader.GetDecimal(17));
+                            this.pictureURL = dataReader.GetString(18); //
 
                         }
                         cmd.Dispose();
@@ -569,7 +571,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
         }
 
-        public void SetPersonalInfo(string fName, string lName, string nationality, string address, string email, string phoneNum, DateTime dateOfBirth, bool sex)
+        public void SetPersonalInfo(string fName, string lName, string nationality, string address, string email, string phoneNum, DateTime dateOfBirth, bool sex, decimal salary)
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
@@ -588,6 +590,14 @@ namespace Sem2IntroProjectWaterfall0._1
                     cmd.Parameters.AddWithValue("@pNum", phoneNum);
                     cmd.Parameters.AddWithValue("@birthDate", dateOfBirth);
                     cmd.Parameters.AddWithValue("@sex", sex);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand($"UPDATE users SET salary=@salary WHERE userID=@userID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userID", this.userID);
+                    cmd.Parameters.AddWithValue("@salary", salary);
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
@@ -760,6 +770,27 @@ namespace Sem2IntroProjectWaterfall0._1
             return 0;
         }
 
+        public string GetPictureURL()
+        {
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                string picture = "http://placehold.it/150";
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT picture FROM employees WHERE userID=@userID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userID", this.userID);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        picture = dataReader.GetString(0);
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                conn.Close();
+                this.pictureURL = picture;
+            }
+            return this.pictureURL;
+        }
         #endregion
     }
 }

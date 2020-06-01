@@ -42,14 +42,8 @@ if ($result)
     $_SESSION['dateOfBirth'] = $user_info['dateOfBirth'];
     $_SESSION['userID'] = $user_info['userID'];
     $_SESSION["username"] = $user;
-    header("Location:home.php");
-}
- else
-{
-    echo '<script language="javascript">';
-    echo 'alert("Wrong credentials! Please try again.")';
-    echo '</script>';
-    header( "refresh:0.5;url=index.php" );
+    $_SESSION['picture'] = $user_info['picture'];
+
 }
 $conn = null;
 ?>
