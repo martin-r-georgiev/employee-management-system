@@ -71,6 +71,9 @@
     <Compile Include="Exceptions\NameTakenException.cs" />
     <Compile Include="Exceptions\MinimalEmployeesException.cs" />
     <Compile Include="SQLConnectionHandler.cs" />
+    <Compile Include="StockItem.cs" />
+    <Compile Include="StockItemDatabaseHandler.cs" />
+    <Compile Include="StockItemManager.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

@@ -50,7 +50,7 @@ namespace MediaBazaarApplicationWPF
         #region Constructors
         public Department(string name, string address, string departmentID)
         {
-            if (name.Length > 0 && address.Length > 0)
+            if (name.Length == 0 && address.Length == 0)
                 throw new InvalidEntryException("Please provide the needed details for the department!");
 
             this.name = name;
@@ -87,13 +87,17 @@ namespace MediaBazaarApplicationWPF
                     break;
                 }
         }
-        //UpdateEmployee needs to be implemented for this to work
-        //public void AssignEmployeeTo(string userID, string newDepartmentId)
-        //{
-        //    foreach (Employee e in Employee.GetAllEmployees(true))
-        //        if (e.UserID == userID)
-        //            e.DepartmentID = newDepartmentId;
-        //}
+
+        public void AssignEmployeeTo(string userID, string newDepartmentId)
+        {
+            foreach (Employee e in employeeManager.GetAllEmployees(true))
+                if (e.UserID == userID)
+                {
+                    e.DepartmentID = newDepartmentId;
+                    employeeManager.UpdateEmployee(e);
+                    break;
+                }
+        }
         #endregion
     }
 }
