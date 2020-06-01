@@ -227,8 +227,8 @@ namespace MediaBazaarApplicationWPF
         {
             this.UserID = userID;
             this.Username = username;
-            if (hashPassword) this.Password = HashManager.GetSha256(password);
-            else this.Password = password;
+            if (hashPassword) this.password = HashManager.GetSha256(password);
+            else this.password = password;
             this.SalaryHourlyRate = salaryRate;
             this.Role = role;
             this.DepartmentID = depID;

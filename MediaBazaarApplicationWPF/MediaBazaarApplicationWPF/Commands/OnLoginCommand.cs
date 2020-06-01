@@ -49,7 +49,10 @@ namespace MediaBazaarApplicationWPF.Commands
                     {
                         MessageBox.Show(ex.ToString(), $"Login failed");
                     }
-                    conn.Close();
+                    finally
+                    {
+                        conn.Close();
+                    }
                 }
             }
             else MessageBox.Show("Please fill all required fields before attempting to log in!");
