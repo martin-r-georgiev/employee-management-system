@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediaBazaarApplicationWPF
 {
-    class Department
+    public class Department
     {
         #region variables + properties
 

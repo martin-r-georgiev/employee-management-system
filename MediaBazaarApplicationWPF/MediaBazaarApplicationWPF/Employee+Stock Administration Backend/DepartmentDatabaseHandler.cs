@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MediaBazaarApplicationWPF
 {
-    static class DepartmentDatabaseHandler
+    public static class DepartmentDatabaseHandler
     {
         public static void InsertToDB(Department department)
         {

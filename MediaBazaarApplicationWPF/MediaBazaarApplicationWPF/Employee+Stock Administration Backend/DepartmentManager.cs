@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace MediaBazaarApplicationWPF
 {
-    static class DepartmentManager
+    public static class DepartmentManager
     {
         public static void AddDepartment(string name, string address)
         {
