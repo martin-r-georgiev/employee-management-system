@@ -13,7 +13,7 @@ namespace MediaBazaarApplicationWPF
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"INSERT OR IGNORE INTO users (userID, username, password, salary, role, departmentID) VALUES (@userID, @username, @password, @salary, @role, @depID)", conn))
+                using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO users (userID, username, password, salary, role, departmentID) VALUES (@userID, @username, @password, @salary, @role, @depID)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", employee.UserID);
                     cmd.Parameters.AddWithValue("@username", employee.Username);
@@ -25,7 +25,7 @@ namespace MediaBazaarApplicationWPF
                     cmd.Dispose();
                 }
 
-                using (MySqlCommand cmd = new MySqlCommand($"INSERT OR IGNORE INTO employees(userID, startDate, workHours, attendance) VALUES (@userID, @startDate, @workHours, @attendance)", conn))
+                using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO employees(userID, startDate, workHours, attendance) VALUES (@userID, @startDate, @workHours, @attendance)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", employee.UserID);
                     cmd.Parameters.AddWithValue("@startDate", employee.StartDate);
