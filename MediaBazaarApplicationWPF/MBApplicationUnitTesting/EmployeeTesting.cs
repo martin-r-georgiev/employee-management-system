@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MediaBazaarApplicationWPF;
+using System.Threading;
 
 namespace MBApplicationUnitTesting
 {
@@ -47,10 +48,10 @@ namespace MBApplicationUnitTesting
         [TestMethod]
         public void EmployeeInitializationTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
 
-            //Assert
+            // Assert
             Assert.AreEqual(userID, employee.UserID);
             Assert.AreEqual(username, employee.Username);
             Assert.AreEqual(password, employee.Password);
@@ -63,14 +64,14 @@ namespace MBApplicationUnitTesting
         [TestMethod]
         public void EmployeeUsernameChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_USERNAME = "NewUsername";
 
-            //Act
+            // Act
             employee.Username = NEW_USERNAME;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_USERNAME, employee.Username);
         }
 
@@ -78,11 +79,11 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidUsernameChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_USERNAME = "InvalidNewUsername/";
 
-            //Act
+            // Act
             employee.Username = NEW_USERNAME;
         }
 
@@ -90,26 +91,26 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeNullUsernameChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_USERNAME = null;
 
-            //Act
+            // Act
             employee.Username = NEW_USERNAME;
         }
 
         [TestMethod]
         public void EmployeePasswordChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_PASSWORD = "NewPassword";
             string NEW_PASSWORD_HASHED = HashManager.GetSha256(NEW_PASSWORD);
 
-            //Act
+            // Act
             employee.Password = NEW_PASSWORD;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_PASSWORD_HASHED, employee.Password);
         }
 
@@ -117,11 +118,11 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidPasswordChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_PASSWORD = "InvalidNewPassword/";
 
-            //Act
+            // Act
             employee.Password = NEW_PASSWORD;
         }
 
@@ -129,25 +130,25 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeNullPasswordChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_PASSWORD = null;
 
-            //Act
+            // Act
             employee.Password = NEW_PASSWORD;
         }
 
         [TestMethod]
         public void EmployeeSalaryRateChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const decimal NEW_SALARY_RATE = 15;
 
-            //Act
+            // Act
             employee.SalaryHourlyRate = NEW_SALARY_RATE;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_SALARY_RATE, employee.SalaryHourlyRate);
         }
 
@@ -155,25 +156,25 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeSalaryRateOutofRangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const decimal NEW_SALARY_RATE = -5;
 
-            //Act
+            // Act
             employee.SalaryHourlyRate = NEW_SALARY_RATE;
         }
 
         [TestMethod]
         public void EmployeeFirstNameChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_FIRST_NAME = "John";
 
-            //Act
+            // Act
             employee.FirstName = NEW_FIRST_NAME;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_FIRST_NAME, employee.FirstName);
         }
 
@@ -181,11 +182,11 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidFirstNameChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_FIRST_NAME = "John101";
 
-            //Act
+            // Act
             employee.FirstName = NEW_FIRST_NAME;
         }
 
@@ -193,25 +194,25 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeNullFirstNameChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_FIRST_NAME = null;
 
-            //Act
+            // Act
             employee.FirstName = NEW_FIRST_NAME;
         }
 
         [TestMethod]
         public void EmployeeLastNameChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_LAST_NAME = "Doe";
 
-            //Act
+            // Act
             employee.LastName = NEW_LAST_NAME;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_LAST_NAME, employee.LastName);
         }
 
@@ -219,11 +220,11 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidLastNameChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_LAST_NAME = "Doe101";
 
-            //Act
+            // Act
             employee.LastName = NEW_LAST_NAME;
         }
 
@@ -231,25 +232,25 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeNullLastNameChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_LAST_NAME = null;
 
-            //Act
+            // Act
             employee.LastName = NEW_LAST_NAME;
         }
 
         [TestMethod]
         public void EmployeeNationalityChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_NATIONALITY = "Polish";
 
-            //Act
+            // Act
             employee.Nationality = NEW_NATIONALITY;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_NATIONALITY, employee.Nationality);
         }
 
@@ -257,11 +258,11 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidNationalityChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_NATIONALITY = "Polish101";
 
-            //Act
+            // Act
             employee.Nationality = NEW_NATIONALITY;
         }
 
@@ -269,25 +270,25 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeNullNationalityChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_NATIONALITY = null;
 
-            //Act
+            // Act
             employee.Nationality = NEW_NATIONALITY;
         }
 
         [TestMethod]
         public void EmployeeAddressChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_ADDRESS = "Test Address 123";
 
-            //Act
+            // Act
             employee.Address = NEW_ADDRESS;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_ADDRESS, employee.Address);
         }
 
@@ -295,11 +296,11 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidAddressChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_ADDRESS = "";
 
-            //Act
+            // Act
             employee.Address = NEW_ADDRESS;
         }
 
@@ -307,25 +308,25 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeNullAddressChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_ADDRESS = null;
 
-            //Act
+            // Act
             employee.Address = NEW_ADDRESS;
         }
 
         [TestMethod]
         public void EmployeeEmailChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_EMAIL_ADDRESS = "new@mediabazaar.nl";
 
-            //Act
+            // Act
             employee.Email = NEW_EMAIL_ADDRESS;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_EMAIL_ADDRESS, employee.Email);
         }
 
@@ -333,11 +334,11 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidEmailChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_EMAIL_ADDRESS = "new@mediabazaar";
 
-            //Act
+            // Act
             employee.Email = NEW_EMAIL_ADDRESS;
         }
 
@@ -345,25 +346,25 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeNullEmailChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_EMAIL_ADDRESS = null;
 
-            //Act
+            // Act
             employee.Email = NEW_EMAIL_ADDRESS;
         }
 
         [TestMethod]
         public void EmployeePhoneNumberChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_PHONE_NUMBER = "+31645000941";
 
-            //Act
+            // Act
             employee.PhoneNumber = NEW_PHONE_NUMBER;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_PHONE_NUMBER, employee.PhoneNumber);
         }
 
@@ -371,25 +372,25 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidPhoneNumberChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const string NEW_PHONE_NUMBER = "InvalidPhoneNumber";
 
-            //Act
+            // Act
             employee.PhoneNumber = NEW_PHONE_NUMBER;
         }
 
         [TestMethod]
         public void EmployeeBirthDateChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             DateTime NEW_BIRTHDATE = new DateTime(2000, 1, 1);
 
-            //Act
+            // Act
             employee.DateOfBirth = NEW_BIRTHDATE;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_BIRTHDATE, employee.DateOfBirth);
         }
 
@@ -397,25 +398,25 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidBirthDateChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             DateTime NEW_BIRTHDATE = DateTime.Now.AddDays(1);
 
-            //Act
+            // Act
             employee.DateOfBirth = NEW_BIRTHDATE;
         }
 
         [TestMethod]
         public void EmployeeWorkhoursChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const int NEW_WORKHOURS = 24;
 
-            //Act
+            // Act
             employee.WorkHours = NEW_WORKHOURS;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_WORKHOURS, employee.WorkHours);
         }
 
@@ -423,11 +424,11 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidWorkhoursChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const int NEW_WORKHOURS = 25;
 
-            //Act
+            // Act
             employee.WorkHours = NEW_WORKHOURS;
         }
 
@@ -435,25 +436,25 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeNegativeWorkhoursChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const int NEW_WORKHOURS = -5;
 
-            //Act
+            // Act
             employee.WorkHours = NEW_WORKHOURS;
         }
 
         [TestMethod]
         public void EmployeeAttendanceChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const int NEW_ATTENDANCE = 50;
 
-            //Act
+            // Act
             employee.Attendance = NEW_ATTENDANCE;
 
-            //Assert
+            // Assert
             Assert.AreEqual(NEW_ATTENDANCE, employee.Attendance);
         }
 
@@ -461,24 +462,24 @@ namespace MBApplicationUnitTesting
         [ExpectedException(typeof(ArgumentException))]
         public void EmployeeInvalidAttendanceChangeTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             const int NEW_ATTENDANCE = -1;
 
-            //Act
+            // Act
             employee.Attendance = NEW_ATTENDANCE;
         }
 
         [TestMethod]
         public void EmployeeSetPersonalInfoTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
 
-            //Act
+            // Act
             employee.SetPersonalInfo(firstName, lastName, dateofBirth, sex);
 
-            //Assert
+            // Assert
             Assert.AreEqual(firstName, employee.FirstName);
             Assert.AreEqual(lastName, employee.LastName);
             Assert.AreEqual(dateofBirth, employee.DateOfBirth);
@@ -488,13 +489,13 @@ namespace MBApplicationUnitTesting
         [TestMethod]
         public void EmployeeFullSetPersonalInfoTest()
         {
-            //Arrange
+            // Arrange
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
 
-            //Act
+            // Act
             employee.SetPersonalInfo(firstName, lastName, nationality, address, email, phoneNumber, dateofBirth, sex);
 
-            //Assert
+            // Assert
             Assert.AreEqual(firstName, employee.FirstName);
             Assert.AreEqual(lastName, employee.LastName);
             Assert.AreEqual(nationality, employee.Nationality);
@@ -520,14 +521,67 @@ namespace MBApplicationUnitTesting
         [TestMethod]
         public void AddEmployeeWithCredentialsTest()
         {
-            //Employee testEmployee = employeeManager.AddEmployee("UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
-            const string USERID = "h8vyviSrOECYpPT8jgPYkQ";
+            // Act
+            Employee testEmployee = employeeManager.AddEmployee("UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+            Employee employeeEntry = employeeManager.GetEmployee(testEmployee.UserID, false);
 
-            Employee employeeEntry = employeeManager.GetEmployee(USERID, false);
+            // Assert
+            Assert.AreEqual(testEmployee.UserID, employeeEntry.UserID);
 
-            Assert.AreEqual(USERID, employeeEntry.UserID);
+            employeeManager.RemoveEmployee(testEmployee);
+            // Thread.Sleep(1000);
+        }
 
-            //employeeManager.RemoveEmployee(testEmployee);
+        [TestMethod]
+        public void AddEmployeeCredentialsEventRaisedTest()
+        {
+            // Arrange
+            Employee eventEmployee = null;
+
+            // Act
+            employeeManager.AddedEmployeeEvent += delegate (Employee e) { eventEmployee = e; };
+            Employee testEmployee = employeeManager.AddEmployee("UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+
+            // Assert
+            Assert.AreEqual(testEmployee.UserID, eventEmployee.UserID);
+
+            employeeManager.RemoveEmployee(testEmployee);
+            // Thread.Sleep(1000);
+        }
+
+        [TestMethod]
+        public void AddEmployeeObjectTest()
+        {
+            // Arrange
+            Employee testEmployee = new Employee("UNIT_TEST_RESERVED", "UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+
+            // Act
+            employeeManager.AddEmployee(testEmployee);
+            Employee employeeEntry = employeeManager.GetEmployee("UNIT_TEST_RESERVED", false);
+
+            // Assert
+            Assert.AreEqual(testEmployee.UserID, employeeEntry.UserID);
+
+            employeeManager.RemoveEmployee(testEmployee);
+            // Thread.Sleep(1000);
+        }
+
+        [TestMethod]
+        public void AddEmployeeObjectEventRaisedTest()
+        {
+            // Arrange
+            Employee testEmployee = new Employee("UNIT_TEST_RESERVED", "UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+            Employee eventEmployee = null;
+
+            // Act
+            employeeManager.AddedEmployeeEvent += delegate (Employee e) { eventEmployee = e; };
+            employeeManager.AddEmployee(testEmployee);
+
+            // Assert
+            Assert.AreEqual(testEmployee.UserID, eventEmployee.UserID);
+
+            employeeManager.RemoveEmployee(testEmployee);
+            // Thread.Sleep(1000);
         }
     }
 

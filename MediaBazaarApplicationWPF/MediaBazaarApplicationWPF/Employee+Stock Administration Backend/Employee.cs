@@ -185,7 +185,7 @@ namespace MediaBazaarApplicationWPF
         {
             //Binary: 0 = Male, 1 = Female
             get { return this.sex; }
-            private set { this.sex = value; }
+            set { this.sex = value; }
         }
 
         public DateTime? StartDate
