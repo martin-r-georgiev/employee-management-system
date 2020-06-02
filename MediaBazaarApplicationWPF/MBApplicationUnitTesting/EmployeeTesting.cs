@@ -583,6 +583,64 @@ namespace MBApplicationUnitTesting
             employeeManager.RemoveEmployee(testEmployee);
             // Thread.Sleep(1000);
         }
+
+        [TestMethod]
+        public void UpdateEmployeeTest()
+        {
+            // Arrange
+            Employee testEmployee = new Employee("UNIT_TEST_RESERVED", "UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+            employeeManager.AddEmployee(testEmployee);
+            Employee employeeEntry = employeeManager.GetEmployee("UNIT_TEST_RESERVED", false);
+            const int NEW_SALARY_RATE = 20;
+
+            // Act
+            testEmployee.SalaryHourlyRate = NEW_SALARY_RATE;
+            employeeManager.UpdateEmployee(testEmployee);
+
+            // Assert
+            employeeEntry = employeeManager.GetEmployee("UNIT_TEST_RESERVED", false);
+            Assert.AreEqual(NEW_SALARY_RATE, employeeEntry.SalaryHourlyRate);
+
+            employeeManager.RemoveEmployee(testEmployee);
+            // Thread.Sleep(1000);
+        }
+
+        [TestMethod]
+        public void UpdateEmployeeEventRaisedTest()
+        {
+            // Arrange
+            Employee testEmployee = new Employee("UNIT_TEST_RESERVED", "UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+            employeeManager.AddEmployee(testEmployee);
+            Employee eventEmployee = null;
+
+            // Act
+            employeeManager.UpdatedEmployeeEvent += delegate (Employee e) { eventEmployee = e; };
+            employeeManager.UpdateEmployee(testEmployee);
+
+            // Assert
+            Assert.AreEqual(testEmployee.UserID, eventEmployee.UserID);
+
+            employeeManager.RemoveEmployee(testEmployee);
+            // Thread.Sleep(1000);
+        }
+
+        [TestMethod]
+        public void RemoveEmployeeEventRaisedTest()
+        {
+            // Arrange
+            Employee testEmployee = new Employee("UNIT_TEST_RESERVED", "UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+            employeeManager.AddEmployee(testEmployee);
+            Employee eventEmployee = null;
+
+            // Act
+            employeeManager.RemovedEmployeeEvent += delegate (Employee e) { eventEmployee = e; };
+            employeeManager.RemoveEmployee(testEmployee);
+
+            // Assert
+            Assert.AreEqual(testEmployee.UserID, eventEmployee.UserID);
+
+            // Thread.Sleep(1000);
+        }
     }
 
 }
