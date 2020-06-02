@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HistoryLog\HistoryLog.cs" />
     <Compile Include="Workshifts Backend\Attendance.cs" />
     <Compile Include="Workshifts Backend\CheckIn.cs" />
     <Compile Include="Workshifts Backend\AutoWorkshift.cs" />

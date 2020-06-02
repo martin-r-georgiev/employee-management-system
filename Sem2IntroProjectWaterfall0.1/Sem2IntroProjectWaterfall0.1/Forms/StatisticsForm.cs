@@ -469,8 +469,6 @@ namespace Sem2IntroProjectWaterfall0._1
                     return "Owner";
                 default:
                     return "ERROR";
-
-
             }
         }
 

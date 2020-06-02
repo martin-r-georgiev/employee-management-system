@@ -150,5 +150,10 @@ namespace Sem2IntroProjectWaterfall0._1
             this.ActiveControl = null;
             this.OnDefocus(this, EventArgs.Empty);
         }
+
+        private void btnHistoryLog_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(HistoryLog.ShowLog());
+        }
     }
 }

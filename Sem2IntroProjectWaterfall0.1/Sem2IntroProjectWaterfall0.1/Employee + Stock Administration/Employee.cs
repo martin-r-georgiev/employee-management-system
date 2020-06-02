@@ -470,7 +470,7 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 conn.Close();
             }
-
+            HistoryLog.AddToHistoryLog(this);
             if (this.AddedEmployeeEvent != null) this.AddedEmployeeEvent(this);
         }
 
@@ -569,6 +569,8 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 conn.Close();
             }
+           // HistoryLog.UpdateHistoryLog(this);
+
         }
 
         public void SetPersonalInfo(string fName, string lName, string nationality, string address, string email, string phoneNum, DateTime dateOfBirth, bool sex, decimal salary)
@@ -603,6 +605,8 @@ namespace Sem2IntroProjectWaterfall0._1
                 }
                 conn.Close();
             }
+            HistoryLog.UpdateHistoryLog(this,fName,lName,phoneNum,dateOfBirth.ToString("yyyy-MM-dd"),salary.ToString(),email,address,nationality);
+
         }
 
         public static void RemoveFromDatabase(string userIdentifier)
@@ -643,6 +647,8 @@ namespace Sem2IntroProjectWaterfall0._1
 
             Employee employee = new Employee(userIdentifier, false);
             if (employee.RemovedEmployeeEvent != null) employee.RemovedEmployeeEvent(employee);
+           // HistoryLog.UpdateHistoryLog(employee);
+
         }
 
         public void RemoveFromDatabase()
@@ -666,6 +672,7 @@ namespace Sem2IntroProjectWaterfall0._1
             }
 
             if (this.RemovedEmployeeEvent != null) this.RemovedEmployeeEvent(this);
+            HistoryLog.UpdateHistoryLogDeleted(this);
         }
 
         public static List<Employee> GetAllEmployees(bool needFullDetails)

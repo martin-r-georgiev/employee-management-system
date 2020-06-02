@@ -100,11 +100,15 @@ namespace Sem2IntroProjectWaterfall0._1
                                 WorkshiftData ToCheck = Schedule[index];
                                 if (HasMultipleEntries(Schedule[i].Day, Schedule[i].Workshift) == true && Schedule[i].DepartmentID == department)
                                 {
-                                    //remove this guy from workshift and add it to current
-                                    WorkshiftData ToAdd = new WorkshiftData(Schedule[index].UserID, converttodate(i), j, converttoday(i), department);
-                                    Schedule.RemoveAt(index);// remove the current guy from his already assigned workshift
-                                    Schedule.Add(ToAdd);// add him to this one that requries someone to cover it
-                                    break; 
+                                    var Max = SortSchedule(Schedule);
+                                    if (converttoday(Max.Item1)==Schedule[i].Day && Max.Item2==Schedule[i].Workshift)// making it take from the biggest shift change the IF statement to true if bugged
+                                    {
+                                        //remove this guy from workshift and add it to current
+                                        WorkshiftData ToAdd = new WorkshiftData(Schedule[index].UserID, converttodate(i), j, converttoday(i), department);
+                                        Schedule.RemoveAt(index);// remove the current guy from his already assigned workshift
+                                        Schedule.Add(ToAdd);// add him to this one that requries someone to cover it
+                                        break;
+                                    }
                                 }
                             }
 
@@ -205,7 +209,7 @@ namespace Sem2IntroProjectWaterfall0._1
 #endregion
 
         #region Auxiliary Methods
-public bool HasMultipleEntries(string day, int workshift)
+        public bool HasMultipleEntries(string day, int workshift)
         {
             int timesfound = 0;
             foreach (WorkshiftData w in Schedule)
@@ -219,6 +223,23 @@ public bool HasMultipleEntries(string day, int workshift)
                 }
             }
             return false;
+        }
+
+        public (int,int) SortSchedule( List<WorkshiftData> ToSort)
+        {
+            int[] workshift = new int[15]; // each workshift represents a number monday morning is 0 ... friday evening is 14
+            foreach (WorkshiftData w in ToSort)
+            {
+                int day = ConvertDayToNumber(w.Day);
+               int shift = Convert.ToInt32(w.Workshift);
+                int index = day*3 + shift;
+                workshift[index]++;
+            }
+            int maxValue = workshift.Max();
+            int maxIndex = workshift.ToList().IndexOf(maxValue);
+            int maxDay = maxIndex / 3;
+            int maxShift = maxIndex - (maxDay * 3); 
+            return (maxDay,maxShift);
         }
         public List<Prefrence> GetCurrentDeparmentPreferences(string departmentID) // will return preferences of emplyoees that are in the provided department 
         {
@@ -274,6 +295,26 @@ public bool HasMultipleEntries(string day, int workshift)
                     return "Error";
 
 
+            }
+        }
+
+        public int ConvertDayToNumber(string day)
+        {
+            switch(day)
+            {
+                case "Monday":
+                    return 0;
+                case "Tuesday":
+                    return 1;
+                case "Wednesday":
+                    return 2;
+                case "Thursday":
+                    return 3;
+                case "Friday":
+                    return 4;
+
+                default:
+                    return -1;
             }
         }
 

@@ -51,6 +51,7 @@
             this.btnStatistics = new System.Windows.Forms.Button();
             this.pnlEmployees = new System.Windows.Forms.FlowLayoutPanel();
             this.cbDepartments = new System.Windows.Forms.ComboBox();
+            this.btnHistoryLog = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -291,11 +292,22 @@
             this.cbDepartments.DropDown += new System.EventHandler(this.cbDepartments_DropDown);
             this.cbDepartments.SelectedIndexChanged += new System.EventHandler(this.cbDepartments_SelectedIndexChanged);
             // 
+            // btnHistoryLog
+            // 
+            this.btnHistoryLog.Location = new System.Drawing.Point(201, 11);
+            this.btnHistoryLog.Name = "btnHistoryLog";
+            this.btnHistoryLog.Size = new System.Drawing.Size(128, 20);
+            this.btnHistoryLog.TabIndex = 11;
+            this.btnHistoryLog.Text = "Show History Log";
+            this.btnHistoryLog.UseVisualStyleBackColor = true;
+            this.btnHistoryLog.Click += new System.EventHandler(this.btnHistoryLog_Click);
+            // 
             // EmployeeListing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 456);
+            this.Controls.Add(this.btnHistoryLog);
             this.Controls.Add(this.cbDepartments);
             this.Controls.Add(this.pnlEmployees);
             this.Controls.Add(this.btnStatistics);
@@ -344,5 +356,6 @@
         private System.Windows.Forms.Label lblEmployeeNationality;
         private System.Windows.Forms.Label lblEmployeeAge;
         private System.Windows.Forms.Label lblEmployeeWorkingSince;
+        private System.Windows.Forms.Button btnHistoryLog;
     }
 }
