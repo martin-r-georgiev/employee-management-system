@@ -13,7 +13,7 @@ namespace MediaBazaarApplicationWPF
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"INSERT OR IGNORE INTO users (userID, username, password, salary, role, departmentID) VALUES (@userID, @username, @password, @salary, @role, @depID)", conn))
+                using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO users (userID, username, password, salary, role, departmentID) VALUES (@userID, @username, @password, @salary, @role, @depID)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", employee.UserID);
                     cmd.Parameters.AddWithValue("@username", employee.Username);
@@ -25,7 +25,7 @@ namespace MediaBazaarApplicationWPF
                     cmd.Dispose();
                 }
 
-                using (MySqlCommand cmd = new MySqlCommand($"INSERT OR IGNORE INTO employees(userID, startDate, workHours, attendance) VALUES (@userID, @startDate, @workHours, @attendance)", conn))
+                using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO employees(userID, startDate, workHours, attendance) VALUES (@userID, @startDate, @workHours, @attendance)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", employee.UserID);
                     cmd.Parameters.AddWithValue("@startDate", employee.StartDate);
@@ -120,17 +120,14 @@ namespace MediaBazaarApplicationWPF
                         {
                             employee = new Employee(userIdentifier, dataReader.GetString(1), dataReader.GetString(2), dataReader.GetDecimal(3), (EmployeeRole)dataReader.GetInt32(4), dataReader.GetString(5), dataReader.GetInt32(16), false);
 
-                            string firstName = (dataReader.IsDBNull(7)) ? null : dataReader.GetString(7);
-                            string lastName = (dataReader.IsDBNull(8)) ? null : dataReader.GetString(8);
-                            string nationality = (dataReader.IsDBNull(9)) ? null : dataReader.GetString(9);
-                            string address = (dataReader.IsDBNull(10)) ? null : dataReader.GetString(10);
-                            string email = (dataReader.IsDBNull(11)) ? null : dataReader.GetString(11);
-                            string phoneNumber = (dataReader.IsDBNull(12)) ? null : dataReader.GetString(12);
-                            DateTime? dateOfBirth = (dataReader.IsDBNull(13)) ? (DateTime?) null : dataReader.GetDateTime(13);
-                            bool? sex = (dataReader.IsDBNull(14)) ? (bool?) null : dataReader.GetBoolean(14);
-
-                            employee.SetPersonalInfo(firstName, lastName, nationality, address, email, phoneNumber, dateOfBirth, sex);
-
+                            if (!dataReader.IsDBNull(7)) employee.FirstName = dataReader.GetString(7);
+                            if (!dataReader.IsDBNull(8)) employee.LastName = dataReader.GetString(8);
+                            if (!dataReader.IsDBNull(9)) employee.Nationality = dataReader.GetString(9);
+                            if (!dataReader.IsDBNull(10)) employee.Address = dataReader.GetString(10);
+                            if (!dataReader.IsDBNull(11)) employee.Email = dataReader.GetString(11);
+                            if (!dataReader.IsDBNull(12)) employee.PhoneNumber = dataReader.GetString(12);
+                            if (!dataReader.IsDBNull(13)) employee.DateOfBirth = dataReader.GetDateTime(13);
+                            if (!dataReader.IsDBNull(14)) employee.Sex = dataReader.GetBoolean(14);
                             if (!dataReader.IsDBNull(15)) employee.StartDate = dataReader.GetDateTime(15);
                             if (!dataReader.IsDBNull(17)) employee.Attendance = Convert.ToDouble(dataReader.GetDecimal(17));
                         }
@@ -144,7 +141,7 @@ namespace MediaBazaarApplicationWPF
             {
                 using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    using (MySqlCommand cmd = new MySqlCommand($"SELECT u.username, u.password, u.salary, u.role, u.departmentID, e.workHours, e.firstName, e.lastName, FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID WHERE u.userID=@userID", conn))
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT u.username, u.password, u.salary, u.role, u.departmentID, e.workHours, e.firstName, e.lastName FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID WHERE u.userID=@userID", conn))
                     {
                         cmd.Parameters.AddWithValue("@userID", userIdentifier);
                         MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -152,8 +149,8 @@ namespace MediaBazaarApplicationWPF
                         if (dataReader.Read())
                         {
                             employee = new Employee(userIdentifier, dataReader.GetString(0), dataReader.GetString(1), dataReader.GetDecimal(2), (EmployeeRole)dataReader.GetInt32(3), dataReader.GetString(4), dataReader.GetInt32(5), false);
-                            employee.FirstName = dataReader.GetString(6);
-                            employee.LastName = dataReader.GetString(7);
+                            if (!dataReader.IsDBNull(6)) employee.FirstName = dataReader.GetString(6);
+                            if (!dataReader.IsDBNull(7)) employee.LastName = dataReader.GetString(7);
                         }
                         cmd.Dispose();
                         dataReader.Close();

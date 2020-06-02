@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using MediaBazaarApplicationWPF.Commands;
 
@@ -46,7 +47,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
         public LoginViewModel()
         {
             //_changeNameCommand = new DelegateCommand(OnChangeName, CanChangeName);
-            _loginCommand = new OnLoginCommand(this);
+            _loginCommand = new OnLoginCommand(this);         
         }
 
         //private void OnChangeName(object commandParameter)

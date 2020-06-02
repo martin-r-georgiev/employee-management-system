@@ -8,7 +8,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
 {
     public class DashboardViewModel : BaseViewModel
     {
-        private bool btnStockVisible, btnWorkshiftsVisible, btnStatisticsVisible, btnManagementVisible, btnRequests;
+        private bool btnStockVisible, btnWorkshiftsVisible, btnStatisticsVisible, btnManagementVisible, btnRequestsVisible;
 
         public bool BtnStockVisible
         {
@@ -50,12 +50,12 @@ namespace MediaBazaarApplicationWPF.ViewModels
             }
         }
 
-        public bool BtnRequests
+        public bool BtnRequestsVisible
         {
-            get => this.btnRequests;
+            get => this.btnRequestsVisible;
             private set
             {
-                this.btnRequests = value;
+                this.btnRequestsVisible = value;
                 OnPropertyChanged();
             }
         }
@@ -75,7 +75,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
             if (LoggedInUser.role >= EmployeeRole.Manager)
             {
-                BtnRequests = true;
+                BtnRequestsVisible = true;
                 BtnStatisticsVisible = true;
             }
             if (LoggedInUser.role >= EmployeeRole.Admin) BtnManagementVisible = true;

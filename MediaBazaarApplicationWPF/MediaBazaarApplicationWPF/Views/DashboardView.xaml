@@ -37,7 +37,7 @@
         <!-- Row 1 -->
         <!--<TextBlock Text="{Binding Path=Test}"/>-->
         <Button Name="LogoutButton" Content="Logout" Grid.Row="1" Grid.Column="1" Padding="5 2" Click="LogoutButton_Click"/>
-        <Button Content="Requests" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Padding="5 2" HorizontalAlignment="Right" Visibility="{Binding BtnRequests, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
+        <Button Content="Requests" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Padding="5 2" HorizontalAlignment="Right" Visibility="{Binding BtnRequestsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
         
         <!-- Row 2 -->
         <WrapPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center">
