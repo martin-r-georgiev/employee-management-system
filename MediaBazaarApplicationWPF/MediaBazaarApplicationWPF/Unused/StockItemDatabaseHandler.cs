@@ -140,7 +140,7 @@ namespace MediaBazaarApplicationWPF
                         int threshold = dataReader.GetInt32(0);
                         int currentAmount = dataReader.GetInt32(1);
                         string name = dataReader.GetString(2);
-                        item = new StockItem(name, threshold, departmentID, currentAmount, stockID);
+                        // item = new StockItem(name, threshold, departmentID, currentAmount, stockID);
                     }
                     cmd.Dispose();
                     dataReader.Close();

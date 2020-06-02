@@ -27,7 +27,7 @@ namespace MediaBazaarApplicationWPF.Views
 
             DataContext = ViewModel;
             InitializeComponent();
-        }
 
+        }
     }
 }
