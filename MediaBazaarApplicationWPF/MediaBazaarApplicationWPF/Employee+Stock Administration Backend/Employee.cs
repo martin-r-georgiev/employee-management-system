@@ -69,7 +69,7 @@ namespace MediaBazaarApplicationWPF
             get { return this.salaryHourlyRate; }
             set
             {
-                if (this.salaryHourlyRate >= 0) this.salaryHourlyRate = value;
+                if (value >= 0) this.salaryHourlyRate = value;
                 else throw new ArgumentException("Invalid salary rate has been parsed to employee class. Given value cannot be lower than 0.");
             }
         }
@@ -142,7 +142,7 @@ namespace MediaBazaarApplicationWPF
             get { return this.address; }
             set
             {
-                if (value != null && !string.IsNullOrEmpty(value)) this.address = value;
+                if (!string.IsNullOrEmpty(value)) this.address = value;
                 else throw new ArgumentException("Invalid address has been parsed to employee class. Given value cannot be empty.");
             }
         }
@@ -205,7 +205,7 @@ namespace MediaBazaarApplicationWPF
             get { return workHours; }
             set
             {
-                if (value % 4 == 0) this.workHours = value;
+                if (value % 4 == 0 && value >= 0) this.workHours = value;
                 else throw new ArgumentException("Invalid work hours has been parsed to employee class.");
             }
         }

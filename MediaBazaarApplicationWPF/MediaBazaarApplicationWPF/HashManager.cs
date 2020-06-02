@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 namespace MediaBazaarApplicationWPF
 {
-    class HashManager
+    public class HashManager
     {
         public static string GetSha256(string inputString)
         {
