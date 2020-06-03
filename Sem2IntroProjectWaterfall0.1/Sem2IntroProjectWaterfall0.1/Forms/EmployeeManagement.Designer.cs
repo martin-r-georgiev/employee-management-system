@@ -32,6 +32,8 @@
             this.tcManagement = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gbPersonalInfo = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbxChangeSalary = new System.Windows.Forms.TextBox();
             this.rbFemale = new System.Windows.Forms.RadioButton();
             this.btnRemoveEmployee = new System.Windows.Forms.Button();
             this.rbMale = new System.Windows.Forms.RadioButton();
@@ -110,8 +112,6 @@
             this.tbDepartmentEditAddress = new System.Windows.Forms.TextBox();
             this.lblEditAddress = new System.Windows.Forms.Label();
             this.tbDepartmentEditName = new System.Windows.Forms.TextBox();
-            this.tbxChangeSalary = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.tcManagement.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gbPersonalInfo.SuspendLayout();
@@ -191,6 +191,24 @@
             this.gbPersonalInfo.TabIndex = 25;
             this.gbPersonalInfo.TabStop = false;
             this.gbPersonalInfo.Text = "Modify Employee";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(25, 196);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(90, 13);
+            this.label5.TabIndex = 50;
+            this.label5.Text = "Hourly salary in €:";
+            // 
+            // tbxChangeSalary
+            // 
+            this.tbxChangeSalary.Location = new System.Drawing.Point(121, 193);
+            this.tbxChangeSalary.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxChangeSalary.Name = "tbxChangeSalary";
+            this.tbxChangeSalary.Size = new System.Drawing.Size(111, 20);
+            this.tbxChangeSalary.TabIndex = 49;
             // 
             // rbFemale
             // 
@@ -1038,24 +1056,6 @@
             this.tbDepartmentEditName.Size = new System.Drawing.Size(176, 20);
             this.tbDepartmentEditName.TabIndex = 18;
             // 
-            // tbxChangeSalary
-            // 
-            this.tbxChangeSalary.Location = new System.Drawing.Point(121, 193);
-            this.tbxChangeSalary.Margin = new System.Windows.Forms.Padding(2);
-            this.tbxChangeSalary.Name = "tbxChangeSalary";
-            this.tbxChangeSalary.Size = new System.Drawing.Size(111, 20);
-            this.tbxChangeSalary.TabIndex = 49;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 196);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 13);
-            this.label5.TabIndex = 50;
-            this.label5.Text = "Hourly salary in €:";
-            // 
             // EmployeeManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1064,6 +1064,7 @@
             this.Controls.Add(this.tcManagement);
             this.Controls.Add(this.btnBack);
             this.Name = "EmployeeManagement";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeeManagement";
             this.tcManagement.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

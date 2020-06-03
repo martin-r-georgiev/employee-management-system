@@ -69,6 +69,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\HistoryLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HistoryLogForm.Designer.cs">
+      <DependentUpon>HistoryLogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HistoryLog\HistoryLog.cs" />
     <Compile Include="Workshifts Backend\Attendance.cs" />
     <Compile Include="Workshifts Backend\CheckIn.cs" />
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeeManagement.resx">
       <DependentUpon>EmployeeManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HistoryLogForm.resx">
+      <DependentUpon>HistoryLogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>

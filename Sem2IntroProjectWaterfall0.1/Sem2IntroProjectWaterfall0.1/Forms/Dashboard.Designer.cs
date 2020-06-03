@@ -145,6 +145,7 @@
             this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.btnStocks);
             this.Name = "Dashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard";
             this.ResumeLayout(false);
 

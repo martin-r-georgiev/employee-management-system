@@ -310,6 +310,7 @@
             this.Controls.Add(this.cbStatistic);
             this.Controls.Add(this.chart1);
             this.Name = "StatisticsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StatisticsForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StatisticsForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();

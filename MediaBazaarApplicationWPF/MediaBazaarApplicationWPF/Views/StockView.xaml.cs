@@ -1,5 +1,4 @@
-﻿using MediaBazaarApplicationWPF.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,25 +15,17 @@ using System.Windows.Shapes;
 namespace MediaBazaarApplicationWPF.Views
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for StockView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class StockView : Window
     {
-        public LoginView()
+        public StockView()
         {
-            var ViewModel = new LoginViewModel();
-            //ViewModel.FirstName = "Martin";
-
-            DataContext = ViewModel;
             InitializeComponent();
-
         }
 
-        private void TestLogin_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            LoggedInUser.role = EmployeeRole.Admin;
-            LoggedInUser.userID = "AHrsSBGtkCE9kwraDlC5g";
-            LoggedInUser.departmentID = "ebcpNLREqnrQjWbkrNNA";
             var newWindow = new DashboardView();
             newWindow.Show();
             this.Close();

@@ -102,6 +102,7 @@
             this.Controls.Add(this.tbUsername);
             this.Controls.Add(this.btnLogin);
             this.Name = "LoginScreen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login Screen";
             this.ResumeLayout(false);
             this.PerformLayout();

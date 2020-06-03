@@ -386,6 +386,7 @@
             this.Controls.Add(this.cbMonM);
             this.Controls.Add(this.cbMon);
             this.Name = "PreferencesNew";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Preferences";
             this.ResumeLayout(false);
             this.PerformLayout();

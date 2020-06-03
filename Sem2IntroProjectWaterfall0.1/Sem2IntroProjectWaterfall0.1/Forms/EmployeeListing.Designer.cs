@@ -317,6 +317,7 @@
             this.MaximumSize = new System.Drawing.Size(836, 495);
             this.MinimumSize = new System.Drawing.Size(836, 495);
             this.Name = "EmployeeListing";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeeListing";
             this.Click += new System.EventHandler(this.EmployeeListing_Click);
             this.panel4.ResumeLayout(false);

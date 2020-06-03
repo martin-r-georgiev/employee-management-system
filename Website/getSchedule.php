@@ -11,10 +11,17 @@ class WeekDay
 $weekDays = array();
 $fromDate = date("Y-m-d", strtotime('sunday last week'));
 $userID = $_SESSION['userID'];
+$date = $_GET["year"]."-01-01";
+$start_date = date('Y-m-d', strtotime($date. ' +'.$_GET['week'].' week -10 day'));
+
 
 
 try {
-  $sql = "SELECT * from `workshifts` WHERE `userID` = '$userID' AND `date` >= '$fromDate' AND `date` <= date_add('$fromDate', INTERVAL 7 DAY)";
+  if($_GET['year'] != "") {
+      $sql = "SELECT * from `workshifts` WHERE `userID` = '$userID' AND `date` >= '$start_date' AND `date` <= date_add('$start_date', INTERVAL 7 DAY)";
+  } else {
+      $sql = "SELECT * from `workshifts` WHERE `userID` = '$userID' AND `date` >= '$fromDate' AND `date` <= date_add('$fromDate', INTERVAL 7 DAY)";
+  }
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
@@ -41,7 +48,7 @@ try {
               $newDay -> status = "yellow";
               break;
           case 2:
-              $newDay -> status = "gray";
+              $newDay -> status = "grey";
               break;
           case 3:
               $newDay -> status = "red";
@@ -49,11 +56,9 @@ try {
       }
     array_push($weekDays, $newDay);
     }
-      
-     
 
-  } else {
-    echo "0 results";
+
+
   }
 }
 

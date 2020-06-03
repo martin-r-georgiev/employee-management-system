@@ -10,5 +10,6 @@ namespace MediaBazaarApplicationWPF
     {
         public static string userID;
         public static EmployeeRole role;
+        public static string departmentID;
     }
 }
