@@ -13,9 +13,9 @@ namespace MediaBazaarApplicationWPF
             if (StockItemDatabaseHandler.IsUnique(name))
             {
                 string stockID = StockItemDatabaseHandler.GenerateUniqueID();
-                StockItem newItem = new StockItem(name, threshold, departmentID, currentAmount, stockID);
-                StockItemDatabaseHandler.InsertIgnoreToStockItem(newItem);
-                StockItemDatabaseHandler.InsertToStock(newItem);
+                // StockItem newItem = new StockItem(name, threshold, departmentID, currentAmount, stockID);
+                // StockItemDatabaseHandler.InsertIgnoreToStockItem(newItem);
+                // StockItemDatabaseHandler.InsertToStock(newItem);
             }
             else throw new ArgumentException("Item already added");
         }

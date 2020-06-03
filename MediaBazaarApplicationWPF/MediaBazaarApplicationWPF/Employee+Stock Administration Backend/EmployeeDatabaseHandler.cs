@@ -43,7 +43,7 @@ namespace MediaBazaarApplicationWPF
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
                 using (MySqlCommand cmd = new MySqlCommand(@"UPDATE users as u INNER JOIN employees as e ON u.userID = e.userID
-                       SET u.username = @username, u.password = @password, u.salary = @salary, u.role = @role, u.department = @depID,
+                       SET u.username = @username, u.password = @password, u.salary = @salary, u.role = @role, u.departmentID = @depID,
                            e.firstName = @fName, e.lastName = @lName, e.address = @address, e.phoneNumber = @phone, e.workHours = @workHours, e.attendance = @attendance
                        WHERE u.userID = @userID", conn))
                 {

@@ -15,7 +15,7 @@ namespace MediaBazaarApplicationWPF
         private string name;
         private string address;
         List<Employee> employees;
-        // public Inventory inventory; add inventory first
+         public Inventory inventory;
         public List<Employee> Employees
         {
             get { return this.employees; }
@@ -58,7 +58,7 @@ namespace MediaBazaarApplicationWPF
             this.departmentId = departmentID;
             employees = new List<Employee>();
             employeeManager = new EmployeeManager();
-            // inventory = new Inventory(this.departmentId);
+            inventory = new Inventory(this.departmentId);
         }
 
         #endregion
@@ -90,11 +90,12 @@ namespace MediaBazaarApplicationWPF
 
         public void AssignEmployeeTo(string userID, string newDepartmentId)
         {
-            foreach (Employee e in employeeManager.GetAllEmployees(true))
+            foreach (Employee e in employees)
                 if (e.UserID == userID)
                 {
                     e.DepartmentID = newDepartmentId;
                     employeeManager.UpdateEmployee(e);
+                    employees.Remove(e);
                     break;
                 }
         }
