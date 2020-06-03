@@ -153,7 +153,9 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnHistoryLog_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(HistoryLog.ShowLog());
+            HistoryLogForm newScreen = new HistoryLogForm();
+            newScreen.Show();
+            this.Close();
         }
     }
 }
