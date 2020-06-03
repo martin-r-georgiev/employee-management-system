@@ -36,7 +36,9 @@ namespace MediaBazaarApplicationWPF.Views
 
         private void StockButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var StockView = new StockView();
+            StockView.Show();
+            this.Close();
         }
 
         private void WorkshiftsButton_Click(object sender, RoutedEventArgs e)
@@ -54,6 +56,19 @@ namespace MediaBazaarApplicationWPF.Views
         private void ManagementButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void RequestsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.RequestsButton.Content.ToString() == "Show Requests")
+            {
+                this.PanelRequests.Visibility = Visibility.Visible;
+                this.RequestsButton.Content = "Hide Requests";
+            } else
+            {
+                this.PanelRequests.Visibility = Visibility.Hidden;
+                this.RequestsButton.Content = "Show Requests";
+            }
         }
     }
 }
