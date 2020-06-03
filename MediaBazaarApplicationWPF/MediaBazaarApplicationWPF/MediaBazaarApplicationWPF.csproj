@@ -75,6 +75,9 @@
     <Compile Include="Employee+Stock Administration Backend\StockItem.cs" />
     <Compile Include="Unused\StockItemDatabaseHandler.cs" />
     <Compile Include="Unused\StockItemManager.cs" />
+    <Compile Include="UserControls\DailyWorkshift.xaml.cs">
+      <DependentUpon>DailyWorkshift.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -92,6 +95,10 @@
     <Compile Include="Views\WorkshiftsView.xaml.cs">
       <DependentUpon>WorkshiftsView.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControls\DailyWorkshift.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DashboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
