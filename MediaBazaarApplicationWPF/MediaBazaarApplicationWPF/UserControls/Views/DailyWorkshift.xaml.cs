@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaBazaarApplicationWPF.UserControls.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace MediaBazaarApplicationWPF.UserControls
         public DailyWorkshift()
         {
             InitializeComponent();
+            var ViewModel = new DailyWorkshiftViewModel();
+            DataContext = ViewModel;
         }
     }
 }

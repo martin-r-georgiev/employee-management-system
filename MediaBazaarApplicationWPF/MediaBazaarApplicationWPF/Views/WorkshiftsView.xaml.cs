@@ -22,9 +22,9 @@ namespace MediaBazaarApplicationWPF.Views
     {
         public WorkshiftsView()
         {
+            InitializeComponent();
             var ViewModel = new WorkshiftsViewModel();
             DataContext = ViewModel;
-            InitializeComponent();
         }
     }
 }

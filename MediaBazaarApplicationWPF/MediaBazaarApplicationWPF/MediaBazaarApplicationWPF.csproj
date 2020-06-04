@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Auxilary classes\ColorControls.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\OnLoginCommand.cs" />
     <Compile Include="Employee+Stock Administration Backend\Department.cs" />
@@ -75,7 +76,8 @@
     <Compile Include="Employee+Stock Administration Backend\StockItem.cs" />
     <Compile Include="Unused\StockItemDatabaseHandler.cs" />
     <Compile Include="Unused\StockItemManager.cs" />
-    <Compile Include="UserControls\DailyWorkshift.xaml.cs">
+    <Compile Include="UserControls\ViewModels\DailyWorkshiftViewModel.cs" />
+    <Compile Include="UserControls\Views\DailyWorkshift.xaml.cs">
       <DependentUpon>DailyWorkshift.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -101,7 +103,9 @@
     <Compile Include="Views\WorkshiftsView.xaml.cs">
       <DependentUpon>WorkshiftsView.xaml</DependentUpon>
     </Compile>
-    <Page Include="UserControls\DailyWorkshift.xaml">
+    <Compile Include="Workshifts Backend\IWorkshifts.cs" />
+    <Compile Include="Workshifts Backend\WorkshiftsManager.cs" />
+    <Page Include="UserControls\Views\DailyWorkshift.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MediaBazaarApplicationWPF"
              xmlns:viewmodels="clr-namespace:MediaBazaarApplicationWPF.ViewModels"
+             xmlns:ucviewmodels="clr-namespace:MediaBazaarApplicationWPF.UserControls.ViewModels"
              xmlns:views="clr-namespace:MediaBazaarApplicationWPF.Views"
+             xmlns:usercontrols="clr-namespace:MediaBazaarApplicationWPF.UserControls"
              StartupUri="Views/LoginView.xaml">
     <Application.Resources>
         <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
@@ -11,6 +13,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:WorkshiftsViewModel}">
             <views:WorkshiftsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ucviewmodels:DailyWorkshiftViewModel}">
+            <usercontrols:DailyWorkshift/>
         </DataTemplate>
     </Application.Resources>
 </Application>
