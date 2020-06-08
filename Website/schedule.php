@@ -87,7 +87,7 @@ foreach ($weekDays as $WeekDay) {
     </thead>
   <tbody>
      <tr>
-      <th scope="row">Morning</th>
+      <th scope="row" style="padding: 5px 12px 5px 12px;">Morning<br><span style="font-weight: normal; font-size: 12px;">09:00-13:00</span></th>
       <td id="Monday-Morning" class="<?php if(array_key_exists('Monday-Morning', $colored_days)) echo $colored_days["Monday-Morning"]["status"];  ?>"></td>
       <td id="Tuesday-Morning" class="<?php if(array_key_exists('Tuesday-Morning', $colored_days)) echo $colored_days["Tuesday-Morning"]["status"];  ?>" ></td>
       <td id="Wednesday-Morning" class="<?php if(array_key_exists('Wednesday-Morning', $colored_days)) echo $colored_days["Wednesday-Morning"]["status"];  ?>" ></td>
@@ -97,7 +97,7 @@ foreach ($weekDays as $WeekDay) {
       <td id="Sunday-Morning" class="<?php if(array_key_exists('Sunday-Morning', $colored_days)) echo $colored_days["Sunday-Morning"]["status"];  ?>" ></td>
     </tr>
     <tr>
-      <th scope="row">Afternoon</th>
+      <th scope="row" style="padding: 5px 12px 5px 12px;">Afternoon<br><span style="font-weight: normal; font-size: 12px;">13:00-17:00</span></th>
       <td id="Monday-Afternoon"class="<?php if(array_key_exists('Monday-Afternoon', $colored_days)) echo $colored_days["Monday-Afternoon"]["status"];  ?>" ></td>
       <td id="Tuesday-Afternoon" class="<?php if(array_key_exists('Tuesday-Afternoon', $colored_days)) echo $colored_days["Tuesday-Afternoon"]["status"];  ?>" ></td>
       <td id="Wednesday-Afternoon" class="<?php if(array_key_exists('Wednesday-Afternoon', $colored_days)) echo $colored_days["Wednesday-Afternoon"]["status"];  ?>" ></td>
@@ -107,7 +107,7 @@ foreach ($weekDays as $WeekDay) {
       <td id="Sunday-Afternoon" class="<?php if(array_key_exists('Sunday-Afternoon', $colored_days)) echo $colored_days["Sunday-Afternoon"]["status"];  ?>" ></td>
     </tr>
     <tr>
-      <th scope="row">Evening</th>
+      <th scope="row" style="padding: 5px 12px 5px 12px;">Evening<br><span style="font-weight: normal; font-size: 12px;">17:00-21:00</span></th>
       <td id="Monday-Evening" class="<?php if(array_key_exists('Monday-Evening', $colored_days)) echo $colored_days["Monday-Evening"]["status"];  ?>" ></td>
       <td id="Tuesday-Evening" class="<?php if(array_key_exists('Tuesday-Evening', $colored_days)) echo $colored_days["Tuesday-Evening"]["status"];  ?>" ></td>
       <td id="Wednesday-Evening" class="<?php if(array_key_exists('Wednesday-Evening', $colored_days)) echo $colored_days["Wednesday-Evening"]["status"];  ?>" ></td>
