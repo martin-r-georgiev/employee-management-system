@@ -66,7 +66,7 @@ namespace MediaBazaarApplicationWPF
 
         public override string ToString()
         {
-            return $"Department {this.Name} on {this.Address} - {this.employees.Count} Workers.";
+            return $"Department {this.Name} on {this.Address}";
         }
 
         public Employee GetEmployee(string userID)

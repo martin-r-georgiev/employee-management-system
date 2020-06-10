@@ -115,7 +115,14 @@ namespace MediaBazaarApplicationWPF
                 else throw new ArgumentException("Invalid last name has been parsed to employee class. Given value cannot contain digits.");
             }
         }
-
+        public string FirstLastName { 
+            get 
+            {
+                if (!String.IsNullOrWhiteSpace(FirstName) && !String.IsNullOrWhiteSpace(LastName))
+                    return $"{FirstName} {LastName}";
+                else return "";
+            }
+        }
         public string Name
         {
             get
@@ -179,6 +186,13 @@ namespace MediaBazaarApplicationWPF
                 if(value < DateTime.Now) this.dateofBirth = value;
                 else throw new ArgumentException("Invalid birth date has been parsed to employee class. Given value is a future point in time.");
             }
+        }
+
+        public string FullName
+        { 
+            get { if (string.IsNullOrWhiteSpace(this.FirstName) && string.IsNullOrWhiteSpace(this.LastName)) return this.Username;
+                else return $"{this.FirstName} {this.LastName} ({this.Username})";
+            } 
         }
 
         public bool? Sex

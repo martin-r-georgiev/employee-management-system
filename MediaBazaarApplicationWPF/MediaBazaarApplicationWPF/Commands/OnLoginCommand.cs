@@ -26,7 +26,7 @@ namespace MediaBazaarApplicationWPF.Commands
                 {
                     try
                     {
-                        using (MySqlCommand cmd = new MySqlCommand($"SELECT userID, username, password, role FROM users WHERE username=@username AND password=@password", conn))
+                        using (MySqlCommand cmd = new MySqlCommand($"SELECT userID, username, password, role, departmentID FROM users WHERE username=@username AND password=@password", conn))
                         {
                             cmd.Parameters.AddWithValue("@username", viewModel.Username);
                             cmd.Parameters.AddWithValue("@password", HashManager.GetSha256(viewModel.Password));
@@ -36,6 +36,7 @@ namespace MediaBazaarApplicationWPF.Commands
                             {
                                 LoggedInUser.userID = dataReader.GetString(0);
                                 LoggedInUser.role = (EmployeeRole)dataReader.GetInt16(3);
+                                LoggedInUser.departmentID = dataReader.GetString(4);
                                 //Opening dashboard on successful login
                                 //Most likely bad practice. Might be changed in future version of the app
                                 var newWindow = new DashboardView();

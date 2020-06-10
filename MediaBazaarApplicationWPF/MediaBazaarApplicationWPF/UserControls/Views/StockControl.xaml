@@ -23,16 +23,16 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Background="Aqua"/>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Background="Blue"/>
         <!-- Row 1-->
-        <Label x:Name="ItemName" Grid.Row="1" Grid.Column="1"  Content="Iphone 6" VerticalAlignment="Top" FontWeight="Bold" FontSize="13" Margin="0" Padding="5,5,5,3" />
-        <TextBlock x:Name="tbQuantity"  Grid.Row="1" Grid.Column="2" Width="25" HorizontalAlignment="Left" Visibility="Hidden" FontWeight="Bold"/>
-        <Label x:Name="lblQuantity" Content="15" Grid.Row="1" Grid.Column="2" Width="25" HorizontalAlignment="Left" FontWeight="Bold"/>
-        <Button x:Name="btnIncrease" Content="+" Grid.Column="3" Grid.Row="1" Margin="3"  Width="25" Background="Aqua" BorderBrush="Blue"/>
+        <Label x:Name="lblItemName" Grid.Row="1" Grid.Column="1"  Content="Iphone 6" VerticalAlignment="Top" FontWeight="Bold" FontSize="13" Margin="0" Padding="5,5,5,3" />
+        <TextBox x:Name="tbQuantity"  Grid.Row="1" Grid.Column="2" Width="25" HorizontalAlignment="Left" Visibility="Hidden" FontWeight="Bold" KeyDown="tbQuantity_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="lblQuantity" Content="15" Grid.Row="1" Grid.Column="2" Width="25" HorizontalAlignment="Left" FontWeight="Bold" MouseDoubleClick="lblQuantity_MouseDoubleClick" Background="White"/>
+        <Button x:Name="btnIncrease" Content="+" Grid.Column="3" Grid.Row="1" Margin="3"  Width="25" Background="Aqua" BorderBrush="Blue" Click="btnIncrease_Click"/>
 
         <!-- Row 2 -->
         <Label x:Name="DptName" Content="Computers" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Padding="10 0" FontStyle="Italic"/>
-        <TextBlock x:Name="tbThreshold"  Grid.Row="2" Grid.Column="2" Width="25" HorizontalAlignment="Center" Visibility="Hidden"/>
-        <Label x:Name="lblThreshold" Content="5" Grid.Row="2" Grid.Column="2" Width="25" HorizontalAlignment="Center"/>
-        <Button x:Name="btnDecrease" Content="-" Grid.Column="3" Grid.Row="2" Margin="3"  Width="25" Background="Aqua" BorderBrush="Blue"/>
+        <TextBox x:Name="tbThreshold"  Grid.Row="2" Grid.Column="2" Width="25" HorizontalAlignment="Center" Visibility="Hidden" KeyDown="tbThreshold_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="lblThreshold" Content="5" Grid.Row="2" Grid.Column="2" Width="25" HorizontalAlignment="Center" MouseDoubleClick="lblThreshold_MouseDoubleClick"/>
+        <Button x:Name="btnDecrease" Content="-" Grid.Column="3" Grid.Row="2" Margin="3"  Width="25" Background="Aqua" BorderBrush="Blue" Click="btnDecrease_Click"/>
 
         <!-- Row 3-->
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="Blue"/>

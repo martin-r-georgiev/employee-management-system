@@ -261,7 +261,7 @@
             // 
             // btnStatistics
             // 
-            this.btnStatistics.Location = new System.Drawing.Point(334, 11);
+            this.btnStatistics.Location = new System.Drawing.Point(335, 12);
             this.btnStatistics.Name = "btnStatistics";
             this.btnStatistics.Size = new System.Drawing.Size(128, 20);
             this.btnStatistics.TabIndex = 6;
@@ -294,9 +294,9 @@
             // 
             // btnHistoryLog
             // 
-            this.btnHistoryLog.Location = new System.Drawing.Point(201, 11);
+            this.btnHistoryLog.Location = new System.Drawing.Point(210, 12);
             this.btnHistoryLog.Name = "btnHistoryLog";
-            this.btnHistoryLog.Size = new System.Drawing.Size(128, 20);
+            this.btnHistoryLog.Size = new System.Drawing.Size(117, 20);
             this.btnHistoryLog.TabIndex = 11;
             this.btnHistoryLog.Text = "Show History Log";
             this.btnHistoryLog.UseVisualStyleBackColor = true;
@@ -319,6 +319,7 @@
             this.Name = "EmployeeListing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeeListing";
+            this.Load += new System.EventHandler(this.EmployeeListing_Load);
             this.Click += new System.EventHandler(this.EmployeeListing_Click);
             this.panel4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
