@@ -74,9 +74,9 @@
             this.panelSidebar.Controls.Add(this.lblLetter);
             this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSidebar.Location = new System.Drawing.Point(0, 0);
-            this.panelSidebar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelSidebar.Margin = new System.Windows.Forms.Padding(2);
             this.panelSidebar.Name = "panelSidebar";
-            this.panelSidebar.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelSidebar.Padding = new System.Windows.Forms.Padding(2);
             this.panelSidebar.Size = new System.Drawing.Size(24, 41);
             this.panelSidebar.TabIndex = 2;
             // 
@@ -103,7 +103,7 @@
             this.panelContent.Controls.Add(this.lblDepartment);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(24, 0);
-            this.panelContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelContent.Margin = new System.Windows.Forms.Padding(2);
             this.panelContent.MinimumSize = new System.Drawing.Size(285, 43);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(286, 43);

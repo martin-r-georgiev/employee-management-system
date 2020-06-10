@@ -75,18 +75,26 @@
     <Compile Include="Exceptions\MinimalEmployeesException.cs" />
     <Compile Include="Auxilary classes\SQLConnectionHandler.cs" />
     <Compile Include="Employee+Stock Administration Backend\StockItem.cs" />
+    <Compile Include="UserControls\Views\EmployeeControl.xaml.cs">
+      <DependentUpon>EmployeeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\EmployeeListingViewModel.cs" />
+    <Compile Include="ViewModels\StockViewModel.cs" />
     <Compile Include="Unused\StockItemDatabaseHandler.cs" />
     <Compile Include="Unused\StockItemManager.cs" />
     <Compile Include="UserControls\ViewModels\DailyWorkshiftViewModel.cs" />
     <Compile Include="UserControls\Views\DailyWorkshift.xaml.cs">
       <DependentUpon>DailyWorkshift.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="UserControls\ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\WorkshiftsViewModel.cs" />
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeeListingView.xaml.cs">
+      <DependentUpon>EmployeeListingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -95,9 +103,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\StockControl.xaml.cs">
+    <Compile Include="UserControls\Views\StockControl.xaml.cs">
       <DependentUpon>StockControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\RestockCommand.cs" />
     <Compile Include="Views\StockView.xaml.cs">
       <DependentUpon>StockView.xaml</DependentUpon>
     </Compile>
@@ -112,7 +121,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Views\EmployeeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeListingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,7 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StockControl.xaml">
+    <Page Include="UserControls\Views\StockControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,6 +178,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="170x200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\170x200.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -52,10 +52,11 @@ namespace MediaBazaarApplicationWPF
             {
                 using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET threshold = @threshold WHERE stockID=@stockID", conn))
+                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET threshold = @threshold WHERE stockID=@stockID AND departmentID=@departmentID", conn))
                     {
                         cmd.Parameters.AddWithValue("@threshold", value);
                         cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                        cmd.Parameters.AddWithValue("@departmentID", this.departmentID);
                         cmd.ExecuteNonQuery();
                         cmd.Dispose();
                     }
@@ -72,10 +73,11 @@ namespace MediaBazaarApplicationWPF
             {
                 using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET currentAmount = @currentAmount WHERE stockID=@stockID", conn))
+                    using (MySqlCommand cmd = new MySqlCommand($"UPDATE stock SET currentAmount = @currentAmount WHERE stockID=@stockID AND departmentID=@departmentID", conn))
                     {
                         cmd.Parameters.AddWithValue("@currentAmount", value);
                         cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                        cmd.Parameters.AddWithValue("@departmentID", this.departmentID);
                         cmd.ExecuteNonQuery();
                         cmd.Dispose();
                     }

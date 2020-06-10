@@ -17,7 +17,8 @@ namespace MediaBazaarApplicationWPF
                 string depID = DepartmentDatabaseHandler.GenerateUniqueID();
                 newDep = new Department(name, address, depID);
                 DepartmentDatabaseHandler.InsertToDB(newDep);
-            } catch(Exception ex) { MessageBox.Show($"Failed to create Department. Reason: {ex.Message}"); }
+            }
+            catch (Exception ex) { MessageBox.Show($"Failed to create Department. Reason: {ex.Message}"); }
         }
 
         public static Department GetDepartment(string departmentId, bool needFullData)
@@ -46,6 +47,12 @@ namespace MediaBazaarApplicationWPF
         {
             DepartmentDatabaseHandler.UpdateDepartmentData(departmentID, newName, newAddress);
         }
-        public static List<Department> GetAllDepartments() => DepartmentDatabaseHandler.GetAllDepartments();
+        public static List<Department> GetAllDepartments(bool needFullInformation)
+        {
+            if (needFullInformation)
+                return DepartmentDatabaseHandler.GetAllDepartments();
+            else
+                return DepartmentDatabaseHandler.GetAllDepartmentsMinimalInformation();
+        }
     }
 }

@@ -50,7 +50,9 @@ namespace MediaBazaarApplicationWPF.Views
 
         private void StatisticsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var EmployeeListingView = new EmployeeListingView();
+            EmployeeListingView.Show();
+            this.Close();
         }
 
         private void ManagementButton_Click(object sender, RoutedEventArgs e)

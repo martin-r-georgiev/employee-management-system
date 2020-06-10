@@ -209,7 +209,25 @@ namespace MediaBazaarApplicationWPF
             }
             return allDepartments;
         }
-
+        public static List<Department> GetAllDepartmentsMinimalInformation()
+        {
+            List<Department> allDepartments = new List<Department>();
+            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT departmentID FROM department", con))
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        allDepartments.Add(DepartmentManager.GetDepartment(dataReader.GetString(0), false));
+                    }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                con.Close();
+            }
+            return allDepartments;
+        }
         public static void UpdateDepartmentData(string departmentID, string newName, string newAddress)
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
