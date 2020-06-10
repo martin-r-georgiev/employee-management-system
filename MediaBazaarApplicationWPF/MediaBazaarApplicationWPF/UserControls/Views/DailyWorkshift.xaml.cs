@@ -21,11 +21,13 @@ namespace MediaBazaarApplicationWPF.UserControls
     /// </summary>
     public partial class DailyWorkshift : UserControl
     {
-        public DailyWorkshift()
+        public DailyWorkshift(Employee employee, DateTime date)
         {
             InitializeComponent();
-            var ViewModel = new DailyWorkshiftViewModel();
-            DataContext = ViewModel;
+            //var ViewModel = new DailyWorkshiftViewModel(employee, date);
+            //DataContext = ViewModel;
+
+            //ViewModel.ToggleHeaderVisibility();
         }
     }
 }

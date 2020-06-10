@@ -7,6 +7,7 @@
         xmlns:userControls="clr-namespace:MediaBazaarApplicationWPF.UserControls"
         mc:Ignorable="d"
         Title="WorkshiftsView" Height="450" Width="1000">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -23,8 +24,8 @@
         
         <!--<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Test}"/>-->
 
-        <ScrollViewer Grid.Row="1" Grid.Column="1">
-            <ItemsControl ItemsSource="{Binding DailyWorkshiftList}">
+        <ScrollViewer Grid.Row="1" Grid.Column="1" MinHeight="400">
+            <ItemsControl ItemsSource="{Binding Path=DailyWorkshiftList}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel x:Name="workshiftsPanel" Orientation="Vertical"/>

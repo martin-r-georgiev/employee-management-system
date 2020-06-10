@@ -30,15 +30,21 @@ namespace MediaBazaarApplicationWPF.ViewModels
             //Model database
             DailyWorkshiftList.Clear();
 
-            //Header Row
-            var headerControl = new DailyWorkshiftViewModel();
-            headerControl.ToggleHeaderVisibility();
-            DailyWorkshiftList.Add(headerControl);
+            ObservableCollection<DailyWorkshiftViewModel> retrievedList = WorkshiftDatabaseHandler.GetEmployees(new DateTime(2020, 6, 10), LoggedInUser.departmentID);
 
-            for (int i = 0; i < 10; i++)
+            foreach(DailyWorkshiftViewModel item in retrievedList)
             {
-                var newControl = new DailyWorkshiftViewModel();
-                DailyWorkshiftList.Add(newControl);
+                DailyWorkshiftList.Add(item);
+            }
+
+            //Header Row
+            //var headerControl = new DailyWorkshiftViewModel();
+            //headerControl.ToggleHeaderVisibility();
+            //DailyWorkshiftList.Add(headerControl);
+
+            for (int i = 0; i < 3; i++)
+            {
+                //DailyWorkshiftList.Add(new DailyWorkshiftViewModel());
             }
         }
     }

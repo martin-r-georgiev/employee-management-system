@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Auxilary classes\ColorControls.cs" />
+    <Compile Include="Auxilary classes\DateTimeControls.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\OnLoginCommand.cs" />
     <Compile Include="Employee+Stock Administration Backend\Department.cs" />
@@ -104,6 +105,8 @@
       <DependentUpon>WorkshiftsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Workshifts Backend\IWorkshifts.cs" />
+    <Compile Include="Workshifts Backend\WorkshiftDatabaseHandler.cs" />
+    <Compile Include="Workshifts Backend\WorkshiftFilters.cs" />
     <Compile Include="Workshifts Backend\WorkshiftsManager.cs" />
     <Page Include="UserControls\Views\DailyWorkshift.xaml">
       <SubType>Designer</SubType>

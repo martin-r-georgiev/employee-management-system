@@ -39,7 +39,7 @@ namespace MediaBazaarApplicationWPF
             get { return this._selectedWorkshiftIndex; }
             set
             {
-                if (value >= 0 && value <= 2) this._selectedWorkshiftIndex = value;
+                if ((value >= 0 && value <= 2) || value == null) this._selectedWorkshiftIndex = value;
                 else throw new IndexOutOfRangeException("Workshifts: Selected workshift index is out of range.");
             }
         }
