@@ -32,14 +32,14 @@
         
         <!-- Row 1 -->
         <Button x:Name="BtnBack" Content="Back" Grid.Row="1" Grid.Column="1" Margin="5" Click="BtnBack_Click"/>
-        <Button x:Name="BtnHistory" Content="History" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Margin="5"/>
+        <Button x:Name="BtnHistory" Content="History" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Margin="5" Click="BtnHistory_Click"/>
         <Button x:Name="BtnStatistics" Content="Statistics" Grid.Row="1" Grid.Column="5" Margin="5"/>
         <ComboBox x:Name="CbDepartments" Grid.Row="1" Grid.Column="6" Margin="5" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDepartment}" 
                   Visibility="{Binding CbDepartmentsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
         <TextBox x:Name="tbSearch" Grid.Row="1" Grid.Column="7" Margin="5"  Text="{Binding Path=SearchContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
         <!-- Row 2 -->
-        <Image x:Name="imgEmployee" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Source="170x200.png" Stretch="Fill" Margin="10 0"/>
+        <Image x:Name="imgEmployee" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Source="{Binding PicURL}" Stretch="Fill" Margin="10 0"/>
 
         <Border Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" BorderBrush="Aqua" BorderThickness="2" Margin="5">
             <DockPanel  VerticalAlignment="Center">
@@ -72,7 +72,7 @@
                 <TextBlock Text="{Binding SelectedEmployee.Role, StringFormat=Role: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
                 <TextBlock Text="{Binding SelectedEmployee.Attendance, StringFormat=Attendance: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
                 <TextBlock Text="{Binding SelectedEmployee.SalaryHourlyRate, StringFormat=Salary: {0}/hr}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
-                <TextBlock Text="Working since: " DockPanel.Dock="Top" FontSize="15" Margin="7"/>
+                <TextBlock Text="{Binding WorkingSince}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
             </DockPanel>            
         </Border>
     </Grid>

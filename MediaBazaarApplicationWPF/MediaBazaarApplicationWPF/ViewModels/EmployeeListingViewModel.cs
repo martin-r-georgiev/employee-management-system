@@ -21,11 +21,16 @@ namespace MediaBazaarApplicationWPF.ViewModels
         {
             get { return _selectedEmployee; }
             set { _selectedEmployee = value;
+
                 if (SelectedEmployee.DateOfBirth == null) SelectedEmpAge = "Unknown";
                 else SelectedEmpAge = $"{DateTime.Today.Year - SelectedEmployee.DateOfBirth.Value.Year}";
+
                 if (SelectedEmployee.Sex == null) Gender = "Unknown";
                 else if ((bool)SelectedEmployee.Sex) Gender = "Female";
                 else Gender = "Male";
+
+                WorkingSince = EmployeeManager.CalculateWorkingSince(SelectedEmployee);
+                PicURL = EmployeeManager.GetPictureURL(SelectedEmployee.UserID);
                 OnPropertyChanged();
             }
         }
@@ -39,6 +44,25 @@ namespace MediaBazaarApplicationWPF.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private string workingSince;
+
+        public string WorkingSince
+        {
+            get { return workingSince; }
+            set { workingSince = value; OnPropertyChanged(); }
+        }
+
+
+        private string picURL;
+
+        public string PicURL
+        {
+            get { return picURL; }
+            set { picURL = value; OnPropertyChanged(); }
+        }
+
+
         private string gender;
 
         public string Gender
@@ -134,31 +158,6 @@ namespace MediaBazaarApplicationWPF.ViewModels
             employee.DepartmentName = departmentName;
             SelectedEmployee = employee;
             
-            //lblEmployeeAttendance;
-            //pbxAvatar.Load($"{selectedEmployee.GetPictureURL()}");
-            //lblEmployeeRole.Text = $"Role: {selectedEmployee.Role}";
-            //lblEmployeeSalary.Text = $"Salary: ${selectedEmployee.SalaryHourlyRate}/hr";
-            //lblEmployeeWorkingSince.Text = Employee.CalculateWorkingSince(selectedEmployee);
-            //lblEmployeeDepartment.Text = "Department: " + new Department(selectedEmployee.DepartmentID, false).Name;
-
-            //int age = DateTime.Today.Year - selectedEmployee.DateOfBirth.Year;
-            //if (age > 100) lblEmployeeAge.Text = $"Age: Unknown";
-            //else lblEmployeeAge.Text = $"Age: {age}";
-
-
-            //if (selectedEmployee.Sex == null) lblEmployeeGender.Text = "Gender: Unknown";
-            //else
-            //{
-            //    if (selectedEmployee.Sex) lblEmployeeGender.Text = $"Gender: Female";
-            //    else lblEmployeeGender.Text = $"Gender: Male";
-            //}
-            //lblEmployeeEmail.Text = String.IsNullOrEmpty(selectedEmployee.Email) ? "E-mail: Unknown" : $"E-mail: {selectedEmployee.Email}";
-            //lblEmployeeAddress.Text = String.IsNullOrEmpty(selectedEmployee.Address) ? "Address: Unknown" : $"Address: {selectedEmployee.Address}";
-            //lblEmployeeName.Text = String.IsNullOrEmpty(selectedEmployee.FirstName) ? "Name: Unknown" : $"Name: {selectedEmployee.FirstName} {selectedEmployee.LastName}";
-            //lblEmployeeNationality.Text = String.IsNullOrEmpty(selectedEmployee.Nationality) ? "Nationality: Unknown" : $"Nationality: {selectedEmployee.Nationality}";
-            //lblEmployeePhone.Text = String.IsNullOrEmpty(selectedEmployee.PhoneNumber) ? "Phone: Unknown" : $"Phone: {selectedEmployee.PhoneNumber}";
-
-            //lblEmployeeAttendance.Text = $"Attendance: {selectedEmployee.Attendance:F2}%";
         }
     }
 }

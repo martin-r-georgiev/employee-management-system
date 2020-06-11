@@ -33,5 +33,11 @@ namespace MediaBazaarApplicationWPF.Views
             DashboardView.Show();
             this.Close();
         }
+
+        private void BtnHistory_Click(object sender, RoutedEventArgs e)
+        {
+            var HistoryLogView = new HistoryLogView();
+            HistoryLogView.Show();
+        }
     }
 }

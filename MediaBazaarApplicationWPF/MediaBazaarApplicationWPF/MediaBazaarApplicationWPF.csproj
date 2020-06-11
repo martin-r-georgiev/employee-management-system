@@ -75,10 +75,15 @@
     <Compile Include="Exceptions\MinimalEmployeesException.cs" />
     <Compile Include="Auxilary classes\SQLConnectionHandler.cs" />
     <Compile Include="Employee+Stock Administration Backend\StockItem.cs" />
+    <Compile Include="HistoryLog.cs" />
     <Compile Include="UserControls\Views\EmployeeControl.xaml.cs">
       <DependentUpon>EmployeeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Views\HistoryLogControl.xaml.cs">
+      <DependentUpon>HistoryLogControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\EmployeeListingViewModel.cs" />
+    <Compile Include="ViewModels\HistoryLogViewModel.cs" />
     <Compile Include="ViewModels\StockViewModel.cs" />
     <Compile Include="Unused\StockItemDatabaseHandler.cs" />
     <Compile Include="Unused\StockItemManager.cs" />
@@ -94,6 +99,9 @@
     </Compile>
     <Compile Include="Views\EmployeeListingView.xaml.cs">
       <DependentUpon>EmployeeListingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HistoryLogView.xaml.cs">
+      <DependentUpon>HistoryLogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -124,11 +132,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Views\HistoryLogControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DashboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EmployeeListingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HistoryLogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
