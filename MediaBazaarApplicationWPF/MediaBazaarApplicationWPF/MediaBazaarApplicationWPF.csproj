@@ -82,11 +82,10 @@
     <Compile Include="ViewModels\StockViewModel.cs" />
     <Compile Include="Unused\StockItemDatabaseHandler.cs" />
     <Compile Include="Unused\StockItemManager.cs" />
-    <Compile Include="UserControls\ViewModels\DailyWorkshiftViewModel.cs" />
     <Compile Include="UserControls\Views\DailyWorkshift.xaml.cs">
       <DependentUpon>DailyWorkshift.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\WorkshiftsViewModel.cs" />

@@ -45,7 +45,7 @@ namespace MediaBazaarApplicationWPF.Views
         {
             var WorkshiftsView = new WorkshiftsView();
             WorkshiftsView.Show();
-            //this.Close();
+            this.Close();
         }
 
         private void StatisticsButton_Click(object sender, RoutedEventArgs e)

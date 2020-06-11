@@ -264,6 +264,24 @@ namespace MediaBazaarApplicationWPF
             return userID;
         }
 
+        public static string GetPictureURL(string userIdentifier)
+        {
+            string picture = "http://placehold.it/150";
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT picture FROM employees WHERE userID=@userID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userID", userIdentifier);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read()) { picture = dataReader.GetString(0); }
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                conn.Close();
+            }
+            return picture;
+        }
+
         private static string GenerateUserID()
         {
             Guid key = Guid.NewGuid();

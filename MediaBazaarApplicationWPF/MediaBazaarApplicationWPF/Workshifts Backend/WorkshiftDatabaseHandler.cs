@@ -1,4 +1,4 @@
-﻿using MediaBazaarApplicationWPF.UserControls.ViewModels;
+﻿using MediaBazaarApplicationWPF.UserControls;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -108,13 +108,13 @@ namespace MediaBazaarApplicationWPF
             }
         }
 
-        public static ObservableCollection<DailyWorkshiftViewModel> GetEmployees(DateTime date, string departmentID)
+        public static ObservableCollection<DailyWorkshift> GetEmployees(DateTime date, string departmentID)
         {
-            ObservableCollection<DailyWorkshiftViewModel> items = new ObservableCollection<DailyWorkshiftViewModel>();
+            ObservableCollection<DailyWorkshift> items = new ObservableCollection<DailyWorkshift>();
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                //try
-                //{
+                try
+                {
                     using (MySqlCommand cmd = new MySqlCommand($"SELECT w.userID, w.workshift, w.status FROM workshifts as w INNER JOIN users as u ON w.userID = u.userID WHERE date=@date AND u.departmentID = @department", conn))
                     {
                         cmd.Parameters.AddWithValue("@date", date.Date);
@@ -136,7 +136,7 @@ namespace MediaBazaarApplicationWPF
 
                                 if (addEmployee)
                                 {
-                                    DailyWorkshiftViewModel newUnit = new DailyWorkshiftViewModel(newEmployee, date);
+                                    DailyWorkshift newUnit = new DailyWorkshift(newEmployee, date);
                                     newUnit.SetStatus(dataReader.GetInt16(2), dataReader.GetInt16(1));
                                     items.Add(newUnit);
                                 }
@@ -147,13 +147,13 @@ namespace MediaBazaarApplicationWPF
                         cmd.Dispose();
                     }
                     conn.Close();
-                //}
-                //catch (Exception ex)
-                //{
-                //    Console.WriteLine(ex.Message);
-                //    //LoginScreen.logger.Log($"[WorkshiftDatabaseHandler] The application encountered an issue when trying to get data from database:\n{ex.Message}", LoggingLevels.ERROR);
-                //    conn.Close();
-                //}
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    //LoginScreen.logger.Log($"[WorkshiftDatabaseHandler] The application encountered an issue when trying to get data from database:\n{ex.Message}", LoggingLevels.ERROR);
+                    conn.Close();
+                }
             }
             return items;
         }

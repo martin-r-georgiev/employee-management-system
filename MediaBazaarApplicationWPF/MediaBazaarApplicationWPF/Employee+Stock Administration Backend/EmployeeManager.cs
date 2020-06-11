@@ -69,6 +69,39 @@ namespace MediaBazaarApplicationWPF
 
         public Employee GetEmployee(string userIdentifier, bool needFullDetails) => EmployeeDatabaseHandler.GetEmployee(userIdentifier, needFullDetails);
         public List<Employee> GetAllEmployees(bool needFullDetails) => EmployeeDatabaseHandler.GetAllEmployees(needFullDetails);
+
+        public static string CalculateWorkingSince(Employee selectedEmployee)
+        {
+            string s = "";
+            if (selectedEmployee.StartDate.HasValue)
+            {
+                int workingSince = DateTime.Today.Year - selectedEmployee.StartDate.Value.Year;
+                if (workingSince > 0)
+                {
+                    s = $"Working since: {workingSince} years";
+                    if (workingSince == 1) s.Replace("years", "year");
+                }
+                else
+                {
+                    workingSince = DateTime.Today.Month - selectedEmployee.StartDate.Value.Month;
+                    if (workingSince > 0)
+                    {
+                        s = $"Working since: {workingSince} months";
+                        if (workingSince == 1) s.Replace("months", "month");
+                    }
+                    else
+                    {
+                        workingSince = DateTime.Today.Day - selectedEmployee.StartDate.Value.Day;
+                        s = $"Working since: {workingSince} days";
+                        if (workingSince == 1) s.Replace("days", "day");
+                    }
+                }
+            }
+            else s = $"Working since: Unknown";
+            return s;
+        }
+
+        public static string GetPictureURL(string userIdentifier) => EmployeeDatabaseHandler.GetPictureURL(userIdentifier);
         #endregion
     }
 }

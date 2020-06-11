@@ -1,5 +1,4 @@
-﻿using MediaBazaarApplicationWPF.UserControls.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,13 +20,26 @@ namespace MediaBazaarApplicationWPF.UserControls
     /// </summary>
     public partial class DailyWorkshift : UserControl
     {
+        private WorkshiftsManager manager;
+        private Employee employee;
+
+        public Employee Employee => this.employee;
+
         public DailyWorkshift(Employee employee, DateTime date)
         {
             InitializeComponent();
-            //var ViewModel = new DailyWorkshiftViewModel(employee, date);
-            //DataContext = ViewModel;
+            this.employee = employee;
+            manager = new WorkshiftsManager(date, Employee.UserID);
+            manager.SetWorkshiftPanels(workshiftOneCell, workshiftTwoCell, workshiftThreeCell);
 
-            //ViewModel.ToggleHeaderVisibility();
+            this.lblEmployeeName.Text = Employee.FullName;
         }
+
+        public void ShowHeader()
+        {
+            this.headerRow.Height = new GridLength(0, GridUnitType.Auto);
+        }
+
+        public void SetStatus(int status, int index) { manager.SetStatus(status, index); }
     }
 }

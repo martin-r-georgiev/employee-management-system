@@ -26,5 +26,12 @@ namespace MediaBazaarApplicationWPF.Views
             var ViewModel = new WorkshiftsViewModel();
             DataContext = ViewModel;
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new DashboardView();
+            newWindow.Show();
+            this.Close();
+        }
     }
 }
