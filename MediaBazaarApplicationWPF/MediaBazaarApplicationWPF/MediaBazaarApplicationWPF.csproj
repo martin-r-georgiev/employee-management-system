@@ -58,7 +58,10 @@
     </ApplicationDefinition>
     <Compile Include="Auxilary classes\ColorControls.cs" />
     <Compile Include="Auxilary classes\DateTimeControls.cs" />
+    <Compile Include="CheckIn.cs" />
+    <Compile Include="Commands\CheckInCommand.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Commands\NotificationsCommand.cs" />
     <Compile Include="Commands\OnLoginCommand.cs" />
     <Compile Include="Employee+Stock Administration Backend\Department.cs" />
     <Compile Include="Employee+Stock Administration Backend\DepartmentDatabaseHandler.cs" />
@@ -67,6 +70,7 @@
     <Compile Include="Employee+Stock Administration Backend\EmployeeDatabaseHandler.cs" />
     <Compile Include="Employee+Stock Administration Backend\EmployeeManager.cs" />
     <Compile Include="Auxilary classes\HashManager.cs" />
+    <Compile Include="Models\EmployeeAtWorkModel.cs" />
     <Compile Include="Exceptions\InvalidEntryException.cs" />
     <Compile Include="Employee+Stock Administration Backend\Inventory.cs" />
     <Compile Include="Auxilary classes\LoggedInUser.cs" />
@@ -75,12 +79,16 @@
     <Compile Include="Exceptions\MinimalEmployeesException.cs" />
     <Compile Include="Auxilary classes\SQLConnectionHandler.cs" />
     <Compile Include="Employee+Stock Administration Backend\StockItem.cs" />
-    <Compile Include="HistoryLog.cs" />
+    <Compile Include="Employee+Stock Administration Backend\HistoryLog.cs" />
+    <Compile Include="RescheduleNotification.cs" />
     <Compile Include="UserControls\Views\EmployeeControl.xaml.cs">
       <DependentUpon>EmployeeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Views\HistoryLogControl.xaml.cs">
       <DependentUpon>HistoryLogControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Views\NotificationsControlView.xaml.cs">
+      <DependentUpon>NotificationsControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\EmployeeListingViewModel.cs" />
     <Compile Include="ViewModels\HistoryLogViewModel.cs" />
@@ -114,6 +122,9 @@
       <DependentUpon>StockControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\RestockCommand.cs" />
+    <Compile Include="Views\StatisticsView.xaml.cs">
+      <DependentUpon>StatisticsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StockView.xaml.cs">
       <DependentUpon>StockView.xaml</DependentUpon>
     </Compile>
@@ -136,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Views\NotificationsControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DashboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Views\StockControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatisticsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,9 +210,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="170x200.png" />
   </ItemGroup>

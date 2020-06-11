@@ -138,7 +138,7 @@ namespace MediaBazaarApplicationWPF
                         string startDate = Convert.ToDateTime(dataReader["startDate"]).ToString("yyyy-MM-dd");
                         string endDate;
                         if (dataReader["endDate"].ToString() == "")
-                            endDate = "the present";
+                            endDate = "Now";
                         else
                             endDate = Convert.ToDateTime(dataReader["endDate"]).ToString("yyyy-MM-dd");
 

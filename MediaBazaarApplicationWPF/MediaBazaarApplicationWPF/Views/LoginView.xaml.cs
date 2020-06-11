@@ -32,7 +32,7 @@ namespace MediaBazaarApplicationWPF.Views
 
         private void TestLogin_Click(object sender, RoutedEventArgs e)
         {
-            LoggedInUser.role = EmployeeRole.Admin;
+            LoggedInUser.role = EmployeeRole.Owner;
             LoggedInUser.userID = "AHrsSBGtkCE9kwraDlC5g";
             LoggedInUser.departmentID = "ebcpNLREqnrQjWbkrNNA";
             var newWindow = new DashboardView();

@@ -60,17 +60,6 @@ namespace MediaBazaarApplicationWPF.Views
 
         }
 
-        private void RequestsButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.RequestsButton.Content.ToString() == "Show Requests")
-            {
-                this.PanelRequests.Visibility = Visibility.Visible;
-                this.RequestsButton.Content = "Hide Requests";
-            } else
-            {
-                this.PanelRequests.Visibility = Visibility.Hidden;
-                this.RequestsButton.Content = "Show Requests";
-            }
-        }
+
     }
 }
