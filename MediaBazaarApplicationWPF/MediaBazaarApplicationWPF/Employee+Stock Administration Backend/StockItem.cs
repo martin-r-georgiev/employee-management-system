@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediaBazaarApplicationWPF
 {
@@ -172,23 +173,24 @@ namespace MediaBazaarApplicationWPF
 
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT s.threshold, s.currentAmount, i.name FROM stock as s INNER JOIN stock_item as i ON i.stockID = s.stockID WHERE s.departmentID=@departmentID AND s.stockID=@stockID", conn))
-                {
-                    cmd.Parameters.AddWithValue("@departmentID", this.departmentID);
-                    cmd.Parameters.AddWithValue("@stockID", this.stockID);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-                    if (dataReader.Read())
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT s.threshold, s.currentAmount, i.name FROM stock as s INNER JOIN stock_item as i ON i.stockID = s.stockID WHERE s.departmentID=@departmentID AND s.stockID=@stockID", conn))
                     {
-                        this.threshold = dataReader.GetInt32(0);
-                        this.currentAmount = dataReader.GetInt32(1);
-                        this.name = dataReader.GetString(2);
+                        cmd.Parameters.AddWithValue("@departmentID", this.departmentID);
+                        cmd.Parameters.AddWithValue("@stockID", this.stockID);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+                        if (dataReader.Read())
+                        {
+                            this.threshold = dataReader.GetInt32(0);
+                            this.currentAmount = dataReader.GetInt32(1);
+                            this.name = dataReader.GetString(2);
+                        }
+                        cmd.Dispose();
+                        dataReader.Close();
                     }
-                    cmd.Dispose();
-                    dataReader.Close();
-                }
                 conn.Close();
             }
         }
+
 
         public StockItem(string name)
         {

@@ -5,8 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
         mc:Ignorable="d"
-        Title="StatisticsView" Height="450" Width="800">
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:winformchart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        Title="StatisticsView" Height="750" Width="1200" MinHeight="400" MinWidth="500">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
         
+        <lvc:CartesianChart   Grid.Row="1" Grid.Column="1"  Margin="5"> 
+                <lvc:CartesianChart.Series>
+                    <lvc:ColumnSeries Title="Employees Per Role" Values="{Binding FirstAmmountofpeople}"/>
+                </lvc:CartesianChart.Series>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Roles" Labels="{Binding FirstRoles}"/>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Employees"/>
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Employees Per Role" Padding="0 15 0 0" FontWeight="Bold"/>
+
+
+        <lvc:CartesianChart Grid.Row="2" Grid.Column="1" Margin="5">
+            <lvc:CartesianChart.Series>
+                <lvc:ColumnSeries Title="Items" Values="{Binding SecondAmmountOfItems}"/>
+            </lvc:CartesianChart.Series>
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="Items" Labels="{Binding SecondItemNames}"/>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Quantity"/>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
+        <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Items Quantity" Padding="0 15 0 0" FontWeight="Bold"/>
+
+        <lvc:PieChart x:Name="PieChartFirst" Grid.Row="1" Grid.Column="2" StartingRotationAngle="0" Series="{Binding FirstPie}">
+            
+        </lvc:PieChart>
+        <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Employees Per Department" FontWeight="Bold"/>
+
+        <lvc:PieChart x:Name="PieChartSecond" Grid.Row="2" Grid.Column="2" StartingRotationAngle="0" Series="{Binding SecondPie}">
+        </lvc:PieChart>
+        <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Preferred Day" FontWeight="Bold"/>
+
+        <lvc:PieChart  x:Name="PieChartThird" Grid.Row="1" Grid.Column="3" StartingRotationAngle="0" Series="{Binding ThirdPie}">
+            
+        </lvc:PieChart>
+        <Label Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Preferred Shift" FontWeight="Bold"/>
+
+        <Border Grid.Column="3" Grid.Row="2" BorderBrush="Aqua" BorderThickness="2" Margin="40 40 25 25">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ListBox ItemsSource="{Binding GeneralData}">
+                   
+                </ListBox>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </Window>

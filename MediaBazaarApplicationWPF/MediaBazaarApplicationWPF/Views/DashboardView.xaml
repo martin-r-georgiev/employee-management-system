@@ -39,7 +39,7 @@
             <Button Name="StatisticsButton" Content="Statistics"  Height="70" Width="75" Margin="10 5" Visibility="{Binding BtnStatisticsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}" Click="StatisticsButton_Click"/>
             <Button Name="ManagementButton" Content="Management"  Height="70" Width="75" Margin="10 5" Visibility="{Binding BtnManagementVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}" Click="ManagementButton_Click"/>
         </WrapPanel>
-        <ScrollViewer Grid.Row="2" Grid.Column="3" MinHeight="100" MinWidth="210"  HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="2" Grid.Column="3" MinHeight="100" MinWidth="210"  HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" >
             <ListBox ItemsSource="{Binding Workers}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -56,7 +56,7 @@
         
         <Border Grid.Row="2" Grid.Column="3"  Height="auto"  MinWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding PnlRequestsVisibility, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"
                 BorderBrush="Aqua" BorderThickness="2">
-            <ScrollViewer >
+            <ScrollViewer VerticalScrollBarVisibility="Auto" >
                 <DockPanel Name="PanelRequests"  MinHeight="150"   Panel.ZIndex="1">
                     <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding Notifications}">
 
