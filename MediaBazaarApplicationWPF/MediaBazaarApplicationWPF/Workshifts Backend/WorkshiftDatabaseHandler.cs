@@ -100,7 +100,6 @@ namespace MediaBazaarApplicationWPF
                         cmd.Parameters.AddWithValue("@available", 0);
                         cmd.Parameters.AddWithValue("@pending", 1);
                         cmd.ExecuteNonQuery();
-                        //Console.WriteLine($"DEBUG: [INDEX] Updated row ID {rowID}");
                         cmd.Dispose();
                     }
                 }
@@ -108,7 +107,7 @@ namespace MediaBazaarApplicationWPF
             }
         }
 
-        public static ObservableCollection<DailyWorkshift> GetEmployees(DateTime date, string departmentID)
+        public static ObservableCollection<DailyWorkshift> GetEmployees(DateTime date, string departmentID, WorkshiftFilter filter)
         {
             ObservableCollection<DailyWorkshift> items = new ObservableCollection<DailyWorkshift>();
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
@@ -127,12 +126,8 @@ namespace MediaBazaarApplicationWPF
                             {
                                 bool addEmployee = true;
                                 Employee newEmployee = EmployeeDatabaseHandler.GetEmployee(dataReader.GetString(0), false);
-                                switch (newEmployee.Role)
-                                {
-                                    case EmployeeRole.Worker: if (!WorkshiftFilters.ShowWorkers) addEmployee = false; break;
-                                    case EmployeeRole.Manager: if (!WorkshiftFilters.ShowManagers) addEmployee = false; break;
-                                    case EmployeeRole.Admin: if (!WorkshiftFilters.ShowAdmins) addEmployee = false; break;
-                                }
+
+                                if (filter.GetValue(newEmployee.Role) != true) addEmployee = false;
 
                                 if (addEmployee)
                                 {
@@ -158,57 +153,53 @@ namespace MediaBazaarApplicationWPF
             return items;
         }
 
-        //public static List<WorkshiftWeeklyUC> GetWeeklyEmployees(DateTime date, string departmentID)
-        //{
-        //    List<WorkshiftWeeklyUC> items = new List<WorkshiftWeeklyUC>();
-        //    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
-        //    {
-        //        try
-        //        {
-        //            DateTime startDate = DateTimeControls.StartOfWeek(date, DayOfWeek.Monday);
-        //            DateTime endDate = startDate.AddDays(6);
-        //            using (MySqlCommand cmd = new MySqlCommand($"SELECT w.userID, w.workshift, w.status, w.date FROM workshifts as w INNER JOIN users as u ON w.userID = u.userID WHERE w.date >= @start AND w.date <= @end AND u.departmentID = @department", conn))
-        //            {
-        //                cmd.Parameters.AddWithValue("@start", startDate);
-        //                cmd.Parameters.AddWithValue("@end", endDate);
-        //                cmd.Parameters.AddWithValue("@department", departmentID);
-        //                MySqlDataReader dataReader = cmd.ExecuteReader();
-        //                while (dataReader.Read())
-        //                {
-        //                    int index = items.FindIndex(item => item.Employee.UserID == dataReader.GetString(0));
-        //                    if (index == -1)
-        //                    {
-        //                        bool addEmployee = true;
-        //                        Employee newEmployee = new Employee(dataReader.GetString(0), false);
-        //                        switch (newEmployee.Role)
-        //                        {
-        //                            case EmployeeRole.Worker: if (!WorkshiftFilters.ShowWorkers) addEmployee = false; break;
-        //                            case EmployeeRole.Manager: if (!WorkshiftFilters.ShowManagers) addEmployee = false; break;
-        //                            case EmployeeRole.Admin: if (!WorkshiftFilters.ShowAdmins) addEmployee = false; break;
-        //                        }
+        public static ObservableCollection<WeeklyWorkshift> GetWeeklyEmployees(DateTime date, string departmentID, WorkshiftFilter filter)
+        {
+            ObservableCollection<WeeklyWorkshift> items = new ObservableCollection<WeeklyWorkshift>();
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                try
+                {
+                    DateTime startDate = DateTimeControls.StartOfWeek(date, DayOfWeek.Monday);
+                    DateTime endDate = startDate.AddDays(6);
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT w.userID, w.workshift, w.status, w.date FROM workshifts as w INNER JOIN users as u ON w.userID = u.userID WHERE w.date >= @start AND w.date <= @end AND u.departmentID = @department", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@start", startDate);
+                        cmd.Parameters.AddWithValue("@end", endDate);
+                        cmd.Parameters.AddWithValue("@department", departmentID);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            int index = items.IndexOf(items.Where(item => item.Employee.UserID == dataReader.GetString(0)).FirstOrDefault());
+                            if (index == -1)
+                            {
+                                bool addEmployee = true;
+                                Employee newEmployee = EmployeeDatabaseHandler.GetEmployee(dataReader.GetString(0), false);
 
-        //                        if (addEmployee)
-        //                        {
-        //                            WorkshiftWeeklyUC newUnit = new WorkshiftWeeklyUC(newEmployee, startDate, endDate);
-        //                            newUnit.SetStatus(dataReader.GetDateTime(3).DayOfWeek, dataReader.GetInt16(2), dataReader.GetInt16(1));
-        //                            items.Add(newUnit);
-        //                        }
-        //                    }
-        //                    else items[index].SetStatus(dataReader.GetDateTime(3).DayOfWeek, dataReader.GetInt16(2), dataReader.GetInt16(1));
-        //                }
-        //                dataReader.Dispose();
-        //                cmd.Dispose();
-        //            }
-        //            conn.Close();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine(ex.Message);
-        //            //LoginScreen.logger.Log($"[WorkshiftDatabaseHandler] The application encountered an issue when trying to get data from database:\n{ex.Message}", LoggingLevels.ERROR);
-        //            conn.Close();
-        //        }
-        //    }
-        //    return items;
-        //}
+                                if (filter.GetValue(newEmployee.Role) != true) addEmployee = false;
+
+                                if (addEmployee)
+                                {
+                                    WeeklyWorkshift newUnit = new WeeklyWorkshift(newEmployee, startDate, endDate);
+                                    newUnit.SetStatus(dataReader.GetDateTime(3).DayOfWeek, dataReader.GetInt16(2), dataReader.GetInt16(1));
+                                    items.Add(newUnit);
+                                }
+                            }
+                            else items[index].SetStatus(dataReader.GetDateTime(3).DayOfWeek, dataReader.GetInt16(2), dataReader.GetInt16(1));
+                        }
+                        dataReader.Dispose();
+                        cmd.Dispose();
+                    }
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    //LoginScreen.logger.Log($"[WorkshiftDatabaseHandler] The application encountered an issue when trying to get data from database:\n{ex.Message}", LoggingLevels.ERROR);
+                    conn.Close();
+                }
+            }
+            return items;
+        }
     }
 }

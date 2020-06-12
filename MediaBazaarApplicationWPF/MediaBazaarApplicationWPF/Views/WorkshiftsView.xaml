@@ -6,15 +6,19 @@
         xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
         xmlns:userControls="clr-namespace:MediaBazaarApplicationWPF.UserControls"
         mc:Ignorable="d"
-        Title="WorkshiftsView" Height="600" Width="1000">
+        Title="WorkshiftsView" MinHeight="300" Height="600" MinWidth="500" Width="1000">
 
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto" SharedSizeGroup="NavigationButtonSizeGroup"/>
-            <ColumnDefinition Width="auto" SharedSizeGroup="NavigationButtonSizeGroup"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
@@ -22,46 +26,43 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="400"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        
-        
+
         <!--Row 1-->
         <Button x:Name="BackButton" Content="Back" Margin="5" Grid.Row="1" Grid.Column="1" Padding="5" Click="BackButton_Click"/>
         
         <!--Row 2-->
-        <TextBlock Text="{Binding Path=DatePeriodText}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch"/>
-        <Button x:Name="PreviousDateButton" Command="{Binding Path=GoToPreviousDatePeriod}"  Content="Prev" Grid.Row="2" Grid.Column="3" Margin="5 0" Grid.IsSharedSizeScope="True" HorizontalAlignment="Stretch"/>
-        <Button x:Name="NextDateButton" Command="{Binding Path=GoToNextDatePeriod}" Content="Next" Grid.Row="2" Grid.Column="4" Margin="5 0" Grid.IsSharedSizeScope="True" HorizontalAlignment="Stretch"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Path=DatePeriodText}" HorizontalAlignment="Right"/>
+        <Button Grid.Row="2" Grid.Column="4" x:Name="PreviousDateButton" Command="{Binding Path=GoToPreviousDatePeriod}" Content="Prev" Margin="5 0"/>
+        <Button Grid.Row="2" Grid.Column="5" x:Name="NextDateButton" Command="{Binding Path=GoToNextDatePeriod}" Content="Next" Margin="5 0"/>
 
         <!--Row 3-->
-        <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" MaxHeight="400" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Path=DailyWorkshiftList}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel x:Name="workshiftsPanel" Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+        <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" MinHeight="400" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch">
+            <DockPanel x:Name="workshiftsPanel" Margin="2">
+                <ItemsControl x:Name="dailyWorkshiftsItems" DockPanel.Dock="Top" ItemsSource="{Binding Path=DailyWorkshiftList}"/>
+                <ItemsControl x:Name="weeklyWorkshiftsItems" DockPanel.Dock="Top" ItemsSource="{Binding Path=WeeklyWorkshiftList}"/>
+            </DockPanel>
         </ScrollViewer>
         
         <!--Row 4-->
-        <Button Content="Toggle Daily View" Grid.Row="4" Grid.Column="1"/>
-        <Button Content="Change Preferences" Grid.Row="4" Grid.Column="2" Margin="5 0"/>
-        <WrapPanel Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2">
-            <TextBlock Text="Department" TextAlignment="Right" Padding="10 0"/>
-            <ComboBox HorizontalAlignment="Stretch"/>
-        </WrapPanel>
-        
-        
+        <Button Content="{Binding Path=ToggleWorkshiftViewText}" Command="{Binding Path=ToggleWorkshiftView}" Grid.Row="4" Grid.Column="1" Padding="5 0"/>
+        <Button Content="Change Preferences" Grid.Row="4" Grid.Column="2" Margin="5 0" Padding="5 0"/>
+        <TextBlock Grid.Row="4" Grid.Column="3" Text="Department" HorizontalAlignment="Stretch" TextAlignment="Right" VerticalAlignment="Center"
+                  Visibility="{Binding DepartmentControlsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
+        <ComboBox Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="5 0 0 0"
+                  ItemsSource="{Binding Departments}" SelectedItem="{Binding SelectedDepartment}"
+                  Visibility="{Binding DepartmentControlsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
+
+
         <!--Row 5-->
-        <WrapPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2">
-            <CheckBox Content="Workers"/>
-            <CheckBox Content="Managers"/>
-            <CheckBox Content="Administrators"/>
+        <WrapPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0 5" VerticalAlignment="Top">
+            <CheckBox Content="Workers" Margin="5 0" IsChecked="{Binding Path=ShowWorkers, Mode=TwoWay}"/>
+            <CheckBox Content="Managers" Margin="5 0" IsChecked="{Binding Path=ShowManagers, Mode=TwoWay}"/>
+            <CheckBox Content="Administrators" Margin="5 0" IsChecked="{Binding Path=ShowAdmins, Mode=TwoWay}"/>
         </WrapPanel>
     </Grid>
 </Window>

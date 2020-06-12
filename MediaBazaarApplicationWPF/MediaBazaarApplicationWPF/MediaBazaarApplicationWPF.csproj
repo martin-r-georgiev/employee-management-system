@@ -111,6 +111,9 @@
     <Compile Include="UserControls\Views\NotificationsControlView.xaml.cs">
       <DependentUpon>NotificationsControlView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Views\WeeklyWorkshift.xaml.cs">
+      <DependentUpon>WeeklyWorkshift.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\EmployeeListingViewModel.cs" />
     <Compile Include="ViewModels\HistoryLogViewModel.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
@@ -155,7 +158,7 @@
     </Compile>
     <Compile Include="Workshifts Backend\IWorkshifts.cs" />
     <Compile Include="Workshifts Backend\WorkshiftDatabaseHandler.cs" />
-    <Compile Include="Workshifts Backend\WorkshiftFilters.cs" />
+    <Compile Include="Workshifts Backend\WorkshiftFilter.cs" />
     <Compile Include="Workshifts Backend\WorkshiftsManager.cs" />
     <Page Include="UserControls\Views\DailyWorkshift.xaml">
       <SubType>Designer</SubType>
@@ -170,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Views\NotificationsControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Views\WeeklyWorkshift.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

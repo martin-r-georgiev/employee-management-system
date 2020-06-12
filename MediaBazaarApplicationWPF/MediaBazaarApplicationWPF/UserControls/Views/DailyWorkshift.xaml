@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MediaBazaarApplicationWPF.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="900">
+             mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+             d:DesignHeight="30" d:DesignWidth="900" MinWidth="300">
     
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
@@ -64,7 +64,7 @@
         <Border Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3">
             <StackPanel x:Name="workshiftTwoCell"  Grid.IsSharedSizeScope="True"/>
         </Border>
-        <Border Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="2">
+        <Border Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="3">
             <StackPanel x:Name="workshiftThreeCell" Grid.IsSharedSizeScope="True"/>
         </Border>
     </Grid>

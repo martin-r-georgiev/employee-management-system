@@ -11,9 +11,6 @@
         <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
     </Window.Resources>
 
-
-   
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>

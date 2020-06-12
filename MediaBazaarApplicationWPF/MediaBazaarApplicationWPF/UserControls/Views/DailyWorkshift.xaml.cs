@@ -22,14 +22,17 @@ namespace MediaBazaarApplicationWPF.UserControls
     {
         private WorkshiftsManager manager;
         private Employee employee;
+        private readonly DateTime date;
 
         public Employee Employee => this.employee;
+        public DateTime Date => this.date;
 
         public DailyWorkshift(Employee employee, DateTime date)
         {
             InitializeComponent();
             this.employee = employee;
-            manager = new WorkshiftsManager(date, Employee.UserID);
+            this.date = date;
+            manager = new WorkshiftsManager(this.Date, Employee.UserID);
             manager.SetWorkshiftPanels(workshiftOneCell, workshiftTwoCell, workshiftThreeCell);
 
             this.lblEmployeeName.Text = Employee.FullName;
