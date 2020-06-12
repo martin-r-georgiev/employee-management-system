@@ -39,5 +39,11 @@ namespace MediaBazaarApplicationWPF.Views
             var HistoryLogView = new HistoryLogView();
             HistoryLogView.Show();
         }
+
+        private void BtnStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            var StatisticsView = new StatisticsView();
+            StatisticsView.Show();
+        }
     }
 }

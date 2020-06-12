@@ -44,7 +44,7 @@
                   Visibility="{Binding CbDepartmentsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
 
         <!-- Row 3 -->
-        <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+        <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
             <DockPanel x:Name="panelStocks" Margin="2">
                 <ItemsControl x:Name="stockItems" DockPanel.Dock="Top" ItemsSource="{Binding Stocks}">
 

@@ -58,7 +58,6 @@ namespace MediaBazaarApplicationWPF
             this.departmentId = departmentID;
             employees = new List<Employee>();
             employeeManager = new EmployeeManager();
-            inventory = new Inventory(this.departmentId);
         }
 
         #endregion

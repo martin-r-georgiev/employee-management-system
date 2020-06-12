@@ -33,7 +33,7 @@
         <!-- Row 1 -->
         <Button x:Name="BtnBack" Content="Back" Grid.Row="1" Grid.Column="1" Margin="5" Click="BtnBack_Click"/>
         <Button x:Name="BtnHistory" Content="History" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Margin="5" Click="BtnHistory_Click"/>
-        <Button x:Name="BtnStatistics" Content="Statistics" Grid.Row="1" Grid.Column="5" Margin="5"/>
+        <Button x:Name="BtnStatistics" Content="Statistics" Grid.Row="1" Grid.Column="5" Margin="5" Click="BtnStatistics_Click"/>
         <ComboBox x:Name="CbDepartments" Grid.Row="1" Grid.Column="6" Margin="5" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDepartment}" 
                   Visibility="{Binding CbDepartmentsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
         <TextBox x:Name="tbSearch" Grid.Row="1" Grid.Column="7" Margin="5"  Text="{Binding Path=SearchContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -48,7 +48,7 @@
                 <TextBlock Text="{Binding SelectedEmployee.Address, StringFormat=Address: {0}}" DockPanel.Dock="Top" FontSize="16" Margin="7"/>
             </DockPanel>
         </Border>
-        <ScrollViewer Grid.Row="2" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2">
+        <ScrollViewer Grid.Row="2" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
             <DockPanel VerticalAlignment="Top">
                 <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding Employees}">
 
