@@ -15,7 +15,7 @@ namespace MediaBazaarApplicationWPF
         private string name;
         private string address;
         List<Employee> employees;
-         public Inventory inventory;
+
         public List<Employee> Employees
         {
             get { return this.employees; }
@@ -58,7 +58,6 @@ namespace MediaBazaarApplicationWPF
             this.departmentId = departmentID;
             employees = new List<Employee>();
             employeeManager = new EmployeeManager();
-            inventory = new Inventory(this.departmentId);
         }
 
         #endregion
