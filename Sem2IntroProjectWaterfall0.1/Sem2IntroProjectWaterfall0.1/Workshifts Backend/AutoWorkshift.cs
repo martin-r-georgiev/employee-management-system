@@ -118,7 +118,7 @@ namespace Sem2IntroProjectWaterfall0._1
             return Schedule;
         }
 
-        public  string GenerateAndUpload() // call this one to generate and upload with checks in regard to not flood the database
+        public string GenerateAndUpload() // call this one to generate and upload with checks in regard to not flood the database
         {
             string message = "";
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())

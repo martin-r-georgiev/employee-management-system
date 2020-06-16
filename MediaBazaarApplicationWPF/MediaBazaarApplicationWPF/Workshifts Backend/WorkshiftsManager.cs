@@ -12,7 +12,7 @@ namespace MediaBazaarApplicationWPF
     public class WorkshiftsManager
     {
         //Instance variable(s)
-        protected string _userID;
+        protected Employee _employee;
         protected DateTime _date;
         protected int? _selectedWorkshiftIndex;
         protected int?[] _statusIndex;
@@ -22,10 +22,10 @@ namespace MediaBazaarApplicationWPF
         protected Panel _workshiftThreeCell;
 
         //Properties
-        public string UserID
+        public Employee Employee
         {
-            get => this._userID;
-            private set { this._userID = value; }
+            get => this._employee;
+            private set { this._employee = value; }
         }
 
         public DateTime Date
@@ -63,10 +63,10 @@ namespace MediaBazaarApplicationWPF
         }
 
         //Contructor(s)
-        public WorkshiftsManager(DateTime date, string userID)
+        public WorkshiftsManager(Employee employee, DateTime date)
         {
             this.Date = date;
-            this.UserID = userID;
+            this.Employee = employee;
             this.SelectedWorkshiftIndex = null;
             this._statusIndex = new int?[3];
 
@@ -85,6 +85,19 @@ namespace MediaBazaarApplicationWPF
         public void SetStatus(int status, int index)
         {
             switch (status)
+            {
+                case -1: ClearColor(index); _statusIndex[index] = null; break;
+                case 0: SetAvailable(index); _statusIndex[index] = 0; break;
+                case 1: SetPending(index); _statusIndex[index] = 1; break;
+                case 2: SetUnavailable(index); _statusIndex[index] = 2; break;
+                case 3: SetMissed(index); _statusIndex[index] = 3; break;
+                default: SetAvailable(index); _statusIndex[index] = 0; break;
+            }
+        }
+
+        public void SetStatus(WorkshiftStatus status, int index)
+        {
+            switch ((int)status)
             {
                 case -1: ClearColor(index); _statusIndex[index] = null; break;
                 case 0: SetAvailable(index); _statusIndex[index] = 0; break;
@@ -128,5 +141,32 @@ namespace MediaBazaarApplicationWPF
         public void SetUnavailable(int index) { SetColor(index, Colors.Gray); }
 
         public void SetPending(int index) { SetColor(index, Colors.Yellow); }
+
+        public void ChangeWorkshiftStatus(int status, int index)
+        {
+            if(this.SelectedWorkshiftIndex != null)
+            {
+                WorkshiftDatabaseHandler.ChangeWorkshiftStatus(this.Employee, this.Date, status, index);
+                SetStatus(status, index);
+            }
+        }
+
+        public void ChangeWorkshiftStatus(WorkshiftStatus status, int index)
+        {
+            if (this.SelectedWorkshiftIndex != null)
+            {
+                WorkshiftDatabaseHandler.ChangeWorkshiftStatus(this.Employee, this.Date, (int)status, index);
+                SetStatus(status, index);
+            }
+        }
+
+        public void ClearWorkshifts(int index)
+        {
+            if (this.SelectedWorkshiftIndex != null)
+            {
+                WorkshiftDatabaseHandler.DeleteWorkshift(this.Employee, this.Date, index);
+                SetStatus(-1, index);
+            }   
+        }
     }
 }

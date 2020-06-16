@@ -9,16 +9,7 @@
     
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
-
-        <Style TargetType="Canvas">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="MinHeight" Value="5"/>
-            <Setter Property="MinWidth" Value="7.0"/>
-            <Setter Property="Margin" Value="0.5"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-        </Style>
-
+        
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="Black"/>
         </Style>
@@ -40,7 +31,7 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Grid.ColumnSpan" Value="3"/>
         </Style>
-        
+
         <Style x:Key="headerWorkshiftStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="DimGray"/>
             <Setter Property="FontSize" Value="10"/>
@@ -48,7 +39,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid MouseEnter="WeeklyWorkshift_MouseEnter" MouseLeave="WeeklyWorkshift_MouseLeave" >
+    <Grid MouseEnter="WeeklyWorkshift_MouseEnter" MouseLeave="WeeklyWorkshift_MouseLeave">
         <Grid.RowDefinitions>
             <RowDefinition Height="2"/>
             <RowDefinition Height="0" x:Name="headerDateRow"/>
@@ -128,68 +119,13 @@
         <!--Row 4-->
         <Rectangle x:Name="WorkshiftGrid" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="22"/>
         <TextBlock Name="lblEmployeeName" Grid.Row="4" Grid.Column="1" Text="Placeholder" TextAlignment="Right" VerticalAlignment="Center" Padding="5 0 0 0" Margin="20 0"/>
-        <Border Grid.Row="4" Grid.Column="2">
-            <Canvas Name="cellOneMonday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="3">
-            <Canvas Name="cellTwoMonday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="4">
-            <Canvas Name="cellThreeMonday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="5">
-            <Canvas Name="cellOneTuesday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="6">
-            <Canvas Name="cellTwoTuesday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="7">
-            <Canvas Name="cellThreeTuesday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="8">
-            <Canvas Name="cellOneWednesday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="9">
-            <Canvas Name="cellTwoWednesday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="10">
-            <Canvas Name="cellThreeWednesday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="11">
-            <Canvas Name="cellOneThursday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="12">
-            <Canvas Name="cellTwoThursday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="13">
-            <Canvas Name="cellThreeThursday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="14">
-            <Canvas Name="cellOneFriday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="15">
-            <Canvas Name="cellTwoFriday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="16">
-            <Canvas Name="cellThreeFriday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="17">
-            <Canvas Name="cellOneSaturday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="18">
-            <Canvas Name="cellTwoSaturday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="19">
-            <Canvas Name="cellThreeSaturday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="20">
-            <Canvas Name="cellOneSunday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="21">
-            <Canvas Name="cellTwoSunday"/>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="22">
-            <Canvas Name="cellThreeSunday"/>
-        </Border>
+
+        <local:WeeklyWorkshiftCell x:Name="workshiftMonday" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftTuesday" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftWednesday" Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftThursday" Grid.Row="4" Grid.Column="11" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftFriday" Grid.Row="4" Grid.Column="14" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftSaturday" Grid.Row="4" Grid.Column="17" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftSunday" Grid.Row="4" Grid.Column="20" Grid.ColumnSpan="3"/>
     </Grid>
 </UserControl>

@@ -32,6 +32,8 @@ namespace MediaBazaarApplicationWPF.ViewModels
         private Department _selectedDepartment;
         private WorkshiftFilter _workshiftFilter;
 
+        AutoWorkshift ScheduleGenerator;
+
         private bool _departmentControlsVisible;
 
         // Commands
@@ -198,6 +200,9 @@ namespace MediaBazaarApplicationWPF.ViewModels
             _nextDatePeriodCommand = new DelegateCommand(GoToNextDatePeriod_Event, CanChangeDate);
             _toggleWorkshiftViewCommand = new DelegateCommand(ToggleWorkshiftView_Event, CanChangeDate);
 
+            this.ScheduleGenerator = new AutoWorkshift();
+            ScheduleChecker();
+
             // Window defaults to displaying daily workshifts
             this.PanelStatus = WorkshiftPanelStatus.Weekly;
             this.ToggleWorkshiftViewText = "Toggle Daily view";
@@ -211,6 +216,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
             this._workshiftFilter = new WorkshiftFilter(true);
             
             UpdateDateText();
+            WorkshiftDatabaseHandler.CheckMissedWorkshifts(selectedDate, LoggedInUser.departmentID);
             RefreshWorkshiftsPanel(selectedDate, LoggedInUser.departmentID, this.WorkshiftFilter);
             RefreshGUI();
         }
@@ -246,6 +252,12 @@ namespace MediaBazaarApplicationWPF.ViewModels
                         }
                     } break;
             } 
+        }
+
+        public void ScheduleChecker()
+        {
+            string message = ScheduleGenerator.GenerateAndUpload();
+            if (message != "") Console.WriteLine(message);
         }
 
         private void UpdateDateText()

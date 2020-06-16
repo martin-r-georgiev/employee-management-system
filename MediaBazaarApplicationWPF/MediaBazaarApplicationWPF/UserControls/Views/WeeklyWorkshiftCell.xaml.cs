@@ -16,26 +16,28 @@ using System.Windows.Shapes;
 namespace MediaBazaarApplicationWPF.UserControls
 {
     /// <summary>
-    /// Interaction logic for DailyWorkshift.xaml
+    /// Interaction logic for WeeklyWorkshiftCell.xaml
     /// </summary>
-    public partial class DailyWorkshift : UserControl
+    public partial class WeeklyWorkshiftCell : UserControl
     {
         private WorkshiftsManager manager;
         private Employee employee;
-        private readonly DateTime date;
+        private DateTime date;
 
         public Employee Employee => this.employee;
         public DateTime Date => this.date;
 
-        public DailyWorkshift(Employee employee, DateTime date)
+        public WeeklyWorkshiftCell()
         {
             InitializeComponent();
+        }
+
+        public void Initialize(Employee employee, DateTime date)
+        {
             this.employee = employee;
             this.date = date;
             manager = new WorkshiftsManager(this.Employee, this.Date);
             manager.SetWorkshiftPanels(workshiftOneCell, workshiftTwoCell, workshiftThreeCell);
-
-            this.lblEmployeeName.Text = Employee.FullName;
 
             if (date.Date <= DateTime.Now.Date)
             {
@@ -62,11 +64,6 @@ namespace MediaBazaarApplicationWPF.UserControls
             }
         }
 
-        public void ShowHeader()
-        {
-            this.headerRow.Height = new GridLength(0, GridUnitType.Auto);
-        }
-
         public void SetStatus(int status, int index) { manager.SetStatus(status, index); }
         public void SetStatus(WorkshiftStatus status, int index) { manager.SetStatus(status, index); }
 
@@ -86,7 +83,7 @@ namespace MediaBazaarApplicationWPF.UserControls
         {
             this.manager.SelectedWorkshiftIndex = GetWorkshiftIndex((sender as Canvas).Name);
 
-            if(this.manager.SelectedWorkshiftIndex != null)
+            if (this.manager.SelectedWorkshiftIndex != null)
             {
                 int index = (int)this.manager.SelectedWorkshiftIndex;
 
@@ -94,15 +91,15 @@ namespace MediaBazaarApplicationWPF.UserControls
 
                 (managementMenu.Items[0] as MenuItem).IsEnabled = (this.manager.StatusIndex[index] != 1) ? false : true;
                 (managementMenu.Items[1] as MenuItem).IsEnabled = (this.manager.StatusIndex[index] != 1) ? false : true;
-                for (int i = 2; i < managementMenu.Items.Count; i ++) (managementMenu.Items[i] as MenuItem).Visibility = (this.manager.StatusIndex[index] != 1) ? Visibility.Visible : Visibility.Collapsed;
+                for (int i = 2; i < managementMenu.Items.Count; i++) (managementMenu.Items[i] as MenuItem).Visibility = (this.manager.StatusIndex[index] != 1) ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
         private void requestsMenu_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             this.manager.SelectedWorkshiftIndex = GetWorkshiftIndex((sender as Canvas).Name);
-            
-            if(this.manager.SelectedWorkshiftIndex != null)
+
+            if (this.manager.SelectedWorkshiftIndex != null)
             {
                 int index = (int)this.manager.SelectedWorkshiftIndex;
 
@@ -117,11 +114,11 @@ namespace MediaBazaarApplicationWPF.UserControls
 
         private void cmApproveRequest_Click(object sender, RoutedEventArgs e)
         {
-            if(this.manager.SelectedWorkshiftIndex != null)
+            if (this.manager.SelectedWorkshiftIndex != null)
             {
                 int index = (int)this.manager.SelectedWorkshiftIndex;
                 this.manager.ChangeWorkshiftStatus(WorkshiftStatus.Unavailable, index);
-                RescheduleNotification selectedNotification = new RescheduleNotification(this.employee.UserID, this.date.Date, index);
+                RescheduleNotification selectedNotification = new RescheduleNotification(this.Employee.UserID, this.Date.Date, index);
                 selectedNotification.RemoveNotification();
             }
         }
@@ -132,7 +129,7 @@ namespace MediaBazaarApplicationWPF.UserControls
             {
                 int index = (int)this.manager.SelectedWorkshiftIndex;
                 this.manager.ChangeWorkshiftStatus(WorkshiftStatus.Available, index);
-                RescheduleNotification selectedNotification = new RescheduleNotification(this.employee.UserID, this.date.Date, index);
+                RescheduleNotification selectedNotification = new RescheduleNotification(this.Employee.UserID, this.Date.Date, index);
                 selectedNotification.RemoveNotification();
             }
         }
@@ -143,7 +140,7 @@ namespace MediaBazaarApplicationWPF.UserControls
             {
                 int index = (int)this.manager.SelectedWorkshiftIndex;
                 this.manager.ChangeWorkshiftStatus(WorkshiftStatus.Pending, index);
-                RescheduleNotification.AddNotification(this.employee.UserID, this.date, index);
+                RescheduleNotification.AddNotification(this.Employee.UserID, this.Date, index);
             }
         }
     }

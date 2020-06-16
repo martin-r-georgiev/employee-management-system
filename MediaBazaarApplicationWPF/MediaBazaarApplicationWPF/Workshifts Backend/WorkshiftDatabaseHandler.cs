@@ -24,6 +24,7 @@ namespace MediaBazaarApplicationWPF
                 List<string> checkinUsers = new List<string>();
                 List<DateTime> checkinsList = new List<DateTime>();
                 List<DateTime> checkoutsList = new List<DateTime>();
+
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT DISTINCT c.userID, MIN(c.checkin), MAX(c.checkout) FROM checkins as c INNER JOIN users as u ON c.userID=u.userID WHERE c.checkin >= @start AND c.checkout <= @end AND u.departmentID = @department GROUP BY c.userID, CAST(c.checkin as DATE)", conn))
                 {
                     cmd.Parameters.AddWithValue("@start", startDate);
@@ -200,6 +201,52 @@ namespace MediaBazaarApplicationWPF
                 }
             }
             return items;
+        }
+
+        public static void ChangeWorkshiftStatus(Employee employee, DateTime date, int status, int workshiftIndex)
+        {
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM workshifts WHERE userID=@userid AND date = @date AND workshift = @workshift", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userid", employee.UserID);
+                    cmd.Parameters.AddWithValue("@date", date.Date);
+                    cmd.Parameters.AddWithValue("@workshift", workshiftIndex);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                conn.Close();
+            }
+
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO workshifts (userID, date, workshift, status) VALUES (@userid, @date, @workshift, @status)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userid", employee.UserID);
+                    cmd.Parameters.AddWithValue("@date", date.Date);
+                    cmd.Parameters.AddWithValue("@workshift", workshiftIndex);
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                conn.Close();
+            }
+        }
+
+        public static void DeleteWorkshift(Employee employee, DateTime date, int workshiftIndex)
+        {
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM workshifts WHERE userID=@userid AND date = @date AND workshift = @workshift", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userid", employee.UserID);
+                    cmd.Parameters.AddWithValue("@date", date.Date);
+                    cmd.Parameters.AddWithValue("@workshift", workshiftIndex);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                conn.Close();
+            }
         }
     }
 }

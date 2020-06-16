@@ -50,7 +50,7 @@
             this.lblShiftOne.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblShiftOne.Location = new System.Drawing.Point(0, 0);
             this.lblShiftOne.Name = "lblShiftOne";
-            this.lblShiftOne.Size = new System.Drawing.Size(33, 22);
+            this.lblShiftOne.Size = new System.Drawing.Size(33, 30);
             this.lblShiftOne.TabIndex = 0;
             // 
             // lblShiftTwo
@@ -60,7 +60,7 @@
             this.lblShiftTwo.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblShiftTwo.Location = new System.Drawing.Point(33, 0);
             this.lblShiftTwo.Name = "lblShiftTwo";
-            this.lblShiftTwo.Size = new System.Drawing.Size(33, 22);
+            this.lblShiftTwo.Size = new System.Drawing.Size(33, 30);
             this.lblShiftTwo.TabIndex = 1;
             // 
             // lblShiftThree
@@ -69,7 +69,7 @@
             this.lblShiftThree.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblShiftThree.Location = new System.Drawing.Point(66, 0);
             this.lblShiftThree.Name = "lblShiftThree";
-            this.lblShiftThree.Size = new System.Drawing.Size(33, 22);
+            this.lblShiftThree.Size = new System.Drawing.Size(33, 30);
             this.lblShiftThree.TabIndex = 2;
             // 
             // rightClickMenu
@@ -128,7 +128,7 @@
             this.toolStripRequestCancelation});
             this.depotRequestMenu.Name = "depotRequestMenu";
             this.depotRequestMenu.ShowImageMargin = false;
-            this.depotRequestMenu.Size = new System.Drawing.Size(219, 28);
+            this.depotRequestMenu.Size = new System.Drawing.Size(219, 56);
             this.depotRequestMenu.Opened += new System.EventHandler(this.depotRequestMenu_Opened);
             // 
             // toolStripRequestCancelation
@@ -150,7 +150,7 @@
             this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(100, 22);
             this.Name = "WorkshiftCells";
-            this.Size = new System.Drawing.Size(100, 22);
+            this.Size = new System.Drawing.Size(100, 30);
             this.rightClickMenu.ResumeLayout(false);
             this.depotRequestMenu.ResumeLayout(false);
             this.ResumeLayout(false);

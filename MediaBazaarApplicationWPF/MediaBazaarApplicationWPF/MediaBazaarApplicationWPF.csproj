@@ -101,7 +101,12 @@
     <Compile Include="Auxilary classes\SQLConnectionHandler.cs" />
     <Compile Include="Employee+Stock Administration Backend\StockItem.cs" />
     <Compile Include="Employee+Stock Administration Backend\HistoryLog.cs" />
-    <Compile Include="RescheduleNotification.cs" />
+    <Compile Include="UserControls\Views\WeeklyWorkshiftCell.xaml.cs">
+      <DependentUpon>WeeklyWorkshiftCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Workshifts Backend\Attendance.cs" />
+    <Compile Include="Workshifts Backend\AutoWorkshift.cs" />
+    <Compile Include="Workshifts Backend\RescheduleNotification.cs" />
     <Compile Include="UserControls\Views\EmployeeControl.xaml.cs">
       <DependentUpon>EmployeeControl.xaml</DependentUpon>
     </Compile>
@@ -157,9 +162,12 @@
       <DependentUpon>WorkshiftsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Workshifts Backend\IWorkshifts.cs" />
+    <Compile Include="Workshifts Backend\WorkshiftData.cs" />
     <Compile Include="Workshifts Backend\WorkshiftDatabaseHandler.cs" />
     <Compile Include="Workshifts Backend\WorkshiftFilter.cs" />
+    <Compile Include="Workshifts Backend\WorkshiftPreferences.cs" />
     <Compile Include="Workshifts Backend\WorkshiftsManager.cs" />
+    <Compile Include="Workshifts Backend\WorkshiftStatus.cs" />
     <Page Include="UserControls\Views\DailyWorkshift.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Views\WeeklyWorkshift.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Views\WeeklyWorkshiftCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
