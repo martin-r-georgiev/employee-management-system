@@ -44,5 +44,43 @@ namespace MediaBazaarApplicationWPF.UserControls
         }
 
         public void SetStatus(int status, int index) { manager.SetStatus(status, index); }
+
+        public int? GetWorkshiftIndex(string objectName)
+        {
+            int? index = null;
+            switch (objectName)
+            {
+                case "workshiftOneCell": index = 0; break;
+                case "workshiftTwoCell": index = 1; break;
+                case "workshiftThreeCell": index = 2; break;
+            }
+            return index;
+        }
+
+        private void managementMenu_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            Console.WriteLine($"DEBUG: {(sender as StackPanel).Name}");
+            //this.manager.SelectedWorkshiftIndex = GetWorkshiftIndex((sender as ContextMenu).Parent.ToString());
+
+            //selectedWorkshiftIndex = GetWorkshiftIndex((sender as ContextMenuStrip).SourceControl.Name);
+            //int index = (int)selectedWorkshiftIndex;
+            //if (statusIndex[index] != 1)
+            //{
+            //    toolStripApproveRequest.Visible = false;
+            //    toolStripDeclineRequest.Visible = false;
+            //    toolStripSetAvailable.Visible = true;
+            //    toolStripSetUnavailable.Visible = true;
+            //}
+            //else
+            //{
+            //    toolStripApproveRequest.Visible = true;
+            //    toolStripDeclineRequest.Visible = true;
+            //    toolStripSetAvailable.Visible = false;
+            //    toolStripSetUnavailable.Visible = false;
+            //}
+
+            //if (statusIndex[index] == null || statusIndex[index] == 1) clearToolStripMenuItem.Visible = false;
+            //else clearToolStripMenuItem.Visible = true;
+        }
     }
 }

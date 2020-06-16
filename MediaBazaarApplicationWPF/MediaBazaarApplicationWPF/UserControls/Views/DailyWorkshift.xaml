@@ -6,9 +6,15 @@
              xmlns:local="clr-namespace:MediaBazaarApplicationWPF.UserControls"
              mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Top"
              d:DesignHeight="30" d:DesignWidth="900" MinWidth="300">
-    
+
     <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
+        <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert"/>
+
+        <ContextMenu x:Key="managementMenu" Name="managementMenu">
+            <MenuItem Header="New"/>
+            <MenuItem Header="Delete"/>
+            <!--Command="{Binding DataContext.DeleteFileCommand}" CommandParameter="{Binding SelectedItem}"-->
+        </ContextMenu>
 
         <Style TargetType="StackPanel">
             <Setter Property="Background" Value="White"/>
@@ -26,7 +32,7 @@
             <Setter Property="Background" Value="Black"/>
         </Style>
     </UserControl.Resources>
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2"/>
@@ -59,13 +65,13 @@
 
         <TextBlock Name="lblEmployeeName" Grid.Row="2" Grid.Column="1" Text="Placeholder" TextAlignment="Right" VerticalAlignment="Center" Padding="5 0 0 0" Margin="20 0"/>
         <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
-            <StackPanel x:Name="workshiftOneCell"  Grid.IsSharedSizeScope="True"/>
+            <StackPanel x:Name="workshiftOneCell"  Grid.IsSharedSizeScope="True" ContextMenu="{StaticResource managementMenu}" ContextMenuOpening="managementMenu_ContextMenuOpening"/>
         </Border>
         <Border Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3">
-            <StackPanel x:Name="workshiftTwoCell"  Grid.IsSharedSizeScope="True"/>
+            <StackPanel x:Name="workshiftTwoCell"  Grid.IsSharedSizeScope="True" ContextMenu="{StaticResource managementMenu}" ContextMenuOpening="managementMenu_ContextMenuOpening"/>
         </Border>
         <Border Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="3">
-            <StackPanel x:Name="workshiftThreeCell" Grid.IsSharedSizeScope="True"/>
+            <StackPanel x:Name="workshiftThreeCell" Grid.IsSharedSizeScope="True" ContextMenu="{StaticResource managementMenu}" ContextMenuOpening="managementMenu_ContextMenuOpening"/>
         </Border>
     </Grid>
 </UserControl>
