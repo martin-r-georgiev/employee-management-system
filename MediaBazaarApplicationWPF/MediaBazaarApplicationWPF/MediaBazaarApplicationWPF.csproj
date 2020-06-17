@@ -104,6 +104,10 @@
     <Compile Include="UserControls\Views\WeeklyWorkshiftCell.xaml.cs">
       <DependentUpon>WeeklyWorkshiftCell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\PreferencesViewModel.cs" />
+    <Compile Include="Views\PreferencesView.xaml.cs">
+      <DependentUpon>PreferencesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Workshifts Backend\Attendance.cs" />
     <Compile Include="Workshifts Backend\AutoWorkshift.cs" />
     <Compile Include="Workshifts Backend\RescheduleNotification.cs" />
@@ -209,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Views\StockControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PreferencesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

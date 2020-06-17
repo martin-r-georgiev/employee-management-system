@@ -16,28 +16,15 @@ using System.Windows.Shapes;
 namespace MediaBazaarApplicationWPF.Views
 {
     /// <summary>
-    /// Interaction logic for WorkshiftsView.xaml
+    /// Interaction logic for PreferencesView.xaml
     /// </summary>
-    public partial class WorkshiftsView : Window
+    public partial class PreferencesView : Window
     {
-        public WorkshiftsView()
+        public PreferencesView()
         {
             InitializeComponent();
-            var ViewModel = new WorkshiftsViewModel();
+            var ViewModel = new PreferencesViewModel();
             DataContext = ViewModel;
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            var newWindow = new DashboardView();
-            newWindow.Show();
-            this.Close();
-        }
-
-        private void btnPreferences_Click(object sender, RoutedEventArgs e)
-        {
-            var newWindow = new PreferencesView();
-            newWindow.Show();
         }
     }
 }

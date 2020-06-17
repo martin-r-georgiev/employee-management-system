@@ -50,7 +50,7 @@
         
         <!--Row 4-->
         <Button Content="{Binding Path=ToggleWorkshiftViewText}" Command="{Binding Path=ToggleWorkshiftView}" Grid.Row="4" Grid.Column="1" Padding="5 0"/>
-        <Button Content="Change Preferences" Grid.Row="4" Grid.Column="2" Margin="5 0" Padding="5 0"/>
+        <Button x:Name="btnPreferences" Content="Change Preferences" Grid.Row="4" Grid.Column="2" Margin="5 0" Padding="5 0" Click="btnPreferences_Click"/>
         <TextBlock Grid.Row="4" Grid.Column="3" Text="Department" HorizontalAlignment="Stretch" TextAlignment="Right" VerticalAlignment="Center"
                   Visibility="{Binding DepartmentControlsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
         <ComboBox Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="5 0 0 0"

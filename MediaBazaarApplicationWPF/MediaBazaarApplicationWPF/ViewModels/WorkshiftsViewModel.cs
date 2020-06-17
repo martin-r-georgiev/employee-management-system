@@ -216,7 +216,6 @@ namespace MediaBazaarApplicationWPF.ViewModels
             this._workshiftFilter = new WorkshiftFilter(true);
             
             UpdateDateText();
-            WorkshiftDatabaseHandler.CheckMissedWorkshifts(selectedDate, LoggedInUser.departmentID);
             RefreshWorkshiftsPanel(selectedDate, LoggedInUser.departmentID, this.WorkshiftFilter);
             RefreshGUI();
         }
@@ -228,6 +227,8 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
             ObservableCollection<DailyWorkshift> retrievedDailyList = null;
             ObservableCollection<WeeklyWorkshift> retrievedWeeklyList = null;
+
+            WorkshiftDatabaseHandler.CheckMissedWorkshifts(selectedDate, LoggedInUser.departmentID);
 
             switch (this.PanelStatus)
             {

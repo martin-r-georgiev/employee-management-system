@@ -1,0 +1,81 @@
+﻿<Window x:Class="MediaBazaarApplicationWPF.Views.PreferencesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
+        mc:Ignorable="d"
+        Title="PreferencesView" Height="185" MinHeight="150" Width="850" MinWidth="750">
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
+
+        <Style x:Key="weekDays" TargetType="CheckBox">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
+        <!--Row 1-->
+        <CheckBox x:Name="cbMonday" Content="Monday" Grid.Row="1" Grid.Column="1" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxMonday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbTuesday" Content="Tuesday" Grid.Row="1" Grid.Column="2" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxTuesday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbWednesday" Content="Wednesday" Grid.Row="1" Grid.Column="3" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxWednesday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbThursday" Content="Thursday" Grid.Row="1" Grid.Column="4" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxThursday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbFriday" Content="Friday" Grid.Row="1" Grid.Column="5" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxFriday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <!--Row 2-->
+        <CheckBox x:Name="cbMondayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="1" IsChecked="{Binding Path=CheckBoxMondayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbTuesdayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="2" IsChecked="{Binding Path=CheckBoxTuesdayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbWednesdayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="3" IsChecked="{Binding Path=CheckBoxWednesdayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbThursdayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbFridayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Text="{Binding LabelWorkhours}" Grid.Row="2" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="16"  Foreground="{Binding LabelWorkshoursForeground, Mode=OneWay, FallbackValue=Black}" FontWeight="Bold"/>
+
+        <!--Row 3-->
+        <CheckBox x:Name="cbMondayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="1" IsChecked="{Binding Path=CheckBoxMondayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbTuesdayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="2" IsChecked="{Binding Path=CheckBoxTuesdayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbWednesdayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="3" IsChecked="{Binding Path=CheckBoxWednesdayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbThursdayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbFridayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!--Row 4-->
+        <CheckBox x:Name="cbMondayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="1" IsChecked="{Binding Path=CheckBoxMondayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbTuesdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="2" IsChecked="{Binding Path=CheckBoxTuesdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbWednesdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="3" IsChecked="{Binding Path=CheckBoxWednesdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbThursdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbFridayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button Content="Confirm" Grid.Row="4" Grid.Column="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=ConfirmWorkshiftPreferences}"/>
+
+        <!--Row 5-->
+        <TextBlock Text="{Binding ConfirmText}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="6" 
+                   TextAlignment="Right" Foreground="{Binding ConfirmTextVisibleForeground, Mode=OneWay, FallbackValue=Black}"
+                   Visibility="{Binding ConfirmTextVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
+
+    </Grid>
+</Window>
