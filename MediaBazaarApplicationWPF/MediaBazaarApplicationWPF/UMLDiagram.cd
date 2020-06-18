@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MediaBazaarApplicationWPF.App" Collapsed="true">
+    <Position X="13.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.ColorControls">
+    <Position X="39" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Auxilary classes\ColorControls.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.DateTimeControls">
+    <Position X="39" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Auxilary classes\DateTimeControls.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.HashManager">
+    <Position X="23.25" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Auxilary classes\HashManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.LoggedInUser">
+    <Position X="32" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACIAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Auxilary classes\LoggedInUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.SqlConnectionHandler">
+    <Position X="29.75" Y="8.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Auxilary classes\SQLConnectionHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.CheckIn">
+    <Position X="18.75" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAIACAAAAAAAAAAABAAAEAAAAAA=</HashCode>
+      <FileName>CheckIn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Department">
+    <Position X="21" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAgAAEAICIAAQACAIEAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Employee+Stock Administration Backend\Department.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.DepartmentDatabaseHandler">
+    <Position X="21" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAAqAACAAAAQAAAAABAQAAAAAAAAAAAQAAAAAgIAE=</HashCode>
+      <FileName>Employee+Stock Administration Backend\DepartmentDatabaseHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.DepartmentManager">
+    <Position X="21" Y="8.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAEAAAAAAAAAARAAAAAAAAE=</HashCode>
+      <FileName>Employee+Stock Administration Backend\DepartmentManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Employee">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAABEAQACBAhIAwHaQAQB0gAFIQAAASAQAICkEACAg=</HashCode>
+      <FileName>Employee+Stock Administration Backend\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.EmployeeDatabaseHandler">
+    <Position X="18.75" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAgAAkAAAAAAAAHEAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Employee+Stock Administration Backend\EmployeeDatabaseHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.EmployeeManager">
+    <Position X="18.75" Y="0.5" Width="2" />
+    <NestedTypes>
+      <Delegate Name="MediaBazaarApplicationWPF.EmployeeManager.AddedEmployeeHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Employee+Stock Administration Backend\EmployeeManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="MediaBazaarApplicationWPF.EmployeeManager.UpdatedEmployeeHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Employee+Stock Administration Backend\EmployeeManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="MediaBazaarApplicationWPF.EmployeeManager.RemovedEmployeeHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Employee+Stock Administration Backend\EmployeeManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAQEAAAAAAhAEAAACAAFAAAAAAAAAIAAAAAAAAAAQ=</HashCode>
+      <FileName>Employee+Stock Administration Backend\EmployeeManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.HistoryLog">
+    <Position X="23.25" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAQAAAAAAAAgAAAAAAAAAAAAAABAAAEAAAA=</HashCode>
+      <FileName>Employee+Stock Administration Backend\HistoryLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Inventory">
+    <Position X="29.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAACQAAAAAiAAQAIgAAAAAgAIAAAAEAAAAAAEAAAA=</HashCode>
+      <FileName>Employee+Stock Administration Backend\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.StockItem">
+    <Position X="23.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAEAAIAAgAEAAIAAAAQACAAEACAAACAgAAAACAA=</HashCode>
+      <FileName>Employee+Stock Administration Backend\StockItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.InvalidEntryException">
+    <Position X="32" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\InvalidEntryException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.MinimalEmployeesException">
+    <Position X="32" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\MinimalEmployeesException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.NameTakenException">
+    <Position X="32" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\NameTakenException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.EmployeeAtWorkModel">
+    <Position X="42.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAARAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EmployeeAtWorkModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.RescheduleNotification">
+    <Position X="29.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAACBAgAAgAgAAAAAABgAQAAQAAgAA=</HashCode>
+      <FileName>RescheduleNotification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.StockItemDatabaseHandler" Collapsed="true">
+    <Position X="23.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAIAAAIAAgAAAAAAACAAAAAAAAAAAgAAgBAA=</HashCode>
+      <FileName>Unused\StockItemDatabaseHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.StockItemManager" Collapsed="true">
+    <Position X="25.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Unused\StockItemManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.StockViewModel">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACABAAAAEAAAAADBYAAACgAAhAAQAAAAiACAAKAg=</HashCode>
+      <FileName>ViewModels\StockViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.WorkshiftDatabaseHandler">
+    <Position X="23.25" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgQAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Workshifts Backend\WorkshiftDatabaseHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.WorkshiftFilter">
+    <Position X="25.5" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAEQAAAAAACgAAAAAAQAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Workshifts Backend\WorkshiftFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.WorkshiftsManager">
+    <Position X="27.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAABAABgIBAQAAAgAVAgAQQgBCgiAAAAQAAA=</HashCode>
+      <FileName>Workshifts Backend\WorkshiftsManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Commands.CheckInCommand" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Commands\CheckInCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Commands.DelegateCommand" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAACAAQAAEAAAAEAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Commands\DelegateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Commands.NotificationsCommand" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Commands\NotificationsCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Commands.OnLoginCommand" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAQAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\OnLoginCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Views.RestockCommand" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Commands\RestockCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Views.StockControl" BaseTypeListCollapsed="true">
+    <Position X="37.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACQDAAgAAAAAEAAAACAAAAAAAQAAA=</HashCode>
+      <FileName>UserControls\Views\StockControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Views.DashboardView" BaseTypeListCollapsed="true">
+    <Position X="42.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAIAAAAAAAAIgAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Views\DashboardView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Views.EmployeeListingView" BaseTypeListCollapsed="true">
+    <Position X="42.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAIAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Views\EmployeeListingView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Views.HistoryLogView" BaseTypeListCollapsed="true">
+    <Position X="40.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\HistoryLogView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Views.LoginView" BaseTypeListCollapsed="true">
+    <Position X="40.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Views\LoginView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Views.StatisticsView" BaseTypeListCollapsed="true">
+    <Position X="40.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\StatisticsView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Views.StockView" BaseTypeListCollapsed="true">
+    <Position X="40.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Views\StockView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Views.WorkshiftsView" BaseTypeListCollapsed="true">
+    <Position X="40.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Views\WorkshiftsView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Properties.Resources">
+    <Position X="37.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.Properties.Settings">
+    <Position X="42.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.UserControls.DailyWorkshift" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAIAAAGSAAAAAABAAAAAQAAAAA=</HashCode>
+      <FileName>UserControls\Views\DailyWorkshift.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.UserControls.WeeklyWorkshift" BaseTypeListCollapsed="true">
+    <Position X="27.5" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAQACBIIAAmSAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>UserControls\Views\WeeklyWorkshift.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.UserControls.Views.EmployeeControl" BaseTypeListCollapsed="true">
+    <Position X="39" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAACgAAAAAAAAAIAEBQAAAAAIAAA=</HashCode>
+      <FileName>UserControls\Views\EmployeeControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.UserControls.Views.HistoryLogControl" BaseTypeListCollapsed="true">
+    <Position X="39" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\Views\HistoryLogControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.UserControls.Views.NotificationsControlView" BaseTypeListCollapsed="true">
+    <Position X="37.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAIAAJAAAAQAAAAAAAAAAEIAAA=</HashCode>
+      <FileName>UserControls\Views\NotificationsControlView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.ViewModels.BaseViewModel">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.ViewModels.DashboardViewModel">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQACACABCAAgAACAAGAAEAAAAQAAACBAA6EqAABIATA=</HashCode>
+      <FileName>ViewModels\DashboardViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.ViewModels.EmployeeListingViewModel">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAEABAAAAAEAKAADQCgAAASAAAAMQAAAAgACAgKAA=</HashCode>
+      <FileName>ViewModels\EmployeeListingViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.ViewModels.HistoryLogViewModel">
+    <Position X="5.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>ViewModels\HistoryLogViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.ViewModels.LoginViewModel">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAIAAAAAQAAAAAAAAAAAAACAAIAAACAAAA=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.ViewModels.StatisticsViewModel">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBEBCQAAAAAAAACAAABIEAAESBAQAAIIAAAAAYAVAA=</HashCode>
+      <FileName>ViewModels\StatisticsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MediaBazaarApplicationWPF.ViewModels.WorkshiftsViewModel">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="MediaBazaarApplicationWPF.ViewModels.WorkshiftsViewModel.WorkshiftPanelStatus" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModels\WorkshiftsViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAggASDAAEEAFAIAIDCgAAAJCAAAAAwxAgABAKIACEg=</HashCode>
+      <FileName>ViewModels\WorkshiftsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MediaBazaarApplicationWPF.Workshifts_Backend.IWorkshifts">
+    <Position X="25.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Workshifts Backend\IWorkshifts.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="MediaBazaarApplicationWPF.EmployeeRole">
+    <Position X="18.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAABCAAAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Auxilary classes\Enums\EmployeeRole.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
