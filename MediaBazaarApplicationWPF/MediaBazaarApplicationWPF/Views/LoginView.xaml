@@ -5,15 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
         mc:Ignorable="d"
-        Title="LoginView" Height="300" Width="400" MinWidth="400" MaxWidth="800" MinHeight="300" MaxHeight="600">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="LoginView" Height="500" Width="400" MinWidth="400" MaxWidth="800" MinHeight="450" MaxHeight="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -22,7 +28,7 @@
         <TextBlock Text="{Binding Path=FirstName, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>-->
         <!--Used as command example. TODO: Delete this later
         <Button Content="Change Name" Command="{Binding Path=ChangeNameCommand}" Grid.Row="2" Grid.Column="1"/>-->
-        <StackPanel Grid.Row="1" Grid.Column="1"  MinWidth="300" MaxWidth="600" VerticalAlignment="Center">
+        <StackPanel Grid.Row="3" Grid.Column="2"  MinWidth="300" MaxWidth="600" VerticalAlignment="Center">
             <TextBlock Text="Username" HorizontalAlignment="Center"/>
             <TextBox x:Name="Username" Text="{Binding Path=Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" MaxWidth="600" Padding="5" HorizontalAlignment="Stretch" Margin="0 10"/>
             <TextBlock Text="Password" HorizontalAlignment="Center" />
@@ -33,6 +39,7 @@
             <Button x:Name ="TestLogin" Content="Test Login" MinWidth="300" MaxWidth="600" HorizontalAlignment="Stretch" Padding="5" Click="TestLogin_Click">
             </Button>
         </StackPanel>
+        <materialDesign:Badged Content="Badged" Grid.Column="4" HorizontalAlignment="Left" Margin="30,88,-110,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>
