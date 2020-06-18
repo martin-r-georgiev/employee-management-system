@@ -25,6 +25,14 @@ namespace MediaBazaarApplicationWPF.Views
             InitializeComponent();
             var ViewModel = new PreferencesViewModel();
             DataContext = ViewModel;
+
+            ViewModel.CloseWindowEvent += new PreferencesViewModel.CloseWindowHandler(CloseWindow_Event);
+        }
+
+        private void CloseWindow_Event(string message)
+        {
+            MessageBox.Show(message);
+            this.Close();
         }
     }
 }

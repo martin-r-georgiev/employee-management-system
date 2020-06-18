@@ -44,8 +44,8 @@ namespace MediaBazaarApplicationWPF
             {
                 using (MySqlCommand cmd = new MySqlCommand(@"UPDATE users as u INNER JOIN employees as e ON u.userID = e.userID
                        SET u.username = @username, u.password = @password, u.salary = @salary, u.role = @role, u.departmentID = @depID,
-                           e.firstName = @fName, e.lastName = @lName, e.address = @address, e.phoneNumber = @phone, e.workHours = @workHours, e.attendance = @attendance
-                       WHERE u.userID = @userID", conn))
+                           e.firstName = @fName, e.lastName = @lName, e.nationality = @nationality, e.address = @address, e.email= @email, e.phoneNumber = @phone, e.dateOfBirth = @birthdate, 
+                           e.sex = @sex, e.workHours = @workHours, e.attendance = @attendance WHERE u.userID = @userID", conn))
                 {
                     cmd.Parameters.AddWithValue("@username", employee.Username);
                     cmd.Parameters.AddWithValue("@password", employee.Password);
@@ -54,8 +54,12 @@ namespace MediaBazaarApplicationWPF
                     cmd.Parameters.AddWithValue("@depID", employee.DepartmentID);
                     cmd.Parameters.AddWithValue("@fName", employee.FirstName);
                     cmd.Parameters.AddWithValue("@lName", employee.LastName);
+                    cmd.Parameters.AddWithValue("@nationality", employee.Nationality);
                     cmd.Parameters.AddWithValue("@address", employee.Address);
+                    cmd.Parameters.AddWithValue("@email", employee.Email);
                     cmd.Parameters.AddWithValue("@phone", employee.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@birthdate", employee.DateOfBirth);
+                    cmd.Parameters.AddWithValue("@sex", employee.Sex);
                     cmd.Parameters.AddWithValue("@workHours", employee.WorkHours);
                     cmd.Parameters.AddWithValue("@attendance", employee.Attendance);
                     cmd.Parameters.AddWithValue("@userID", employee.UserID);
@@ -111,7 +115,7 @@ namespace MediaBazaarApplicationWPF
             {
                 using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID WHERE u.userID=@userID", conn))
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT u.*, e.*, d.name FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID INNER JOIN department as d ON u.departmentID = d.departmentID WHERE u.userID=@userID", conn))
                     {
                         cmd.Parameters.AddWithValue("@userID", userIdentifier);
                         MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -130,6 +134,8 @@ namespace MediaBazaarApplicationWPF
                             if (!dataReader.IsDBNull(14)) employee.Sex = dataReader.GetBoolean(14);
                             if (!dataReader.IsDBNull(15)) employee.StartDate = dataReader.GetDateTime(15);
                             if (!dataReader.IsDBNull(17)) employee.Attendance = Convert.ToDouble(dataReader.GetDecimal(17));
+
+                            if (!dataReader.IsDBNull(19)) employee.DepartmentName = dataReader.GetString(19);
                         }
                         cmd.Dispose();
                         dataReader.Close();
@@ -141,7 +147,7 @@ namespace MediaBazaarApplicationWPF
             {
                 using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    using (MySqlCommand cmd = new MySqlCommand($"SELECT u.username, u.password, u.salary, u.role, u.departmentID, e.workHours, e.firstName, e.lastName FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID WHERE u.userID=@userID", conn))
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT u.username, u.password, u.salary, u.role, u.departmentID, e.workHours, e.firstName, e.lastName, d.name FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID INNER JOIN department as d ON u.departmentID = d.departmentID WHERE u.userID=@userID", conn))
                     {
                         cmd.Parameters.AddWithValue("@userID", userIdentifier);
                         MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -151,6 +157,7 @@ namespace MediaBazaarApplicationWPF
                             employee = new Employee(userIdentifier, dataReader.GetString(0), dataReader.GetString(1), dataReader.GetDecimal(2), (EmployeeRole)dataReader.GetInt32(3), dataReader.GetString(4), dataReader.GetInt32(5), false);
                             if (!dataReader.IsDBNull(6)) employee.FirstName = dataReader.GetString(6);
                             if (!dataReader.IsDBNull(7)) employee.LastName = dataReader.GetString(7);
+                            employee.DepartmentName = dataReader.GetString(8);
                         }
                         cmd.Dispose();
                         dataReader.Close();
@@ -168,7 +175,7 @@ namespace MediaBazaarApplicationWPF
                 List<Employee> allEmployees = new List<Employee>();
                 using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID", conn))
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT u.*, e.*, d.name FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID INNER JOIN department as d ON u.departmentID = d.departmentID", conn))
                     {
                         MySqlDataReader dataReader = cmd.ExecuteReader();
                         while (dataReader.Read())
@@ -187,6 +194,7 @@ namespace MediaBazaarApplicationWPF
 
                             if (!dataReader.IsDBNull(15)) employee.StartDate = dataReader.GetDateTime(15);
                             if (!dataReader.IsDBNull(17)) employee.Attendance = Convert.ToDouble(dataReader.GetDecimal(17));
+                            if (!dataReader.IsDBNull(19)) employee.DepartmentName = dataReader.GetString(19);
 
                             allEmployees.Add(employee);
                         }
@@ -202,14 +210,15 @@ namespace MediaBazaarApplicationWPF
                 List<Employee> allEmployees = new List<Employee>();
                 using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    using (MySqlCommand cmd = new MySqlCommand($"SELECT u.userID, u.username, u.password, u.salary, u.role, u.departmentID, e.workHours, e.firstName, e.lastName, FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID", conn))
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT u.userID, u.username, u.password, u.salary, u.role, u.departmentID, e.workHours, e.firstName, e.lastName, d.name FROM users as u LEFT OUTER JOIN employees as e ON u.userID = e.userID INNER JOIN department as d ON u.departmentID = d.departmentID", conn))
                     {
                         MySqlDataReader dataReader = cmd.ExecuteReader();
                         while (dataReader.Read())
                         {
                             Employee employee = new Employee(dataReader.GetString(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetDecimal(3), (EmployeeRole)dataReader.GetInt32(4), dataReader.GetString(5), dataReader.GetInt32(6), false);
-                            employee.FirstName = dataReader.GetString(7);
-                            employee.LastName = dataReader.GetString(8);
+                            employee.DepartmentName = dataReader.GetString(9);
+                            if (!dataReader.IsDBNull(7)) employee.FirstName = dataReader.GetString(7);
+                            if (!dataReader.IsDBNull(8)) employee.LastName = dataReader.GetString(8);
                             allEmployees.Add(employee);
                         }
                         cmd.Dispose();

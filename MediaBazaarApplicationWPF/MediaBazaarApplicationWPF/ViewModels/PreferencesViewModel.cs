@@ -21,6 +21,9 @@ namespace MediaBazaarApplicationWPF.ViewModels
         private bool confirmTextVisible;
         private SolidColorBrush confirmTextForeground;
 
+        public delegate void CloseWindowHandler(string message);
+        public event CloseWindowHandler CloseWindowEvent;
+
         private readonly DelegateCommand _confirmWorkshiftPreferences;
 
         public bool? this[int i, int j]
@@ -517,8 +520,11 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
                     PreparePreferences();
                 }
-                this.ConfirmTextVisibleForeground = new SolidColorBrush(Colors.Green);
-                this.ConfirmText = "Succesfully updated preferences! You can now close this window.";
+
+                if (this.CloseWindowEvent != null) this.CloseWindowEvent("Succesfully updated preferences!");
+
+                //this.ConfirmTextVisibleForeground = new SolidColorBrush(Colors.Green);
+                //this.ConfirmText = "Succesfully updated preferences! You can now close this window.";
             }
         }
 

@@ -104,7 +104,11 @@
     <Compile Include="UserControls\Views\WeeklyWorkshiftCell.xaml.cs">
       <DependentUpon>WeeklyWorkshiftCell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ManagementViewModel.cs" />
     <Compile Include="ViewModels\PreferencesViewModel.cs" />
+    <Compile Include="Views\ManagementView.xaml.cs">
+      <DependentUpon>ManagementView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PreferencesView.xaml.cs">
       <DependentUpon>PreferencesView.xaml</DependentUpon>
     </Compile>
@@ -213,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Views\StockControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

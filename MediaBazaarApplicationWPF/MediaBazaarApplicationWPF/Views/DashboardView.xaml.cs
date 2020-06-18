@@ -57,7 +57,9 @@ namespace MediaBazaarApplicationWPF.Views
 
         private void ManagementButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var ManagementView = new ManagementView();
+            ManagementView.Show();
+            this.Close();
         }
 
 

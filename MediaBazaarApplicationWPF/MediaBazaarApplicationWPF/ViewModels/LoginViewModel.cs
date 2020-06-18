@@ -15,8 +15,6 @@ namespace MediaBazaarApplicationWPF.ViewModels
         private string _username;
         private string _password;
 
-        //private readonly DelegateCommand _changeNameCommand;
-        //public ICommand ChangeNameCommand => _changeNameCommand;
         private readonly OnLoginCommand _loginCommand;
         public ICommand LoginCommand => _loginCommand;
 
@@ -46,20 +44,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
         public LoginViewModel()
         {
-            //_changeNameCommand = new DelegateCommand(OnChangeName, CanChangeName);
             _loginCommand = new OnLoginCommand(this);         
         }
-
-        //private void OnChangeName(object commandParameter)
-        //{
-        //    //FirstName = "Test";
-        //    //_changeNameCommand.InvokeCanExecuteChanged(); Ability to toggle whether a command is enabled or disabled
-        //}
-
-        //private bool CanChangeName(object commandParameter)
-        //{
-        //    //return FirstName != "Test";
-        //    return true;
-        //}
     }
 }

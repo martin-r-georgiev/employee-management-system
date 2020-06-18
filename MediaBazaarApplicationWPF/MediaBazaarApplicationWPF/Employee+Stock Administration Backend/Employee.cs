@@ -48,7 +48,7 @@ namespace MediaBazaarApplicationWPF
                 Regex usernameValidation = new Regex(@"^\w+$");
 
                 if (value != null && usernameValidation.IsMatch(value)) this.username = value;
-                else throw new ArgumentException("Invalid username has been parsed to employee class. Given value contains special characters.");              
+                else throw new ArgumentException("Invalid username has been parsed to employee. Given value contains special characters.");              
             }
         }
 
@@ -60,7 +60,7 @@ namespace MediaBazaarApplicationWPF
                 Regex passwordValidation = new Regex(@"^\w+$");
 
                 if (value != null && passwordValidation.IsMatch(value)) this.password = HashManager.GetSha256(value);
-                else throw new ArgumentException("Invalid password has been parsed to employee class. Given value contains special characters.");
+                else throw new ArgumentException("Invalid password has been parsed to employee. Given value contains special characters.");
             }
         }
 
@@ -70,7 +70,7 @@ namespace MediaBazaarApplicationWPF
             set
             {
                 if (value >= 0) this.salaryHourlyRate = value;
-                else throw new ArgumentException("Invalid salary rate has been parsed to employee class. Given value cannot be lower than 0.");
+                else throw new ArgumentException("Invalid salary rate has been parsed to employee. Given value cannot be lower than 0.");
             }
         }
 
@@ -99,8 +99,11 @@ namespace MediaBazaarApplicationWPF
             {
                 Regex nameValidation = new Regex(@"\d+");
 
-                if(value != null && !nameValidation.IsMatch(value)) this.firstName = value;
-                else throw new ArgumentException("Invalid first name has been parsed to employee class. Given value cannot contain digits.");
+                if(value != null)
+                {
+                    if(!nameValidation.IsMatch(value)) this.firstName = value;
+                    else throw new ArgumentException("Invalid first name has been parsed to employee. Given value cannot contain digits.");
+                }
             }
         }
 
@@ -111,18 +114,14 @@ namespace MediaBazaarApplicationWPF
             {
                 Regex nameValidation = new Regex(@"\d+");
 
-                if (value != null && !nameValidation.IsMatch(value)) this.lastName = value;
-                else throw new ArgumentException("Invalid last name has been parsed to employee class. Given value cannot contain digits.");
+                if (value != null)
+                {
+                    if(!nameValidation.IsMatch(value)) this.lastName = value;
+                    else throw new ArgumentException("Invalid last name has been parsed to employee. Given value cannot contain digits.");
+                }
             }
         }
-        public string FirstLastName { 
-            get 
-            {
-                if (!String.IsNullOrWhiteSpace(FirstName) && !String.IsNullOrWhiteSpace(LastName))
-                    return $"{FirstName} {LastName}";
-                else return "";
-            }
-        }
+
         public string Name
         {
             get
@@ -132,6 +131,12 @@ namespace MediaBazaarApplicationWPF
             }
         }
 
+        public override string ToString()
+        {
+            if (!string.IsNullOrEmpty(this.firstName) && !string.IsNullOrEmpty(this.lastName)) return $"{this.firstName} {this.lastName} ({this.departmentName})";
+            else return $"{this.Username} ({this.departmentName})";
+        }
+
         public string Nationality
         {
             get { return this.nationality; }
@@ -139,19 +144,18 @@ namespace MediaBazaarApplicationWPF
             {
                 Regex nationalityValidation = new Regex(@"\d+");
 
-                if (value != null && !nationalityValidation.IsMatch(value)) this.nationality = value;
-                else throw new ArgumentException("Invalid nationality has been parsed to employee class. Given value cannot contain digits.");
+                if(value != null)
+                {
+                    if(!nationalityValidation.IsMatch(value)) this.nationality = value;
+                    else throw new ArgumentException("Invalid nationality has been parsed to employee. Given value cannot contain digits.");
+                }
             }
         }
 
         public string Address
         {
             get { return this.address; }
-            set
-            {
-                if (!string.IsNullOrEmpty(value)) this.address = value;
-                else throw new ArgumentException("Invalid address has been parsed to employee class. Given value cannot be empty.");
-            }
+            set { this.address = value; }
         }
 
         public string Email
@@ -161,8 +165,11 @@ namespace MediaBazaarApplicationWPF
             {
                 Regex emailValidation = new Regex(@"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
 
-                if (value != null && emailValidation.IsMatch(value)) this.email = value;
-                else throw new ArgumentException("Invalid e-mail address has been parsed to employee class.");
+                if(value != null)
+                {
+                    if(emailValidation.IsMatch(value)) this.email = value;
+                    else throw new ArgumentException("Invalid e-mail address has been parsed to employee.");
+                }
             }
         }
 
@@ -173,8 +180,11 @@ namespace MediaBazaarApplicationWPF
             {
                 Regex phoneValidation = new Regex(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$");
 
-                if (value != null && phoneValidation.IsMatch(value)) this.phoneNumber = value;
-                else throw new ArgumentException("Invalid phone number has been parsed to employee class.");
+                if(value != null)
+                {
+                    if(phoneValidation.IsMatch(value)) this.phoneNumber = value;
+                    else throw new ArgumentException("Invalid phone number has been parsed to employee.");
+                }
             }
         }
 
@@ -183,8 +193,11 @@ namespace MediaBazaarApplicationWPF
             get { return this.dateofBirth; }
             set
             {
-                if(value < DateTime.Now) this.dateofBirth = value;
-                else throw new ArgumentException("Invalid birth date has been parsed to employee class. Given value is a future point in time.");
+                if(value != null)
+                {
+                    if (value < DateTime.Now) this.dateofBirth = value;
+                    else throw new ArgumentException("Invalid birth date has been parsed to employee. Given value is a future point in time.");
+                }
             }
         }
 
@@ -220,7 +233,7 @@ namespace MediaBazaarApplicationWPF
             set
             {
                 if (value % 4 == 0 && value >= 0) this.workHours = value;
-                else throw new ArgumentException("Invalid work hours has been parsed to employee class.");
+                else throw new ArgumentException("Invalid work hours has been parsed to employee.");
             }
         }
 
@@ -230,7 +243,7 @@ namespace MediaBazaarApplicationWPF
             set
             {
                 if(value >= 0) this.attendance = value;
-                else throw new ArgumentException("Invalid attendance has been parsed to employee class. Given value cannot be a negative number.");
+                else throw new ArgumentException("Invalid attendance has been parsed to employee. Given value cannot be a negative number.");
             }
         }
         #endregion
