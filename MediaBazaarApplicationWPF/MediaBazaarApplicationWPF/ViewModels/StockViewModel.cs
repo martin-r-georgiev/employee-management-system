@@ -41,7 +41,7 @@ namespace MediaBazaarApplicationWPF
                 if (BtnRestockContent == "All stock")
                     BtnRestockContent = "Restock";
                 Stocks.Clear();
-                foreach (StockItem s in CurrentInventory.Items)
+                foreach (StockItem s in CurrentInventory)
                     if (s.Name.ToLower().Contains(value.ToLower()))
                         Stocks.Add(new StockControl(s));
                 OnPropertyChanged(); 
@@ -61,13 +61,13 @@ namespace MediaBazaarApplicationWPF
         private ObservableCollection<StockControl> _stocks;
         public ObservableCollection<StockControl> Stocks => this._stocks;
 
-        private Inventory currentInventory;
-        public Inventory CurrentInventory
+        private List<StockItem> currentInventory;
+        public List<StockItem> CurrentInventory
         {
-            get { return this.currentInventory; }
+            get => this.currentInventory;
             set
             {
-                currentInventory = value;
+                this.currentInventory = value;
                 OnPropertyChanged();
             }
         }
@@ -92,6 +92,7 @@ namespace MediaBazaarApplicationWPF
                 OnPropertyChanged();
             }
         }
+
         void RefreshGUI()
         {
             if (LoggedInUser.role == EmployeeRole.Worker)
@@ -104,13 +105,14 @@ namespace MediaBazaarApplicationWPF
                 lblDepartmentsVisible = true;
             }
         }
+
         void RefreshInventory(string depId)
         {
-            currentInventory = new Inventory(depId);
+            this.CurrentInventory = StockItemDatabaseHandler.GetAllStockFromDepartment(depId);
             Stocks.Clear();
-            foreach (StockItem s in currentInventory.Items)
-                Stocks.Add(new StockControl(s));
+            foreach (StockItem s in currentInventory) Stocks.Add(new StockControl(s));
         }
+
         public StockViewModel()
         {
             _departments = DepartmentManager.GetAllDepartments(false);

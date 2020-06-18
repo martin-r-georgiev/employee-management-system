@@ -64,6 +64,7 @@ namespace MediaBazaarApplicationWPF.Views
                     else MessageBox.Show("Please enter a valid value");
                 }
                 AdjustColor();
+                StockItemDatabaseHandler.UpdateStockItem(selectedItem);
             }
             else MessageBox.Show("Current ammount cannot be negative!");
         }
@@ -94,6 +95,7 @@ namespace MediaBazaarApplicationWPF.Views
                 else MessageBox.Show("Please enter a valid value!");
             }
             AdjustColor();
+            StockItemDatabaseHandler.UpdateStockItem(selectedItem);
         }
 
         private void lblQuantity_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -127,6 +129,7 @@ namespace MediaBazaarApplicationWPF.Views
                         this.tbQuantity.Visibility = Visibility.Hidden;
                         this.lblQuantity.Content = selectedItem.CurrentAmount.ToString();
                         AdjustColor();
+                        StockItemDatabaseHandler.UpdateStockItem(selectedItem);
                     }
                     else MessageBox.Show("Please enter a positive value");
                 }
@@ -147,6 +150,7 @@ namespace MediaBazaarApplicationWPF.Views
                         this.tbThreshold.Visibility = Visibility.Hidden;
                         this.lblThreshold.Content = selectedItem.Threshold.ToString();
                         AdjustColor();
+                        StockItemDatabaseHandler.UpdateStockItem(selectedItem);
                     }
                     else MessageBox.Show("Please enter a positive value");
                 }

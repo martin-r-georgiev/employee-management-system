@@ -20,18 +20,21 @@ namespace MediaBazaarApplicationWPF.Views
 
         public void Execute(object parameter)
         {
-           if (model.BtnRestockContent == "Restock")
+            if (model.BtnRestockContent == "Restock")
             {
                 model.BtnRestockContent = "All stock";
                 model.Stocks.Clear();
-                foreach (StockItem s in model.CurrentInventory.GetRestockItemsCurrentDept())
-                    model.Stocks.Add(new StockControl(s));
-            } else
+
+                foreach(StockItem s in model.CurrentInventory)
+                {
+                    if (s.CurrentAmount < s.Threshold) model.Stocks.Add(new StockControl(s));
+                }
+            }
+            else
             {
                 model.BtnRestockContent = "Restock";
                 model.Stocks.Clear();
-                foreach (StockItem s in model.CurrentInventory.Items)
-                    model.Stocks.Add(new StockControl(s));
+                foreach (StockItem s in model.CurrentInventory) model.Stocks.Add(new StockControl(s));
             }
         }
     }

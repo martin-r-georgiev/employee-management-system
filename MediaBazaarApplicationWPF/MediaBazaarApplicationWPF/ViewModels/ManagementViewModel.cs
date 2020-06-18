@@ -339,7 +339,11 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
         public List<Employee> DepartmentModifyEmployees
         {
-            get => Employees.FindAll(e => e.DepartmentID != DepartmentModifySelectedDepartment.DepartmentId);
+            get
+            {
+                if (DepartmentModifySelectedDepartment != null) return Employees.FindAll(e => e.DepartmentID != DepartmentModifySelectedDepartment.DepartmentId);
+                else return new List<Employee>();
+            }
         }
 
         public Employee DepartmentModifySelectedEmployee
@@ -355,10 +359,95 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
         #endregion
 
+        #region # Stock Creation Variables + Properties
+
+        private string _stockCreationName;
+
+        public string StockCreationName
+        {
+            get => this._stockCreationName;
+            set
+            {
+                this._stockCreationName = value;
+                OnPropertyChanged();
+                this._addStockItemCommand.InvokeCanExecuteChanged();
+            }
+        }
+
+        #endregion
+
+        #region # Stock Add/Remove Item Variables + Properties
+
+        private StockItem _stockItemSelectedItem;
+        private Department _stockItemSelectedDepartment;
+        private string _stockItemCurrentAmount;
+        private string _stockItemThreshold;
+        private bool _stockItemRemoveCompletely;
+
+        public StockItem StockItemSelectedItem
+        {
+            get => this._stockItemSelectedItem;
+            set
+            {
+                this._stockItemSelectedItem = value;
+                OnPropertyChanged();
+                SelectedStockItemFillControls();
+                this._updateStockItemCommand.InvokeCanExecuteChanged();
+                this._removeStockItemCommand.InvokeCanExecuteChanged();
+            }
+        }
+
+        public Department StockItemSelectedDepartment
+        {
+            get => this._stockItemSelectedDepartment;
+            set
+            {
+                this._stockItemSelectedDepartment = value;
+                OnPropertyChanged();
+                SelectedStockItemFillControls();
+                this._updateStockItemCommand.InvokeCanExecuteChanged();
+                this._removeStockItemCommand.InvokeCanExecuteChanged();
+            }
+        }
+
+        public string StockItemCurrentAmount
+        {
+            get => this._stockItemCurrentAmount;
+            set
+            {
+                this._stockItemCurrentAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string StockItemThreshold
+        {
+            get => this._stockItemThreshold;
+            set
+            {
+                this._stockItemThreshold = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool StockItemRemoveCompletely
+        {
+            get => this._stockItemRemoveCompletely;
+            set
+            {
+                this._stockItemRemoveCompletely = value;
+                OnPropertyChanged();
+                this._removeStockItemCommand.InvokeCanExecuteChanged();
+            }
+        }
+
+        #endregion
+
         //Combobox Data
         private List<Employee> _employees;
         private List<Department> _departments;
         private List<EmployeeRole> _roles;
+        private List<StockItem> _stockItems;
 
         public List<Employee> Employees
         {
@@ -391,6 +480,16 @@ namespace MediaBazaarApplicationWPF.ViewModels
             }
         }
 
+        public List<StockItem> StockItems
+        {
+            get => this._stockItems;
+            set
+            {
+                this._stockItems = value;
+                OnPropertyChanged();
+            }
+        }
+
         public delegate void MessageHandler(string message);
         public event MessageHandler MessageEvent;
 
@@ -406,6 +505,11 @@ namespace MediaBazaarApplicationWPF.ViewModels
         private readonly DelegateCommand _updateDepartmentCommand;
         private readonly DelegateCommand _removeDepartmentCommand;
 
+        private readonly DelegateCommand _addStockItemCommand;
+
+        private readonly DelegateCommand _updateStockItemCommand;
+        private readonly DelegateCommand _removeStockItemCommand;
+
         public ICommand AddEmployee => this._addEmployeeCommand;
         public ICommand ClearModifyEmployeeSelected => this._clearModifyEmployeeSelectedCommand;
         public ICommand UpdateEmployee => this._updateEmployeeCommand;
@@ -414,6 +518,9 @@ namespace MediaBazaarApplicationWPF.ViewModels
         public ICommand AssignEmployeeToDepartment => this._assignEmployeeToDepartmentCommand;
         public ICommand UpdateDepartment => this._updateDepartmentCommand;
         public ICommand RemoveDepartment => this._removeDepartmentCommand;
+        public ICommand AddStockItem => this._addStockItemCommand;
+        public ICommand UpdateStockItem => this._updateStockItemCommand;
+        public ICommand RemoveStockItem => this._removeStockItemCommand;
 
         public ManagementViewModel()
         {
@@ -425,17 +532,22 @@ namespace MediaBazaarApplicationWPF.ViewModels
             this._assignEmployeeToDepartmentCommand = new DelegateCommand(AssignEmployeeToDepartment_Event, CanAssignEmployeeToDepartment);
             this._updateDepartmentCommand = new DelegateCommand(UpdateDepartment_Event, CanUseModifyDepartmentButtons);
             this._removeDepartmentCommand = new DelegateCommand(RemoveDepartment_Event, CanUseModifyDepartmentButtons);
+            this._addStockItemCommand = new DelegateCommand(AddStockItem_Event, CanAddStockItem);
+            this._updateStockItemCommand = new DelegateCommand(UpdateStockItem_Event, CanModifyStockItem);
+            this._removeStockItemCommand = new DelegateCommand(RemoveStockItem_Event, CanRemoveStockItem);
 
             this.CreateDepartmentPanelVisible = true;
             this.AddItemPanelVisible = true;
 
             RefreshDepartmentList();
             RefreshEmployeeList();
+            RefreshStockList();
             this.Roles = Enum.GetValues(typeof(EmployeeRole)).Cast<EmployeeRole>().ToList();
         }
 
         private void RefreshEmployeeList() => this.Employees = EmployeeDatabaseHandler.GetAllEmployees(true);
         private void RefreshDepartmentList() => this.Departments = DepartmentManager.GetAllDepartments(false);
+        private void RefreshStockList() => this.StockItems = StockItemDatabaseHandler.ListAllItemsFromStockItem();
 
         private void AddEmployee_Event(object commandParameter)
         {
@@ -674,5 +786,121 @@ namespace MediaBazaarApplicationWPF.ViewModels
         }
 
         private bool CanUseModifyDepartmentButtons(object commandParameter) => (DepartmentModifySelectedDepartment != null) ? true : false;
+
+        private void AddStockItem_Event(object commandParameter)
+        {
+            string message = "";
+
+            if (!string.IsNullOrEmpty(StockCreationName))
+            {
+                try
+                {
+                    StockItemDatabaseHandler.AddStockItem(StockCreationName);
+                    message = $"Successfully added item '{StockCreationName}' to system.";
+                    StockCreationName = "";
+                    RefreshStockList();
+                }
+                catch (Exception ex) { message = ex.Message; }
+            }
+            else message = "Please fill all required fields and try again.";
+
+            if (this.MessageEvent != null) this.MessageEvent(message);
+        }
+
+        private void SelectedStockItemFillControls()
+        {
+            if (StockItemSelectedItem != null && StockItemSelectedDepartment != null)
+            {
+                StockItem item = StockItemDatabaseHandler.GetStockItemFromDepartment(StockItemSelectedItem.StockID, StockItemSelectedDepartment.DepartmentId);
+
+                this.StockItemCurrentAmount = (item != null) ? item.CurrentAmount.ToString() : "0";
+                this.StockItemThreshold = (item != null) ? item.Threshold.ToString() : "0";            
+            }
+        }
+
+        private bool CanAddStockItem(object commandParameter) => !string.IsNullOrEmpty(StockCreationName);
+
+        private void UpdateStockItem_Event(object commandParameter)
+        {
+            string message = "";
+
+            if (StockItemSelectedDepartment != null && StockItemSelectedItem != null)
+            {
+                if (Int32.TryParse(StockItemCurrentAmount, out int currentAmount) && Int32.TryParse(StockItemThreshold, out int threshold))
+                {
+                    if (currentAmount >= 0 && threshold >= 0)
+                    {
+                        try
+                        {
+                            StockItemSelectedItem.DepartmentID = StockItemSelectedDepartment.DepartmentId;
+                            StockItemSelectedItem.CurrentAmount = currentAmount;
+                            StockItemSelectedItem.Threshold = threshold;
+                            StockItemDatabaseHandler.AddStockItemToStock(StockItemSelectedItem);
+                            message = $"Successfully updated item entry for department '{StockItemSelectedDepartment.Name}'";
+                            ClearStockItemSelection();
+                        }
+                        catch (Exception ex) { message = ex.Message; }
+                    }
+                    else message = "An item's current amount & threshold can only be positive values.";
+                }
+                else message = "Invalid item current amount and/or threshold values. Please check for any mistakes and try again.";
+            }
+            else message = "Please select an item and a department and try again.";
+
+            if (this.MessageEvent != null) this.MessageEvent(message);
+        }
+
+        private void RemoveStockItem_Event(object commandParameter)
+        {
+            string message = "";
+
+            if (StockItemSelectedItem != null)
+            {
+                if(StockItemRemoveCompletely == false)
+                {
+                    if (StockItemSelectedDepartment != null)
+                    {
+                        try
+                        {
+                            StockItemDatabaseHandler.RemoveStockItemFromDepartment(StockItemSelectedItem, StockItemSelectedDepartment.DepartmentId);
+                            message = $"Successfully removed item entry from department '{StockItemSelectedDepartment.Name}'";
+                        }
+                        catch (Exception ex) { message = ex.Message; }
+                    }
+                    else message = "Please select an item and a department and try again.";
+                }
+                else
+                {
+                    try
+                    {
+                        StockItemDatabaseHandler.RemoveStockItemGlobally(StockItemSelectedItem);
+                        message = $"Item '{StockItemSelectedItem.Name}' has been removed from the system.";
+                    }
+                    catch (Exception ex) { message = ex.Message; }
+                }
+                ClearStockItemSelection();
+            }
+            else message = "Please select an item and try again.";
+
+            if (this.MessageEvent != null) this.MessageEvent(message);
+        }
+
+        private void ClearStockItemSelection()
+        {
+            this.StockItemSelectedDepartment = null;
+            this.StockItemSelectedItem = null;
+            this.StockItemCurrentAmount = "";
+            this.StockItemThreshold = "";
+            this.StockItemRemoveCompletely = false;
+            RefreshStockList();
+        }
+
+        private bool CanModifyStockItem(object commandParameter) => (StockItemSelectedDepartment != null && StockItemSelectedDepartment != null) ? true : false;
+
+        private bool CanRemoveStockItem(object commandParameter)
+        {
+            if(StockItemRemoveCompletely == true) return (StockItemSelectedItem != null) ? true : false;
+            else return (StockItemSelectedItem != null && StockItemSelectedDepartment != null) ? true : false;
+        }
     }
 }

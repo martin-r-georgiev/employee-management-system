@@ -101,7 +101,6 @@
     <Compile Include="Auxilary classes\HashManager.cs" />
     <Compile Include="Models\EmployeeAtWorkModel.cs" />
     <Compile Include="Exceptions\InvalidEntryException.cs" />
-    <Compile Include="Employee+Stock Administration Backend\Inventory.cs" />
     <Compile Include="Auxilary classes\LoggedInUser.cs" />
     <Compile Include="Auxilary classes\Enums\EmployeeRole.cs" />
     <Compile Include="Exceptions\NameTakenException.cs" />
@@ -139,8 +138,7 @@
     <Compile Include="ViewModels\HistoryLogViewModel.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\StockViewModel.cs" />
-    <Compile Include="Unused\StockItemDatabaseHandler.cs" />
-    <Compile Include="Unused\StockItemManager.cs" />
+    <Compile Include="Employee+Stock Administration Backend\StockItemDatabaseHandler.cs" />
     <Compile Include="UserControls\Views\DailyWorkshift.xaml.cs">
       <DependentUpon>DailyWorkshift.xaml</DependentUpon>
     </Compile>
