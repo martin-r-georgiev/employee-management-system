@@ -186,13 +186,14 @@
                                         Visibility="{Binding CreateDepartmentPanelVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Collapsed}">
                                 <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Name" VerticalAlignment="Center" Width="70"/>
-                                    <TextBox Text="Placeholder" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    <TextBox Text="{Binding Path=DepartmentCreationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
                                 </DockPanel>
                                 <DockPanel Height="120" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Address" VerticalAlignment="Top" Width="70" Margin="0 5"/>
-                                    <RichTextBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Height="100" Width="Auto"/>
+                                    <TextBox Text="{Binding Path=DepartmentCreationAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0"
+                                             HorizontalAlignment="Stretch" Height="100" Width="Auto" TextWrapping="Wrap"/>
                                 </DockPanel>
-                                <Button Content="Confirm" Margin="0 10"/>
+                                <Button Content="Add Department" Margin="0 10" Command="{Binding Path=AddDepartment}"/>
                             </StackPanel>
                             
                             <!--Modify Department Controls-->
@@ -201,21 +202,21 @@
                                         Visibility="{Binding ModifyDepartmentPanelVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Collapsed}">
                                 <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Department" VerticalAlignment="Center" Width="70"/>
-                                    <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Departments}" SelectedItem="{Binding DepartmentModifySelectedDepartment}"/>
                                 </DockPanel>
                                 <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Name" VerticalAlignment="Center" Width="70"/>
-                                    <TextBox Text="Placeholder" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    <TextBox Text="{Binding Path=DepartmentModifyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
                                 </DockPanel>
                                 <DockPanel Height="120" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Address" VerticalAlignment="Top" Width="70" Margin="0 5"/>
-                                    <RichTextBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Height="100" Width="Auto"/>
+                                    <TextBox Text="{Binding Path=DepartmentModifyAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0" HorizontalAlignment="Stretch" Height="100" Width="Auto" TextWrapping="Wrap"/>
                                 </DockPanel>
                                 <GroupBox Header="Assign employee to this department">
                                     <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
                                         <TextBlock Text="Employee" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                        <Button Content="Assign" DockPanel.Dock="Right" Padding="10 0" Margin="20 0 0 0"/>
-                                        <ComboBox Text="Placeholder" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Left"/>
+                                        <Button Content="Assign" DockPanel.Dock="Right" Padding="10 0" Margin="20 0 0 0" Command="{Binding Path=AssignEmployeeToDepartment}"/>
+                                        <ComboBox HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Left" ItemsSource="{Binding DepartmentModifyEmployees, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding DepartmentModifySelectedEmployee}"/>
                                     </DockPanel>
                                 </GroupBox>
 
@@ -228,10 +229,10 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Button Grid.Row="0" Grid.Column="0" Content="Remove Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
-                                        VerticalContentAlignment="Center"/>
-                                    <Button Grid.Row="0" Grid.Column="1" Content="Confirm" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
-                                        VerticalContentAlignment="Center"/>
+                                    <Button Grid.Row="0" Grid.Column="0" Content="Update Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
+                                        VerticalContentAlignment="Center" Command="{Binding Path=UpdateDepartment}"/>
+                                    <Button Grid.Row="0" Grid.Column="1" Content="Remove Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
+                                        VerticalContentAlignment="Center" Command="{Binding Path=RemoveDepartment}"/>
                                 </Grid>
                             </StackPanel>
                         </StackPanel>

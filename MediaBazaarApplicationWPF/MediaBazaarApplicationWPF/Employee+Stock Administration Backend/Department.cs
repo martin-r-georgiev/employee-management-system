@@ -87,16 +87,14 @@ namespace MediaBazaarApplicationWPF
                 }
         }
 
-        public void AssignEmployeeTo(string userID, string newDepartmentId)
+        public void AssignEmployeeTo(Employee employee, string newDepartmentId)
         {
-            foreach (Employee e in employees)
-                if (e.UserID == userID)
-                {
-                    e.DepartmentID = newDepartmentId;
-                    employeeManager.UpdateEmployee(e);
-                    employees.Remove(e);
-                    break;
-                }
+            if (!employees.Exists(e => e.UserID == employee.UserID))
+            {
+                employee.DepartmentID = newDepartmentId;
+                employeeManager.UpdateEmployee(employee);
+                employees.Remove(employee);
+            }
         }
         #endregion
     }

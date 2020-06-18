@@ -155,6 +155,8 @@ namespace MediaBazaarApplicationWPF.ViewModels
                 this._selectedEmployee = value;
                 OnPropertyChanged();
                 this._clearModifyEmployeeSelectedCommand.InvokeCanExecuteChanged();
+                this._updateEmployeeCommand.InvokeCanExecuteChanged();
+                this._removeEmployeeCommand.InvokeCanExecuteChanged();
                 SelectedEmployeeFillControls();
             }
         }
@@ -264,6 +266,95 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
         #endregion
 
+        #region # Department Creation Variables + Properties
+
+        private string _departmentCreationName;
+        private string _departmentCreationAddress;
+
+        public string DepartmentCreationName
+        {
+            get => this._departmentCreationName;
+            set
+            {
+                this._departmentCreationName = value;
+                OnPropertyChanged();
+                this._addDepartmentCommand.InvokeCanExecuteChanged();
+            }
+        }
+
+        public string DepartmentCreationAddress
+        {
+            get => this._departmentCreationAddress;
+            set
+            {
+                this._departmentCreationAddress = value;
+                OnPropertyChanged();
+                this._addDepartmentCommand.InvokeCanExecuteChanged();
+            }
+        }
+
+        #endregion
+
+        #region # Department Modify Variables + Properties
+
+        private Department _departmentModifySelectedDepartment;
+        private string _departmentModifyName;
+        private string _departmentModifyAddress;
+
+        private Employee _departmentModifySelectedEmployee;
+
+        public Department DepartmentModifySelectedDepartment
+        {
+            get => this._departmentModifySelectedDepartment;
+            set
+            {
+                this._departmentModifySelectedDepartment = value;
+                SelectedDepartmentFillControls();
+                this._updateDepartmentCommand.InvokeCanExecuteChanged();
+                this._removeDepartmentCommand.InvokeCanExecuteChanged(); 
+                OnPropertyChanged();
+                OnPropertyChanged("DepartmentModifyEmployees");
+            }
+        }
+
+        public string DepartmentModifyName
+        {
+            get => this._departmentModifyName;
+            set
+            {
+                this._departmentModifyName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string DepartmentModifyAddress
+        {
+            get => this._departmentModifyAddress;
+            set
+            {
+                this._departmentModifyAddress = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<Employee> DepartmentModifyEmployees
+        {
+            get => Employees.FindAll(e => e.DepartmentID != DepartmentModifySelectedDepartment.DepartmentId);
+        }
+
+        public Employee DepartmentModifySelectedEmployee
+        {
+            get => this._departmentModifySelectedEmployee;
+            set
+            {
+                this._departmentModifySelectedEmployee = value;
+                OnPropertyChanged();
+                this._assignEmployeeToDepartmentCommand.InvokeCanExecuteChanged();
+            }
+        }
+
+        #endregion
+
         //Combobox Data
         private List<Employee> _employees;
         private List<Department> _departments;
@@ -276,6 +367,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
             {
                 this._employees = value;
                 OnPropertyChanged();
+                OnPropertyChanged("DepartmentModifyEmployees");
             }
         }
 
@@ -303,31 +395,47 @@ namespace MediaBazaarApplicationWPF.ViewModels
         public event MessageHandler MessageEvent;
 
         private readonly DelegateCommand _addEmployeeCommand;
+
         private readonly DelegateCommand _clearModifyEmployeeSelectedCommand;
         private readonly DelegateCommand _updateEmployeeCommand;
         private readonly DelegateCommand _removeEmployeeCommand;
+
+        private readonly DelegateCommand _addDepartmentCommand;
+
+        private readonly DelegateCommand _assignEmployeeToDepartmentCommand;
+        private readonly DelegateCommand _updateDepartmentCommand;
+        private readonly DelegateCommand _removeDepartmentCommand;
 
         public ICommand AddEmployee => this._addEmployeeCommand;
         public ICommand ClearModifyEmployeeSelected => this._clearModifyEmployeeSelectedCommand;
         public ICommand UpdateEmployee => this._updateEmployeeCommand;
         public ICommand RemoveEmployee => this._removeEmployeeCommand;
+        public ICommand AddDepartment => this._addDepartmentCommand;
+        public ICommand AssignEmployeeToDepartment => this._assignEmployeeToDepartmentCommand;
+        public ICommand UpdateDepartment => this._updateDepartmentCommand;
+        public ICommand RemoveDepartment => this._removeDepartmentCommand;
 
         public ManagementViewModel()
         {
             this._addEmployeeCommand = new DelegateCommand(AddEmployee_Event, CanAddEmployee);
             this._clearModifyEmployeeSelectedCommand = new DelegateCommand(ClearModifyEmployeeSelected_Event, CanClearSelectedEmployee);
-            this._updateEmployeeCommand = new DelegateCommand(UpdateEmployee_Event, CanUseButton);
-            this._removeEmployeeCommand = new DelegateCommand(RemoveEmployee_Event, CanUseButton);
+            this._updateEmployeeCommand = new DelegateCommand(UpdateEmployee_Event, CanModifyEmployeeButtons);
+            this._removeEmployeeCommand = new DelegateCommand(RemoveEmployee_Event, CanModifyEmployeeButtons);
+            this._addDepartmentCommand = new DelegateCommand(AddDepartment_Event, CanAddDepartment);
+            this._assignEmployeeToDepartmentCommand = new DelegateCommand(AssignEmployeeToDepartment_Event, CanAssignEmployeeToDepartment);
+            this._updateDepartmentCommand = new DelegateCommand(UpdateDepartment_Event, CanUseModifyDepartmentButtons);
+            this._removeDepartmentCommand = new DelegateCommand(RemoveDepartment_Event, CanUseModifyDepartmentButtons);
 
             this.CreateDepartmentPanelVisible = true;
             this.AddItemPanelVisible = true;
 
-            this.Departments = DepartmentManager.GetAllDepartments(false);
+            RefreshDepartmentList();
             RefreshEmployeeList();
             this.Roles = Enum.GetValues(typeof(EmployeeRole)).Cast<EmployeeRole>().ToList();
         }
 
         private void RefreshEmployeeList() => this.Employees = EmployeeDatabaseHandler.GetAllEmployees(true);
+        private void RefreshDepartmentList() => this.Departments = DepartmentManager.GetAllDepartments(false);
 
         private void AddEmployee_Event(object commandParameter)
         {
@@ -351,7 +459,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
                         {
                             EmployeeManager manager = new EmployeeManager();
                             manager.AddEmployee(EmployeeCreationUsername, EmployeeCreationPassword, hourlySalary, EmployeeCreationSelectedRole, EmployeeCreationSelectedDepartment.DepartmentId, workHours, true);
-                            message = "Sucessfully added new employee to the system!";
+                            message = "Sucessfully added new employee to system.";
                             EmployeeCreationUsername = "";
                             EmployeeCreationPassword = "";
                             EmployeeCreationSalary = "";
@@ -409,15 +517,15 @@ namespace MediaBazaarApplicationWPF.ViewModels
             {
                 try
                 {
-                    SelectedEmployee.FirstName = SelectedEmployeeFirstName;
-                    SelectedEmployee.LastName = SelectedEmployeeLastName;
-                    SelectedEmployee.Nationality = SelectedEmployeeNationality;
-                    SelectedEmployee.PhoneNumber = SelectedEmployeePhoneNumber;
+                    SelectedEmployee.FirstName = (string.IsNullOrEmpty(SelectedEmployeeFirstName)) ? SelectedEmployeeFirstName : null;
+                    SelectedEmployee.LastName = (string.IsNullOrEmpty(SelectedEmployeeLastName)) ? SelectedEmployeeLastName : null;
+                    SelectedEmployee.Nationality = (string.IsNullOrEmpty(SelectedEmployeeNationality)) ? SelectedEmployeeNationality : null;
+                    SelectedEmployee.PhoneNumber = (string.IsNullOrEmpty(SelectedEmployeePhoneNumber)) ? SelectedEmployeePhoneNumber : null;
                     SelectedEmployee.Sex = SelectedEmployeeIsFemale;
-                    SelectedEmployee.SalaryHourlyRate = Decimal.Round(Decimal.Parse(SelectedEmployeeSalary), 2);
-                    SelectedEmployee.Address = SelectedEmployeeAddress;
-                    SelectedEmployee.Email = SelectedEmployeeEmail;
-                    SelectedEmployee.DateOfBirth = SelectedEmployeeBirthdate;
+                    SelectedEmployee.SalaryHourlyRate = (string.IsNullOrEmpty(SelectedEmployeeSalary)) ? Decimal.Round(Decimal.Parse(SelectedEmployeeSalary), 2) : 0;
+                    SelectedEmployee.Address = (string.IsNullOrEmpty(SelectedEmployeeAddress)) ? SelectedEmployeeAddress : null;
+                    SelectedEmployee.Email = (string.IsNullOrEmpty(SelectedEmployeeEmail)) ? SelectedEmployeeEmail : null;
+                    SelectedEmployee.DateOfBirth = (SelectedEmployeeBirthdate.HasValue) ? SelectedEmployeeBirthdate : null;
 
                     EmployeeDatabaseHandler.UpdateDatabaseEntry(SelectedEmployee);
                     RefreshEmployeeList();
@@ -456,6 +564,115 @@ namespace MediaBazaarApplicationWPF.ViewModels
             if (this.MessageEvent != null) this.MessageEvent(message);
         }
 
-        private bool CanUseButton(object commandParameter) => true;
+        private bool CanModifyEmployeeButtons(object commandParameter) => (SelectedEmployee != null) ? true : false;
+
+        private void AddDepartment_Event(object commandParameter)
+        {
+            string message = "";
+
+            if (!string.IsNullOrEmpty(DepartmentCreationName) && !string.IsNullOrEmpty(DepartmentCreationAddress))
+            {
+                try
+                {
+                    DepartmentManager.AddDepartment(DepartmentCreationName, DepartmentCreationAddress);
+                    DepartmentCreationName = "";
+                    DepartmentCreationAddress = "";
+
+                    message = "Successfully added new department to system.";
+                }
+                catch (Exception ex) { message = ex.Message; }
+                finally { RefreshDepartmentList(); }
+            }
+            else message = "Please fill all required fields and try again.";
+
+            if (this.MessageEvent != null) this.MessageEvent(message);
+        }
+
+        private bool CanAddDepartment(object commandParameter) => !string.IsNullOrEmpty(DepartmentCreationName) && !string.IsNullOrEmpty(DepartmentCreationAddress);
+
+        private void SelectedDepartmentFillControls()
+        {
+            if (DepartmentModifySelectedDepartment != null)
+            {
+                this.DepartmentModifyName = DepartmentModifySelectedDepartment.Name;
+                this.DepartmentModifyAddress = DepartmentModifySelectedDepartment.Address;
+            }
+        }
+
+        private void AssignEmployeeToDepartment_Event(object commandParameter)
+        {
+            string message = "";
+
+            try
+            {
+                if (DepartmentModifySelectedEmployee != null)
+                {
+                    DepartmentModifySelectedDepartment.AssignEmployeeTo(DepartmentModifySelectedEmployee, DepartmentModifySelectedDepartment.DepartmentId);
+
+                    message = $"Successfully moved {DepartmentModifySelectedEmployee.FullName} to {DepartmentModifySelectedDepartment.Name}";
+                }
+            }
+            catch (Exception ex) { message = ex.Message; }
+            finally { DepartmentModifySelectedEmployee = null; SelectedEmployee = null; RefreshEmployeeList(); }
+
+            if (this.MessageEvent != null) this.MessageEvent(message);
+        }
+
+        private bool CanAssignEmployeeToDepartment(object commandParameter) => (DepartmentModifySelectedEmployee != null) ? true : false;
+
+        private void UpdateDepartment_Event(object commandParameter)
+        {
+            if (DepartmentModifySelectedDepartment != null)
+            {
+                string message = "";
+
+                if (!string.IsNullOrEmpty(DepartmentModifyName) && !string.IsNullOrEmpty(DepartmentModifyAddress))
+                {
+                    try
+                    {
+                        DepartmentManager.UpdateDepartment(DepartmentModifySelectedDepartment.DepartmentId, DepartmentModifyName, DepartmentModifyAddress);
+                        DepartmentModifyName = "";
+                        DepartmentModifyAddress = "";
+
+                        message = "Successfully updated department information.";
+                    }
+                    catch (Exception ex) { message = ex.Message; }
+                    finally { DepartmentModifySelectedDepartment = null; RefreshDepartmentList(); }
+                }
+                else message = "Please fill all required fields and try again.";
+
+                if (this.MessageEvent != null) this.MessageEvent(message);
+            }
+        }
+
+        private void RemoveDepartment_Event(object commandParameter)
+        {
+            if(DepartmentModifySelectedDepartment != null)
+            {
+                string message = "";
+
+                try
+                {
+                    if(DepartmentModifySelectedDepartment.Employees.Exists(e => e.Role == LoggedInUser.role))
+                    {
+                        message = "Cannot remove a department if there is someone in it with the same or higher role than you. Please contact the owner!";
+                    }
+                    else
+                    {
+                        DepartmentManager.RemoveFromDatabase(DepartmentModifySelectedDepartment);
+                        DepartmentModifyName = "";
+                        DepartmentModifyAddress = "";
+
+                        message = $"Department '{DepartmentModifySelectedDepartment.Name}' has successfully been removed from the system.";
+                    }
+                }
+                catch (Exception ex) { message = ex.Message; }
+                finally { DepartmentModifySelectedDepartment = null; EmployeeCreationSelectedDepartment = null; RefreshDepartmentList(); }
+
+                if (this.MessageEvent != null) this.MessageEvent(message);
+            }
+        }
+
+        private bool CanUseModifyDepartmentButtons(object commandParameter) => (DepartmentModifySelectedDepartment != null) ? true : false;
     }
 }
