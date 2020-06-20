@@ -104,7 +104,7 @@ namespace MediaBazaarApplicationWPF
                     if(!nameValidation.IsMatch(value)) this.firstName = value;
                     else throw new ArgumentException("Invalid first name has been parsed to employee. Given value cannot contain digits.");
                 }
-                else throw new ArgumentException("First name can't be null!");
+              
             }
         }
 
@@ -120,7 +120,7 @@ namespace MediaBazaarApplicationWPF
                     if(!nameValidation.IsMatch(value)) this.lastName = value;
                     else throw new ArgumentException("Invalid last name has been parsed to employee. Given value cannot contain digits.");
                 }
-                else throw new ArgumentException("Last name can't be null!");
+                
             }
         }
 
@@ -151,7 +151,7 @@ namespace MediaBazaarApplicationWPF
                     if(!nationalityValidation.IsMatch(value)) this.nationality = value;
                     else throw new ArgumentException("Invalid nationality has been parsed to employee. Given value cannot contain digits.");
                 }
-                else throw new ArgumentException("Nationality can't be null!");
+                
             }
         }
 
@@ -159,7 +159,7 @@ namespace MediaBazaarApplicationWPF
         {
             get { return this.address; }
             set {
-                if(value!=null && value!="")
+                if(value!=null )
                 this.address = value; 
                 else throw new ArgumentException("Address cant be null");
             }
@@ -177,7 +177,7 @@ namespace MediaBazaarApplicationWPF
                     if(emailValidation.IsMatch(value)) this.email = value;
                     else throw new ArgumentException("Invalid e-mail address has been parsed to employee.");
                 }
-                else throw new ArgumentException("E-mail address can't be null!");
+                
             }
         }
 
