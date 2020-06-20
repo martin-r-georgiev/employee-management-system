@@ -44,6 +44,17 @@ namespace Sem2IntroProjectWaterfall0._1
             toadd = new Prefrence("John5", "2020-03-20", 1, "Wednesday", "dep2"); prefrences.Add(toadd);
             toadd = new Prefrence("John5", "2020-03-20", 2, "Wednesday", "dep2"); prefrences.Add(toadd);
             toadd = new Prefrence("John5", "2020-03-20", 1, "Tuesday", "dep2"); prefrences.Add(toadd);
+
+            toadd = new Prefrence("John6", "2020-03-20", 0, "Friday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John6", "2020-03-20", 1, "Friday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John6", "2020-03-20", 2, "Friday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John6", "2020-03-20", 0, "Thursday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John6", "2020-03-20", 1, "Thursday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John6", "2020-03-20", 2, "Thursday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John6", "2020-03-20", 0, "Wednesday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John6", "2020-03-20", 1, "Wednesday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John6", "2020-03-20", 2, "Wednesday", "dep2"); prefrences.Add(toadd);
+            toadd = new Prefrence("John6", "2020-03-20", 1, "Tuesday", "dep2"); prefrences.Add(toadd);
             departments.Add("dep2");
         }
 
@@ -78,8 +89,8 @@ namespace Sem2IntroProjectWaterfall0._1
         #region Main Methods
         public List<WorkshiftData> GenerateWorkshiftSchedule()
         {
-            LoadDataFromDatabase();
-            //LoadManualTestData();
+            //LoadDataFromDatabase();
+            LoadManualTestData();
 
             foreach (string department in departments) // will do this for each department
             {
@@ -101,7 +112,9 @@ namespace Sem2IntroProjectWaterfall0._1
                                 if (HasMultipleEntries(Schedule[i].Day, Schedule[i].Workshift) == true && Schedule[i].DepartmentID == department)
                                 {
                                     var Max = SortSchedule(Schedule);
-                                    if (converttoday(Max.Item1)==Schedule[i].Day && Max.Item2==Schedule[i].Workshift)// making it take from the biggest shift change the IF statement to true if bugged
+                                    bool cond1 = converttoday(Max.Item1) == Schedule[index].Day;
+                                    bool cond2= Max.Item2 == Schedule[index].Workshift; 
+                                    if (cond1 && cond2)// making it take from the biggest shift change the IF statement to true if bugged
                                     {
                                         //remove this guy from workshift and add it to current
                                         WorkshiftData ToAdd = new WorkshiftData(Schedule[index].UserID, converttodate(i), j, converttoday(i), department);
@@ -238,7 +251,7 @@ namespace Sem2IntroProjectWaterfall0._1
             int maxValue = workshift.Max();
             int maxIndex = workshift.ToList().IndexOf(maxValue);
             int maxDay = maxIndex / 3;
-            int maxShift = maxIndex - (maxDay * 3); 
+            int maxShift = (maxIndex)%3; 
             return (maxDay,maxShift);
         }
         public List<Prefrence> GetCurrentDeparmentPreferences(string departmentID) // will return preferences of emplyoees that are in the provided department 

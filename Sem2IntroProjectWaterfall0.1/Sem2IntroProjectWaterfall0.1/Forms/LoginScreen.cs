@@ -41,6 +41,7 @@ namespace Sem2IntroProjectWaterfall0._1
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+           
             if (!string.IsNullOrEmpty(tbUsername.Text) && !string.IsNullOrEmpty(tbPassword.Text))
             {
                 using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())

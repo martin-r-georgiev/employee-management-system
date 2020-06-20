@@ -29,31 +29,40 @@ namespace MediaBazaarApplicationWPF
             preferences.Add(new WorkshiftPreferences("John4", "2020-03-20", 0, "Friday", "dep2"));
             preferences.Add(new WorkshiftPreferences("John4", "2020-03-20", 1, "Friday", "dep2"));
             preferences.Add(new WorkshiftPreferences("John4", "2020-03-20", 2, "Friday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John4", "2020-03-20", 0, "Thursday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John4", "2020-03-20", 1, "Thursday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John4", "2020-03-20", 2, "Thursday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John4", "2020-03-20", 0, "Wednesday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John4", "2020-03-20", 1, "Wednesday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John4", "2020-03-20", 2, "Wednesday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John4", "2020-03-20", 1, "Thursday", "dep2"));
+
+            preferences.Add(new WorkshiftPreferences("John5", "2020-03-20", 0, "Friday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John5", "2020-03-20", 1, "Friday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John5", "2020-03-20", 2, "Friday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John5", "2020-03-20", 0, "Thursday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John5", "2020-03-20", 1, "Thursday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John5", "2020-03-20", 2, "Thursday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John5", "2020-03-20", 0, "Wednesday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John5", "2020-03-20", 1, "Wednesday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John5", "2020-03-20", 2, "Wednesday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John5", "2020-03-20", 1, "Thursday", "dep2"));
+
+            preferences.Add(new WorkshiftPreferences("John6", "2020-03-20", 0, "Friday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John6", "2020-03-20", 1, "Friday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John6", "2020-03-20", 2, "Friday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John6", "2020-03-20", 0, "Thursday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John6", "2020-03-20", 1, "Thursday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John6", "2020-03-20", 2, "Thursday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John6", "2020-03-20", 0, "Wednesday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John6", "2020-03-20", 1, "Wednesday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John6", "2020-03-20", 2, "Wednesday", "dep2"));
+            preferences.Add(new WorkshiftPreferences("John6", "2020-03-20", 1, "Thursday", "dep2"));
+
 
             departmentIDs.Add("dep2");
 
-            //toadd = new Prefrence("John4", "2020-03-20", 0, "Friday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John4", "2020-03-20", 1, "Friday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John4", "2020-03-20", 2, "Friday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John4", "2020-03-20", 0, "Thursday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John4", "2020-03-20", 1, "Thursday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John4", "2020-03-20", 2, "Thursday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John4", "2020-03-20", 0, "Wednesday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John4", "2020-03-20", 1, "Wednesday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John4", "2020-03-20", 2, "Wednesday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John4", "2020-03-20", 1, "Tuesday", "dep2"); prefrences.Add(toadd);
-
-            //toadd = new Prefrence("John5", "2020-03-20", 0, "Friday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John5", "2020-03-20", 1, "Friday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John5", "2020-03-20", 2, "Friday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John5", "2020-03-20", 0, "Thursday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John5", "2020-03-20", 1, "Thursday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John5", "2020-03-20", 2, "Thursday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John5", "2020-03-20", 0, "Wednesday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John5", "2020-03-20", 1, "Wednesday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John5", "2020-03-20", 2, "Wednesday", "dep2"); prefrences.Add(toadd);
-            //toadd = new Prefrence("John5", "2020-03-20", 1, "Tuesday", "dep2"); prefrences.Add(toadd);
-            //departments.Add("dep2");
+         
         }
 
         public void LoadDataFromDatabase() // used to load data  from preference table and department table
@@ -85,10 +94,12 @@ namespace MediaBazaarApplicationWPF
         #endregion
 
         #region Main Methods
-        public List<WorkshiftData> GenerateWorkshiftSchedule()
+        public List<WorkshiftData> GenerateWorkshiftSchedule(bool select)
         {
+            if(select==true) // true gets data from database
             LoadDataFromDatabase();
-            //LoadManualTestData();
+            else
+            LoadManualTestData();// false gets from manual testdata for unit testing
 
             foreach (string department in departmentIDs)
             {
@@ -111,7 +122,7 @@ namespace MediaBazaarApplicationWPF
                                 if(HasMultipleEntries(Schedule[i].Day, Schedule[i].Workshift) && Schedule[i].DepartmentID == department)
                                 {
                                     var Max = SortSchedule(Schedule);
-                                    if(converttoday(Max.Item1) == Schedule[i].Day && Max.Item2 == Schedule[i].Workshift) // making it take from the biggest shift change the IF statement to true if bugged
+                                    if(converttoday(Max.Item1) == Schedule[index].Day && Max.Item2 == Schedule[index].Workshift) // making it take from the biggest shift change the IF statement to true if bugged
                                     {
                                         //remove this guy from workshift and add it to current
                                         Schedule.RemoveAt(index); // remove the current guy from his already assigned workshift
@@ -141,7 +152,7 @@ namespace MediaBazaarApplicationWPF
                         if (DateTime.Parse(dataReader["nextupdate"].ToString()) <= DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd")))
                         {
                             Attendance.UpdateAllAttendance();
-                            GenerateWorkshiftSchedule();
+                            GenerateWorkshiftSchedule(true);
                             ExportToDatabase();
                             message = "Sorry for the wait time, schedule was generating!";
                         }
@@ -149,7 +160,7 @@ namespace MediaBazaarApplicationWPF
                     else
                     {
                         Attendance.UpdateAllAttendance();
-                        GenerateWorkshiftSchedule();
+                        GenerateWorkshiftSchedule(true);
                         ExportToDatabase();
                         message = "Sorry for the wait time, schedule was generating!";
                     }

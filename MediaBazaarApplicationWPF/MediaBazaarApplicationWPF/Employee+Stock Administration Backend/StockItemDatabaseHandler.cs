@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MediaBazaarApplicationWPF
 {
-    class StockItemDatabaseHandler
+   public class StockItemDatabaseHandler
     {
         public static void AddStockItemToStock(StockItem item)
         {
@@ -29,6 +29,26 @@ namespace MediaBazaarApplicationWPF
                 finally { conn.Close(); }
             }
         }
+
+        public static void AddIntoStockItem(string name, string stockID)
+        {
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand($"INSERT IGNORE INTO stock_item (stockID, name) VALUES (@stockID, @name)", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@stockID", stockID);
+                        cmd.Parameters.AddWithValue("@name", name);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+                finally { conn.Close(); }
+            }
+        }
+
 
         public static void AddStockItemToDepartment(StockItem item, string departmentID)
         {
@@ -109,6 +129,8 @@ namespace MediaBazaarApplicationWPF
                         MySqlDataReader dataReader = cmd.ExecuteReader();
                         if (dataReader.Read())
                         {
+                            string test = dataReader.GetString(0);
+
                             returnItem = new StockItem(stockID, departmentID, dataReader.GetString(0), dataReader.GetInt32(1), dataReader.GetInt32(2));
                         }
                         dataReader.Close();
@@ -121,6 +143,8 @@ namespace MediaBazaarApplicationWPF
 
             return returnItem;
         }
+
+    
 
         public static List<StockItem> GetAllStockFromDepartment(string departmentID)
         {
