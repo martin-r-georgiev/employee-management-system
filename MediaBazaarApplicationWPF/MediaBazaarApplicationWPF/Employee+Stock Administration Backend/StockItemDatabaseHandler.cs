@@ -129,8 +129,6 @@ namespace MediaBazaarApplicationWPF
                         MySqlDataReader dataReader = cmd.ExecuteReader();
                         if (dataReader.Read())
                         {
-                            string test = dataReader.GetString(0);
-
                             returnItem = new StockItem(stockID, departmentID, dataReader.GetString(0), dataReader.GetInt32(1), dataReader.GetInt32(2));
                         }
                         dataReader.Close();
