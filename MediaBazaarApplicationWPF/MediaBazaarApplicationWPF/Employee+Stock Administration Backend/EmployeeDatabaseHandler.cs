@@ -280,9 +280,8 @@ namespace MediaBazaarApplicationWPF
                         dataReader = cmd.ExecuteReader();
                     }
                     while (dataReader.Read());
-
-                    cmd.Dispose();
                     dataReader.Close();
+                    cmd.Dispose();    
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
                 finally { conn.Close(); }

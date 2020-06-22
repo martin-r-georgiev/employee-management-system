@@ -25,6 +25,7 @@ namespace MediaBazaarApplicationWPF.UserControls.Views
         private string _departmentName;
         private Employee _selectedEmployee;
         private EmployeeListingViewModel model;
+
         public Employee SelectedEmployee
         {
             get { return _selectedEmployee; }
@@ -59,24 +60,10 @@ namespace MediaBazaarApplicationWPF.UserControls.Views
             this.model = model;
         }
 
-        private void LblDepartment_MouseEnter(object sender, MouseEventArgs e)
-        {
-           
-            this.Background = Brushes.LightGray;
-            
-            //this.firstLetterBorder.Background = Brushes.LightGray;
-            //this.panelSidebar.BackColor = Color.LightGray;
-        }
+        private void LblDepartment_MouseEnter(object sender, MouseEventArgs e) => this.Background = Brushes.LightGray;
 
-        private void LblDepartment_MouseLeave(object sender, MouseEventArgs e)
-        {
-            this.Background = Brushes.White;
-            //this.firstLetterBorder.Background = Brushes.White;
-        }
+        private void LblDepartment_MouseLeave(object sender, MouseEventArgs e) => this.Background = Brushes.White;
 
-        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            model.RefreshGUI(SelectedEmployee, DepartmentName);
-        }
+        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e) => model.RefreshGUI(SelectedEmployee, DepartmentName);
     }
 }

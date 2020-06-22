@@ -28,6 +28,7 @@ namespace MediaBazaarApplicationWPF
 
             return newDep;
         }
+
         public static void RemoveFromDatabase(Department department)
         {
             if (department.Employees.Count != 0) throw new MinimalEmployeesException("You still have employees in this department!");
@@ -35,6 +36,7 @@ namespace MediaBazaarApplicationWPF
             DepartmentDatabaseHandler.RemoveStockOfDepartment(department.DepartmentId);
             DepartmentDatabaseHandler.RemoveDepartment(department.DepartmentId);
         }
+
         public static void RemoveFromDatabase(string departmentID)
         {
             Department selectedDep = GetDepartment(departmentID, true);
@@ -43,16 +45,16 @@ namespace MediaBazaarApplicationWPF
             DepartmentDatabaseHandler.RemoveStockOfDepartment(selectedDep.DepartmentId);
             DepartmentDatabaseHandler.RemoveDepartment(selectedDep.DepartmentId);
         }
+
         public static void UpdateDepartment(string departmentID, string newName, string newAddress)
         {
             DepartmentDatabaseHandler.UpdateDepartmentData(departmentID, newName, newAddress);
         }
+
         public static List<Department> GetAllDepartments(bool needFullInformation)
         {
-            if (needFullInformation)
-                return DepartmentDatabaseHandler.GetAllDepartments();
-            else
-                return DepartmentDatabaseHandler.GetAllDepartmentsMinimalInformation();
+            if (needFullInformation) return DepartmentDatabaseHandler.GetAllDepartments();
+            else return DepartmentDatabaseHandler.GetAllDepartmentsMinimalInformation();
         }
     }
 }
