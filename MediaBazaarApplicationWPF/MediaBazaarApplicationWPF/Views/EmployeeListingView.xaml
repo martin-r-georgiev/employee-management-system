@@ -5,13 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
         xmlns:views="clr-namespace:MediaBazaarApplicationWPF.UserControls.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
-        Title="EmployeeListingView" MinWidth="750" MaxWidth="1300" MinHeight="425" MaxHeight="800" Height="500" Width="800">
+        Title="EmployeeListingView" MinWidth="780" MinHeight="540" Height="600" Width="820" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
     </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF1D7276" Offset="1"/>
+            <GradientStop Color="#FF19767F"/>
+            <GradientStop Color="#FF3D979E" Offset="0.526"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Column="1" Grid.Row="1" Opacity="0.94"  MaxWidth="1300"  MaxHeight="800">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FFE0DEDE" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="0" Color="#FF073333" RenderingBias="Quality" Opacity="0.94" ShadowDepth="1"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Grid Grid.Column="1" Grid.Row="1"  MaxWidth="1300"  MaxHeight="800">
+            <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
@@ -31,49 +62,96 @@
         </Grid.RowDefinitions>
         
         <!-- Row 1 -->
-        <Button x:Name="BtnBack" Content="Back" Grid.Row="1" Grid.Column="1" Margin="5" Click="BtnBack_Click"/>
+        <Button x:Name="BtnBack" MinHeight="40" MinWidth="40" BorderThickness="0" ToolTip="Go back"
+                    Grid.Row="1" Grid.Column="1" Margin="0, 0, 0, 0" Width="40" HorizontalAlignment="Left"
+                    Click="BtnBack_Click">
+            <Button.Background>
+                <ImageBrush ImageSource ="/Resources/Images/back.png"  ></ImageBrush>
+            </Button.Background>
+        </Button>
         <Button x:Name="BtnHistory" Content="History" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Margin="5" Click="BtnHistory_Click"/>
         <Button x:Name="BtnStatistics" Content="Statistics" Grid.Row="1" Grid.Column="5" Margin="5" Click="BtnStatistics_Click"/>
         <ComboBox x:Name="CbDepartments" Grid.Row="1" Grid.Column="6" Margin="5" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDepartment}" 
                   Visibility="{Binding CbDepartmentsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
-        <TextBox x:Name="tbSearch" Grid.Row="1" Grid.Column="7" Margin="5"  Text="{Binding Path=SearchContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        
-        <!-- Row 2 -->
-        <Image x:Name="imgEmployee" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Source="{Binding PicURL}" Stretch="Fill" Margin="10 0"/>
+        <TextBox x:Name="tbSearch" Grid.Row="1" Grid.Column="7" Margin="5" Height="30" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                 Text="{Binding Path=SearchContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="12" Padding="0 -7 0 0"/>
+            <!--<materialDesign:PopupBox
+              Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+              PlacementMode="BottomAndAlignCentres"
+              ToolTipService.Placement="Right"
+              ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox"
+              Opened="PopupBox_OnOpened"
+              Closed="PopupBox_OnClosed">
+                <StackPanel>
+                    <Button ToolTip="Owner" Opacity="0.5">
+                    </Button>
+                    <Button ToolTip="Admin">
+                    </Button>
+                    <Button ToolTip="Manager">
+                    </Button>
+                    <Button ToolTip="Worker">
+                    </Button>
+                </StackPanel>
+            </materialDesign:PopupBox>-->
 
-        <Border Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" BorderBrush="Aqua" BorderThickness="2" Margin="5">
-            <DockPanel  VerticalAlignment="Center">
-                <TextBlock Text="{Binding SelectedEmployee.Email, StringFormat=E-Mail: {0}}"  DockPanel.Dock="Top" FontSize="16" Margin="7"/>
-                <TextBlock Text="{Binding SelectedEmployee.PhoneNumber, StringFormat=Phone Number: {0}}" DockPanel.Dock="Top" FontSize="16" Margin="7"/>
-                <TextBlock Text="{Binding SelectedEmployee.Address, StringFormat=Address: {0}}" DockPanel.Dock="Top" FontSize="16" Margin="7"/>
-            </DockPanel>
-        </Border>
-        <ScrollViewer Grid.Row="2" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
-            <DockPanel VerticalAlignment="Top">
-                <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding Employees}">
+            <!-- Row 2 -->
+            <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="#D5E6E6" Margin="0 5 0 0" CornerRadius="15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  CornerRadius="15" Margin="10 5 10 0">
+                        <Border.Background>
+                            <ImageBrush x:Name="imgEmployee" Stretch="Fill" ImageSource="{Binding PicURL}"/>
+                        </Border.Background>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="Aqua" BorderThickness="0" Margin="5">
+                        <DockPanel  VerticalAlignment="Top">
+                            <TextBlock Text="{Binding SelectedEmployee.FirstLastName, StringFormat=Name: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
+                            <TextBlock Text="{Binding SelectedEmpAge, StringFormat=Age: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
+                            <TextBlock Text="{Binding Gender, StringFormat=Gender: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
+                            <TextBlock Text="{Binding SelectedEmployee.Nationality, StringFormat=Nationality: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
+                            <TextBlock Text="{Binding SelectedEmployee.DepartmentName, StringFormat=Department: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
+                        </DockPanel>
+                    </Border>
 
-                </ItemsControl>
-            </DockPanel>
-        </ScrollViewer>
-            
-      
-        <!-- Row 3 -->
-        <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Aqua" BorderThickness="2" Margin="5">
-            <DockPanel VerticalAlignment="Center">
-                <TextBlock Text="{Binding SelectedEmployee.FirstLastName, StringFormat=Name: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
-                <TextBlock Text="{Binding SelectedEmployee.DepartmentName, StringFormat=Department: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
-                <TextBlock Text="{Binding SelectedEmpAge, StringFormat=Age: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
-                <TextBlock Text="{Binding Gender, StringFormat=Gender: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
-                <TextBlock Text="{Binding SelectedEmployee.Nationality, StringFormat=Nationality: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
-            </DockPanel>
-        </Border>
-        <Border Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" BorderBrush="Aqua" BorderThickness="2" Margin="5">
-            <DockPanel VerticalAlignment="Center">
-                <TextBlock Text="{Binding SelectedEmployee.Role, StringFormat=Role: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
-                <TextBlock Text="{Binding SelectedEmployee.Attendance, StringFormat=Attendance: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
-                <TextBlock Text="{Binding SelectedEmployee.SalaryHourlyRate, StringFormat=Salary: {0}/hr}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
-                <TextBlock Text="{Binding WorkingSince}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
-            </DockPanel>            
-        </Border>
+
+                    <!-- Row 3 -->
+                    <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" BorderBrush="Aqua" BorderThickness="0" Margin="5">
+                        <DockPanel VerticalAlignment="Top">
+                            <TextBlock Text="{Binding SelectedEmployee.Email, StringFormat=E-Mail: {0}}"  DockPanel.Dock="Top" FontSize="16" Margin="7"/>
+                            <TextBlock Text="{Binding SelectedEmployee.PhoneNumber, StringFormat=Phone Number: {0}}" DockPanel.Dock="Top" FontSize="16" Margin="7"/>
+                            <TextBlock Text="{Binding SelectedEmployee.Address, StringFormat=Address: {0}}" DockPanel.Dock="Top" FontSize="16" Margin="7"/>
+                        </DockPanel>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" BorderBrush="Aqua" BorderThickness="0" Margin="5">
+                        <DockPanel VerticalAlignment="Center">
+                            <TextBlock Text="{Binding SelectedEmployee.Role, StringFormat=Role: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
+                            <TextBlock Text="{Binding SelectedEmployee.Attendance, StringFormat=Attendance: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
+                            <TextBlock Text="{Binding SelectedEmployee.SalaryHourlyRate, StringFormat=Salary: {0}/hr}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
+                            <TextBlock Text="{Binding WorkingSince}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
+                        </DockPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+
+
+            <ScrollViewer Grid.Row="2" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
+                <DockPanel VerticalAlignment="Top">
+                    <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding Employees}">
+
+                    </ItemsControl>
+                </DockPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>

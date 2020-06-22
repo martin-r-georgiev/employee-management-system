@@ -1,4 +1,5 @@
-﻿using MediaBazaarApplicationWPF.ViewModels;
+﻿using DocumentFormat.OpenXml.Drawing;
+using MediaBazaarApplicationWPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,13 @@ namespace MediaBazaarApplicationWPF.UserControls.Views
             set {
                 _selectedEmployee = value;
                 LblFirstLetter.Text = value.Username.Substring(0, 1).ToUpper();
+                switch (value.Role)
+                {
+                    case EmployeeRole.Admin: LblFirstLetter.Background = Brushes.YellowGreen; break;
+                    case EmployeeRole.Owner: LblFirstLetter.Background = Brushes.Firebrick; break;
+                    case EmployeeRole.Manager: LblFirstLetter.Background = Brushes.MediumPurple; break;
+                    case EmployeeRole.Worker: LblFirstLetter.Background = Brushes.LightBlue; break;
+                }
                 LblName.Text = value.FullName;
             }
         }

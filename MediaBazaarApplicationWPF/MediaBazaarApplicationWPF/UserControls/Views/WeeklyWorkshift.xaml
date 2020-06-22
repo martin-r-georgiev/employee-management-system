@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MediaBazaarApplicationWPF.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Top"
              d:DesignHeight="95" d:DesignWidth="900">
     
@@ -47,6 +48,9 @@
             <RowDefinition Height="0" x:Name="headerWorkshiftRow"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="1.5"/>
+            <RowDefinition Height="4"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2"/>
@@ -54,21 +58,27 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="12"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="12"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="12"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="12"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="12"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="12"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -77,55 +87,124 @@
 
         <!--Row 1 (Header Row)-->
         <TextBlock Name="lblMondayDate" Grid.Row="1" Grid.Column="2" Style="{DynamicResource headerDateStyle}"/>
-        <TextBlock Name="lblTuesdayDate" Grid.Row="1" Grid.Column="5" Style="{DynamicResource headerDateStyle}"/>
-        <TextBlock Name="lblWednesdayDate" Grid.Row="1" Grid.Column="8" Style="{DynamicResource headerDateStyle}"/>
-        <TextBlock Name="lblThursdayDate" Grid.Row="1" Grid.Column="11" Style="{DynamicResource headerDateStyle}"/>
-        <TextBlock Name="lblFridayDate" Grid.Row="1" Grid.Column="14" Style="{DynamicResource headerDateStyle}"/>
-        <TextBlock Name="lblSaturdayDate" Grid.Row="1" Grid.Column="17" Style="{DynamicResource headerDateStyle}"/>
-        <TextBlock Name="lblSundayDate" Grid.Row="1" Grid.Column="20" Style="{DynamicResource headerDateStyle}"/>
+        <TextBlock Name="lblTuesdayDate" Grid.Row="1" Grid.Column="6" Style="{DynamicResource headerDateStyle}"/>
+        <TextBlock Name="lblWednesdayDate" Grid.Row="1" Grid.Column="10" Style="{DynamicResource headerDateStyle}"/>
+        <TextBlock Name="lblThursdayDate" Grid.Row="1" Grid.Column="14" Style="{DynamicResource headerDateStyle}"/>
+        <TextBlock Name="lblFridayDate" Grid.Row="1" Grid.Column="18" Style="{DynamicResource headerDateStyle}"/>
+        <TextBlock Name="lblSaturdayDate" Grid.Row="1" Grid.Column="22" Style="{DynamicResource headerDateStyle}"/>
+        <TextBlock Name="lblSundayDate" Grid.Row="1" Grid.Column="26" Style="{DynamicResource headerDateStyle}"/>
         
         <!--Row 2 (Header Row)-->
         <TextBlock Name="lblMondayWeekday" Grid.Row="2" Grid.Column="2" Text="Monday" Style="{DynamicResource headerWeekdayStyle}"/>
-        <TextBlock Name="lblTuesdayWeekday" Grid.Row="2" Grid.Column="5" Text="Tuesday" Style="{DynamicResource headerWeekdayStyle}"/>
-        <TextBlock Name="lblWednesdayWeekday" Grid.Row="2" Grid.Column="8" Text="Wednesday" Style="{DynamicResource headerWeekdayStyle}"/>
-        <TextBlock Name="lblThursdayWeekday" Grid.Row="2" Grid.Column="11" Text="Thursday" Style="{DynamicResource headerWeekdayStyle}"/>
-        <TextBlock Name="lblFridayWeekday" Grid.Row="2" Grid.Column="14" Text="Friday" Style="{DynamicResource headerWeekdayStyle}"/>
-        <TextBlock Name="lblSaturdayWeekday" Grid.Row="2" Grid.Column="17" Text="Saturday" Style="{DynamicResource headerWeekdayStyle}"/>
-        <TextBlock Name="lblSundayWeekday" Grid.Row="2" Grid.Column="20" Text="Sunday" Style="{DynamicResource headerWeekdayStyle}"/>
+        <TextBlock Name="lblTuesdayWeekday" Grid.Row="2" Grid.Column="6" Text="Tuesday" Style="{DynamicResource headerWeekdayStyle}"/>
+        <TextBlock Name="lblWednesdayWeekday" Grid.Row="2" Grid.Column="10" Text="Wednesday" Style="{DynamicResource headerWeekdayStyle}"/>
+        <TextBlock Name="lblThursdayWeekday" Grid.Row="2" Grid.Column="14" Text="Thursday" Style="{DynamicResource headerWeekdayStyle}"/>
+        <TextBlock Name="lblFridayWeekday" Grid.Row="2" Grid.Column="18" Text="Friday" Style="{DynamicResource headerWeekdayStyle}"/>
+        <TextBlock Name="lblSaturdayWeekday" Grid.Row="2" Grid.Column="22" Text="Saturday" Style="{DynamicResource headerWeekdayStyle}"/>
+        <TextBlock Name="lblSundayWeekday" Grid.Row="2" Grid.Column="26" Text="Sunday" Style="{DynamicResource headerWeekdayStyle}"/>
         
         <!--Row 3 (Header Row)-->
         <TextBlock Grid.Row="3" Grid.Column="2" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
         <TextBlock Grid.Row="3" Grid.Column="3" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
         <TextBlock Grid.Row="3" Grid.Column="4" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="5" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="6" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="7" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="8" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="9" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="10" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="11" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="12" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="13" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="6" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="7" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="8" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="10" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="11" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="12" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
         <TextBlock Grid.Row="3" Grid.Column="14" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
         <TextBlock Grid.Row="3" Grid.Column="15" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
         <TextBlock Grid.Row="3" Grid.Column="16" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="17" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="18" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="19" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="20" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="21" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
-        <TextBlock Grid.Row="3" Grid.Column="22" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="18" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="19" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="20" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="22" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="23" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="24" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="26" Text="M" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="27" Text="A" Style="{DynamicResource headerWorkshiftStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="28" Text="E" Style="{DynamicResource headerWorkshiftStyle}"/>
         
         <!--Row 4-->
-        <Rectangle x:Name="WorkshiftGrid" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="22"/>
+        <Rectangle x:Name="WorkshiftGrid" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="22" />
         <TextBlock Name="lblEmployeeName" Grid.Row="4" Grid.Column="1" Text="Placeholder" TextAlignment="Right" VerticalAlignment="Center" Padding="5 0 0 0" Margin="20 0"/>
 
         <local:WeeklyWorkshiftCell x:Name="workshiftMonday" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"/>
-        <local:WeeklyWorkshiftCell x:Name="workshiftTuesday" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3"/>
-        <local:WeeklyWorkshiftCell x:Name="workshiftWednesday" Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3"/>
-        <local:WeeklyWorkshiftCell x:Name="workshiftThursday" Grid.Row="4" Grid.Column="11" Grid.ColumnSpan="3"/>
-        <local:WeeklyWorkshiftCell x:Name="workshiftFriday" Grid.Row="4" Grid.Column="14" Grid.ColumnSpan="3"/>
-        <local:WeeklyWorkshiftCell x:Name="workshiftSaturday" Grid.Row="4" Grid.Column="17" Grid.ColumnSpan="3"/>
-        <local:WeeklyWorkshiftCell x:Name="workshiftSunday" Grid.Row="4" Grid.Column="20" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftTuesday" Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftWednesday" Grid.Row="4" Grid.Column="10" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftThursday" Grid.Row="4" Grid.Column="14" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftFriday" Grid.Row="4" Grid.Column="18" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftSaturday" Grid.Row="4" Grid.Column="22" Grid.ColumnSpan="3"/>
+        <local:WeeklyWorkshiftCell x:Name="workshiftSunday" Grid.Row="4" Grid.Column="26" Grid.ColumnSpan="3"/>
+
+        <!--Spacing-->
+        <Border Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="30" Background="Teal" Margin="60,0,0,0"/>
+        <Grid Grid.Row="2" Grid.RowSpan="10" Grid.Column="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="1" Grid.Row="0" Background="Teal"></Border>
+        </Grid>
+        <Grid Grid.Row="2" Grid.RowSpan="10" Grid.Column="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="1" Grid.Row="0" Background="Teal"></Border>
+        </Grid>
+        <Grid Grid.Row="2" Grid.RowSpan="10" Grid.Column="13">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="1" Grid.Row="0" Background="Teal"></Border>
+        </Grid>
+        <Grid Grid.Row="2" Grid.RowSpan="10" Grid.Column="17">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="1" Grid.Row="0" Background="Teal"></Border>
+        </Grid>
+        <Grid Grid.Row="2" Grid.RowSpan="10" Grid.Column="21">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="1" Grid.Row="0" Background="Teal"></Border>
+        </Grid>
+        <Grid Grid.Row="2" Grid.RowSpan="10" Grid.Column="25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="1" Grid.Row="0" Background="Teal"></Border>
+        </Grid>
     </Grid>
 </UserControl>

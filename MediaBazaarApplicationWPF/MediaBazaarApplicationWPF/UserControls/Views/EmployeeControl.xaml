@@ -10,7 +10,7 @@
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="2"/>
         </Grid.ColumnDefinitions>
@@ -21,14 +21,15 @@
             <RowDefinition Height="2"/>
         </Grid.RowDefinitions>
         <!--Border-->
-            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Aqua" BorderThickness="2"/>
-            <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Aqua" BorderThickness="2"/>
-            <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" BorderBrush="Aqua" BorderThickness="2"/>
-            <Border Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" BorderBrush="Aqua" BorderThickness="2"/>
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Teal" BorderThickness="2"/>
+            <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Teal" BorderThickness="2"/>
+            <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" BorderBrush="Teal" BorderThickness="2"/>
+            <Border Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" BorderBrush="Teal" BorderThickness="2"/>
        <!--Title Header-->
-        <Border x:Name="firstLetterBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" BorderBrush="Blue" BorderThickness="1" VerticalAlignment="Center" Padding="5" HorizontalAlignment="Center" Width="25" Height="36">
-            <TextBlock x:Name="LblFirstLetter" Text="A" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        <Border x:Name="firstLetterBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" BorderBrush="#1de9b6" BorderThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="27" Height="36" Margin="15 0 0 0">
+            <TextBlock x:Name="LblFirstLetter" Text="A" FontSize="20" HorizontalAlignment="Center" Height="34" Width="25" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold"/>
         </Border>
+        <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" Width="8" Background="Teal"/>
 
         <TextBlock x:Name="LblName" Grid.Row="1"  Grid.Column="2" Text="FirstName LastName (Username)" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0" FontWeight="Bold" />
         <TextBlock x:Name="LblDepartment" Grid.Row="2"  Grid.Column="2" Text="DepartmentName" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Left" FontStyle="Italic" Margin="5 0"/>

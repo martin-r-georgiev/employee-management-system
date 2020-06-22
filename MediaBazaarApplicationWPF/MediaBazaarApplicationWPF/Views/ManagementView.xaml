@@ -5,306 +5,361 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
         mc:Ignorable="d"
-        Title="ManagementView" Height="550" MinHeight="550" Width="850" MinWidth="800">
-    
+         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        Title="ManagementView" Height="800" MinHeight="600" Width="1000" MinWidth="850" WindowStartupLocation="CenterScreen">
+
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
     </Window.Resources>
-    
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF1D7276" Offset="1"/>
+            <GradientStop Color="#FF19767F"/>
+            <GradientStop Color="#FF3D979E" Offset="0.526"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="70"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
-        </Grid.ColumnDefinitions>
 
-        <Button x:Name="BackButton" Content="Back" Grid.Row="1" Grid.Column="1" Margin="5 0" Click="BackButton_Click"/>
+        <Rectangle Grid.Column="1" Grid.Row="1" Opacity="0.94">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FFE0DEDE" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="0" Color="#FF073333" RenderingBias="Quality" Opacity="0.94" ShadowDepth="1"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
 
-        <TabControl Name="tcManagement" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Employees"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="10"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="10"/>
-                    </Grid.ColumnDefinitions>
-
-                    <GroupBox Header="Create a new employee" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="10">
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="275" Margin="10">
-                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                <TextBlock Text="Username" VerticalAlignment="Center" Width="70"/>
-                                <TextBox Text="{Binding Path=EmployeeCreationUsername, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
-                            </DockPanel>
-                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                <TextBlock Text="Password" VerticalAlignment="Center" Width="70"/>
-                                <TextBox Text="{Binding Path=EmployeeCreationPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
-                            </DockPanel>
-                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                <TextBlock Text="Role" VerticalAlignment="Center" Width="70"/>
-                                <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Roles}" SelectedItem="{Binding EmployeeCreationSelectedRole}"/>
-                            </DockPanel>
-                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                <TextBlock Text="Hourly Salary (Euro)" VerticalAlignment="Center" Width="125"/>
-                                <TextBox Text="{Binding Path=EmployeeCreationSalary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="RealNumericTextValidation" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
-                            </DockPanel>
-                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                <TextBlock Text="Department" VerticalAlignment="Center" Width="70"/>
-                                <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Departments}" SelectedItem="{Binding EmployeeCreationSelectedDepartment}"/>
-                            </DockPanel>
-                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                <TextBlock Text="Work Hours" VerticalAlignment="Center" Width="70"/>
-                                <TextBox Text="{Binding Path=EmployeeCreationWorkhours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
-                            </DockPanel>
-
-                            <Button Content="Add Employee" Margin="0 10" Command="{Binding Path=AddEmployee}"/>
+            <Button x:Name="BackButton" MinHeight="40" MinWidth="40" BorderThickness="0" ToolTip="Go back"
+                    Grid.Row="1" Grid.Column="1" Margin="0, 5, 10, 0" 
+                    Click="BackButton_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource ="/Resources/Images/back.png"  ></ImageBrush>
+                </Button.Background>
+            </Button>
+            <!--Last success-->
+            <TabControl Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="4" Background="White">
+                <!--<dragablz:TabablzControl.InterTabController>
+                    <dragablz:InterTabController/>
+                </dragablz:TabablzControl.InterTabController>-->
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Employees" Foreground="Black"/>
+                            <!--FloralWhite-->
                         </StackPanel>
-                    </GroupBox>
+                    </TabItem.Header>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="10"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
 
-                    <GroupBox Header="Modify employee" Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Margin="10">
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="275" Margin="10">
-                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                <TextBlock Text="Employee" VerticalAlignment="Center" Width="70"/>
-                                <Button Content="Clear" Margin="20 0 0 0" Padding="5 0" Width="Auto" VerticalContentAlignment="Center" VerticalAlignment="Stretch"
-                                        Command="{Binding Path=ClearModifyEmployeeSelected}"/>
-                                <ComboBox HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}"/>
-                            </DockPanel>
-
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="50"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
-                                    <TextBlock Text="First Name" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                    <TextBox Text="{Binding Path=SelectedEmployeeFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top"/>
+                        <GroupBox Header="Create a new employee" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="10">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="275" Margin="10">
+                                <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                    <TextBlock Text="Username" VerticalAlignment="Center" Width="70"/>
+                                    <TextBox Text="{Binding Path=EmployeeCreationUsername, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
                                 </DockPanel>
-                                <DockPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="10 5 0 5">
-                                    <TextBlock Text="Last Name" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                    <TextBox Text="{Binding Path=SelectedEmployeeLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" Height="20" DockPanel.Dock="Top"/>
+                                <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                    <TextBlock Text="Password" VerticalAlignment="Center" Width="70"/>
+                                    <TextBox Text="{Binding Path=EmployeeCreationPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
                                 </DockPanel>
-                                <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
-                                    <TextBlock Text="Nationality" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                    <TextBox Text="{Binding Path=SelectedEmployeeNationality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top"/>
+                                <DockPanel Height="30" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                    <TextBlock Text="Role" VerticalAlignment="Center" Width="70"/>
+                                    <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Roles}" SelectedItem="{Binding EmployeeCreationSelectedRole}"/>
                                 </DockPanel>
-                                <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="10 5 0 5">
-                                    <TextBlock Text="Phone number" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                    <TextBox Text="{Binding Path=SelectedEmployeePhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="PhoneNumberTextValidation"
-                                             HorizontalAlignment="Stretch" Width="Auto" Height="20" DockPanel.Dock="Top"/>
-                                </DockPanel>
-                                <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 5 5">
-                                    <TextBlock Text="Sex" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Left"/>
-                                    <RadioButton Content="Male" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0" DockPanel.Dock="Left"
-                                                 IsChecked="{Binding Path=SelectedEmployeeIsMale, Mode=TwoWay}"/>
-                                    <RadioButton Content="Female" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0" DockPanel.Dock="Left"
-                                                 IsChecked="{Binding Path=SelectedEmployeeIsFemale, Mode=TwoWay}"/>
-                                </DockPanel>
-                                <DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
+                                <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Hourly Salary (Euro)" VerticalAlignment="Center" Width="125"/>
-                                    <TextBox Text="{Binding Path=SelectedEmployeeSalary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="RealNumericTextValidation"
-                                             Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    <TextBox Text="{Binding Path=EmployeeCreationSalary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="RealNumericTextValidation" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
                                 </DockPanel>
-                                <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
-                                    <TextBlock Text="Address" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                    <TextBox Text="{Binding Path=SelectedEmployeeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top"/>
-                                </DockPanel>
-                                <DockPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
-                                    <TextBlock Text="E-mail" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                    <TextBox Text="{Binding Path=SelectedEmployeeEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top"/>
-                                </DockPanel>
-                                <DockPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
-                                    <TextBlock Text="Birth date" VerticalAlignment="Center" Width="75"/>
-                                    <DatePicker SelectedDate="{Binding Path=SelectedEmployeeBirthdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
-                                </DockPanel>
-
-                                <Button Content="Update" Grid.Row="7" Grid.Column="0" Margin="10" Command="{Binding Path=UpdateEmployee}"/>
-                                <Button Content="Remove" Grid.Row="7" Grid.Column="1" Margin="10" Command="{Binding Path=RemoveEmployee}"/>
-                            </Grid>
-                        </StackPanel>
-                    </GroupBox>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Departments and Stock">
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="10"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="10"/>
-                    </Grid.ColumnDefinitions>
-
-                    <GroupBox Header="Department" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="10">
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="275" Margin="10">
-
-                            <DockPanel Height="20" VerticalAlignment="Top" HorizontalAlignment="Center" LastChildFill="True" Margin="0 5">
-                                <RadioButton Content="Create" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0"
-                                             IsChecked="{Binding Path=CreateDepartmentPanelVisible, Mode=TwoWay}"/>
-                                <RadioButton Content="Modify" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0"
-                                             IsChecked="{Binding Path=ModifyDepartmentPanelVisible, Mode=TwoWay}"/>
-                            </DockPanel>
-                            
-                            <!--Create Department Controls-->
-                            <!--Control this StackPanel's visibility to switch between controls-->
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                        Visibility="{Binding CreateDepartmentPanelVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Collapsed}">
-                                <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                    <TextBlock Text="Name" VerticalAlignment="Center" Width="70"/>
-                                    <TextBox Text="{Binding Path=DepartmentCreationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
-                                </DockPanel>
-                                <DockPanel Height="120" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                    <TextBlock Text="Address" VerticalAlignment="Top" Width="70" Margin="0 5"/>
-                                    <TextBox Text="{Binding Path=DepartmentCreationAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0"
-                                             HorizontalAlignment="Stretch" Height="100" Width="Auto" TextWrapping="Wrap"/>
-                                </DockPanel>
-                                <Button Content="Add Department" Margin="0 10" Command="{Binding Path=AddDepartment}"/>
-                            </StackPanel>
-                            
-                            <!--Modify Department Controls-->
-                            <!--Control this StackPanel's visibility to switch between controls-->
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                        Visibility="{Binding ModifyDepartmentPanelVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Collapsed}">
-                                <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                <DockPanel Height="30" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Department" VerticalAlignment="Center" Width="70"/>
-                                    <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Departments}" SelectedItem="{Binding DepartmentModifySelectedDepartment}"/>
+                                    <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Departments}" SelectedItem="{Binding EmployeeCreationSelectedDepartment}"/>
                                 </DockPanel>
                                 <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                    <TextBlock Text="Name" VerticalAlignment="Center" Width="70"/>
-                                    <TextBox Text="{Binding Path=DepartmentModifyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    <TextBlock Text="Work Hours" VerticalAlignment="Center" Width="70"/>
+                                    <TextBox Text="{Binding Path=EmployeeCreationWorkhours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
                                 </DockPanel>
-                                <DockPanel Height="120" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                    <TextBlock Text="Address" VerticalAlignment="Top" Width="70" Margin="0 5"/>
-                                    <TextBox Text="{Binding Path=DepartmentModifyAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0" HorizontalAlignment="Stretch" Height="100" Width="Auto" TextWrapping="Wrap"/>
-                                </DockPanel>
-                                <GroupBox Header="Assign employee to this department">
-                                    <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
-                                        <TextBlock Text="Employee" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                        <Button Content="Assign" DockPanel.Dock="Right" Padding="10 0" Margin="20 0 0 0" Command="{Binding Path=AssignEmployeeToDepartment}"/>
-                                        <ComboBox HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Left" ItemsSource="{Binding Path=DepartmentModifyEmployees, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding DepartmentModifySelectedEmployee}"/>
-                                    </DockPanel>
-                                </GroupBox>
 
-                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Button Content="Add Employee" Margin="0 10" Command="{Binding Path=AddEmployee}"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Modify employee" Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Margin="10">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="275" Margin="10">
+                                <DockPanel Height="40" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                    <TextBlock Text="Employee" VerticalAlignment="Center" Width="70"/>
+                                    <Button Content="Clear" Margin="20 0 15 -5" Padding="10 0" Width="Auto" VerticalContentAlignment="Center" VerticalAlignment="Stretch"
+                                        Command="{Binding Path=ClearModifyEmployeeSelected}" Height="Auto" MaxHeight="30"/>
+                                    <ComboBox HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}"/>
+                                </DockPanel>
+
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="35"/>
+                                        <RowDefinition Height="50"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Button Grid.Row="0" Grid.Column="0" Content="Update Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
-                                        VerticalContentAlignment="Center" Command="{Binding Path=UpdateDepartment}"/>
-                                    <Button Grid.Row="0" Grid.Column="1" Content="Remove Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
-                                        VerticalContentAlignment="Center" Command="{Binding Path=RemoveDepartment}"/>
+                                    <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
+                                        <TextBlock Text="First Name" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="10 5 0 5">
+                                        <TextBlock Text="Last Name" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
+                                        <TextBlock Text="Nationality" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeNationality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                    </DockPanel>
+                                    <DockPanel Height="40" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="10 5 0 5">
+                                        <TextBlock Text="Phone number" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeePhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="PhoneNumberTextValidation"
+                                             HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 5 5">
+                                        <TextBlock Text="Sex" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Left"/>
+                                        <RadioButton Content="Male" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0" DockPanel.Dock="Left"
+                                                 IsChecked="{Binding Path=SelectedEmployeeIsMale, Mode=TwoWay}"/>
+                                        <RadioButton Content="Female" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0" DockPanel.Dock="Left"
+                                                 IsChecked="{Binding Path=SelectedEmployeeIsFemale, Mode=TwoWay}"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
+                                        <TextBlock Text="Hourly Salary (Euro)" VerticalAlignment="Center" Width="125"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeSalary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="RealNumericTextValidation"
+                                             Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
+                                        <TextBlock Text="Address" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
+                                        <TextBlock Text="E-mail" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
+                                        <TextBlock Text="Birth date" VerticalAlignment="Center" Width="75"/>
+                                        <DatePicker SelectedDate="{Binding Path=SelectedEmployeeBirthdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+                                    </DockPanel>
+
+                                    <Button Content="Update" Grid.Row="7" Grid.Column="0" Margin="10" Command="{Binding Path=UpdateEmployee}"/>
+                                    <Button Content="Remove" Grid.Row="7" Grid.Column="1" Margin="10" Command="{Binding Path=RemoveEmployee}"/>
                                 </Grid>
                             </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Departments and Stock" Foreground="Black"/>
                         </StackPanel>
-                    </GroupBox>
+                    </TabItem.Header>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="10"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
 
-                    <GroupBox Header="Stock" Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Margin="10">
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="275" Margin="10">
-                            <GroupBox Header="Create new item" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <GroupBox Header="Department" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="10">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="275" Margin="10">
+
+                                <DockPanel Height="20" VerticalAlignment="Top" HorizontalAlignment="Center" LastChildFill="True" Margin="0 5">
+                                    <RadioButton Content="Create" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0"
+                                             IsChecked="{Binding Path=CreateDepartmentPanelVisible, Mode=TwoWay}"/>
+                                    <RadioButton Content="Modify" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0"
+                                             IsChecked="{Binding Path=ModifyDepartmentPanelVisible, Mode=TwoWay}"/>
+                                </DockPanel>
+
+                                <!--Create Department Controls-->
+                                <!--Control this StackPanel's visibility to switch between controls-->
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                        Visibility="{Binding CreateDepartmentPanelVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Collapsed}">
                                     <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                         <TextBlock Text="Name" VerticalAlignment="Center" Width="70"/>
-                                        <TextBox Text="{Binding Path=StockCreationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                        <TextBox Text="{Binding Path=DepartmentCreationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
                                     </DockPanel>
-                                    <Button Content="Create" Margin="0 10" Command="{Binding Path=AddStockItem}"/>
+                                    <DockPanel Height="120" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                        <TextBlock Text="Address" VerticalAlignment="Top" Width="70" Margin="0 5"/>
+                                        <TextBox Text="{Binding Path=DepartmentCreationAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0"
+                                             HorizontalAlignment="Stretch" Height="100" Width="Auto" TextWrapping="Wrap" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+                                    </DockPanel>
+                                    <Button Content="Add Department" Margin="0 10" Command="{Binding Path=AddDepartment}"/>
                                 </StackPanel>
-                            </GroupBox>
 
-                            <GroupBox Header="Modify item" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                    <DockPanel Height="20" VerticalAlignment="Top" HorizontalAlignment="Center" LastChildFill="True" Margin="0 5">
-                                        <RadioButton Content="Add item" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0"
+                                <!--Modify Department Controls-->
+                                <!--Control this StackPanel's visibility to switch between controls-->
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                        Visibility="{Binding ModifyDepartmentPanelVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Collapsed}">
+                                    <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                        <TextBlock Text="Department" VerticalAlignment="Center" Width="70"/>
+                                        <ComboBox Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Departments}" SelectedItem="{Binding DepartmentModifySelectedDepartment}"/>
+                                    </DockPanel>
+                                    <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                        <TextBlock Text="Name" VerticalAlignment="Center" Width="70"/>
+                                        <TextBox Text="{Binding Path=DepartmentModifyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    </DockPanel>
+                                    <DockPanel Height="120" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                        <TextBlock Text="Address" VerticalAlignment="Top" Width="70" Margin="0 5"/>
+                                        <TextBox Text="{Binding Path=DepartmentModifyAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                                 Margin="20 -5 0 0" HorizontalAlignment="Stretch" Height="100" Width="Auto" TextWrapping="Wrap"/>
+                                    </DockPanel>
+                                    <GroupBox Header="Assign employee to this department">
+                                        <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
+                                            <TextBlock Text="Employee" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
+                                            <Button Content="Assign" DockPanel.Dock="Right" Padding="10 0" Margin="20 0 0 0" Command="{Binding Path=AssignEmployeeToDepartment}"/>
+                                            <ComboBox HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Left" ItemsSource="{Binding Path=DepartmentModifyEmployees, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding DepartmentModifySelectedEmployee}"/>
+                                        </DockPanel>
+                                    </GroupBox>
+
+                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button Grid.Row="0" Grid.Column="0" Content="Update Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
+                                        VerticalContentAlignment="Center" Command="{Binding Path=UpdateDepartment}"/>
+                                        <Button Grid.Row="0" Grid.Column="1" Content="Remove Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
+                                        VerticalContentAlignment="Center" Command="{Binding Path=RemoveDepartment}"/>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Stock" Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Margin="10">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="275" Margin="10">
+                                <GroupBox Header="Create new item" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                            <TextBlock Text="Name" VerticalAlignment="Center" Width="70"/>
+                                            <TextBox Text="{Binding Path=StockCreationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                        </DockPanel>
+                                        <Button Content="Create" Margin="0 10" Command="{Binding Path=AddStockItem}"/>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="Modify item" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <DockPanel Height="20" VerticalAlignment="Top" HorizontalAlignment="Center" LastChildFill="True" Margin="0 5">
+                                            <RadioButton Content="Add item" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0"
                                                      IsChecked="{Binding Path=AddItemPanelVisible, Mode=TwoWay}"/>
-                                        <RadioButton Content="Remove item" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0"
+                                            <RadioButton Content="Remove item" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0"
                                                      IsChecked="{Binding Path=RemoveItemPanelVisible, Mode=TwoWay}"/>
-                                    </DockPanel>
-                                    
-                                    <!--Modify Add Item Controls-->
-                                    <!--Control this StackPanel's visibility to switch between controls-->
-                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                                Visibility="{Binding AddItemPanelVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Collapsed}">
-                                        <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                            <TextBlock Text="Item" VerticalAlignment="Center" Width="70"/>
-                                            <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding StockItems}" SelectedItem="{Binding StockItemSelectedItem}"/>
                                         </DockPanel>
-                                        <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                            <TextBlock Text="Department" VerticalAlignment="Center" Width="70"/>
-                                            <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Departments}" SelectedItem="{Binding StockItemSelectedDepartment}"/>
-                                        </DockPanel>
-                                        <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                            <TextBlock Text="Current amount" VerticalAlignment="Center" Width="100"/>
-                                            <TextBox Text="{Binding Path=StockItemCurrentAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation"
-                                                     Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
-                                        </DockPanel>
-                                        <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                            <TextBlock Text="Threshold" VerticalAlignment="Center" Width="70"/>
-                                            <TextBox Text="{Binding Path=StockItemThreshold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation"
-                                                     Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
-                                        </DockPanel>
-                                        <Button Content="Assign and Update" Margin="0 10" Command="{Binding Path=UpdateStockItem}"/>
-                                    </StackPanel>
 
-                                    <!--Modify Remove Item Controls-->
-                                    <!--Control this StackPanel's visibility to switch between controls-->
-                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                        <!--Modify Add Item Controls-->
+                                        <!--Control this StackPanel's visibility to switch between controls-->
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                Visibility="{Binding AddItemPanelVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Collapsed}">
+                                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                                <TextBlock Text="Item" VerticalAlignment="Center" Width="70"/>
+                                                <ComboBox Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding StockItems}" SelectedItem="{Binding StockItemSelectedItem}"/>
+                                            </DockPanel>
+                                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                                <TextBlock Text="Department" VerticalAlignment="Center" Width="70"/>
+                                                <ComboBox Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Departments}" SelectedItem="{Binding StockItemSelectedDepartment}"/>
+                                            </DockPanel>
+                                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                                <TextBlock Text="Current amount" VerticalAlignment="Center" Width="100"/>
+                                                <TextBox Text="{Binding Path=StockItemCurrentAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation"
+                                                     Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                            </DockPanel>
+                                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                                <TextBlock Text="Threshold" VerticalAlignment="Center" Width="70"/>
+                                                <TextBox Text="{Binding Path=StockItemThreshold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation"
+                                                     Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                            </DockPanel>
+                                            <Button Content="Assign and Update" Margin="0 10" Command="{Binding Path=UpdateStockItem}"/>
+                                        </StackPanel>
+
+                                        <!--Modify Remove Item Controls-->
+                                        <!--Control this StackPanel's visibility to switch between controls-->
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                                 Visibility="{Binding RemoveItemPanelVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Collapsed}">
-                                        <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                            <TextBlock Text="Item" VerticalAlignment="Center" Width="70"/>
-                                            <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding StockItems}" SelectedItem="{Binding StockItemSelectedItem}"/>
-                                        </DockPanel>
-                                        <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
-                                            <TextBlock Text="Department" VerticalAlignment="Center" Width="70"/>
-                                            <ComboBox Margin="20 0 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Departments}" SelectedItem="{Binding StockItemSelectedDepartment}"/>
-                                        </DockPanel>
-                                        <CheckBox Content="Remove Completely" VerticalContentAlignment="Center" Margin="0 10" IsChecked="{Binding Path=StockItemRemoveCompletely, Mode=TwoWay}"/>
-                                        <Button Content="Remove" Margin="0 5" Command="{Binding Path=RemoveStockItem}"/>
+                                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                                <TextBlock Text="Item" VerticalAlignment="Center" Width="70"/>
+                                                <ComboBox Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding StockItems}" SelectedItem="{Binding StockItemSelectedItem}"/>
+                                            </DockPanel>
+                                            <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
+                                                <TextBlock Text="Department" VerticalAlignment="Center" Width="70"/>
+                                                <ComboBox Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Departments}" SelectedItem="{Binding StockItemSelectedDepartment}"/>
+                                            </DockPanel>
+                                            <CheckBox Content="Remove Completely" VerticalContentAlignment="Center" Margin="0 10" IsChecked="{Binding Path=StockItemRemoveCompletely, Mode=TwoWay}"/>
+                                            <Button Content="Remove" Margin="0 5" Command="{Binding Path=RemoveStockItem}"/>
+                                        </StackPanel>
                                     </StackPanel>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                    </GroupBox>
-                </Grid>
-            </TabItem>
-        </TabControl>
+                                </GroupBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 </Window>

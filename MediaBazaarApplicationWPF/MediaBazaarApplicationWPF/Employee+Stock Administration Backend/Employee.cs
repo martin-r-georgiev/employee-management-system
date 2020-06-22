@@ -122,6 +122,11 @@ namespace MediaBazaarApplicationWPF
             }
         }
 
+        public string FirstLastName
+        {
+            get { return $"{this.firstName} {this.lastName}"; }
+        }
+
         public string Name
         {
             get

@@ -72,4 +72,5 @@ namespace MediaBazaarApplicationWPF.Commands
 
         public void InvokeCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
+
 }

@@ -95,6 +95,11 @@ namespace MediaBazaarApplicationWPF.UserControls
         }
 
         private void WeeklyWorkshift_MouseEnter(object sender, MouseEventArgs e) => this.WorkshiftGrid.Fill = new SolidColorBrush(Colors.WhiteSmoke);
-        private void WeeklyWorkshift_MouseLeave(object sender, MouseEventArgs e) => this.WorkshiftGrid.Fill = new SolidColorBrush(Colors.White);
+        private void WeeklyWorkshift_MouseLeave(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e9e9e9"));
+            fill.Opacity = 0.2;
+            this.WorkshiftGrid.Fill = fill;
+        }
     }
 }

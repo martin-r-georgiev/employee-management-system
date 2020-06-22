@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="LoginView" Height="500" Width="400" MinWidth="400" MaxWidth="800" MinHeight="450" MaxHeight="600" WindowStartupLocation="CenterScreen">
+        Icon="/Resources/logo2.ico"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        TextElement.FontSize="16" FontFamily="Roboto" TextElement.FontWeight="Medium"
+        Title="LoginView" Height="500" Width="500" MinWidth="500"  MinHeight="550"  WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF1D7276" Offset="1"/>
+            <GradientStop Color="#FF19767F"/>
+            <GradientStop Color="#FF3D979E" Offset="0.526"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -16,30 +25,77 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        
-        <!--Used as a data binding example. TODO: Delete this later
-        <TextBlock Text="{Binding Path=FirstName, Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>-->
-        <!--Used as command example. TODO: Delete this later
-        <Button Content="Change Name" Command="{Binding Path=ChangeNameCommand}" Grid.Row="2" Grid.Column="1"/>-->
-        <StackPanel Grid.Row="3" Grid.Column="2"  MinWidth="300" MaxWidth="600" VerticalAlignment="Center">
-            <TextBlock Text="Username" HorizontalAlignment="Center"/>
-            <TextBox x:Name="Username" Text="{Binding Path=Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" MaxWidth="600" Padding="5" HorizontalAlignment="Stretch" Margin="0 10"/>
-            <TextBlock Text="Password" HorizontalAlignment="Center" />
-            <TextBox x:Name="Password" Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" MaxWidth="600" Padding="5" HorizontalAlignment="Stretch" Margin="0 10"/>
-            <Button Content="Login" Command="{Binding Path=LoginCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, 
-                    AncestorType={x:Type Window}}}" MinWidth="300" MaxWidth="600" HorizontalAlignment="Stretch" Padding="5" Margin="0 20">
-            </Button>
-            <Button x:Name ="TestLogin" Content="Test Login" MinWidth="300" MaxWidth="600" HorizontalAlignment="Stretch" Padding="5" Click="TestLogin_Click">
+
+        <Rectangle Grid.Column="2" Grid.Row="1" Grid.RowSpan="4" Opacity="0.94" MaxHeight="460" MinWidth="350"  MaxWidth="350">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FFE0DEDE" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="0" Color="#FF073333" RenderingBias="Quality" Opacity="0.94" ShadowDepth="1"/>
+            </Rectangle.Effect>
+        </Rectangle>
+
+        <Image Grid.Column="2" Grid.Row="2" Source="/Resources/Images/stretched.png" MinHeight="100" MinWidth="100" MaxHeight="260" MaxWidth="260" Margin="0,0,0,40"/>
+
+        <StackPanel Grid.Row="3" Grid.Column="2"  MinWidth="330" MaxWidth="600" VerticalAlignment="Center">
+           <!-- <TextBlock Text="Username" HorizontalAlignment="Left" Margin="30,10,0,0"/> -->
+
+            <TextBox
+                x:Name="Username" 
+                materialDesign:HintAssist.Hint="Username"
+                materialDesign:HintAssist.HelperText="Enter a valid username"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Path=Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                MinWidth="100" MaxWidth="280" Padding="5,-3,0,1"
+                HorizontalAlignment="Stretch" Margin="0 10" 
+                BorderBrush="{x:Null}" Background="#FFF0F1F1">
+                <TextBox.Effect>
+                    <DropShadowEffect BlurRadius="3" Direction="300" Color="#FF073333" RenderingBias="Quality" Opacity="0.94" ShadowDepth="1"/>
+                </TextBox.Effect>
+            </TextBox>
+            <!-- <TextBlock Text="Password" HorizontalAlignment="Left" Margin="30,10,0,0"/> -->
+           
+            <TextBox 
+                x:Name="Password" 
+                materialDesign:HintAssist.Hint="Password"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                materialDesign:HintAssist.HelperText="At least () characters" 
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                MinWidth="100" MaxWidth="280" Padding="5, -3,0,1" 
+                HorizontalAlignment="Stretch" Margin="0 20"  
+                BorderBrush="{x:Null}" Background="#FFF0F1F1">
+                <TextBox.Effect>
+                    <DropShadowEffect BlurRadius="3" Direction="300" Color="#FF073333" RenderingBias="Quality" Opacity="0.94" ShadowDepth="1"/>
+                </TextBox.Effect>
+            </TextBox>
+            
+    
+            <Button
+                x:Name="btnLogin" 
+                IsDefault="True"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                Width="100"
+                ToolTip="Press to login into the system!"
+                Command="{Binding Path=LoginCommand}" MinWidth="280" MaxWidth="350" 
+                HorizontalAlignment="Stretch" Padding="5" Background="#FF19767F"  Margin="0, 20"
+                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                _Login
             </Button>
         </StackPanel>
-        <materialDesign:Badged Content="Badged" Grid.Column="4" HorizontalAlignment="Left" Margin="30,88,-110,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
+
 
     </Grid>
+
+
 </Window>

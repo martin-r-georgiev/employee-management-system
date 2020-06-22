@@ -3,42 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
              mc:Ignorable="d" MinHeight="50" MinWidth="250" HorizontalAlignment="Stretch" 
-             VerticalAlignment="Top"  Height="55"  Background="White">
+             VerticalAlignment="Top"  Height="55"  Background="#d8f7f4">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition MinHeight="25" Height="25" MaxHeight="50"/>
+            <RowDefinition MinHeight="25" Height="25" MaxHeight="50"/>
             <RowDefinition Height="2" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7"/>
+            <ColumnDefinition Width="4"/>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <!-- Row 0 -->
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Background="Aqua"/>
-        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Background="Blue"/>
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Background="#E6E6E6">
+            <Border Background="Teal" CornerRadius="10,0,0,10"/>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Background="#E6E6E6">
+            <Border Background="Teal" CornerRadius="0,5,0,0"/>
+        </Border>
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Width="15" Height="22" Background="Teal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 0" CornerRadius="0,0,2,2">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="1" Direction="0" RenderingBias="Quality" Opacity="0.94" ShadowDepth="1"/>
+            </Border.Effect>
+            <materialDesign:PackIcon Kind="Tools" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 4 0 0" Foreground="White" Width="10" Height="10"/>
+        </Border>
         <!-- Row 1-->
-        <Label x:Name="lblItemName" Grid.Row="1" Grid.Column="1"  Content="Iphone 6" VerticalAlignment="Top" FontWeight="Bold" FontSize="13" Margin="0" Padding="5,5,5,3" />
+        <Label x:Name="lblItemName" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Content="Iphone 6" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13" Margin="0,0,0,3" Padding="5,5,5,3" />
         <TextBox x:Name="tbQuantity"  Grid.Row="1" Grid.Column="2" Width="25" HorizontalAlignment="Left" Visibility="Hidden" FontWeight="Bold" KeyDown="tbQuantity_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="lblQuantity" Content="15" Grid.Row="1" Grid.Column="2" Width="25" HorizontalAlignment="Left" FontWeight="Bold" MouseDoubleClick="lblQuantity_MouseDoubleClick" Background="White"/>
-        <Button x:Name="btnIncrease" Content="+" Grid.Column="3" Grid.Row="1" Margin="3"  Width="25" Background="Aqua" BorderBrush="Blue" Click="btnIncrease_Click"/>
+        <Label x:Name="lblQuantity" Content="15" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="21" Margin="0,0,0,3" MouseDoubleClick="lblQuantity_MouseDoubleClick" Background="#d8f7f4" ToolTip="In stock"/>
+        <Button x:Name="btnIncrease" Grid.Column="3" Grid.Row="1" MinWidth="20" MinHeight="20" Width="20" Height="20" MaxWidth="40" MaxHeight="40" Margin="4,2,6,2" BorderThickness="0" Click="btnIncrease_Click" ToolTip="Add">
+            <Button.Background>
+                <ImageBrush ImageSource ="/Resources/Images/plus.png"  ></ImageBrush>
+            </Button.Background>
+        </Button>
 
         <!-- Row 2 -->
-        <Label x:Name="DptName" Content="Computers" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Padding="10 0" FontStyle="Italic"/>
+        <Label x:Name="DptName" Content="Computers" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="11 " Padding="10 0" FontStyle="Italic" HorizontalAlignment="Left" Margin="5,0,0,0"/>
         <TextBox x:Name="tbThreshold"  Grid.Row="2" Grid.Column="2" Width="25" HorizontalAlignment="Center" Visibility="Hidden" KeyDown="tbThreshold_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="lblThreshold" Content="5" Grid.Row="2" Grid.Column="2" Width="25" HorizontalAlignment="Center" MouseDoubleClick="lblThreshold_MouseDoubleClick"/>
-        <Button x:Name="btnDecrease" Content="-" Grid.Column="3" Grid.Row="2" Margin="3"  Width="25" Background="Aqua" BorderBrush="Blue" Click="btnDecrease_Click"/>
+        <Label x:Name="lblThreshold" Content="5" Grid.Row="2" Grid.Column="2" Width="25" HorizontalAlignment="Right" Margin="0,3,0,0" FontWeight="UltraLight" VerticalAlignment="Bottom" MouseDoubleClick="lblThreshold_MouseDoubleClick" ToolTip="Threshold"/>
+        <Button x:Name="btnDecrease" Grid.Column="3" Grid.Row="2" MinWidth="20" MinHeight="20" Width="20" Height="20" MaxWidth="40" MaxHeight="40" Margin="4,2,6,2" BorderThickness="0" Click="btnDecrease_Click" ToolTip="Remove">
+            <Button.Background>
+                <ImageBrush ImageSource ="/Resources/Images/minus.png"  ></ImageBrush>
+            </Button.Background>
+        </Button>
 
         <!-- Row 3-->
-        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="Blue"/>
+        <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="#E6E6E6">
+            <Border Background="Teal" CornerRadius="0,0,5,0"/>
+        </Border>
+        
 
         <!-- Decorative -->
-        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Background="Aqua" HorizontalAlignment="Right" Width="3"/>
-        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Background="Aqua" HorizontalAlignment="Right" Width="3"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Background="Teal" HorizontalAlignment="Right" Width="0.4"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Background="Teal" HorizontalAlignment="Right" Width="3"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" Background="Teal" HorizontalAlignment="Right" Width="2"/>
     </Grid>
 </UserControl>

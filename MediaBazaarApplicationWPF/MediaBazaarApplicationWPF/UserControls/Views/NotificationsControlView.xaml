@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MediaBazaarApplicationWPF.UserControls.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Width="auto"  Height="60" Background="White" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave">
+             d:DesignHeight="450" d:DesignWidth="800" Width="auto"  Height="71" Background="White" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15"/>
@@ -15,16 +15,18 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="5"/>
+            <RowDefinition Height="1"/>
         </Grid.RowDefinitions>
-        <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Background="Aqua"/>
+        <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Background="Teal"/>
+        <Border Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="4" Background="Teal"/>
         <!-- Column 1 -->
         <TextBlock x:Name="lblName" Grid.Row="1" Grid.Column="1" Text="Ivan Zvezdev" FontWeight="Bold" FontSize="15" Margin="5 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <TextBlock x:Name="lblTime"  Grid.Row="2" Grid.Column="1" Text="12.05.2005 Afternoon" FontStyle="Italic" FontSize="12" Margin="5 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <!-- Column 2 -->
-        <Button x:Name="btnAccept" Content="Yes" Grid.Column="2" Grid.Row="1" Margin="2" Click="btnAccept_Click"/>
-        <Button x:Name="btnDecline" Content="No" Grid.Column="2" Grid.Row="2" Margin="2" Click="btnDecline_Click"/>
+        <Button x:Name="btnAccept" Content="Yes" Grid.Column="2" Grid.Row="1" Margin="2" Height="25" Click="btnAccept_Click"/>
+        <Button x:Name="btnDecline" Content="No" Grid.Column="2" Grid.Row="2" Margin="2" Height="25" Click="btnDecline_Click"/>
     </Grid>
 </UserControl>

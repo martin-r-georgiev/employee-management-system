@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
-        Title="HistoryLogView" Height="450" Width="800" MinWidth="600" MinHeight="200" MaxWidth="1500">
+        Title="HistoryLogView" Height="450" Width="800" MinWidth="600" MinHeight="200" MaxWidth="1500" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
