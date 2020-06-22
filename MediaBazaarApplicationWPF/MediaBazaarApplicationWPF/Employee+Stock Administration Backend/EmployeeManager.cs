@@ -27,10 +27,14 @@ namespace MediaBazaarApplicationWPF
             try
             {
                 string userID = EmployeeDatabaseHandler.GenerateUniqueUserID();
-                newEmployee = new Employee(userID, username, password, salaryRate, role, depID, workHours, hashPassword);
-                EmployeeDatabaseHandler.InsertToDatabase(newEmployee);
+                if (userID != null)
+                {
+                    newEmployee = new Employee(userID, username, password, salaryRate, role, depID, workHours, hashPassword);
+                    EmployeeDatabaseHandler.InsertToDatabase(newEmployee);
 
-                if (this.AddedEmployeeEvent != null) this.AddedEmployeeEvent(newEmployee);
+                    if (this.AddedEmployeeEvent != null) this.AddedEmployeeEvent(newEmployee);
+                }
+                else throw new Exception("Fatal error. Failed to generate employee user identifier.");
             }
             catch(Exception ex)
             {

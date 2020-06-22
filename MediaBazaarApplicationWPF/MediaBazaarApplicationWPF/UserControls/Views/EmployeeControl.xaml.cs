@@ -30,13 +30,13 @@ namespace MediaBazaarApplicationWPF.UserControls.Views
             get { return _selectedEmployee; }
             set {
                 _selectedEmployee = value;
-                LblFirstLetter.Text = value.Username.Substring(0, 1).ToUpper();
+                LblFirstLetter.Text = value.Name.Substring(0, 1).ToUpper();
                 switch (value.Role)
                 {
-                    case EmployeeRole.Admin: LblFirstLetter.Background = Brushes.YellowGreen; break;
-                    case EmployeeRole.Owner: LblFirstLetter.Background = Brushes.Firebrick; break;
-                    case EmployeeRole.Manager: LblFirstLetter.Background = Brushes.MediumPurple; break;
-                    case EmployeeRole.Worker: LblFirstLetter.Background = Brushes.LightBlue; break;
+                    case EmployeeRole.Admin: firstLetterBorder.Background = Brushes.YellowGreen; break;
+                    case EmployeeRole.Owner: firstLetterBorder.Background = Brushes.Firebrick; break;
+                    case EmployeeRole.Manager: firstLetterBorder.Background = Brushes.MediumPurple; break;
+                    case EmployeeRole.Worker: firstLetterBorder.Background = Brushes.LightBlue; break;
                 }
                 LblName.Text = value.FullName;
             }
@@ -64,14 +64,14 @@ namespace MediaBazaarApplicationWPF.UserControls.Views
            
             this.Background = Brushes.LightGray;
             
-            this.firstLetterBorder.Background = Brushes.LightGray;
+            //this.firstLetterBorder.Background = Brushes.LightGray;
             //this.panelSidebar.BackColor = Color.LightGray;
         }
 
         private void LblDepartment_MouseLeave(object sender, MouseEventArgs e)
         {
             this.Background = Brushes.White;
-            this.firstLetterBorder.Background = Brushes.White;
+            //this.firstLetterBorder.Background = Brushes.White;
         }
 
         private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)

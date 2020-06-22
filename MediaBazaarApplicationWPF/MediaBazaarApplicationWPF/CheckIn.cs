@@ -52,6 +52,7 @@ namespace MediaBazaarApplicationWPF
 				conn.Close();
 			}
 		}
+
 		public static List<EmployeeAtWorkModel> GetEmployeesAtWork(string departmentID)
 		{
 			List<EmployeeAtWorkModel> employees = new List<EmployeeAtWorkModel>();
@@ -79,6 +80,7 @@ namespace MediaBazaarApplicationWPF
 			}
 			return employees;
 		}
+
 		public static List<Employee> GetAllEmployeesAtWork() //Method not used - add if you need to get all workers regardless of department
 		{ //Method not updated for EmployeeModel, if you need to use this, copy the procedure with the one above
 			List<Employee> employees = new List<Employee>();
@@ -92,53 +94,60 @@ namespace MediaBazaarApplicationWPF
 					{
 						employees.Add(man.GetEmployee(dataReader.GetString(0), false));
 					}
-					cmd.Dispose();
 					dataReader.Close();
+					cmd.Dispose();
 				}
 				conn.Close();
 			}
 			return employees;
 		}
+
 		public static bool IsAtWork(string userID)
 		{
 			bool isAtWork = false;
 
 			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
 			{
-				using (MySqlCommand cmd = new MySqlCommand(@"SELECT checkout FROM checkins WHERE userID=@userID ORDER BY checkin DESC LIMIT 1", conn))
+				try
 				{
-
-					cmd.Parameters.AddWithValue("@userID", userID);
-					MySqlDataReader dataReader = cmd.ExecuteReader();
-					if (dataReader.Read())
+					using (MySqlCommand cmd = new MySqlCommand($"SELECT checkout FROM checkins WHERE userID=@userID ORDER BY checkin DESC LIMIT 1", conn))
 					{
-						DateTime checkout = new DateTime(1, 1, 1);
-						if (!dataReader.IsDBNull(0)) checkout = dataReader.GetDateTime(0);
+						cmd.Parameters.AddWithValue("@userID", userID);
+						MySqlDataReader dataReader = cmd.ExecuteReader();
+						if (dataReader.Read())
+						{
+							DateTime checkout = new DateTime(1, 1, 1);
+							if (!dataReader.IsDBNull(0)) checkout = dataReader.GetDateTime(0);
 
-						DateTime firstDate = new DateTime(2000, 1, 1);
-						if (checkout.Date <= firstDate) isAtWork = true;
+							DateTime firstDate = new DateTime(2000, 1, 1);
+							if (checkout.Date <= firstDate) isAtWork = true;
+						}
+						dataReader.Close();
+						cmd.Dispose();			
 					}
-					cmd.Dispose();
-					dataReader.Close();
 				}
-				conn.Close();
+				catch (Exception ex) { Console.WriteLine(ex.Message); }
+				finally { conn.Close(); }
 			}
 			return isAtWork;
 		}
+
 		public static void ClearNotificationsBefore(DateTime time)
 		{
 			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
 			{
-				using (MySqlCommand cmd = new MySqlCommand(@"DELETE FROM `notifications` WHERE date < @date", conn))
+				try
 				{
-					cmd.Parameters.AddWithValue("@date", time);
-					cmd.ExecuteNonQuery();
-					cmd.Dispose();
+					using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM `notifications` WHERE `date` < @date", conn))
+					{
+						cmd.Parameters.AddWithValue("@date", time);
+						cmd.ExecuteNonQuery();
+						cmd.Dispose();
+					}
 				}
-				conn.Close();
+				catch (Exception ex) { Console.WriteLine(ex.Message); }
+				finally { conn.Close(); }
 			}
 		}
-
-
 	}
 }

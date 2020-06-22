@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace MediaBazaarApplicationWPF
 {
-    public class Employee
+    public class Employee : IComparable<Employee>
     {
         #region #Instance variable(s)
 
@@ -290,6 +290,14 @@ namespace MediaBazaarApplicationWPF
             this.DateOfBirth = dateOfBirth;
             this.Sex = sex;
         }
+
+        public int CompareTo(Employee other)
+        {
+            if ((int)this.Role > (int)other.Role) return -1;
+            else if ((int)this.Role < (int)other.Role) return 1;
+            else return String.Compare(this.Name, other.Name);
+        }
+
         #endregion
     }
 }

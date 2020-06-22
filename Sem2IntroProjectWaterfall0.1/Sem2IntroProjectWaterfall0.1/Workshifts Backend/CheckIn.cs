@@ -60,6 +60,7 @@ namespace Sem2IntroProjectWaterfall0._1
 			}
 			return employees;
 		}
+
 		public static List<Employee> GetAllEmployeesAtWork() //Method not used - add if you need to get all workers regardless of department
 		{
 			List<Employee> employees = new List<Employee>();
@@ -80,6 +81,7 @@ namespace Sem2IntroProjectWaterfall0._1
 			}
 			return employees;
 		}
+
 		public static bool IsAtWork(string userID)
 		{
 			bool isAtWork = false;
@@ -106,6 +108,7 @@ namespace Sem2IntroProjectWaterfall0._1
 			}
 			return isAtWork;
 		}
+
 		public static void ClearNotificationsBefore(DateTime time)
 		{
 			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())

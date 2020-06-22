@@ -137,6 +137,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
         void RefreshEmployees(Department dep)
         {
             Employees.Clear();
+            dep.Employees.Sort();
             foreach (Employee e in dep.Employees)
                 Employees.Add(new EmployeeControl(e,dep.Name, this));
         }
@@ -157,7 +158,6 @@ namespace MediaBazaarApplicationWPF.ViewModels
             Employee employee = man.GetEmployee(selectedEmployee.UserID, true);
             employee.DepartmentName = departmentName;
             SelectedEmployee = employee;
-            
         }
     }
 }
