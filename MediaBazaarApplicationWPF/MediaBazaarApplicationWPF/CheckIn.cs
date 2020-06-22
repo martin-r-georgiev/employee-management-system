@@ -13,14 +13,18 @@ namespace MediaBazaarApplicationWPF
 		{
 			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
 			{
-				using (MySqlCommand cmd = new MySqlCommand(@"INSERT INTO checkins (userID, checkin) VALUES (@userID, @checkin)", conn))
+				try
 				{
-					cmd.Parameters.AddWithValue("@userID", userID);
-					cmd.Parameters.AddWithValue("@checkin", checkInTime);
-					cmd.ExecuteNonQuery();
-					cmd.Dispose();
+					using (MySqlCommand cmd = new MySqlCommand($"INSERT INTO checkins (userID, checkin) VALUES (@userID, @checkin)", conn))
+					{
+						cmd.Parameters.AddWithValue("@userID", userID);
+						cmd.Parameters.AddWithValue("@checkin", checkInTime);
+						cmd.ExecuteNonQuery();
+						cmd.Dispose();
+					}
 				}
-				conn.Close();
+				catch (Exception ex) { Console.WriteLine(ex.Message); }
+				finally { conn.Close(); }
 			}
 		}
 
@@ -28,14 +32,18 @@ namespace MediaBazaarApplicationWPF
 		{
 			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
 			{
-				using (MySqlCommand cmd = new MySqlCommand(@"UPDATE checkins SET checkout=@checkoutTime WHERE userID=@userID AND checkout IS NULL", conn))
+				try
 				{
-					cmd.Parameters.AddWithValue("@checkoutTime", checkOutTime);
-					cmd.Parameters.AddWithValue("@userID", userID);
-					cmd.ExecuteNonQuery();
-					cmd.Dispose();
+					using (MySqlCommand cmd = new MySqlCommand($"UPDATE checkins SET checkout=@checkoutTime WHERE userID=@userID AND checkout IS NULL", conn))
+					{
+						cmd.Parameters.AddWithValue("@checkoutTime", checkOutTime);
+						cmd.Parameters.AddWithValue("@userID", userID);
+						cmd.ExecuteNonQuery();
+						cmd.Dispose();
+					}
 				}
-				conn.Close();
+				catch (Exception ex) { Console.WriteLine(ex.Message); }
+				finally { conn.Close(); }
 			}
 		}
 
@@ -43,13 +51,17 @@ namespace MediaBazaarApplicationWPF
 		{
 			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
 			{
-				using (MySqlCommand cmd = new MySqlCommand(@"DELETE FROM checkins WHERE userID=@userID ", conn))
+				try
 				{
-					cmd.Parameters.AddWithValue("@userID", userID);
-					cmd.ExecuteNonQuery();
-					cmd.Dispose();
+					using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM checkins WHERE userID=@userID ", conn))
+					{
+						cmd.Parameters.AddWithValue("@userID", userID);
+						cmd.ExecuteNonQuery();
+						cmd.Dispose();
+					}
 				}
-				conn.Close();
+				catch (Exception ex) { Console.WriteLine(ex.Message); }
+				finally { conn.Close(); }
 			}
 		}
 
@@ -59,24 +71,28 @@ namespace MediaBazaarApplicationWPF
 			EmployeeManager man = new EmployeeManager();
 			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
 			{
-				using (MySqlCommand cmd = new MySqlCommand(@"SELECT userID, checkin FROM checkins WHERE checkout IS NULL AND userID IN 
-				( SELECT userID FROM users WHERE departmentID=@departmentID)", conn))
+				try
 				{
-					cmd.Parameters.AddWithValue("@departmentID", departmentID);
-					MySqlDataReader dataReader = cmd.ExecuteReader();
-					while (dataReader.Read())
+					using (MySqlCommand cmd = new MySqlCommand(@"SELECT userID, checkin FROM checkins WHERE checkout IS NULL AND userID IN 
+																( SELECT userID FROM users WHERE departmentID=@departmentID)", conn))
 					{
-						Employee e = man.GetEmployee(dataReader.GetString(0), false);
-						string name = "";
-						if (String.IsNullOrWhiteSpace(e.FirstName)) name = $"{e.Username}";
-						else name = $"{e.FirstName} {e.LastName}";
-						string checkin = dataReader.GetDateTime(1).TimeOfDay.ToString();
-						employees.Add(new EmployeeAtWorkModel(name, checkin));
+						cmd.Parameters.AddWithValue("@departmentID", departmentID);
+						MySqlDataReader dataReader = cmd.ExecuteReader();
+						while (dataReader.Read())
+						{
+							Employee e = man.GetEmployee(dataReader.GetString(0), false);
+							string name = "";
+							if (String.IsNullOrWhiteSpace(e.FirstName)) name = $"{e.Username}";
+							else name = $"{e.FirstName} {e.LastName}";
+							string checkin = dataReader.GetDateTime(1).TimeOfDay.ToString();
+							employees.Add(new EmployeeAtWorkModel(name, checkin));
+						}
+						cmd.Dispose();
+						dataReader.Close();
 					}
-					cmd.Dispose();
-					dataReader.Close();
 				}
-				conn.Close();
+				catch (Exception ex) { Console.WriteLine(ex.Message); }
+				finally { conn.Close(); }
 			}
 			return employees;
 		}
@@ -87,17 +103,21 @@ namespace MediaBazaarApplicationWPF
 			EmployeeManager man = new EmployeeManager();
 			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
 			{
-				using (MySqlCommand cmd = new MySqlCommand(@"SELECT userID FROM checkins WHERE checkout IS NULL", conn))
+				try
 				{
-					MySqlDataReader dataReader = cmd.ExecuteReader();
-					while (dataReader.Read())
+					using (MySqlCommand cmd = new MySqlCommand($"SELECT userID FROM checkins WHERE checkout IS NULL", conn))
 					{
-						employees.Add(man.GetEmployee(dataReader.GetString(0), false));
+						MySqlDataReader dataReader = cmd.ExecuteReader();
+						while (dataReader.Read())
+						{
+							employees.Add(man.GetEmployee(dataReader.GetString(0), false));
+						}
+						dataReader.Close();
+						cmd.Dispose();
 					}
-					dataReader.Close();
-					cmd.Dispose();
 				}
-				conn.Close();
+				catch (Exception ex) { Console.WriteLine(ex.Message); }
+				finally { conn.Close(); }
 			}
 			return employees;
 		}
