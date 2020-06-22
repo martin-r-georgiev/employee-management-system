@@ -156,6 +156,41 @@ namespace MediaBazaarApplicationWPF
             return messages;
         }
 
+        public static void DeleteFromHistoryLog(string userID)
+        {
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                MySqlCommand cmd;
+                using (cmd = new MySqlCommand($"DELETE from historylog where userID=@userID ", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                conn.Close();
+            }
+        }
+
+        public static bool CheckIfPersonExists(string userID)
+        {
+            bool exists = false;
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                MySqlCommand cmd;
+                using (cmd = new MySqlCommand($"select * from historylog where userID=@userID ", conn))
+                { 
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    if (dataReader.Read())
+                        exists = true;
+                    cmd.Dispose();
+                    dataReader.Close();
+                }
+                conn.Close();
+            }
+            return exists;
+        }
+
 
         public static string ReturnRole(string role)
         {

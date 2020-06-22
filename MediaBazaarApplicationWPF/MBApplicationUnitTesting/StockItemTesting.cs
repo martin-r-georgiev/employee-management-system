@@ -179,6 +179,7 @@ namespace MBApplicationUnitTesting
             StockItemDatabaseHandler.AddStockItemToStock(Test);
             StockItemDatabaseHandler.RemoveStockItemGlobally(Test);
             StockItem FromDatabase = StockItemDatabaseHandler.GetStockItemFromDepartment(stockID, departmentID);
+            StockItemDatabaseHandler.GetAssignedDepartments(stockID);
             //Assert
             Assert.IsNull(FromDatabase);
             StockItemDatabaseHandler.RemoveStockItemGlobally(Test);
@@ -192,6 +193,7 @@ namespace MBApplicationUnitTesting
             StockItemDatabaseHandler.AddIntoStockItem(name, stockID);
             StockItemDatabaseHandler.AddStockItemToStock(Test);
             StockItem FromDatabase = StockItemDatabaseHandler.GetStockItemFromDepartment(stockID, departmentID);
+            StockItemDatabaseHandler.GetAllStockFromDepartment(departmentID);
             //Assert
             Assert.AreEqual(Test.StockID,FromDatabase.StockID);
             StockItemDatabaseHandler.RemoveStockItemGlobally(Test);
@@ -224,6 +226,7 @@ namespace MBApplicationUnitTesting
             Test.Threshold = newThreshold;
             StockItemDatabaseHandler.AddStockItemToStock(Test);
             StockItemDatabaseHandler.UpdateStockItem(Test);
+            StockItemDatabaseHandler.ListAllItemsFromStockItem();
             StockItem FromDatabase = StockItemDatabaseHandler.GetStockItemFromDepartment(stockID, departmentID);
          
             //Assert
@@ -256,9 +259,12 @@ namespace MBApplicationUnitTesting
             StockItem Test = new StockItem(stockID, departmentID, name, currentAmount, threshold);
             StockItemDatabaseHandler.AddIntoStockItem(name, stockID);
             StockItemDatabaseHandler.AddStockItemToStock(Test);
+            string uniqueID = StockItemDatabaseHandler.GenerateUniqueID();
             bool unique = StockItemDatabaseHandler.IsUnique(name);
             Assert.AreEqual(false, unique);
+            Assert.AreNotEqual(uniqueID, stockID);
         }
+
 
 
 

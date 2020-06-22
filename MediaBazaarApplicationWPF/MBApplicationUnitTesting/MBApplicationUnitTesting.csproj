@@ -56,6 +56,9 @@
     <Compile Include="AutoWorkshiftTests.cs" />
     <Compile Include="StockItemTesting.cs" />
     <Compile Include="DepartmentTesting.cs" />
+    <Compile Include="HistoryLogTesting.cs" />
+    <Compile Include="ModelTesting.cs" />
+    <Compile Include="CheckinTesting.cs" />
     <Compile Include="WorkShiftDataTesting.cs" />
   </ItemGroup>
   <ItemGroup>

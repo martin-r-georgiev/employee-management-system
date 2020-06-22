@@ -38,6 +38,20 @@ namespace MediaBazaarApplicationWPF
 				conn.Close();
 			}
 		}
+
+		public static void DeleteUserData(string userID)
+		{
+			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+			{
+				using (MySqlCommand cmd = new MySqlCommand(@"DELETE FROM checkins WHERE userID=@userID ", conn))
+				{
+					cmd.Parameters.AddWithValue("@userID", userID);
+					cmd.ExecuteNonQuery();
+					cmd.Dispose();
+				}
+				conn.Close();
+			}
+		}
 		public static List<EmployeeAtWorkModel> GetEmployeesAtWork(string departmentID)
 		{
 			List<EmployeeAtWorkModel> employees = new List<EmployeeAtWorkModel>();
@@ -124,5 +138,7 @@ namespace MediaBazaarApplicationWPF
 				conn.Close();
 			}
 		}
+
+
 	}
 }

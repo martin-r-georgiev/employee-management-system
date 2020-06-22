@@ -161,7 +161,7 @@ namespace MediaBazaarApplicationWPF
             set {
                 if(value!=null )
                 this.address = value; 
-                else throw new ArgumentException("Address cant be null");
+                
             }
         }
 

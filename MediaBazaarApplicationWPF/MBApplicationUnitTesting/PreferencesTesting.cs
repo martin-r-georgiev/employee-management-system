@@ -33,4 +33,9 @@ namespace MBApplicationUnitTesting
             Assert.AreEqual(departmentID, testPrefrerence.DepartmentID);
         }
     }
+    [TestClass]
+    public class PreferencesWindowTesting
+    {
+
+    }
 }

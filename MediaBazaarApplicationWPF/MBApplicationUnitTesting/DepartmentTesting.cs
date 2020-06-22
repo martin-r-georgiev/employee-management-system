@@ -125,7 +125,9 @@ namespace MBApplicationUnitTesting
 
             Department Test = new Department(name, address, departmentID);
             Employee TestEmplyoee = new Employee(userID, username, password, salaryHourlyRat, role, departmentID, workHours, false);
+            Employee TestEmplyoee2 = new Employee("TEST_ID_2", username, password, salaryHourlyRat, role, departmentID, workHours, false);
             Test.AssignEmployeeTo(TestEmplyoee, departmentID);
+            Test.AssignEmployeeTo(TestEmplyoee2, departmentID);
             Test.RemoveEmployee(userID);
             Employee AssignedEmplyoee = Test.GetEmployee(userID);
 
@@ -135,6 +137,8 @@ namespace MBApplicationUnitTesting
             Assert.IsNull(AssignedEmplyoee);
 
             EmployeeDatabaseHandler.RemoveFromDatabase(userID);
+            EmployeeDatabaseHandler.RemoveFromDatabase("TEST_ID_2");
+
         }
 
     }
@@ -168,6 +172,7 @@ namespace MBApplicationUnitTesting
             Test.Name = "newName";
             DepartmentManager.UpdateDepartment(departmentID, "newName", "newAddress");
             Department FromDatabase = DepartmentManager.GetDepartment(departmentID, false);
+            DepartmentManager.GetAllDepartments(true);
             //Assert
             Assert.AreEqual(Test.DepartmentId, FromDatabase.DepartmentId);
             Assert.AreEqual(Test.Name, FromDatabase.Name);
@@ -194,6 +199,7 @@ namespace MBApplicationUnitTesting
             //Arrange
             Department Test = new Department(name, address, departmentID);
             DepartmentDatabaseHandler.InsertToDB(Test);
+            DepartmentDatabaseHandler.GetAllDepartmentsMinimalInformation();
 
             Department FromDatabase = DepartmentDatabaseHandler.GetDepartment(departmentID);
             //Assert
@@ -207,12 +213,13 @@ namespace MBApplicationUnitTesting
             //Arrange
             Department Test = new Department(name, address, departmentID);
             DepartmentDatabaseHandler.InsertToDB(Test);
-
+            DepartmentManager.GetAllDepartments(false);
             Department FromDatabase = DepartmentDatabaseHandler.GetUsersForDepartment(Test);
             //Assert
             Assert.AreEqual(0,FromDatabase.Employees.Count());
             DepartmentManager.RemoveFromDatabase(Test);
         }
+     
 
         [TestMethod]
         public void GetUsersFromDepIDTest()
@@ -246,6 +253,7 @@ namespace MBApplicationUnitTesting
         {
             Department Test = new Department(name, address, departmentID);
             DepartmentDatabaseHandler.InsertToDB(Test);
+            DepartmentDatabaseHandler.GetAllDepartments();
             Test.Address = "newAddress";
             Test.Name = "newName";
             DepartmentDatabaseHandler.UpdateDepartmentData(departmentID, "newName", "newAddress");
@@ -256,5 +264,14 @@ namespace MBApplicationUnitTesting
             Assert.AreEqual(Test.Address, FromDatabase.Address);
             DepartmentManager.RemoveFromDatabase(departmentID);
         }
+
+        [TestMethod]
+        public void IsUniqueIDNotCrashTest()
+        {
+            string uniqueID=DepartmentDatabaseHandler.GenerateUniqueID();
+           
+        }
+
+     
     }
 }
