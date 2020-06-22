@@ -155,7 +155,11 @@ namespace MediaBazaarApplicationWPF
         public string Address
         {
             get { return this.address; }
-            set { this.address = value; }
+            set {
+                if(value!=null )
+                this.address = value; 
+                else throw new ArgumentException("Address cant be null");
+            }
         }
 
         public string Email
