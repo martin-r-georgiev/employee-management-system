@@ -616,7 +616,24 @@ namespace MediaBazaarApplicationWPF.ViewModels
                 && EmployeeCreationSelectedDepartment != null;
         }
 
-        private void ClearModifyEmployeeSelected_Event(object commandParameter) => SelectedEmployee = null;
+        private void ClearModifyEmployeeSelected_Event(object commandParameter)
+        {
+            if (SelectedEmployee != null)
+            {
+                this.SelectedEmployeeFirstName = null;
+                this.SelectedEmployeeLastName = null;
+                this.SelectedEmployeeNationality = null;
+                this.SelectedEmployeePhoneNumber = null;
+                this.SelectedEmployeeSalary = null;
+                this.SelectedEmployeeIsMale = null;
+                this.SelectedEmployeeIsFemale = null;
+                this.SelectedEmployeeAddress = null;
+                this.SelectedEmployeeEmail = null;
+                this.SelectedEmployeeBirthdate = null;
+                this.SelectedEmployee = null;
+            }     
+        }
+
         private bool CanClearSelectedEmployee(object commandParameter) => SelectedEmployee != null;
 
         private void SelectedEmployeeFillControls()
@@ -676,6 +693,16 @@ namespace MediaBazaarApplicationWPF.ViewModels
                     if (LoggedInUser.role > SelectedEmployee.Role)
                     {
                         EmployeeDatabaseHandler.RemoveFromDatabase(SelectedEmployee.UserID);
+                        this.SelectedEmployeeFirstName = null;
+                        this.SelectedEmployeeLastName = null;
+                        this.SelectedEmployeeNationality = null;
+                        this.SelectedEmployeePhoneNumber = null;
+                        this.SelectedEmployeeSalary = null;
+                        this.SelectedEmployeeIsMale = null;
+                        this.SelectedEmployeeIsFemale = null;
+                        this.SelectedEmployeeAddress = null;
+                        this.SelectedEmployeeEmail = null;
+                        this.SelectedEmployeeBirthdate = null;
                         this.SelectedEmployee = null;
                         RefreshEmployeeList();
                         
