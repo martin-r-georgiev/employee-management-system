@@ -1,4 +1,4 @@
-﻿using MediaBazaarApplicationWPF.Commands;
+using MediaBazaarApplicationWPF.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -707,6 +707,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
                         RefreshEmployeeList();
                         
                         message = "Employee successfully removed from the system.";
+                        HistoryLog.UpdateHistoryLogDeleted(SelectedEmployee.UserID);
                     }
                     else message = "Can only remove employees with a lower role than you!";
                 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,6 +45,7 @@ namespace MediaBazaarApplicationWPF
 
         public Employee AddEmployee(Employee employee)
         {
+            HistoryLog.AddToHistoryLog(employee);
             EmployeeDatabaseHandler.InsertToDatabase(employee);
             if (this.AddedEmployeeEvent != null) this.AddedEmployeeEvent(employee);
             return employee;
@@ -52,12 +53,14 @@ namespace MediaBazaarApplicationWPF
 
         public void UpdateEmployee(Employee employee)
         {
+            HistoryLog.UpdateHistoryLog(employee, employee.FirstName, employee.LastName, employee.PhoneNumber, employee.DateOfBirth.ToString(), employee.SalaryHourlyRate.ToString(), employee.Email, employee.Address, employee.Nationality);
             EmployeeDatabaseHandler.UpdateDatabaseEntry(employee);
             if (this.UpdatedEmployeeEvent != null) this.UpdatedEmployeeEvent(employee);
         }
 
         public Employee RemoveEmployee(Employee employee)
         {
+            HistoryLog.UpdateHistoryLogDeleted(employee);
             EmployeeDatabaseHandler.RemoveFromDatabase(employee.UserID);
             if (this.RemovedEmployeeEvent != null) this.RemovedEmployeeEvent(employee);
             return employee;
@@ -65,6 +68,7 @@ namespace MediaBazaarApplicationWPF
 
         public Employee RemoveEmployee(string userIdentifier)
         {
+
             Employee employee = EmployeeDatabaseHandler.GetEmployee(userIdentifier, true);
             EmployeeDatabaseHandler.RemoveFromDatabase(userIdentifier);
             if (this.RemovedEmployeeEvent != null) this.RemovedEmployeeEvent(employee);

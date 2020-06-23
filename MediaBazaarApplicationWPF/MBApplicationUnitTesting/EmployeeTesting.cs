@@ -315,6 +315,7 @@ namespace MBApplicationUnitTesting
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void EmployeeNullAddressChangeTest()
         {
             // Arrange
@@ -322,7 +323,7 @@ namespace MBApplicationUnitTesting
             const string NEW_ADDRESS = null;
 
             // Act
-            employee.Address = NEW_ADDRESS;
+            employee.Address = NEW_ADDRESS; 
         }
 
         [TestMethod]

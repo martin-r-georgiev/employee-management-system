@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +51,7 @@ namespace MediaBazaarApplicationWPF
                     cmd.Parameters.AddWithValue("@address", Address);
                     cmd.Parameters.AddWithValue("@nationality", Nationality);
                     cmd.Parameters.AddWithValue("@startDate", ToAdd.StartDate);
-                    cmd.Parameters.AddWithValue("@dateOfBirth", DateOfBirth);
+                    cmd.Parameters.AddWithValue("@dateOfBirth", Convert.ToDateTime(DateOfBirth));
                     cmd.Parameters.AddWithValue("@workHours", ToAdd.WorkHours);
                     cmd.Parameters.AddWithValue("@attendance", ToAdd.Attendance);
                     cmd.Parameters.AddWithValue("@salary", Salary);
@@ -64,28 +64,15 @@ namespace MediaBazaarApplicationWPF
 
         }
 
-        public static void UpdateHistoryLogDeleted(Employee ToAdd) // updating him based on the details that could've been changed 
+        public static void UpdateHistoryLogDeleted(string userID) // updating him based on the details that could've been changed 
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
                 MySqlCommand cmd;
-                using (cmd = new MySqlCommand($"UPDATE historylog SET firstName = @firstName,lastName = @lastName,email=@email,address=@address,nationality=@nationality,phoneNumber = @phoneNumber,startDate = @startDate,endDate = @endDate,dateOfBirth = @dateOfBirth,workHours = @workHours, attendance = @attendance, salary=@salary, role=@role WHERE userID = @userID", conn))
+                using (cmd = new MySqlCommand($"UPDATE historylog SET endDate = @endDate WHERE userID = @userID", conn))
                 {
-                    cmd.Parameters.AddWithValue("@userID", ToAdd.UserID);
-                    cmd.Parameters.AddWithValue("@firstName", ToAdd.FirstName);
-                    cmd.Parameters.AddWithValue("@lastName", ToAdd.LastName);
-                    cmd.Parameters.AddWithValue("@phoneNumber", ToAdd.PhoneNumber);
-                    cmd.Parameters.AddWithValue("@startDate", ToAdd.StartDate);
-                    cmd.Parameters.AddWithValue("@email", ToAdd.Email);
-                    cmd.Parameters.AddWithValue("@address", ToAdd.Address);
-                    cmd.Parameters.AddWithValue("@nationality", ToAdd.Nationality);
-                    cmd.Parameters.AddWithValue("@endDate", System.DateTime.Today.ToString("yyyy-MM-dd"));
-                    if (ToAdd.DateOfBirth == null) cmd.Parameters.AddWithValue("@dateOfBirth", "");
-                    else cmd.Parameters.AddWithValue("@dateOfBirth", ((DateTime)ToAdd.DateOfBirth).ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@workHours", ToAdd.WorkHours);
-                    cmd.Parameters.AddWithValue("@attendance", ToAdd.Attendance);
-                    cmd.Parameters.AddWithValue("@salary", ToAdd.SalaryHourlyRate);
-                    cmd.Parameters.AddWithValue("@role", ToAdd.Role);
+                   
+                    cmd.Parameters.AddWithValue("@endDate", System.DateTime.Today.ToString("yyyy-MM-dd"));         
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }

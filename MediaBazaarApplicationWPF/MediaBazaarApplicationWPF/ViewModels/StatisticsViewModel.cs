@@ -1,4 +1,4 @@
-﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
@@ -264,7 +264,7 @@ string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 				using (MySqlCommand cmd = new MySqlCommand($"  SELECT employees.sex as 'gender',COUNT(employees.sex) as 'number' from employees WHERE employees.sex is not null GROUP by employees.sex ", con))
 				{// Gender for all 
 					MySqlDataReader dataReader = cmd.ExecuteReader();
-					string messagestart = "There are ";
+					string messagestart = "Sex Distribution: ";
 					string message1 = "";
 					string message2 = "";
 
@@ -279,14 +279,14 @@ string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 							message2 = message2 + dataReader["number"] + " male";
 						}
 					}
-					string s = messagestart + message1 + " and " + message2 + " employees.";
+                    string s;
 					if (message1 == "" || message2 == "")
 					{
-						s = messagestart + message1 + message2 + " workers.";
+						s = messagestart + message1 + message2 + " employees.";
 					}
 					else
 					{
-						s = messagestart + message1 + " and " + message2 + " workers.";
+						s = messagestart + message1 + " and " + message2 + " employees.";
 					}
 					dataReader.Close();
 					GeneralData.Add(s);
@@ -295,7 +295,7 @@ string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 				using (MySqlCommand cmd = new MySqlCommand($" SELECT   users.role,employees.sex as 'gender', COUNT(employees.sex) as 'number' from employees INNER  JOIN users on users.userID=employees.userID where employees.sex is not null GROUP by users.role, employees.sex", con))
 				{// Gender for each role 
 					MySqlDataReader dataReader = cmd.ExecuteReader();
-					string messagestart = "There are ";
+					
 					string work1 = "";
 					string manager1 = "";
 					string admin1 = "";
@@ -340,7 +340,8 @@ string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 							}
 						}
 					}
-					string sWorker, sManager, sAdmin = "";
+                    string messagestart = "Worker Distribution: ";
+                    string sWorker, sManager, sAdmin = "";
 					if (work1 == "" || work2 == "")
 					{
 						sWorker = messagestart + work1 + work2 + " workers.";
@@ -349,7 +350,8 @@ string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 					{
 						sWorker = messagestart + work1 + " and " + work2 + " workers.";
 					}
-					if (manager1 == "" || manager2 == "")
+                     messagestart = "Manager Distribution: ";
+                    if (manager1 == "" || manager2 == "")
 					{
 						sManager = messagestart + manager1 + manager2 + " managers.";
 					}
@@ -357,7 +359,8 @@ string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 					{
 						sManager = messagestart + manager1 + " and " + manager2 + " managers.";
 					}
-					if (admin1 == "" || admin2 == "")
+                    messagestart = "Admin Distribution: ";
+                    if (admin1 == "" || admin2 == "")
 					{
 						sAdmin = messagestart + admin1 + admin2 + " admins.";
 
@@ -370,8 +373,10 @@ string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 					GeneralData.Add(sWorker);
 					GeneralData.Add(sManager);
 					GeneralData.Add(sAdmin);
+
 				}
 				con.Close();
+
 			}
         }
         #endregion
