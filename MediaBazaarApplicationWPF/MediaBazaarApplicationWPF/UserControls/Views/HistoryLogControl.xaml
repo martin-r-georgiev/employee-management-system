@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="auto" Height="auto" Background="White">
     <Grid>
-        <Border BorderBrush="Aqua" BorderThickness="7 3">
+        <Border BorderBrush="Teal" BorderThickness="4 3">
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" >
                 <Grid>
                     <Grid.ColumnDefinitions>
