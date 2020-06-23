@@ -20,6 +20,7 @@
 
         <ContextMenu x:Key="requestsMenu" Name="requestsMenu">
             <MenuItem x:Name="cmRequestCancelation" Header="Request shift cancelation" Click="cmRequestCancelation_Click"/>
+            <MenuItem x:Name="cmCancelCancelationRequest" Header="Cancel shift cancelation request" Click="cmCancelCancelationRequest_Click"/>
         </ContextMenu>
 
         <Style TargetType="Canvas">
@@ -62,10 +63,10 @@
 
         <!--Row 1 (Header Row)-->
         
-        <TextBlock Grid.Row="1" Grid.Column="2" Text="0:00" FontSize="9"/>
-        <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Text="0:00" FontSize="9"/>
-        <TextBlock Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Text="0:00" FontSize="9"/>
-        <TextBlock Grid.Row="1" Grid.Column="8" Text="0:00" HorizontalAlignment="Right" FontSize="9"/>
+        <TextBlock x:Name="tbShiftOneStart" Grid.Row="1" Grid.Column="2" Text="0:00" FontSize="9"/>
+        <TextBlock x:Name="tbShiftTwoStart" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Text="0:00" FontSize="9"/>
+        <TextBlock x:Name="tbShiftThreeStart" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Text="0:00" FontSize="9"/>
+        <TextBlock x:Name="tbShiftThreeEnd" Grid.Row="1" Grid.Column="8" Text="0:00" HorizontalAlignment="Right" FontSize="9"/>
 
         <!--Row 2-->
 

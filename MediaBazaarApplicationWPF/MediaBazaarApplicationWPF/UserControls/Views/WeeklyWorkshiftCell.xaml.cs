@@ -89,8 +89,11 @@ namespace MediaBazaarApplicationWPF.UserControls
 
                 var managementMenu = (this.Resources["managementMenu"] as ContextMenu);
 
-                (managementMenu.Items[0] as MenuItem).IsEnabled = (this.manager.StatusIndex[index] != 1) ? false : true;
-                (managementMenu.Items[1] as MenuItem).IsEnabled = (this.manager.StatusIndex[index] != 1) ? false : true;
+                if (date.Date > DateTime.Now.Date)
+                {
+                    (managementMenu.Items[0] as MenuItem).IsEnabled = (this.manager.StatusIndex[index] != 1) ? false : true;
+                    (managementMenu.Items[1] as MenuItem).IsEnabled = (this.manager.StatusIndex[index] != 1) ? false : true;
+                }
                 for (int i = 2; i < managementMenu.Items.Count; i++) (managementMenu.Items[i] as MenuItem).Visibility = (this.manager.StatusIndex[index] != 1) ? Visibility.Visible : Visibility.Collapsed;
             }
         }
@@ -104,7 +107,12 @@ namespace MediaBazaarApplicationWPF.UserControls
                 int index = (int)this.manager.SelectedWorkshiftIndex;
 
                 var requestsMenu = (this.Resources["requestsMenu"] as ContextMenu);
-                (requestsMenu.Items[0] as MenuItem).IsEnabled = (this.manager.StatusIndex[index] != 0) ? false : true;
+                if (date.Date > DateTime.Now.Date)
+                {
+                    (requestsMenu.Items[0] as MenuItem).IsEnabled = (this.manager.StatusIndex[index] == 0 || this.manager.StatusIndex[index] == 1) ? true : false;
+                }
+                (requestsMenu.Items[0] as MenuItem).Visibility = (this.manager.StatusIndex[index] != (int)WorkshiftStatus.Pending) ? Visibility.Visible : Visibility.Collapsed;
+                (requestsMenu.Items[1] as MenuItem).Visibility = (this.manager.StatusIndex[index] == (int)WorkshiftStatus.Pending) ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
@@ -143,5 +151,16 @@ namespace MediaBazaarApplicationWPF.UserControls
                 RescheduleNotification.AddNotification(this.Employee.UserID, this.Date, index);
             }
         }
+
+        private void cmCancelCancelationRequest_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.manager.SelectedWorkshiftIndex != null)
+            {
+                int index = (int)this.manager.SelectedWorkshiftIndex;
+                this.manager.ChangeWorkshiftStatus(WorkshiftStatus.Available, index);
+                RescheduleNotification selectedNotification = new RescheduleNotification(this.Employee.UserID, this.Date.Date, index);
+                selectedNotification.RemoveNotification();
+            }
+        } 
     }
 }

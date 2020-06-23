@@ -20,6 +20,7 @@
 
         <ContextMenu x:Key="requestsMenu" Name="requestsMenu">
             <MenuItem x:Name="cmRequestCancelation" Header="Request shift cancelation" Click="cmRequestCancelation_Click"/>
+            <MenuItem x:Name="cmCancelCancelationRequest" Header="Cancel shift cancelation request" Click="cmCancelCancelationRequest_Click"/>
         </ContextMenu>
         
         <Style TargetType="Canvas">

@@ -41,35 +41,35 @@
         </Grid.RowDefinitions>
         
         <!--Row 1-->
-        <CheckBox x:Name="cbMonday" Content="Monday" Grid.Row="1" Grid.Column="1" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxMonday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbTuesday" Content="Tuesday" Grid.Row="1" Grid.Column="2" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxTuesday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbWednesday" Content="Wednesday" Grid.Row="1" Grid.Column="3" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxWednesday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbThursday" Content="Thursday" Grid.Row="1" Grid.Column="4" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxThursday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbFriday" Content="Friday" Grid.Row="1" Grid.Column="5" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxFriday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbMonday" Content="Monday" Grid.Row="1" Grid.Column="1" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxMonday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbTuesday" Content="Tuesday" Grid.Row="1" Grid.Column="2" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxTuesday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbWednesday" Content="Wednesday" Grid.Row="1" Grid.Column="3" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxWednesday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbThursday" Content="Thursday" Grid.Row="1" Grid.Column="4" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxThursday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbFriday" Content="Friday" Grid.Row="1" Grid.Column="5" Style="{StaticResource weekDays}" IsChecked="{Binding Path=CheckBoxFriday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
         
         <!--Row 2-->
-        <CheckBox x:Name="cbMondayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="1" IsChecked="{Binding Path=CheckBoxMondayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbTuesdayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="2" IsChecked="{Binding Path=CheckBoxTuesdayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbWednesdayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="3" IsChecked="{Binding Path=CheckBoxWednesdayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbThursdayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbFridayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbMondayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="1" IsChecked="{Binding Path=CheckBoxMondayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbTuesdayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="2" IsChecked="{Binding Path=CheckBoxTuesdayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbWednesdayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="3" IsChecked="{Binding Path=CheckBoxWednesdayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbThursdayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbFridayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
 
         <TextBlock Text="{Binding LabelWorkhours}" Grid.Row="2" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"
                    FontSize="16"  Foreground="{Binding LabelWorkshoursForeground, Mode=OneWay, FallbackValue=Black}" FontWeight="Bold"/>
 
         <!--Row 3-->
-        <CheckBox x:Name="cbMondayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="1" IsChecked="{Binding Path=CheckBoxMondayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbTuesdayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="2" IsChecked="{Binding Path=CheckBoxTuesdayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbWednesdayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="3" IsChecked="{Binding Path=CheckBoxWednesdayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbThursdayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbFridayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbMondayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="1" IsChecked="{Binding Path=CheckBoxMondayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbTuesdayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="2" IsChecked="{Binding Path=CheckBoxTuesdayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbWednesdayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="3" IsChecked="{Binding Path=CheckBoxWednesdayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbThursdayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbFridayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
 
         <!--Row 4-->
-        <CheckBox x:Name="cbMondayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="1" IsChecked="{Binding Path=CheckBoxMondayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbTuesdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="2" IsChecked="{Binding Path=CheckBoxTuesdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbWednesdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="3" IsChecked="{Binding Path=CheckBoxWednesdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbThursdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <CheckBox x:Name="cbFridayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="cbMondayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="1" IsChecked="{Binding Path=CheckBoxMondayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbTuesdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="2" IsChecked="{Binding Path=CheckBoxTuesdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbWednesdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="3" IsChecked="{Binding Path=CheckBoxWednesdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbThursdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
+        <CheckBox x:Name="cbFridayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
 
         <Button Content="Confirm" Grid.Row="4" Grid.Column="6" Height="24" FontSize="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=ConfirmWorkshiftPreferences}"/>
 

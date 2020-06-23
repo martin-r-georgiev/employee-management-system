@@ -353,7 +353,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
             for (int i = 0; i < 5; i++)
             {
-                for (int j = 0; j < 4; j++) if (this.CheckBoxes[i, j] == true) shiftCount++;
+                for (int j = 1; j < 4; j++) if (this.CheckBoxes[i, j] == true) shiftCount++;
             }
 
             this.LabelWorkhours = $"{shiftCount}/{this.Employee.WorkHours / 4}";
@@ -366,25 +366,29 @@ namespace MediaBazaarApplicationWPF.ViewModels
         private bool PreferencesAlreadyPicked()
         {
             bool alreadyPicked = false;
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM preferences", con))
+                try
                 {
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                    while (dataReader.Read())
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM preferences", conn))
                     {
-                        if (dataReader["userID"].ToString() == LoggedInUser.userID)
-                        {
-                            alreadyPicked = true;
-                            break;
-                        }
-                    }
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
 
-                    dataReader.Close();
-                    cmd.Dispose();
+                        while (dataReader.Read())
+                        {
+                            if (dataReader["userID"].ToString() == LoggedInUser.userID)
+                            {
+                                alreadyPicked = true;
+                                break;
+                            }
+                        }
+
+                        dataReader.Close();
+                        cmd.Dispose();
+                    }
                 }
-                con.Close();
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+                finally { conn.Close(); }
             }   
             return alreadyPicked;
         }
@@ -410,25 +414,29 @@ namespace MediaBazaarApplicationWPF.ViewModels
         {
             List<WorkshiftPreferences> prefrences = new List<WorkshiftPreferences>();
             List<WorkshiftData> Schedule = new List<WorkshiftData>();
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM preferences WHERE userID=@userID ", con))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@userID", LoggedInUser.userID);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-                    while (dataReader.Read())
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM preferences WHERE userID=@userID ", conn))
                     {
-                        string userID = dataReader["userID"].ToString();
-                        string day = dataReader["day"].ToString();
-                        string date = dataReader["date"].ToString();
-                        int workshift = Convert.ToInt32(dataReader["workshift"]);
-                        string departmentID = "";
-                        prefrences.Add(new WorkshiftPreferences(userID, date, workshift, day, departmentID));
+                        cmd.Parameters.AddWithValue("@userID", LoggedInUser.userID);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            string userID = dataReader["userID"].ToString();
+                            string day = dataReader["day"].ToString();
+                            string date = dataReader["date"].ToString();
+                            int workshift = Convert.ToInt32(dataReader["workshift"]);
+                            string departmentID = "";
+                            prefrences.Add(new WorkshiftPreferences(userID, date, workshift, day, departmentID));
+                        }
+                        dataReader.Close();
+                        cmd.Dispose();
                     }
-                    dataReader.Close();
-                    cmd.Dispose();
                 }
-                con.Close();
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+                finally { conn.Close(); }
             }
             
             foreach (WorkshiftPreferences p in prefrences)
@@ -449,18 +457,24 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
             foreach (WorkshiftData w in Schedule) // actually adding it to the database
             {
-                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
-                    if (w.Date > DateTime.Now)
-                        using (MySqlCommand cmd = new MySqlCommand($"INSERT INTO workshifts (userID, date, workshift) VALUES (@userID,@date, @workshift)", con))
+                    try
+                    {
+                        if (w.Date > DateTime.Now)
                         {
-                            cmd.Parameters.AddWithValue("@userID", w.UserID);
-                            cmd.Parameters.AddWithValue("@date", w.Date.ToString("yyyy/MM/dd"));
-                            cmd.Parameters.AddWithValue("@workshift", w.Workshift);
-                            cmd.ExecuteNonQuery();
-                            cmd.Dispose();
+                            using (MySqlCommand cmd = new MySqlCommand($"INSERT INTO workshifts (userID, date, workshift) VALUES (@userID,@date, @workshift)", conn))
+                            {
+                                cmd.Parameters.AddWithValue("@userID", w.UserID);
+                                cmd.Parameters.AddWithValue("@date", w.Date.ToString("yyyy/MM/dd"));
+                                cmd.Parameters.AddWithValue("@workshift", w.Workshift);
+                                cmd.ExecuteNonQuery();
+                                cmd.Dispose();
+                            }
                         }
-                    con.Close();
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    finally { conn.Close(); }
                 }
             }
         }
@@ -487,7 +501,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
             for (int i = 0; i < 5; i++)
             {
-                for (int j = 0; j < 4; j++) if (this.CheckBoxes[i, j] == true) shiftCount++;
+                for (int j = 1; j < 4; j++) if (this.CheckBoxes[i, j] == true) shiftCount++;
             }
 
 
@@ -507,15 +521,19 @@ namespace MediaBazaarApplicationWPF.ViewModels
                 }
                 else
                 {
-                    using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+                    using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                     {
-                        using (MySqlCommand cmd = new MySqlCommand($"DELETE from preferences where userID=@userID", con))
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@userID", LoggedInUser.userID);
-                            cmd.ExecuteNonQuery();
-                            cmd.Dispose();
+                            using (MySqlCommand cmd = new MySqlCommand($"DELETE from preferences where userID=@userID", conn))
+                            {
+                                cmd.Parameters.AddWithValue("@userID", LoggedInUser.userID);
+                                cmd.ExecuteNonQuery();
+                                cmd.Dispose();
+                            }
                         }
-                        con.Close();
+                        catch (Exception ex) { Console.WriteLine(ex.Message); }
+                        finally { conn.Close(); }
                     }
 
                     PreparePreferences();
