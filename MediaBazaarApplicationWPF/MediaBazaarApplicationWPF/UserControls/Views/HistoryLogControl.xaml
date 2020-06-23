@@ -8,7 +8,18 @@
              d:DesignHeight="450" d:DesignWidth="800" Width="auto" Height="auto" Background="White">
     <Grid>
         <Border BorderBrush="Aqua" BorderThickness="7 3">
-            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Content="Stuff" Margin="25" x:Name="lblHistory"/>
-        </Border>
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="9*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="1" FontSize="20" FontWeight="Bold" Margin="20" x:Name="lblNumber"/>
+                    <!--<Border Grid.Column="0" BorderBrush="Aqua" BorderThickness="2" HorizontalAlignment="Right"/>-->
+                    <Label Grid.Column="1" Content="Stuff" Margin="20" x:Name="lblHistory"/>
+                </Grid>
+               
+            </StackPanel>
+             </Border>
     </Grid>
 </UserControl>

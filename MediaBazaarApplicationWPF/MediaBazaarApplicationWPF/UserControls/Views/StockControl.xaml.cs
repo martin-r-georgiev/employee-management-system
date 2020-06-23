@@ -21,10 +21,11 @@ namespace MediaBazaarApplicationWPF.Views
     public partial class StockControl : UserControl
     {
         StockItem selectedItem;
-        public StockControl(StockItem item)
+        public StockControl(StockItem item, string depName)
         {
             InitializeComponent();
             selectedItem = item;
+            this.DptName.Content = depName;
             this.lblItemName.Content = item.Name;
             this.lblQuantity.Content = item.CurrentAmount.ToString();
             this.lblThreshold.Content = item.Threshold.ToString();
@@ -100,6 +101,11 @@ namespace MediaBazaarApplicationWPF.Views
 
         private void lblQuantity_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (tbThreshold.Visibility == Visibility.Visible) 
+            {
+                Adjust(lblThreshold, tbThreshold);
+            }
+
             this.lblQuantity.Visibility = Visibility.Hidden;
             this.tbQuantity.Visibility = Visibility.Visible;
             this.tbQuantity.Text = selectedItem.CurrentAmount.ToString();
@@ -109,9 +115,15 @@ namespace MediaBazaarApplicationWPF.Views
         {
             if (LoggedInUser.role != EmployeeRole.Worker)
             {
+                if (tbQuantity.Visibility == Visibility.Visible)
+                {
+                    Adjust(lblQuantity, tbQuantity);
+                }
+
                 this.lblThreshold.Visibility = Visibility.Hidden;
                 this.tbThreshold.Visibility = Visibility.Visible;
                 this.tbThreshold.Text = selectedItem.Threshold.ToString();
+                tbThreshold.Focus();
             }
             else MessageBox.Show("You cannot change the threshold, please contact a manager.");
         }
@@ -120,20 +132,7 @@ namespace MediaBazaarApplicationWPF.Views
         {
             if (e.Key == Key.Enter)
             {
-                if (int.TryParse(this.tbQuantity.Text, out int currentAmmount))
-                {
-                    if (currentAmmount >= 0)
-                    {
-                        this.selectedItem.CurrentAmount = currentAmmount;
-                        this.lblQuantity.Visibility = Visibility.Visible;
-                        this.tbQuantity.Visibility = Visibility.Hidden;
-                        this.lblQuantity.Content = selectedItem.CurrentAmount.ToString();
-                        AdjustColor();
-                        StockItemDatabaseHandler.UpdateStockItem(selectedItem);
-                    }
-                    else MessageBox.Show("Please enter a positive value");
-                }
-                else MessageBox.Show("Please enter a valid value");
+                Adjust(lblQuantity, tbQuantity);
             }
         }
 
@@ -141,21 +140,40 @@ namespace MediaBazaarApplicationWPF.Views
         {
             if (e.Key == Key.Enter)
             {
-                if (int.TryParse(tbThreshold.Text, out int threshold))
-                {
-                    if (threshold >= 0)
-                    {
-                        this.selectedItem.Threshold = Convert.ToInt32(tbThreshold.Text);
-                        this.lblThreshold.Visibility = Visibility.Visible;
-                        this.tbThreshold.Visibility = Visibility.Hidden;
-                        this.lblThreshold.Content = selectedItem.Threshold.ToString();
-                        AdjustColor();
-                        StockItemDatabaseHandler.UpdateStockItem(selectedItem);
-                    }
-                    else MessageBox.Show("Please enter a positive value");
-                }
-                else MessageBox.Show("Please enter a valid value");
+                Adjust(lblThreshold, tbThreshold);
             }
         }
+
+        void Adjust(Label label, TextBox tb)
+        {
+            string quantity = tb.Text;
+
+            if (String.IsNullOrWhiteSpace(quantity)) quantity = "0";
+
+            if (int.TryParse(quantity, out int number))
+            {
+                if (number >= 0)
+                {
+                    label.Visibility = Visibility.Visible;
+                    tb.Visibility = Visibility.Hidden;
+                    if (label == this.lblQuantity)
+                    {
+                        this.selectedItem.CurrentAmount = number;
+                        label.Content = selectedItem.CurrentAmount.ToString();
+                    }
+                    else if (label == this.lblThreshold)
+                    {
+                        this.selectedItem.Threshold = number;
+                        label.Content = selectedItem.Threshold.ToString();
+                    }
+                    AdjustColor();
+                    StockItemDatabaseHandler.UpdateStockItem(selectedItem);
+                }
+                else MessageBox.Show("Please enter a positive value");
+            }
+            else MessageBox.Show("Please enter a valid value");
+        }
+
     }
 }
+

@@ -16,15 +16,16 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4"/>
-            <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2.5*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <!-- Row 0 -->
         <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Background="#E6E6E6">
             <Border Background="Teal" CornerRadius="10,0,0,10"/>
         </Border>
-        <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Background="#E6E6E6">
+        <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Background="#E6E6E6">
             <Border Background="Teal" CornerRadius="0,5,0,0"/>
         </Border>
         <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Width="15" Height="22" Background="Teal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 0" CornerRadius="0,0,2,2">
@@ -34,34 +35,34 @@
             <materialDesign:PackIcon Kind="Tools" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 4 0 0" Foreground="White" Width="10" Height="10"/>
         </Border>
         <!-- Row 1-->
-        <Label x:Name="lblItemName" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Content="Iphone 6" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13" Margin="0,0,0,3" Padding="5,5,5,3" />
-        <TextBox x:Name="tbQuantity"  Grid.Row="1" Grid.Column="2" Width="25" HorizontalAlignment="Left" Visibility="Hidden" FontWeight="Bold" KeyDown="tbQuantity_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="lblQuantity" Content="15" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="21" Margin="0,0,0,3" MouseDoubleClick="lblQuantity_MouseDoubleClick" Background="#d8f7f4" ToolTip="In stock"/>
-        <Button x:Name="btnIncrease" Grid.Column="3" Grid.Row="1" MinWidth="20" MinHeight="20" Width="20" Height="20" MaxWidth="40" MaxHeight="40" Margin="4,2,6,2" BorderThickness="0" Click="btnIncrease_Click" ToolTip="Add">
+        <Label x:Name="lblItemName" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Content="Iphone 6" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="13" Margin="5" Padding="5,5,5,3" />
+        <TextBox x:Name="tbQuantity"  Grid.Row="1" Grid.Column="3" MaxLength="9" HorizontalAlignment="Center" Visibility="Hidden" FontWeight="Bold" KeyDown="tbQuantity_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Focusable="True"/>
+        <Label x:Name="lblQuantity" Content="15" Grid.Row="1" Grid.Column="3" Height="32" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="21" MouseDoubleClick="lblQuantity_MouseDoubleClick" Background="#d8f7f4" ToolTip="In stock"/>
+        <Button x:Name="btnIncrease" Grid.Column="4" Grid.Row="1" MinWidth="20" MinHeight="20" Width="20" Height="20" MaxWidth="40" MaxHeight="40" Margin="4,2,6,2" BorderThickness="0" Click="btnIncrease_Click" ToolTip="Add">
             <Button.Background>
                 <ImageBrush ImageSource ="/Resources/Images/plus.png"  ></ImageBrush>
             </Button.Background>
         </Button>
 
         <!-- Row 2 -->
-        <Label x:Name="DptName" Content="Computers" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="11 " Padding="10 0" FontStyle="Italic" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-        <TextBox x:Name="tbThreshold"  Grid.Row="2" Grid.Column="2" Width="25" HorizontalAlignment="Center" Visibility="Hidden" KeyDown="tbThreshold_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="lblThreshold" Content="5" Grid.Row="2" Grid.Column="2" Width="25" HorizontalAlignment="Right" Margin="0,3,0,0" FontWeight="UltraLight" VerticalAlignment="Bottom" MouseDoubleClick="lblThreshold_MouseDoubleClick" ToolTip="Threshold"/>
-        <Button x:Name="btnDecrease" Grid.Column="3" Grid.Row="2" MinWidth="20" MinHeight="20" Width="20" Height="20" MaxWidth="40" MaxHeight="40" Margin="4,2,6,2" BorderThickness="0" Click="btnDecrease_Click" ToolTip="Remove">
+        <Label x:Name="DptName" Content="Computers" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="11" Padding="10 0 0 0" FontStyle="Italic" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+        <TextBox x:Name="tbThreshold"  Grid.Row="2" Grid.Column="3" MaxLength="9" HorizontalAlignment="Center" Visibility="Hidden" KeyDown="tbThreshold_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Focusable="True" />
+        <Label x:Name="lblThreshold" Content="5" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" FontWeight="UltraLight" VerticalAlignment="Center" HorizontalContentAlignment="Center" MouseDoubleClick="lblThreshold_MouseDoubleClick" ToolTip="Threshold"/>
+        <Button x:Name="btnDecrease" Grid.Column="4" Grid.Row="2" MinWidth="20" MinHeight="20" Width="20" Height="20" MaxWidth="40" MaxHeight="40" Margin="4,2,6,2" BorderThickness="0" Click="btnDecrease_Click" ToolTip="Remove">
             <Button.Background>
                 <ImageBrush ImageSource ="/Resources/Images/minus.png"  ></ImageBrush>
             </Button.Background>
         </Button>
 
         <!-- Row 3-->
-        <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="#E6E6E6">
+        <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Background="#E6E6E6">
             <Border Background="Teal" CornerRadius="0,0,5,0"/>
         </Border>
         
 
         <!-- Decorative -->
-        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Background="Teal" HorizontalAlignment="Right" Width="0.4"/>
-        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Background="Teal" HorizontalAlignment="Right" Width="3"/>
-        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" Background="Teal" HorizontalAlignment="Right" Width="2"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Background="Teal" HorizontalAlignment="Right" Width="0.4"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" Background="Teal" HorizontalAlignment="Right" Width="3"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" Background="Teal" HorizontalAlignment="Right" Width="2"/>
     </Grid>
 </UserControl>

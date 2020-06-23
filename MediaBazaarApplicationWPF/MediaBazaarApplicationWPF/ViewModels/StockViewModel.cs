@@ -26,7 +26,7 @@ namespace MediaBazaarApplicationWPF
             set {
                 _selectedDepartment = value;
                 BtnRestockContent = "Restock";
-                RefreshInventory(value.DepartmentId);
+                RefreshInventory(value);
                 OnPropertyChanged();
             }
         }
@@ -43,7 +43,7 @@ namespace MediaBazaarApplicationWPF
                 Stocks.Clear();
                 foreach (StockItem s in CurrentInventory)
                     if (s.Name.ToLower().Contains(value.ToLower()))
-                        Stocks.Add(new StockControl(s));
+                        Stocks.Add(new StockControl(s, SelectedDepartment.Name));
                 OnPropertyChanged(); 
             }
         }
@@ -106,18 +106,18 @@ namespace MediaBazaarApplicationWPF
             }
         }
 
-        void RefreshInventory(string depId)
+        void RefreshInventory(Department dep)
         {
-            this.CurrentInventory = StockItemDatabaseHandler.GetAllStockFromDepartment(depId);
+            this.CurrentInventory = StockItemDatabaseHandler.GetAllStockFromDepartment(dep.DepartmentId);
             Stocks.Clear();
-            foreach (StockItem s in currentInventory) Stocks.Add(new StockControl(s));
+            foreach (StockItem s in currentInventory) Stocks.Add(new StockControl(s, dep.Name));
         }
 
         public StockViewModel()
         {
             _departments = DepartmentManager.GetAllDepartments(false);
             _stocks = new ObservableCollection<StockControl>();
-            RefreshInventory(LoggedInUser.departmentID);
+            SelectedDepartment = _departments.Find(d => d.DepartmentId == LoggedInUser.departmentID);
             RefreshGUI();
             _restockCommand = new RestockCommand(this);
             BtnRestockContent = "Restock";

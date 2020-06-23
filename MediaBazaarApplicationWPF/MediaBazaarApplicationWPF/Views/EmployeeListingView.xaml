@@ -135,7 +135,7 @@
                     <Border Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" BorderBrush="Aqua" BorderThickness="0" Margin="5">
                         <DockPanel VerticalAlignment="Center">
                             <TextBlock Text="{Binding SelectedEmployee.Role, StringFormat=Role: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
-                            <TextBlock Text="{Binding SelectedEmployee.Attendance, StringFormat=Attendance: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
+                            <TextBlock Text="{Binding SelectedEmployee.Attendance, StringFormat=Attendance: {0}%}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
                             <TextBlock Text="{Binding SelectedEmployee.SalaryHourlyRate, StringFormat=Salary: {0}/hr}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
                             <TextBlock Text="{Binding WorkingSince}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
                         </DockPanel>

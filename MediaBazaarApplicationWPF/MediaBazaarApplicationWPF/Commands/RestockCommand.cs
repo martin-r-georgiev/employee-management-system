@@ -27,14 +27,14 @@ namespace MediaBazaarApplicationWPF.Views
 
                 foreach(StockItem s in model.CurrentInventory)
                 {
-                    if (s.CurrentAmount < s.Threshold) model.Stocks.Add(new StockControl(s));
+                    if (s.CurrentAmount < s.Threshold) model.Stocks.Add(new StockControl(s, model.SelectedDepartment.Name));
                 }
             }
             else
             {
                 model.BtnRestockContent = "Restock";
                 model.Stocks.Clear();
-                foreach (StockItem s in model.CurrentInventory) model.Stocks.Add(new StockControl(s));
+                foreach (StockItem s in model.CurrentInventory) model.Stocks.Add(new StockControl(s, model.SelectedDepartment.Name));
             }
         }
     }

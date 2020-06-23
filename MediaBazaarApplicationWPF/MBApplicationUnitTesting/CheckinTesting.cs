@@ -40,16 +40,16 @@ namespace MBApplicationUnitTesting
 
         }
 
-        [TestMethod]
-        public void GetAllAtWorkUsers()
-        {
-            bool currentlyCheckedIn = CheckIn.IsAtWork(userID);
-            List<Employee> AtWork = CheckIn.GetAllEmployeesAtWork();
-            List<EmployeeAtWorkModel> AtWork2 = CheckIn.GetEmployeesAtWork("TEST_DEPT");
-            Assert.AreEqual(0,AtWork2.Count());
-            CheckIn.DeleteUserData(userID);
-            CheckIn.ClearNotificationsBefore(checkout);
-        }
+        //[TestMethod]
+        //public void GetAllAtWorkUsers()
+        //{
+        //    bool currentlyCheckedIn = CheckIn.IsAtWork(userID);
+        //    List<Employee> AtWork = CheckIn.GetAllEmployeesAtWork();
+        //    List<EmployeeAtWorkModel> AtWork2 = CheckIn.GetEmployeesAtWork("TEST_DEPT");
+        //    Assert.AreEqual(0,AtWork2.Count());
+        //    CheckIn.DeleteUserData(userID);
+        //    CheckIn.ClearNotificationsBefore(checkout);
+        //}
 
 
     }

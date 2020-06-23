@@ -68,7 +68,11 @@
         <Border Grid.Column="3" Grid.Row="2" BorderBrush="Teal" BorderThickness="2" Background="#d8f7f4" Margin="40 40 25 25" CornerRadius="15">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ListBox ItemsSource="{Binding GeneralData}">
-                   
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="Focusable" Value="False"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
             </ScrollViewer>
         </Border>

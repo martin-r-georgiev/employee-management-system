@@ -342,12 +342,12 @@
                                             <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                                 <TextBlock Text="Current amount" VerticalAlignment="Center" Width="100"/>
                                                 <TextBox Text="{Binding Path=StockItemCurrentAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation"
-                                                     Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" MaxLength="10"/>
+                                                     Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" MaxLength="9"/>
                                             </DockPanel>
                                             <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                                 <TextBlock Text="Threshold" VerticalAlignment="Center" Width="70"/>
                                                 <TextBox Text="{Binding Path=StockItemThreshold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation"
-                                                     Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" MaxLength="10"/>
+                                                     Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" MaxLength="9"/>
                                             </DockPanel>
                                             <Button Content="Assign and Update" Margin="0 10" Command="{Binding Path=UpdateStockItem}"/>
                                         </StackPanel>

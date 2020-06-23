@@ -13,7 +13,7 @@ namespace MediaBazaarApplicationWPF
         {
             get
             {
-                return @"server=studmysql01.fhict.local;userid=dbi426060;database=dbi426060;password=SuperSecurePassword;";
+                return @"server=studmysql01.fhict.local;userid=dbi426053;database=dbi426053;password=SuperSecurePassword;";
             }
         }
 

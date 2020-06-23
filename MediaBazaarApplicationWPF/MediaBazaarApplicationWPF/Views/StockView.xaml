@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
-        Title="StockView" Height="500" Width="450" MinWidth="400" MinHeight="300" WindowStartupLocation="CenterScreen"
+        Title="StockView" Height="500" Width="450" MinWidth="425" MinHeight="300" WindowStartupLocation="CenterScreen"
         >
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />

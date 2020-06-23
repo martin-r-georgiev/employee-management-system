@@ -18,10 +18,14 @@ namespace MediaBazaarApplicationWPF.ViewModels
         }
         public HistoryLogViewModel()
         {
+            int logNumber = 1;
             Logs = new ObservableCollection<HistoryLogControl>();
             List<string> histories = HistoryLog.ShowLog();
             foreach (string s in histories)
-                Logs.Add(new HistoryLogControl(s));
+            {
+                Logs.Add(new HistoryLogControl(s, logNumber));
+                logNumber++;
+            }
         }
     }
 }

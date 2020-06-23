@@ -97,9 +97,9 @@ namespace MediaBazaarApplicationWPF
 			return employees;
 		}
 
-		public static List<Employee> GetAllEmployeesAtWork() //Method not used - add if you need to get all workers regardless of department
-		{ //Method not updated for EmployeeModel, if you need to use this, copy the procedure with the one above
-			List<Employee> employees = new List<Employee>();
+		public static List<EmployeeAtWorkModel> GetAllEmployeesAtWork() //Method not used - add if you need to get all workers regardless of department
+		{ 
+			List<EmployeeAtWorkModel> employees = new List<EmployeeAtWorkModel>();
 			EmployeeManager man = new EmployeeManager();
 			using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
 			{
@@ -110,7 +110,12 @@ namespace MediaBazaarApplicationWPF
 						MySqlDataReader dataReader = cmd.ExecuteReader();
 						while (dataReader.Read())
 						{
-							employees.Add(man.GetEmployee(dataReader.GetString(0), false));
+							Employee e = man.GetEmployee(dataReader.GetString(0), false);
+							string name = "";
+							if (String.IsNullOrWhiteSpace(e.FirstName)) name = $"{e.Username}";
+							else name = $"{e.FirstName} {e.LastName}";
+							string checkin = dataReader.GetDateTime(1).TimeOfDay.ToString();
+							employees.Add(new EmployeeAtWorkModel(name, checkin));
 						}
 						dataReader.Close();
 						cmd.Dispose();

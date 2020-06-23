@@ -27,11 +27,20 @@ namespace MediaBazaarApplicationWPF.UserControls.Views
             get { return employeeHistory; }
             set { employeeHistory = value; lblHistory.Content = employeeHistory; }
         }
+        private int historyNumber;
 
-        public HistoryLogControl(string history)
+        public int HistoryNumber
+        {
+            get { return historyNumber; }
+            set { historyNumber = value; lblNumber.Text = historyNumber.ToString(); }
+        }
+
+
+        public HistoryLogControl(string history, int number)
         {
             InitializeComponent();
             this.EmployeeHistory = history;
+            this.HistoryNumber = number;
         }
     }
 }
