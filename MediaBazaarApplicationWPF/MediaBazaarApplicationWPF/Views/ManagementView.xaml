@@ -101,11 +101,13 @@
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="275" Margin="10">
                                 <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Username" VerticalAlignment="Center" Width="70"/>
-                                    <TextBox Text="{Binding Path=EmployeeCreationUsername, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    <TextBox Text="{Binding Path=EmployeeCreationUsername, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" 
+                                             HorizontalAlignment="Stretch" Width="Auto" MaxLength="20"/>
                                 </DockPanel>
                                 <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Password" VerticalAlignment="Center" Width="70"/>
-                                    <TextBox Text="{Binding Path=EmployeeCreationPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    <TextBox Text="{Binding Path=EmployeeCreationPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" 
+                                             HorizontalAlignment="Stretch" Width="Auto" MaxLength="20"/>
                                 </DockPanel>
                                 <DockPanel Height="30" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Role" VerticalAlignment="Center" Width="70"/>
@@ -113,7 +115,8 @@
                                 </DockPanel>
                                 <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Hourly Salary (Euro)" VerticalAlignment="Center" Width="125"/>
-                                    <TextBox Text="{Binding Path=EmployeeCreationSalary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="RealNumericTextValidation" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    <TextBox Text="{Binding Path=EmployeeCreationSalary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="RealNumericTextValidation" Margin="20 -5 0 0" 
+                                             HorizontalAlignment="Stretch" Width="Auto" MaxLength="8"/>
                                 </DockPanel>
                                 <DockPanel Height="30" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Department" VerticalAlignment="Center" Width="70"/>
@@ -121,7 +124,8 @@
                                 </DockPanel>
                                 <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Work Hours" VerticalAlignment="Center" Width="70"/>
-                                    <TextBox Text="{Binding Path=EmployeeCreationWorkhours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                    <TextBox Text="{Binding Path=EmployeeCreationWorkhours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation" Margin="20 -5 0 0" 
+                                             HorizontalAlignment="Stretch" Width="Auto" MaxLength="3"/>
                                 </DockPanel>
 
                                 <Button Content="Add Employee" Margin="0 10" Command="{Binding Path=AddEmployee}"/>
@@ -155,20 +159,23 @@
 
                                     <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
                                         <TextBlock Text="First Name" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                        <TextBox Text="{Binding Path=SelectedEmployeeFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                 HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0" MaxLength="40"/>
                                     </DockPanel>
                                     <DockPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="10 5 0 5">
                                         <TextBlock Text="Last Name" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                        <TextBox Text="{Binding Path=SelectedEmployeeLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                 HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0" MaxLength="40"/>
                                     </DockPanel>
                                     <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
                                         <TextBlock Text="Nationality" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                        <TextBox Text="{Binding Path=SelectedEmployeeNationality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeNationality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                 HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0" MaxLength="90"/>
                                     </DockPanel>
                                     <DockPanel Height="40" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="10 5 0 5">
                                         <TextBlock Text="Phone number" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
                                         <TextBox Text="{Binding Path=SelectedEmployeePhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="PhoneNumberTextValidation"
-                                             HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                             HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0" MaxLength="15"/>
                                     </DockPanel>
                                     <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 5 5">
                                         <TextBlock Text="Sex" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Left"/>
@@ -180,19 +187,23 @@
                                     <DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
                                         <TextBlock Text="Hourly Salary (Euro)" VerticalAlignment="Center" Width="125"/>
                                         <TextBox Text="{Binding Path=SelectedEmployeeSalary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="RealNumericTextValidation"
-                                             Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                             Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" MaxLength="8"/>
                                     </DockPanel>
                                     <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
                                         <TextBlock Text="Address" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                        <TextBox Text="{Binding Path=SelectedEmployeeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                 HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0" MaxLength="450"/>
                                     </DockPanel>
                                     <DockPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
                                         <TextBlock Text="E-mail" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                        <TextBox Text="{Binding Path=SelectedEmployeeEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0"/>
+                                        <TextBox Text="{Binding Path=SelectedEmployeeEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                 HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0 -5 0 0" MaxLength="45"/>
                                     </DockPanel>
                                     <DockPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5">
                                         <TextBlock Text="Birth date" VerticalAlignment="Center" Width="75"/>
-                                        <DatePicker SelectedDate="{Binding Path=SelectedEmployeeBirthdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+                                        <DatePicker SelectedDate="{Binding Path=SelectedEmployeeBirthdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" 
+                                                    DisplayDateEnd="{Binding Path=SelectedEmployeeBirthdateLimit, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     </DockPanel>
 
                                     <Button Content="Update" Grid.Row="7" Grid.Column="0" Margin="10" Command="{Binding Path=UpdateEmployee}"/>
@@ -239,11 +250,12 @@
                                         Visibility="{Binding CreateDepartmentPanelVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Collapsed}">
                                     <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                         <TextBlock Text="Name" VerticalAlignment="Center" Width="70"/>
-                                        <TextBox Text="{Binding Path=DepartmentCreationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                        <TextBox Text="{Binding Path=DepartmentCreationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" 
+                                                 HorizontalAlignment="Stretch" Width="Auto" MaxLength="90"/>
                                     </DockPanel>
                                     <DockPanel Height="120" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                         <TextBlock Text="Address" VerticalAlignment="Top" Width="70" Margin="0 5"/>
-                                        <TextBox Text="{Binding Path=DepartmentCreationAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0"
+                                        <TextBox Text="{Binding Path=DepartmentCreationAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" MaxLength="450"
                                              HorizontalAlignment="Stretch" Height="100" Width="Auto" TextWrapping="Wrap" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
                                     </DockPanel>
                                     <Button Content="Add Department" Margin="0 10" Command="{Binding Path=AddDepartment}"/>
@@ -259,12 +271,13 @@
                                     </DockPanel>
                                     <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                         <TextBlock Text="Name" VerticalAlignment="Center" Width="70"/>
-                                        <TextBox Text="{Binding Path=DepartmentModifyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                        <TextBox Text="{Binding Path=DepartmentModifyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" 
+                                                 HorizontalAlignment="Stretch" Width="Auto" MaxLength="90"/>
                                     </DockPanel>
                                     <DockPanel Height="120" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                         <TextBlock Text="Address" VerticalAlignment="Top" Width="70" Margin="0 5"/>
                                         <TextBox Text="{Binding Path=DepartmentModifyAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
-                                                 Margin="20 -5 0 0" HorizontalAlignment="Stretch" Height="100" Width="Auto" TextWrapping="Wrap"/>
+                                                 Margin="20 -5 0 0" HorizontalAlignment="Stretch" Height="100" Width="Auto" TextWrapping="Wrap" MaxLength="450"/>
                                     </DockPanel>
                                     <GroupBox Header="Assign employee to this department">
                                         <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
@@ -298,7 +311,8 @@
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                         <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                             <TextBlock Text="Name" VerticalAlignment="Center" Width="70"/>
-                                            <TextBox Text="{Binding Path=StockCreationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                            <TextBox Text="{Binding Path=StockCreationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" 
+                                                     HorizontalAlignment="Stretch" Width="Auto" MaxLength="100"/>
                                         </DockPanel>
                                         <Button Content="Create" Margin="0 10" Command="{Binding Path=AddStockItem}"/>
                                     </StackPanel>
@@ -328,12 +342,12 @@
                                             <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                                 <TextBlock Text="Current amount" VerticalAlignment="Center" Width="100"/>
                                                 <TextBox Text="{Binding Path=StockItemCurrentAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation"
-                                                     Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                                     Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" MaxLength="10"/>
                                             </DockPanel>
                                             <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                                 <TextBlock Text="Threshold" VerticalAlignment="Center" Width="70"/>
                                                 <TextBox Text="{Binding Path=StockItemThreshold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation"
-                                                     Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto"/>
+                                                     Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" MaxLength="10"/>
                                             </DockPanel>
                                             <Button Content="Assign and Update" Margin="0 10" Command="{Binding Path=UpdateStockItem}"/>
                                         </StackPanel>

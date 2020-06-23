@@ -264,6 +264,8 @@ namespace MediaBazaarApplicationWPF.ViewModels
             }
         }
 
+        public DateTime? SelectedEmployeeBirthdateLimit => DateTime.Now.AddYears(-16);
+
         #endregion
 
         #region # Department Creation Variables + Properties
@@ -542,12 +544,23 @@ namespace MediaBazaarApplicationWPF.ViewModels
             RefreshDepartmentList();
             RefreshEmployeeList();
             RefreshStockList();
-            this.Roles = Enum.GetValues(typeof(EmployeeRole)).Cast<EmployeeRole>().ToList();
+            RefreshRolesList();
+            
         }
 
         private void RefreshEmployeeList() => this.Employees = EmployeeDatabaseHandler.GetAllEmployees(true);
-        private void RefreshDepartmentList() => this.Departments = DepartmentManager.GetAllDepartments(false);
+        private void RefreshDepartmentList() => this.Departments = DepartmentManager.GetAllDepartments(true);
         private void RefreshStockList() => this.StockItems = StockItemDatabaseHandler.ListAllItemsFromStockItem();
+
+        private void RefreshRolesList()
+        {
+            this.Roles = new List<EmployeeRole>();
+
+            foreach (EmployeeRole role in Enum.GetValues(typeof(EmployeeRole)))
+            {
+                if (role < LoggedInUser.role || LoggedInUser.role == EmployeeRole.Owner) this.Roles.Add(role);
+            }
+        }
 
         private void AddEmployee_Event(object commandParameter)
         {
@@ -562,6 +575,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
                 if (Int32.TryParse(EmployeeCreationWorkhours, out int workHours) && Decimal.TryParse(EmployeeCreationSalary, out decimal hourlySalary))
                 {
                     if (workHours % 4 != 0) message = "Invalid workhours entered. Work hours input needs to be divisible by 4\n(A workshift consists of 4 hours)";
+                    else if (workHours > 60) message = "Work hours maximum for an employee is 60 hours.";
                     else if (hourlySalary < 0) message = "Employee salary must be a positive value";
                     else if (EmployeeCreationSelectedDepartment == null) message = "Please select a department and try again.";
                     else if (!EmployeeDatabaseHandler.IsUniqueUsername(EmployeeCreationUsername)) message = "This username is already taken. Please choose another one and try again.";
@@ -629,14 +643,14 @@ namespace MediaBazaarApplicationWPF.ViewModels
             {
                 try
                 {
-                    SelectedEmployee.FirstName = (string.IsNullOrEmpty(SelectedEmployeeFirstName)) ? SelectedEmployeeFirstName : null;
-                    SelectedEmployee.LastName = (string.IsNullOrEmpty(SelectedEmployeeLastName)) ? SelectedEmployeeLastName : null;
-                    SelectedEmployee.Nationality = (string.IsNullOrEmpty(SelectedEmployeeNationality)) ? SelectedEmployeeNationality : null;
-                    SelectedEmployee.PhoneNumber = (string.IsNullOrEmpty(SelectedEmployeePhoneNumber)) ? SelectedEmployeePhoneNumber : null;
+                    SelectedEmployee.FirstName = (!string.IsNullOrEmpty(SelectedEmployeeFirstName)) ? SelectedEmployeeFirstName : null;
+                    SelectedEmployee.LastName = (!string.IsNullOrEmpty(SelectedEmployeeLastName)) ? SelectedEmployeeLastName : null;
+                    SelectedEmployee.Nationality = (!string.IsNullOrEmpty(SelectedEmployeeNationality)) ? SelectedEmployeeNationality : null;
+                    SelectedEmployee.PhoneNumber = (!string.IsNullOrEmpty(SelectedEmployeePhoneNumber)) ? SelectedEmployeePhoneNumber : null;
                     SelectedEmployee.Sex = SelectedEmployeeIsFemale;
-                    SelectedEmployee.SalaryHourlyRate = (string.IsNullOrEmpty(SelectedEmployeeSalary)) ? Decimal.Round(Decimal.Parse(SelectedEmployeeSalary), 2) : 0;
-                    SelectedEmployee.Address = (string.IsNullOrEmpty(SelectedEmployeeAddress)) ? SelectedEmployeeAddress : null;
-                    SelectedEmployee.Email = (string.IsNullOrEmpty(SelectedEmployeeEmail)) ? SelectedEmployeeEmail : null;
+                    SelectedEmployee.SalaryHourlyRate = (!string.IsNullOrEmpty(SelectedEmployeeSalary)) ? Decimal.Round(Decimal.Parse(SelectedEmployeeSalary), 2) : 0;
+                    SelectedEmployee.Address = (!string.IsNullOrEmpty(SelectedEmployeeAddress)) ? SelectedEmployeeAddress : null;
+                    SelectedEmployee.Email = (!string.IsNullOrEmpty(SelectedEmployeeEmail)) ? SelectedEmployeeEmail : null;
                     SelectedEmployee.DateOfBirth = (SelectedEmployeeBirthdate.HasValue) ? SelectedEmployeeBirthdate : null;
 
                     EmployeeDatabaseHandler.UpdateDatabaseEntry(SelectedEmployee);
@@ -765,7 +779,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
                 try
                 {
-                    if(DepartmentModifySelectedDepartment.Employees.Exists(e => e.Role == LoggedInUser.role))
+                    if (DepartmentModifySelectedDepartment.Employees.Exists(e => e.Role == LoggedInUser.role))
                     {
                         message = "Cannot remove a department if there is someone in it with the same or higher role than you. Please contact the owner!";
                     }
