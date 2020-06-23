@@ -26,7 +26,6 @@
         <Style TargetType="Canvas">
             <Setter Property="Background" Value="White"/>
             <Setter Property="MinHeight" Value="5"/>
-            <Setter Property="MinWidth" Value="215"/>
             <Setter Property="Margin" Value="0.5"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
         </Style>
@@ -52,39 +51,34 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2"/>
             <ColumnDefinition Width="250"/>
-            <ColumnDefinition Width="204*" SharedSizeGroup="WorkshiftCells"/>
+            <ColumnDefinition Width="215*" SharedSizeGroup="WorkshiftCells"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="204*" SharedSizeGroup="WorkshiftCells"/>
+            <ColumnDefinition Width="215*" SharedSizeGroup="WorkshiftCells"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="204*" SharedSizeGroup="WorkshiftCells"/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="215*" SharedSizeGroup="WorkshiftCells"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2"/>
         </Grid.ColumnDefinitions>
 
         <!--Row 1 (Header Row)-->
-        
         <TextBlock x:Name="tbShiftOneStart" Grid.Row="1" Grid.Column="2" Text="0:00" FontSize="11"/>
         <TextBlock x:Name="tbShiftTwoStart" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Text="0:00" FontSize="11"/>
         <TextBlock x:Name="tbShiftThreeStart" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Text="0:00" FontSize="11"/>
         <TextBlock x:Name="tbShiftThreeEnd" Grid.Row="1" Grid.Column="8" Text="0:00" HorizontalAlignment="Right" FontSize="11"/>
 
-      
-
         <!--Row 2-->
-
-        <TextBlock Name="lblEmployeeName" Grid.Row="2" Grid.Column="1" Text="Placeholder" TextAlignment="Right" VerticalAlignment="Center" Padding="5 0 0 0" Margin="20,5"/>
+        <TextBlock Name="lblEmployeeName" Grid.Row="2" Grid.Column="1" Text="Placeholder" TextAlignment="Right" VerticalAlignment="Center" Padding="5 0 0 0" Margin="20 0"/>
         <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
             <Canvas x:Name="workshiftOneCell"  Grid.IsSharedSizeScope="True"/>
         </Border>
         <Border Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3">
             <Canvas x:Name="workshiftTwoCell"  Grid.IsSharedSizeScope="True"/>
         </Border>
-        <Border Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="4">
+        <Border Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="2">
             <Canvas x:Name="workshiftThreeCell" Grid.IsSharedSizeScope="True"/>
         </Border>
-        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="15" Background="Teal"/>
+        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="11" Background="Teal"/>
     </Grid>
 </UserControl>
