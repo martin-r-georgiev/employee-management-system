@@ -51,21 +51,21 @@
         </lvc:CartesianChart>
         <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Items Quantity" Padding="0 15 0 0" FontWeight="Bold"/>
 
-        <lvc:PieChart x:Name="PieChartFirst" Grid.Row="1" Grid.Column="2" StartingRotationAngle="0" Series="{Binding FirstPie}">
+        <lvc:PieChart x:Name="PieChartFirst" Grid.Row="1" Margin="0 0 0 20" Grid.Column="2" StartingRotationAngle="0" Series="{Binding FirstPie}">
             
         </lvc:PieChart>
         <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Employees Per Department" FontWeight="Bold"/>
 
-        <lvc:PieChart x:Name="PieChartSecond" Grid.Row="2" Grid.Column="2" StartingRotationAngle="0" Series="{Binding SecondPie}">
+        <lvc:PieChart x:Name="PieChartSecond" Margin="0 0 0 20" Grid.Row="2" Grid.Column="2" StartingRotationAngle="0" Series="{Binding SecondPie}">
         </lvc:PieChart>
         <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Preferred Day" FontWeight="Bold"/>
 
-        <lvc:PieChart  x:Name="PieChartThird" Grid.Row="1" Grid.Column="3" StartingRotationAngle="0" Series="{Binding ThirdPie}">
+        <lvc:PieChart  x:Name="PieChartThird" Margin="0 0 0 20" Grid.Row="1" Grid.Column="3" StartingRotationAngle="0" Series="{Binding ThirdPie}">
             
         </lvc:PieChart>
         <Label Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Preferred Shift" FontWeight="Bold"/>
 
-        <Border Grid.Column="3" Grid.Row="2" BorderBrush="Teal" BorderThickness="2" Background="#d8f7f4" Margin="40 40 25 25" CornerRadius="15">
+        <Border Grid.Column="3" Grid.Row="2" BorderBrush="Teal" BorderThickness="2" Background="#d8f7f4" Margin="40 40 25 25" CornerRadius="0">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ListBox ItemsSource="{Binding GeneralData}">
                     <ListBox.ItemContainerStyle>

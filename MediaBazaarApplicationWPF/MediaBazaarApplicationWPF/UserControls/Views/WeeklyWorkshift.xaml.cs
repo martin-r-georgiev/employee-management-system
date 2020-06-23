@@ -65,7 +65,7 @@ namespace MediaBazaarApplicationWPF.UserControls
         {
             if (DateTime.Now.Date.Equals(date))
             {
-                SolidColorBrush brush = new SolidColorBrush(Colors.LimeGreen);
+                SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00dba4"));
 
                 switch (date.DayOfWeek)
                 {

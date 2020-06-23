@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MediaBazaarApplicationWPF.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
-        Title="PreferencesView" Height="185" MinHeight="150" Width="850" MinWidth="750" WindowStartupLocation="CenterScreen">
+        Title="PreferencesView" Height="185" MinHeight="150" Width="800" MinWidth="700" MaxWidth="1400" MaxHeight="250" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
@@ -55,7 +55,7 @@
         <CheckBox x:Name="cbFridayM" Content="9:00 - 13:00" Grid.Row="2" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
 
         <TextBlock Text="{Binding LabelWorkhours}" Grid.Row="2" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   FontSize="16"  Foreground="{Binding LabelWorkshoursForeground, Mode=OneWay, FallbackValue=Black}" FontWeight="Bold"/>
+                   FontSize="22"  FontFamily="Lato" Foreground="{Binding LabelWorkshoursForeground, Mode=OneWay, FallbackValue=Black}" ToolTip="Work hours" FontWeight="Bold"/>
 
         <!--Row 3-->
         <CheckBox x:Name="cbMondayA" Content="13:00 - 17:00" Grid.Row="3" Grid.Column="1" IsChecked="{Binding Path=CheckBoxMondayA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
@@ -71,7 +71,7 @@
         <CheckBox x:Name="cbThursdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
         <CheckBox x:Name="cbFridayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
 
-        <Button Content="Confirm" Grid.Row="4" Grid.Column="6" Height="24" FontSize="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=ConfirmWorkshiftPreferences}"/>
+        <Button Content="Confirm" Grid.Row="4" Grid.RowSpan="3" Grid.Column="6" Height="24" ToolTip="Confirm selected preferences" FontSize="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=ConfirmWorkshiftPreferences}"/>
 
         <!--Row 5-->
         <TextBlock Text="{Binding ConfirmText}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="6" 

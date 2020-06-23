@@ -27,12 +27,12 @@
             <Border Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" BorderBrush="Teal" BorderThickness="2"/>
         
         <!--Title Header-->
-        <Border x:Name="firstLetterBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" BorderBrush="#1de9b6" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="25" Margin="15 0 0 0">
+        <Border x:Name="firstLetterBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" BorderBrush="#00b686" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="25" Margin="15 0 0 0">
             <TextBlock x:Name="LblFirstLetter" Text="A" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold"/>
         </Border>
         <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" Width="8" Background="Teal"/>
 
-        <TextBlock x:Name="LblName" Grid.Row="1"  Grid.Column="2" Text="FirstName LastName (Username)" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0" FontWeight="Bold" />
+        <TextBlock x:Name="LblName" Grid.Row="1"  Grid.Column="2" Text="FirstName LastName (Username)" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0" FontWeight="Bold" />
         <TextBlock x:Name="LblDepartment" Grid.Row="2"  Grid.Column="2" Text="DepartmentName" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Left" FontStyle="Italic" Margin="5 0"/>
     </Grid>
 </UserControl>

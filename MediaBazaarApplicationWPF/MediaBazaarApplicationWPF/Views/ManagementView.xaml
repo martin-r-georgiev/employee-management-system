@@ -7,7 +7,7 @@
         mc:Ignorable="d"
          xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        Title="ManagementView" Height="800" MinHeight="600" Width="1000" MinWidth="850" WindowStartupLocation="CenterScreen">
+        Title="ManagementView" Height="800" MinHeight="650" Width="1000" MinWidth="850" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
@@ -71,14 +71,14 @@
                 </Button.Background>
             </Button>
             <!--Last success-->
-            <dragablz:TabablzControl Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="4" Background="White">
-                <dragablz:TabablzControl.InterTabController>
+            <TabControl Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="4" Background="White">
+                <!--<dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController/>
-                </dragablz:TabablzControl.InterTabController>
+                </dragablz:TabablzControl.InterTabController>-->
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Employees" Foreground="FloralWhite"/>
+                            <TextBlock Text="Employees" Foreground="Black"/>
                             <!--FloralWhite-->
                         </StackPanel>
                     </TabItem.Header>
@@ -125,10 +125,10 @@
                                 <DockPanel Height="20" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Work Hours" VerticalAlignment="Center" Width="70"/>
                                     <TextBox Text="{Binding Path=EmployeeCreationWorkhours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation" Margin="20 -5 0 0" 
-                                             HorizontalAlignment="Stretch" Width="Auto" MaxLength="3"/>
+                                             HorizontalAlignment="Stretch" Width="Auto" MaxLength="3" materialDesign:HintAssist.HelperText="Number has to be divisible by 4"/>
                                 </DockPanel>
 
-                                <Button Content="Add Employee" Margin="0 10" Command="{Binding Path=AddEmployee}"/>
+                                <Button Content="Add Employee" Margin="0 40 0 0" ToolTip="Click to add new employee" MaxWidth="600" Command="{Binding Path=AddEmployee}"/>
                             </StackPanel>
                         </GroupBox>
 
@@ -136,9 +136,9 @@
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="275" Margin="10">
                                 <DockPanel Height="40" VerticalAlignment="Top" LastChildFill="True" Margin="0 5">
                                     <TextBlock Text="Employee" VerticalAlignment="Center" Width="70"/>
-                                    <Button Content="Clear" Margin="20 0 15 -5" Padding="10 0" Width="Auto" VerticalContentAlignment="Center" VerticalAlignment="Stretch"
+                                    <Button Content="Clear" ToolTip="Clear information for selected employee" Margin="20 0 15 -5" Padding="10 0" Width="Auto" VerticalContentAlignment="Center" VerticalAlignment="Stretch"
                                         Command="{Binding Path=ClearModifyEmployeeSelected}" Height="Auto" MaxHeight="30"/>
-                                    <ComboBox HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}"/>
+                                    <ComboBox HorizontalAlignment="Stretch" ToolTip="Select employee from list" Width="Auto" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}"/>
                                 </DockPanel>
 
                                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -206,8 +206,8 @@
                                                     DisplayDateEnd="{Binding Path=SelectedEmployeeBirthdateLimit, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     </DockPanel>
 
-                                    <Button Content="Update" Grid.Row="7" Grid.Column="0" Margin="10" Command="{Binding Path=UpdateEmployee}"/>
-                                    <Button Content="Remove" Grid.Row="7" Grid.Column="1" Margin="10" Command="{Binding Path=RemoveEmployee}"/>
+                                    <Button Content="Update" Grid.Row="7" Grid.Column="0" ToolTip="Update employee information" Margin="10" Command="{Binding Path=UpdateEmployee}"/>
+                                    <Button Content="Remove" Grid.Row="7" Grid.Column="1" ToolTip="Remove employee from database" Margin="10" Command="{Binding Path=RemoveEmployee}"/>
                                 </Grid>
                             </StackPanel>
                         </GroupBox>
@@ -258,7 +258,7 @@
                                         <TextBox Text="{Binding Path=DepartmentCreationAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" MaxLength="450"
                                              HorizontalAlignment="Stretch" Height="100" Width="Auto" TextWrapping="Wrap" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
                                     </DockPanel>
-                                    <Button Content="Add Department" Margin="0 10" Command="{Binding Path=AddDepartment}"/>
+                                    <Button Content="Add Department" ToolTip="Click to add a new department" Margin="0 10" Command="{Binding Path=AddDepartment}"/>
                                 </StackPanel>
 
                                 <!--Modify Department Controls-->
@@ -282,7 +282,7 @@
                                     <GroupBox Header="Assign employee to this department">
                                         <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" Margin="0 5 10 5">
                                             <TextBlock Text="Employee" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" DockPanel.Dock="Top" Margin="0 2"/>
-                                            <Button Content="Assign" DockPanel.Dock="Right" Padding="10 0" Margin="20 0 0 0" Command="{Binding Path=AssignEmployeeToDepartment}"/>
+                                            <Button Content="Assign" ToolTip="Assign employee to new department" DockPanel.Dock="Right" Padding="10 0" Margin="20 0 0 0" Command="{Binding Path=AssignEmployeeToDepartment}"/>
                                             <ComboBox HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Left" ItemsSource="{Binding Path=DepartmentModifyEmployees, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding DepartmentModifySelectedEmployee}"/>
                                         </DockPanel>
                                     </GroupBox>
@@ -296,9 +296,9 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Button Grid.Row="0" Grid.Column="0" Content="Update Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
+                                        <Button Grid.Row="0" Grid.Column="0"  ToolTip="Update department information" Content="Update Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
                                         VerticalContentAlignment="Center" Command="{Binding Path=UpdateDepartment}"/>
-                                        <Button Grid.Row="0" Grid.Column="1" Content="Remove Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
+                                        <Button Grid.Row="0" Grid.Column="1" ToolTip="Remove department from database" Content="Remove Department" Margin="5 10" MinHeight="30" HorizontalAlignment="Stretch"
                                         VerticalContentAlignment="Center" Command="{Binding Path=RemoveDepartment}"/>
                                     </Grid>
                                 </StackPanel>
@@ -314,7 +314,7 @@
                                             <TextBox Text="{Binding Path=StockCreationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20 -5 0 0" 
                                                      HorizontalAlignment="Stretch" Width="Auto" MaxLength="100"/>
                                         </DockPanel>
-                                        <Button Content="Create" Margin="0 10" Command="{Binding Path=AddStockItem}"/>
+                                        <Button Content="Create" ToolTip="Click to create a new item" Margin="0 10" Command="{Binding Path=AddStockItem}"/>
                                     </StackPanel>
                                 </GroupBox>
 
@@ -349,7 +349,7 @@
                                                 <TextBox Text="{Binding Path=StockItemThreshold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="IntegerNumericTextValidation"
                                                      Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" MaxLength="9"/>
                                             </DockPanel>
-                                            <Button Content="Assign and Update" Margin="0 10" Command="{Binding Path=UpdateStockItem}"/>
+                                            <Button Content="Assign and Update" ToolTip="Assign and update item for selected department" Margin="0 10" Command="{Binding Path=UpdateStockItem}"/>
                                         </StackPanel>
 
                                         <!--Modify Remove Item Controls-->
@@ -364,8 +364,8 @@
                                                 <TextBlock Text="Department" VerticalAlignment="Center" Width="70"/>
                                                 <ComboBox Margin="20 -5 0 0" HorizontalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Departments}" SelectedItem="{Binding StockItemSelectedDepartment}"/>
                                             </DockPanel>
-                                            <CheckBox Content="Remove Completely" VerticalContentAlignment="Center" Margin="0 10" IsChecked="{Binding Path=StockItemRemoveCompletely, Mode=TwoWay}"/>
-                                            <Button Content="Remove" Margin="0 5" Command="{Binding Path=RemoveStockItem}"/>
+                                            <CheckBox Content="Remove Completely" ToolTip="Remove item from database" VerticalContentAlignment="Center" Margin="0 10" IsChecked="{Binding Path=StockItemRemoveCompletely, Mode=TwoWay}"/>
+                                            <Button Content="Remove" Margin="0 5" ToolTip="Remove item from selected department" Command="{Binding Path=RemoveStockItem}"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </GroupBox>
@@ -373,7 +373,7 @@
                         </GroupBox>
                     </Grid>
                 </TabItem>
-            </dragablz:TabablzControl>
+            </TabControl>
         </Grid>
     </Grid>
 </Window>

@@ -87,7 +87,7 @@
 
         <!--Row 1 (Header Row)-->
         <TextBlock Name="lblMondayDate" Grid.Row="1" Grid.Column="2" Style="{DynamicResource headerDateStyle}"/>
-        <TextBlock Name="lblTuesdayDate" Grid.Row="1" Grid.Column="6" Style="{DynamicResource headerDateStyle}"/>
+        <TextBlock Name="lblTuesdayDate"  Grid.Row="1" Grid.Column="6" Style="{DynamicResource headerDateStyle}"/>
         <TextBlock Name="lblWednesdayDate" Grid.Row="1" Grid.Column="10" Style="{DynamicResource headerDateStyle}"/>
         <TextBlock Name="lblThursdayDate" Grid.Row="1" Grid.Column="14" Style="{DynamicResource headerDateStyle}"/>
         <TextBlock Name="lblFridayDate" Grid.Row="1" Grid.Column="18" Style="{DynamicResource headerDateStyle}"/>
@@ -96,7 +96,7 @@
         
         <!--Row 2 (Header Row)-->
         <TextBlock Name="lblMondayWeekday" Grid.Row="2" Grid.Column="2" Text="Monday" Style="{DynamicResource headerWeekdayStyle}"/>
-        <TextBlock Name="lblTuesdayWeekday" Grid.Row="2" Grid.Column="6" Text="Tuesday" Style="{DynamicResource headerWeekdayStyle}"/>
+        <TextBlock Name="lblTuesdayWeekday"   Grid.Row="2" Grid.Column="6" Text="Tuesday" Style="{DynamicResource headerWeekdayStyle}"/>
         <TextBlock Name="lblWednesdayWeekday" Grid.Row="2" Grid.Column="10" Text="Wednesday" Style="{DynamicResource headerWeekdayStyle}"/>
         <TextBlock Name="lblThursdayWeekday" Grid.Row="2" Grid.Column="14" Text="Thursday" Style="{DynamicResource headerWeekdayStyle}"/>
         <TextBlock Name="lblFridayWeekday" Grid.Row="2" Grid.Column="18" Text="Friday" Style="{DynamicResource headerWeekdayStyle}"/>

@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
         <!-- Row 0 -->
         <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Background="#E6E6E6">
-            <Border Background="Teal" CornerRadius="10,0,0,10"/>
+            <Border Background="Teal" CornerRadius="2,0,0,2"/>
         </Border>
         <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Background="#E6E6E6">
             <Border Background="Teal" CornerRadius="0,5,0,0"/>
@@ -32,7 +32,7 @@
             <Border.Effect>
                 <DropShadowEffect BlurRadius="1" Direction="0" RenderingBias="Quality" Opacity="0.94" ShadowDepth="1"/>
             </Border.Effect>
-            <materialDesign:PackIcon Kind="Tools" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 4 0 0" Foreground="White" Width="10" Height="10"/>
+            <materialDesign:PackIcon Kind="Tools" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 4 0.6 0" Foreground="White" Width="12" Height="12"/>
         </Border>
         <!-- Row 1-->
         <Label x:Name="lblItemName" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Content="Iphone 6" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="13" Margin="5" Padding="5,5,5,3" />

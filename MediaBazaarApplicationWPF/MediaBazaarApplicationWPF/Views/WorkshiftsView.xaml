@@ -7,7 +7,7 @@
         xmlns:userControls="clr-namespace:MediaBazaarApplicationWPF.UserControls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
-        Title="WorkshiftsView" MinHeight="340" Height="640" MinWidth="500" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="WorkshiftsView" MinHeight="550" Height="640" MinWidth="850" Width="950" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
@@ -68,16 +68,16 @@
                 Grid.Row="1" Grid.Column="1" Margin="0, 5, 10, 0" HorizontalAlignment="Left"
                 Click="BackButton_Click" Height="40" Width="40" >
             <Button.Background>
-                <ImageBrush ImageSource ="/Resources/Images/back.png"  ></ImageBrush>
+                <ImageBrush ImageSource ="/Resources/Images/home.png"></ImageBrush>
             </Button.Background>
         </Button>
             <!--Row 2 {Binding Path=DatePeriodText}-->
-            <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Foreground="Teal" FontSize="30" Text="{Binding Path=DatePeriodText}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <Button Grid.Row="2" Grid.Column="4" x:Name="PreviousDateButton" Command="{Binding Path=GoToPreviousDatePeriod}" Content="Prev" Margin="5 0"/>
-        <Button Grid.Row="2" Grid.Column="5" x:Name="NextDateButton" Command="{Binding Path=GoToNextDatePeriod}" Content="Next" Margin="5 0"/>
+            <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Foreground="Teal" FontSize="30" Text="{Binding Path=DatePeriodText}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Button Grid.Row="2" Grid.Column="4" x:Name="PreviousDateButton" Command="{Binding Path=GoToPreviousDatePeriod}" ToolTip="Previous week" Content="Previous" Margin="5 0"/>
+            <Button Grid.Row="2" Grid.Column="5" x:Name="NextDateButton" Command="{Binding Path=GoToNextDatePeriod}" ToolTip="Next week" Content="Next" Margin="5 0"/>
 
         <!--Row 3-->
-        <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" MinHeight="400" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch">
+        <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" MinHeight="400" VerticalScrollBarVisibility="Auto" Margin="0 10 0 0" HorizontalAlignment="Stretch">
             <DockPanel x:Name="workshiftsPanel" Margin="2">
                 <ItemsControl x:Name="dailyWorkshiftsItems" DockPanel.Dock="Top" ItemsSource="{Binding Path=DailyWorkshiftList}"/>
                 <ItemsControl x:Name="weeklyWorkshiftsItems" DockPanel.Dock="Top" ItemsSource="{Binding Path=WeeklyWorkshiftList}"/>
@@ -85,8 +85,8 @@
         </ScrollViewer>
         
         <!--Row 4-->
-        <Button Content="{Binding Path=ToggleWorkshiftViewText}" Command="{Binding Path=ToggleWorkshiftView}" Grid.Row="4" Grid.Column="1" Padding="5 0"/>
-        <Button x:Name="btnPreferences" Content="Change Preferences" Grid.Row="4" Grid.Column="2" Margin="5 0" Padding="5 0" Click="btnPreferences_Click"/>
+        <Button Content="{Binding Path=ToggleWorkshiftViewText}" ToolTip="Switch work shift views" Command="{Binding Path=ToggleWorkshiftView}" Grid.Row="4" Grid.Column="1" Padding="5 0"/>
+        <Button x:Name="btnPreferences" Content="Change Preferences" Grid.Row="4" Grid.Column="2" ToolTip="Change preferred work hours" Margin="10 0" Padding="5 0" Click="btnPreferences_Click"/>
         <TextBlock Grid.Row="4" Grid.Column="3" Text="Department" HorizontalAlignment="Stretch" TextAlignment="Right" VerticalAlignment="Center"
                   Visibility="{Binding DepartmentControlsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"/>
         <ComboBox Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="5 0 0 0"

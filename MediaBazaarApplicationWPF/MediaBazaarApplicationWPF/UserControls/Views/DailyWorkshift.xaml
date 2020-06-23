@@ -45,7 +45,9 @@
             <RowDefinition Height="2"/>
             <RowDefinition Height="0" x:Name="headerRow"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="2"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="4"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2"/>
@@ -64,15 +66,12 @@
 
         <!--Row 1 (Header Row)-->
         
-        <TextBlock x:Name="tbShiftOneStart" Grid.Row="1" Grid.Column="2" Text="0:00" FontSize="9"/>
-        <TextBlock x:Name="tbShiftTwoStart" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Text="0:00" FontSize="9"/>
-        <TextBlock x:Name="tbShiftThreeStart" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Text="0:00" FontSize="9"/>
-        <TextBlock x:Name="tbShiftThreeEnd" Grid.Row="1" Grid.Column="8" Text="0:00" HorizontalAlignment="Right" FontSize="9"/>
+        <TextBlock x:Name="tbShiftOneStart" Grid.Row="1" Grid.Column="2" Text="0:00" FontSize="11"/>
+        <TextBlock x:Name="tbShiftTwoStart" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Text="0:00" FontSize="11"/>
+        <TextBlock x:Name="tbShiftThreeStart" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Text="0:00" FontSize="11"/>
+        <TextBlock x:Name="tbShiftThreeEnd" Grid.Row="1" Grid.Column="8" Text="0:00" HorizontalAlignment="Right" FontSize="11"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="2" Text="0:00" FontSize="9" Margin="0,0,0,26" Grid.RowSpan="2"/>
-        <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Text="0:00" FontSize="9" Margin="0,0,0,26" Grid.RowSpan="2"/>
-        <TextBlock Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Text="0:00" FontSize="9" Margin="0,0,0,26" Grid.RowSpan="2"/>
-        <TextBlock Grid.Row="1" Grid.Column="8" Text="0:00" HorizontalAlignment="Right" FontSize="9" Grid.ColumnSpan="3" Margin="0,0,0,26" Grid.RowSpan="2"/>
+      
 
         <!--Row 2-->
 
@@ -86,5 +85,6 @@
         <Border Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="4">
             <Canvas x:Name="workshiftThreeCell" Grid.IsSharedSizeScope="True"/>
         </Border>
+        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="15" Background="Teal"/>
     </Grid>
 </UserControl>
