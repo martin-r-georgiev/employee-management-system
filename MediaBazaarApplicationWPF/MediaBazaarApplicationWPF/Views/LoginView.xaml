@@ -9,6 +9,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         TextElement.FontSize="16" FontFamily="Roboto" TextElement.FontWeight="Medium"
         Title="LoginView" Height="500" Width="500" MinWidth="500"  MinHeight="550"  WindowStartupLocation="CenterScreen">
+    
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF1D7276" Offset="1"/>
@@ -16,6 +17,7 @@
             <GradientStop Color="#FF3D979E" Offset="0.526"/>
         </LinearGradientBrush>
     </Window.Background>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -56,31 +58,30 @@
                 materialDesign:HintAssist.HelperText="Enter a valid username"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 Text="{Binding Path=Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                MinWidth="100" MaxWidth="280" Padding="5,-3,0,1"
+                MinWidth="100" MaxWidth="280" Padding="5, 0, 0, 0"
                 HorizontalAlignment="Stretch" Margin="0 10" 
-                BorderBrush="{x:Null}" Background="#FFF0F1F1">
+                BorderBrush="{x:Null}" Background="#FFF0F1F1"
+                MaxLength="20">
                 <TextBox.Effect>
                     <DropShadowEffect BlurRadius="3" Direction="300" Color="#FF073333" RenderingBias="Quality" Opacity="0.94" ShadowDepth="1"/>
                 </TextBox.Effect>
             </TextBox>
             <!-- <TextBlock Text="Password" HorizontalAlignment="Left" Margin="30,10,0,0"/> -->
            
-            <TextBox 
-                x:Name="Password" 
+            <PasswordBox
+                x:Name="FloatingPasswordBox"
                 materialDesign:HintAssist.Hint="Password"
                 materialDesign:TextFieldAssist.HasClearButton="True"
-                materialDesign:HintAssist.HelperText="At least () characters" 
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                MinWidth="100" MaxWidth="280" Padding="5, -3,0,1" 
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                MinWidth="100" MaxWidth="280" Padding="5, 2, 10, 0" 
                 HorizontalAlignment="Stretch" Margin="0 20"  
-                BorderBrush="{x:Null}" Background="#FFF0F1F1">
-                <TextBox.Effect>
+                BorderBrush="{x:Null}" Background="#FFF0F1F1"
+                PasswordChanged="Password_PasswordChanged" MaxLength="100">
+                <PasswordBox.Effect>
                     <DropShadowEffect BlurRadius="3" Direction="300" Color="#FF073333" RenderingBias="Quality" Opacity="0.94" ShadowDepth="1"/>
-                </TextBox.Effect>
-            </TextBox>
-            
-    
+                </PasswordBox.Effect>
+            </PasswordBox>
+
             <Button
                 x:Name="btnLogin" 
                 IsDefault="True"
