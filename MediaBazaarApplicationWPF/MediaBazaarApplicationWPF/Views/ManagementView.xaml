@@ -71,14 +71,14 @@
                 </Button.Background>
             </Button>
             <!--Last success-->
-            <TabControl Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="4" Background="White">
-                <!--<dragablz:TabablzControl.InterTabController>
+            <dragablz:TabablzControl Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="4" Background="White">
+                <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController/>
-                </dragablz:TabablzControl.InterTabController>-->
+                </dragablz:TabablzControl.InterTabController>
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Employees" Foreground="Black"/>
+                            <TextBlock Text="Employees" Foreground="FloralWhite"/>
                             <!--FloralWhite-->
                         </StackPanel>
                     </TabItem.Header>
@@ -318,7 +318,7 @@
                                     </StackPanel>
                                 </GroupBox>
 
-                                <GroupBox Header="Modify item" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <GroupBox Header="Modify item" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 10 0 0">
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                         <DockPanel Height="20" VerticalAlignment="Top" HorizontalAlignment="Center" LastChildFill="True" Margin="0 5">
                                             <RadioButton Content="Add item" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10 0"
@@ -373,7 +373,7 @@
                         </GroupBox>
                     </Grid>
                 </TabItem>
-            </TabControl>
+            </dragablz:TabablzControl>
         </Grid>
     </Grid>
 </Window>
