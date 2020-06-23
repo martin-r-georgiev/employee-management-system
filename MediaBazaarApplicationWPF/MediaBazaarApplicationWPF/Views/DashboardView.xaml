@@ -118,8 +118,8 @@
                 </ListBox>
             </ScrollViewer>
 
-            <Border Grid.Row="3" Grid.Column="4"  Height="auto"  MinWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding PnlRequestsVisibility, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}"
-                BorderBrush="Teal" BorderThickness="1">
+            <Border Grid.Row="3" Grid.Column="4" Grid.RowSpan="4"  Height="auto" MinWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding PnlRequestsVisibility, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Show}"
+                BorderBrush="Teal" BorderThickness="0">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" >
                     <DockPanel Name="PanelRequests"  MinHeight="150"   Panel.ZIndex="1">
                         <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding Notifications}"/>
