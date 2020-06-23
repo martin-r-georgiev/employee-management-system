@@ -46,6 +46,7 @@ namespace MediaBazaarApplicationWPF
                 case EmployeeRole.Worker: result = this.ShowWorkers; break;
                 case EmployeeRole.Manager: result = this.ShowManagers; break;
                 case EmployeeRole.Admin: result = this.ShowAdmins; break;
+                default: result = true; break;
             }
 
             return result;
