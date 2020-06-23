@@ -116,8 +116,8 @@
                     <Border Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="Aqua" BorderThickness="0" Margin="5">
                         <DockPanel  VerticalAlignment="Top">
                             <TextBlock Text="{Binding SelectedEmployee.FirstLastName, StringFormat=Name: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
-                            <TextBlock Text="{Binding SelectedEmpAge, StringFormat=Age: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
-                            <TextBlock Text="{Binding Gender, StringFormat=Gender: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
+                            <TextBlock Text="{Binding SelectedEmpAge, StringFormat=Age: {0}, TargetNullValue=''}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
+                            <TextBlock Text="{Binding Gender, StringFormat=Gender: {0}, TargetNullValue=''}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
                             <TextBlock Text="{Binding SelectedEmployee.Nationality, StringFormat=Nationality: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
                             <TextBlock Text="{Binding SelectedEmployee.DepartmentName, StringFormat=Department: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
                         </DockPanel>
