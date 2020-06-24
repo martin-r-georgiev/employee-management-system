@@ -549,7 +549,12 @@ namespace MediaBazaarApplicationWPF.ViewModels
             
         }
 
-        private void RefreshEmployeeList() => this.Employees = EmployeeDatabaseHandler.GetAllEmployees(true);
+        private void RefreshEmployeeList()
+        {
+            this.Employees = EmployeeDatabaseHandler.GetAllEmployees(true);
+            this.Employees.Sort();
+        }
+
         private void RefreshDepartmentList() => this.Departments = DepartmentManager.GetAllDepartments(true);
         private void RefreshStockList() => this.StockItems = StockItemDatabaseHandler.ListAllItemsFromStockItem();
 
