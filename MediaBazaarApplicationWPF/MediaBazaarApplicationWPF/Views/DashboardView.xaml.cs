@@ -43,9 +43,18 @@ namespace MediaBazaarApplicationWPF.Views
 
         private void WorkshiftsButton_Click(object sender, RoutedEventArgs e)
         {
-            var WorkshiftsView = new WorkshiftsView();
-            WorkshiftsView.Show();
-            this.Close();
+            if(WorkshiftPreferences.CheckIfUserHasPreference() == true)
+            {
+                var WorkshiftsView = new WorkshiftsView();
+                WorkshiftsView.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("You don't have any preferences selected. You will be taken to a preference selection page");
+                var PreferencesView = new PreferencesView();
+                PreferencesView.Show();
+            }
         }
 
         private void StatisticsButton_Click(object sender, RoutedEventArgs e)

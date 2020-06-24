@@ -206,23 +206,29 @@ namespace MediaBazaarApplicationWPF
                     con.Close();
                 }
             }
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+
+            if(Schedule.Count > 0)
             {
-                MySqlCommand cmd;
-                using (cmd = new MySqlCommand($"DELETE from workshiftsupdate where 1", con))
+                using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
                 {
+                    try
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand($"DELETE from workshiftsupdate where 1", conn))
+                        {
 
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                            cmd.ExecuteNonQuery();
+                            cmd.Dispose();
+                        }
+                        using (MySqlCommand cmd = new MySqlCommand($"INSERT INTO workshiftsupdate (nextupdate) VALUES (@nextupdate)", conn))
+                        {
+                            cmd.Parameters.AddWithValue("@nextupdate", Schedule[Schedule.Count - 1].Date.ToString("yyyy/MM/dd"));
+                            cmd.ExecuteNonQuery();
+                            cmd.Dispose();
+                        }
+                    }
+                    catch(Exception ex) { Console.WriteLine(ex.Message); }
+                    finally { conn.Close(); }
                 }
-                using (cmd = new MySqlCommand($"INSERT INTO workshiftsupdate (nextupdate) VALUES (@nextupdate)", con))
-                {
-                    cmd.Parameters.AddWithValue("@nextupdate", Schedule[Schedule.Count - 1].Date.ToString("yyyy/MM/dd"));
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                }
-
-                con.Close();
             }
         }
 

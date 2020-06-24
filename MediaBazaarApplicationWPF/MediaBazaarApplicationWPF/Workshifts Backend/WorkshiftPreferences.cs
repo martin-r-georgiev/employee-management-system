@@ -66,6 +66,29 @@ namespace MediaBazaarApplicationWPF
             }
         }
 
+        public static bool CheckIfUserHasPreference()
+        {
+            bool result = false;
+            using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand($"SELECT index_preferences FROM preferences where userID=@userID ", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userID", LoggedInUser.userID);
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                        if (dataReader.Read()) result = true;
+                        dataReader.Close();
+                        cmd.Dispose();
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+                finally { conn.Close(); }
+            }
+            return result;
+        }
+
         public string converttoday(int x)
         {
             switch (x)

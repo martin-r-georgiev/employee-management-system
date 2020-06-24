@@ -696,30 +696,34 @@ namespace MediaBazaarApplicationWPF.ViewModels
 
             if (SelectedEmployee != null)
             {
-                try
+                if (SelectedEmployee.UserID != LoggedInUser.userID)
                 {
-                    if (LoggedInUser.role > SelectedEmployee.Role)
+                    try
                     {
-                        EmployeeDatabaseHandler.RemoveFromDatabase(SelectedEmployee.UserID);
-                        HistoryLog.UpdateHistoryLogDeleted(SelectedEmployee.UserID);
-                        this.SelectedEmployeeFirstName = null;
-                        this.SelectedEmployeeLastName = null;
-                        this.SelectedEmployeeNationality = null;
-                        this.SelectedEmployeePhoneNumber = null;
-                        this.SelectedEmployeeSalary = null;
-                        this.SelectedEmployeeIsMale = null;
-                        this.SelectedEmployeeIsFemale = null;
-                        this.SelectedEmployeeAddress = null;
-                        this.SelectedEmployeeEmail = null;
-                        this.SelectedEmployeeBirthdate = null;
-                        this.SelectedEmployee = null;
-                        RefreshEmployeeList();
-                        
-                        message = "Employee successfully removed from the system.";
+                        if (LoggedInUser.role > SelectedEmployee.Role)
+                        {
+                            EmployeeDatabaseHandler.RemoveFromDatabase(SelectedEmployee.UserID);
+                            HistoryLog.UpdateHistoryLogDeleted(SelectedEmployee.UserID);
+                            this.SelectedEmployeeFirstName = null;
+                            this.SelectedEmployeeLastName = null;
+                            this.SelectedEmployeeNationality = null;
+                            this.SelectedEmployeePhoneNumber = null;
+                            this.SelectedEmployeeSalary = null;
+                            this.SelectedEmployeeIsMale = null;
+                            this.SelectedEmployeeIsFemale = null;
+                            this.SelectedEmployeeAddress = null;
+                            this.SelectedEmployeeEmail = null;
+                            this.SelectedEmployeeBirthdate = null;
+                            this.SelectedEmployee = null;
+                            RefreshEmployeeList();
+
+                            message = "Employee successfully removed from the system.";
+                        }
+                        else message = "Can only remove employees with a lower role than you!";
                     }
-                    else message = "Can only remove employees with a lower role than you!";
+                    catch (Exception ex) { message = ex.Message; }
                 }
-                catch (Exception ex) { message = ex.Message; }
+                else message = "You cannot remove yourself from the system.";
             }
             else message = "Please select an employee and try again.";
 

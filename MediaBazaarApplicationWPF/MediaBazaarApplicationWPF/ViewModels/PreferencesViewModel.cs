@@ -444,7 +444,8 @@ namespace MediaBazaarApplicationWPF.ViewModels
                 Schedule.Add(new WorkshiftData(LoggedInUser.userID, ConvertToDateString(p.Day), p.Workshift, p.Day, p.DepartmentID));
             }
 
-            for (int i = 0; i < Schedule.Count(); i++)
+            int entries = Schedule.Count;
+            for (int i = 0; i < entries; i++)
             {
                 string userID = Schedule[i].UserID;
                 DateTime date = Schedule[i].Date;
