@@ -25,8 +25,8 @@ namespace MediaBazaarApplicationWPF.Views
         {
             InitializeComponent();
             selectedItem = item;
-            this.DptName.Content = depName;
-            this.lblItemName.Content = item.Name;
+            this.DptName.Text = depName;
+            this.lblItemName.Text = item.Name;
             this.lblQuantity.Content = item.CurrentAmount.ToString();
             this.lblThreshold.Content = item.Threshold.ToString();
             AdjustColor();

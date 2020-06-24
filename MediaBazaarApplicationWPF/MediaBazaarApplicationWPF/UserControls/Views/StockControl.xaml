@@ -35,7 +35,7 @@
             <materialDesign:PackIcon Kind="Tools" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 4 0.6 0" Foreground="White" Width="12" Height="12"/>
         </Border>
         <!-- Row 1-->
-        <Label x:Name="lblItemName" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Content="Iphone 6" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="13" Margin="5" Padding="5,5,5,3" />
+        <TextBlock x:Name="lblItemName" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Text="Item Name" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="13" Margin="5" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
         <TextBox x:Name="tbQuantity"  Grid.Row="1" Grid.Column="3" MaxLength="9" HorizontalAlignment="Center" Visibility="Hidden" FontWeight="Bold" KeyDown="tbQuantity_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Focusable="True"/>
         <Label x:Name="lblQuantity" Content="15" Grid.Row="1" Grid.Column="3" Height="32" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="21" MouseDoubleClick="lblQuantity_MouseDoubleClick" Background="#d8f7f4" ToolTip="In stock"/>
         <Button x:Name="btnIncrease" Grid.Column="4" Grid.Row="1" MinWidth="20" MinHeight="20" Width="20" Height="20" MaxWidth="40" MaxHeight="40" Margin="4,2,6,2" BorderThickness="0" Click="btnIncrease_Click" ToolTip="Add">
@@ -45,7 +45,7 @@
         </Button>
 
         <!-- Row 2 -->
-        <Label x:Name="DptName" Content="Computers" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="11" Padding="10 0 0 0" FontStyle="Italic" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+        <TextBlock x:Name="DptName" Text="Placeholder" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="10" FontStyle="Italic" HorizontalAlignment="Left" Margin="5 0 0 0" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
         <TextBox x:Name="tbThreshold"  Grid.Row="2" Grid.Column="3" MaxLength="9" HorizontalAlignment="Center" Visibility="Hidden" KeyDown="tbThreshold_KeyDown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Focusable="True" />
         <Label x:Name="lblThreshold" Content="5" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" FontWeight="UltraLight" VerticalAlignment="Center" HorizontalContentAlignment="Center" MouseDoubleClick="lblThreshold_MouseDoubleClick" ToolTip="Threshold"/>
         <Button x:Name="btnDecrease" Grid.Column="4" Grid.Row="2" MinWidth="20" MinHeight="20" Width="20" Height="20" MaxWidth="40" MaxHeight="40" Margin="4,2,6,2" BorderThickness="0" Click="btnDecrease_Click" ToolTip="Remove">
