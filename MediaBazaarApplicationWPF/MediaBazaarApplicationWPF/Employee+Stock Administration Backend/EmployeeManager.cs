@@ -58,7 +58,6 @@ namespace MediaBazaarApplicationWPF
 
         public Employee RemoveEmployee(Employee employee)
         {
-            HistoryLog.UpdateHistoryLogDeleted(employee.UserID);
             EmployeeDatabaseHandler.RemoveFromDatabase(employee.UserID);
             if (this.RemovedEmployeeEvent != null) this.RemovedEmployeeEvent(employee);
             return employee;
@@ -66,7 +65,6 @@ namespace MediaBazaarApplicationWPF
 
         public Employee RemoveEmployee(string userIdentifier)
         {
-
             Employee employee = EmployeeDatabaseHandler.GetEmployee(userIdentifier, true);
             EmployeeDatabaseHandler.RemoveFromDatabase(userIdentifier);
             if (this.RemovedEmployeeEvent != null) this.RemovedEmployeeEvent(employee);

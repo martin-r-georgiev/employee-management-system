@@ -585,7 +585,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
                         try
                         {
                             EmployeeManager manager = new EmployeeManager();
-                           Employee ToAdd= manager.AddEmployee(EmployeeCreationUsername, EmployeeCreationPassword, hourlySalary, EmployeeCreationSelectedRole, EmployeeCreationSelectedDepartment.DepartmentId, workHours, true);
+                            Employee ToAdd= manager.AddEmployee(EmployeeCreationUsername, EmployeeCreationPassword, hourlySalary, EmployeeCreationSelectedRole, EmployeeCreationSelectedDepartment.DepartmentId, workHours, true);
                             HistoryLog.AddToHistoryLog(ToAdd);
                             message = "Sucessfully added new employee to system.";                         
                             EmployeeCreationUsername = "";
@@ -673,10 +673,10 @@ namespace MediaBazaarApplicationWPF.ViewModels
                     SelectedEmployee.DateOfBirth = (SelectedEmployeeBirthdate.HasValue) ? SelectedEmployeeBirthdate : null;
 
                     EmployeeDatabaseHandler.UpdateDatabaseEntry(SelectedEmployee);
+                    HistoryLog.UpdateHistoryLog(SelectedEmployee);
                     RefreshEmployeeList();
 
                     message = "Successfully updated employee personal information.";
-                    HistoryLog.UpdateHistoryLog(SelectedEmployee);
                 }
                 catch (Exception ex) { message = ex.Message; }
             }
@@ -696,6 +696,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
                     if (LoggedInUser.role > SelectedEmployee.Role)
                     {
                         EmployeeDatabaseHandler.RemoveFromDatabase(SelectedEmployee.UserID);
+                        HistoryLog.UpdateHistoryLogDeleted(SelectedEmployee.UserID);
                         this.SelectedEmployeeFirstName = null;
                         this.SelectedEmployeeLastName = null;
                         this.SelectedEmployeeNationality = null;
@@ -710,7 +711,6 @@ namespace MediaBazaarApplicationWPF.ViewModels
                         RefreshEmployeeList();
                         
                         message = "Employee successfully removed from the system.";
-                        HistoryLog.UpdateHistoryLogDeleted(SelectedEmployee.UserID);
                     }
                     else message = "Can only remove employees with a lower role than you!";
                 }

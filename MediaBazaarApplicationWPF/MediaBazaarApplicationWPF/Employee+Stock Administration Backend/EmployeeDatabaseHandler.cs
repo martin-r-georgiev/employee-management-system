@@ -76,7 +76,6 @@ namespace MediaBazaarApplicationWPF
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
                 finally { conn.Close(); }
             }
-
         }
 
 
