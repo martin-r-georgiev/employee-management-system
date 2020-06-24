@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,7 +64,7 @@ namespace MBApplicationUnitTesting
         {
             Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
             HistoryLog.AddToHistoryLog(employee);
-            HistoryLog.UpdateHistoryLog(employee, firstName, lastName, phoneNumber, dateofBirth.ToString("yyyy-MM-dd"), salaryHourlyRate.ToString(), email, address, nationality);
+            HistoryLog.UpdateHistoryLog(employee);
             bool exisits = HistoryLog.CheckIfPersonExists(userID);
             Assert.AreEqual(true, exisits);
             HistoryLog.DeleteFromHistoryLog(userID);

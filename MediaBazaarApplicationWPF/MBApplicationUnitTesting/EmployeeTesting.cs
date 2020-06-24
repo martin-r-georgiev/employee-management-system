@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -314,17 +314,7 @@ namespace MBApplicationUnitTesting
             Assert.AreEqual(NEW_ADDRESS, employee.Address);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void EmployeeNullAddressChangeTest()
-        {
-            // Arrange
-            Employee employee = new Employee(userID, username, password, salaryHourlyRate, role, depID, workHours, false);
-            const string NEW_ADDRESS = null;
-
-            // Act
-            employee.Address = NEW_ADDRESS; 
-        }
+    
 
         [TestMethod]
         public void EmployeeEmailChangeTest()
@@ -575,13 +565,16 @@ namespace MBApplicationUnitTesting
         public void AddEmployeeWithCredentialsTest()
         {
             // Act
-            Employee testEmployee = employeeManager.AddEmployee("UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+            Department ToInsert = new Department("TestNameD", "niceadress", "UNIT_TEST_RESERVED");
+            DepartmentDatabaseHandler.InsertToDB(ToInsert);
+            Employee testEmployee = employeeManager.AddEmployee("UnitTest", "UnitTest", 10, EmployeeRole.Worker, "UNIT_TEST_RESERVED", 16, true);
             Employee employeeEntry = employeeManager.GetEmployee(testEmployee.UserID, false);
 
             // Assert
             Assert.AreEqual(testEmployee.UserID, employeeEntry.UserID);
 
             employeeManager.RemoveEmployee(testEmployee);
+            DepartmentDatabaseHandler.RemoveDepartment("UNIT_TEST_RESERVED");
             // Thread.Sleep(1000);
         }
 
@@ -593,12 +586,13 @@ namespace MBApplicationUnitTesting
 
             // Act
             employeeManager.AddedEmployeeEvent += delegate (Employee e) { eventEmployee = e; };
-            Employee testEmployee = employeeManager.AddEmployee("UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+            Employee testEmployee = employeeManager.AddEmployee("UnitTest", "UnitTest", 10, EmployeeRole.Worker, "UNIT_TEST_RESERVED", 16, true);
 
             // Assert
             Assert.AreEqual(testEmployee.UserID, eventEmployee.UserID);
 
             employeeManager.RemoveEmployee(testEmployee);
+            HistoryLog.DeleteFromHistoryLog(testEmployee.UserID);
             // Thread.Sleep(1000);
         }
 
@@ -606,16 +600,21 @@ namespace MBApplicationUnitTesting
         public void AddEmployeeObjectTest()
         {
             // Arrange
-            Employee testEmployee = new Employee("UNIT_TEST_RESERVED", "UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+            Department ToInsert = new Department("TestNameD", "niceadress", "UNIT_TEST_RESERVED");
+            DepartmentDatabaseHandler.InsertToDB(ToInsert);
+            Employee testEmployee = new Employee("UNIT_TEST_RESERVED", "UnitTest", "UnitTest", 10, EmployeeRole.Worker, "UNIT_TEST_RESERVED", 16, true);
 
             // Act
-            employeeManager.AddEmployee(testEmployee);
+            EmployeeManager employeemanager = new EmployeeManager();
+            employeemanager.AddEmployee(testEmployee);
             Employee employeeEntry = employeeManager.GetEmployee("UNIT_TEST_RESERVED", false);
 
             // Assert
             Assert.AreEqual(testEmployee.UserID, employeeEntry.UserID);
+         
 
             employeeManager.RemoveEmployee(testEmployee);
+            DepartmentDatabaseHandler.RemoveDepartment("UNIT_TEST_RESERVED");
             // Thread.Sleep(1000);
         }
 
@@ -634,6 +633,7 @@ namespace MBApplicationUnitTesting
             Assert.AreEqual(testEmployee.UserID, eventEmployee.UserID);
 
             employeeManager.RemoveEmployee(testEmployee);
+            HistoryLog.DeleteFromHistoryLog(testEmployee.UserID);
             // Thread.Sleep(1000);
         }
 
@@ -641,7 +641,9 @@ namespace MBApplicationUnitTesting
         public void UpdateEmployeeTest()
         {
             // Arrange
-            Employee testEmployee = new Employee("UNIT_TEST_RESERVED", "UnitTest", "UnitTest", 10, EmployeeRole.Worker, "cOAyYEYI90OPfEfVhXAHVA", 16, true);
+            Department ToInsert = new Department("TestNameD", "niceadress", "UNIT_TEST_RESERVED");
+            DepartmentDatabaseHandler.InsertToDB(ToInsert);
+            Employee testEmployee = new Employee("UNIT_TEST_RESERVED", "UnitTest", "UnitTest", 10, EmployeeRole.Worker, "UNIT_TEST_RESERVED", 16, true);
             employeeManager.AddEmployee(testEmployee);
             Employee employeeEntry = employeeManager.GetEmployee("UNIT_TEST_RESERVED", false);
             const int NEW_SALARY_RATE = 20;
@@ -655,6 +657,7 @@ namespace MBApplicationUnitTesting
             Assert.AreEqual(NEW_SALARY_RATE, employeeEntry.SalaryHourlyRate);
 
             employeeManager.RemoveEmployee(testEmployee);
+            DepartmentDatabaseHandler.RemoveDepartment("UNIT_TEST_RESERVED");
             // Thread.Sleep(1000);
         }
 

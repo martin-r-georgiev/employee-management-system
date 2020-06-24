@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace MediaBazaarApplicationWPF
 {
     public static class DepartmentManager
     {
-        public static void AddDepartment(string name, string address)
+        public static Department AddDepartment(string name, string address)
         {
             Department newDep = null;
             try
@@ -19,6 +19,7 @@ namespace MediaBazaarApplicationWPF
                 DepartmentDatabaseHandler.InsertToDB(newDep);
             }
             catch (Exception ex) { MessageBox.Show($"Failed to create Department. Reason: {ex.Message}"); }
+            return newDep;
         }
 
         public static Department GetDepartment(string departmentId, bool needFullData)

@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Bibliography;
 using MediaBazaarApplicationWPF.Commands;
 using System;
 using System.Collections.Generic;
@@ -584,8 +585,9 @@ namespace MediaBazaarApplicationWPF.ViewModels
                         try
                         {
                             EmployeeManager manager = new EmployeeManager();
-                            manager.AddEmployee(EmployeeCreationUsername, EmployeeCreationPassword, hourlySalary, EmployeeCreationSelectedRole, EmployeeCreationSelectedDepartment.DepartmentId, workHours, true);
-                            message = "Sucessfully added new employee to system.";
+                           Employee ToAdd= manager.AddEmployee(EmployeeCreationUsername, EmployeeCreationPassword, hourlySalary, EmployeeCreationSelectedRole, EmployeeCreationSelectedDepartment.DepartmentId, workHours, true);
+                            HistoryLog.AddToHistoryLog(ToAdd);
+                            message = "Sucessfully added new employee to system.";                         
                             EmployeeCreationUsername = "";
                             EmployeeCreationPassword = "";
                             EmployeeCreationSalary = "";
@@ -674,6 +676,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
                     RefreshEmployeeList();
 
                     message = "Successfully updated employee personal information.";
+                    HistoryLog.UpdateHistoryLog(SelectedEmployee);
                 }
                 catch (Exception ex) { message = ex.Message; }
             }

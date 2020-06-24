@@ -40,7 +40,6 @@ namespace MediaBazaarApplicationWPF
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
                 finally { conn.Close(); }
             }
-            HistoryLog.AddToHistoryLog(employee);
         }
 
         public static void UpdateDatabaseEntry(Employee employee)
@@ -77,7 +76,6 @@ namespace MediaBazaarApplicationWPF
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
                 finally { conn.Close(); }
             }
-            HistoryLog.UpdateHistoryLog(employee, employee.FirstName, employee.LastName, employee.PhoneNumber, employee.DateOfBirth.ToString(), employee.SalaryHourlyRate.ToString(), employee.Email, employee.Address, employee.Nationality);
 
         }
 

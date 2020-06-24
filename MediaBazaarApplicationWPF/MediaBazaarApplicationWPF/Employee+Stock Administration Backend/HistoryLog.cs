@@ -36,7 +36,7 @@ namespace MediaBazaarApplicationWPF
 
         }
 
-        public static void UpdateHistoryLog(Employee ToAdd, string FirstName, string LastName, string PhoneNumber, string DateOfBirth, string Salary, string Email, string Address, string Nationality) // updating him based on the details that could've been changed 
+        public static void UpdateHistoryLog(Employee ToAdd) // updating him based on the details that could've been changed 
         {
             using (MySqlConnection conn = SqlConnectionHandler.GetSqlConnection())
             {
@@ -44,17 +44,17 @@ namespace MediaBazaarApplicationWPF
                 using (cmd = new MySqlCommand($"UPDATE historylog SET firstName = @firstName,email=@email,address=@address,nationality=@nationality,lastName = @lastName,phoneNumber = @phoneNumber,startDate = @startDate,dateOfBirth = @dateOfBirth,workHours = @workHours, attendance = @attendance, salary=@salary, role=@role WHERE userID = @userID", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", ToAdd.UserID);
-                    cmd.Parameters.AddWithValue("@firstName", FirstName);
-                    cmd.Parameters.AddWithValue("@lastName", LastName);
-                    cmd.Parameters.AddWithValue("@phoneNumber", PhoneNumber);
-                    cmd.Parameters.AddWithValue("@email", Email);
-                    cmd.Parameters.AddWithValue("@address", Address);
-                    cmd.Parameters.AddWithValue("@nationality", Nationality);
+                    cmd.Parameters.AddWithValue("@firstName", ToAdd.FirstName);
+                    cmd.Parameters.AddWithValue("@lastName", ToAdd.LastName);
+                    cmd.Parameters.AddWithValue("@phoneNumber", ToAdd.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@email", ToAdd.Email);
+                    cmd.Parameters.AddWithValue("@address", ToAdd.Address);
+                    cmd.Parameters.AddWithValue("@nationality", ToAdd.Nationality);
                     cmd.Parameters.AddWithValue("@startDate", ToAdd.StartDate);
-                    cmd.Parameters.AddWithValue("@dateOfBirth", Convert.ToDateTime(DateOfBirth));
+                    cmd.Parameters.AddWithValue("@dateOfBirth", ToAdd.DateOfBirth);
                     cmd.Parameters.AddWithValue("@workHours", ToAdd.WorkHours);
                     cmd.Parameters.AddWithValue("@attendance", ToAdd.Attendance);
-                    cmd.Parameters.AddWithValue("@salary", Salary);
+                    cmd.Parameters.AddWithValue("@salary", ToAdd.SalaryHourlyRate);
                     cmd.Parameters.AddWithValue("@role", ToAdd.Role);
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
@@ -71,7 +71,7 @@ namespace MediaBazaarApplicationWPF
                 MySqlCommand cmd;
                 using (cmd = new MySqlCommand($"UPDATE historylog SET endDate = @endDate WHERE userID = @userID", conn))
                 {
-                   
+                    cmd.Parameters.AddWithValue("@userID", userID);
                     cmd.Parameters.AddWithValue("@endDate", System.DateTime.Today.ToString("yyyy-MM-dd"));         
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();

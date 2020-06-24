@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -123,7 +123,7 @@ namespace MBApplicationUnitTesting
         {
             //Arrange
 
-            Department Test = new Department(name, address, departmentID);
+            Department Test=DepartmentManager.AddDepartment(name, address);
             Employee TestEmplyoee = new Employee(userID, username, password, salaryHourlyRat, role, departmentID, workHours, false);
             Employee TestEmplyoee2 = new Employee("TEST_ID_2", username, password, salaryHourlyRat, role, departmentID, workHours, false);
             Test.AssignEmployeeTo(TestEmplyoee, departmentID);
@@ -135,7 +135,8 @@ namespace MBApplicationUnitTesting
 
 
             Assert.IsNull(AssignedEmplyoee);
-
+            DepartmentManager.RemoveFromDatabase(Test);
+            DepartmentDatabaseHandler.RemoveDepartment(departmentID);
             EmployeeDatabaseHandler.RemoveFromDatabase(userID);
             EmployeeDatabaseHandler.RemoveFromDatabase("TEST_ID_2");
 
