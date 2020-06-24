@@ -71,14 +71,14 @@
                 </Button.Background>
             </Button>
             <!--Last success-->
-            <TabControl Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="4" Background="White">
+            <TabControl Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="4" Background="White" >
                 <!--<dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController/>
                 </dragablz:TabablzControl.InterTabController>-->
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Employees" Foreground="Black"/>
+                            <TextBlock Text="Employees" Padding="10 10" Foreground="Black"/>
                             <!--FloralWhite-->
                         </StackPanel>
                     </TabItem.Header>
@@ -216,7 +216,7 @@
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Departments and Stock" Foreground="Black"/>
+                            <TextBlock Text="Departments and Stock" Padding="10 10" Foreground="Black"/>
                         </StackPanel>
                     </TabItem.Header>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

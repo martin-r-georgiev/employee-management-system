@@ -75,7 +75,7 @@
 
             <!-- Row 2 -->
             <UniformGrid Columns="2" Rows="2" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Viewbox MaxHeight="340">
+                <Viewbox MaxHeight="250">
                     <Button Name="StockButton" ToolTip="Open 'Stock' menu" MinHeight="100" MinWidth="100" Height="100" Width="100" Margin="15 15" 
                         Visibility="{Binding BtnStockVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}" Click="StockButton_Click">
                     <Grid MinHeight="100" MinWidth="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -84,7 +84,7 @@
                     </Grid>
                 </Button>
                 </Viewbox>
-                <Viewbox MaxHeight="340">
+                <Viewbox MaxHeight="250">
                     <Button Name="WorkshiftsButton" ToolTip="Open 'Work Shifts' menu" MinHeight="100" MinWidth="100" Height="100" Width="100" Margin="15 15" Visibility="{Binding BtnWorkshiftsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}" Click="WorkshiftsButton_Click">
                     <Grid MinHeight="100" MinWidth="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="ClockOutline" HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="65" Margin="0,0,0,3"/>
@@ -92,7 +92,7 @@
                     </Grid>
                 </Button>
                 </Viewbox>
-                <Viewbox MaxHeight="340">
+                <Viewbox MaxHeight="250">
                     <Button Name="StatisticsButton" ToolTip="Open 'Statistics' menu" MinHeight="100" MinWidth="100" Height="100" Width="100" Margin="15 15" Visibility="{Binding BtnStatisticsVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}" Click="StatisticsButton_Click">
                     <Grid MinHeight="100" MinWidth="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="Poll" HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="65" Margin="0,0,0,3"/>
@@ -100,7 +100,7 @@
                     </Grid>
                 </Button>
                 </Viewbox>
-                <Viewbox MaxHeight="340">
+                <Viewbox MaxHeight="250">
                     <Button Name="ManagementButton" ToolTip="Open 'Management' menu"  MinHeight="100" MinWidth="100" Height="100" Width="100" Margin="15 15" Visibility="{Binding BtnManagementVisible, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Hidden}" Click="ManagementButton_Click">
                     <Grid MinHeight="100" MinWidth="100" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="Cog" HorizontalAlignment="Center" VerticalAlignment="Center" Height="65" Width="65" Margin="0,0,0,3"/>
@@ -130,9 +130,9 @@
             </ScrollViewer>
 
             <Border Grid.Row="3" Grid.Column="4" Grid.RowSpan="4"  Height="auto" MinWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="{Binding PnlRequestsVisibility, Converter={StaticResource VisibilityBoolConvert}, FallbackValue=Show}"
-                BorderBrush="Teal" BorderThickness="0">
+                BorderBrush="Teal" BorderThickness="1">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                    <DockPanel Name="PanelRequests"  MinHeight="150"   Panel.ZIndex="1">
+                    <DockPanel Name="PanelRequests"  MinHeight="72" Background="White"  Panel.ZIndex="1">
                         <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding Notifications}"/>
                     </DockPanel>
                 </ScrollViewer>
