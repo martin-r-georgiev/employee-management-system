@@ -71,7 +71,7 @@
         <CheckBox x:Name="cbThursdayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="4" IsChecked="{Binding Path=CheckBoxThursdayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
         <CheckBox x:Name="cbFridayE" Content="17:00 - 21:00" Grid.Row="4" Grid.Column="5" IsChecked="{Binding Path=CheckBoxFridayE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=False}"/>
 
-        <Button Content="Confirm" Grid.Row="4" Grid.RowSpan="3" Grid.Column="6" Height="24" ToolTip="Confirm selected preferences" FontSize="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=ConfirmWorkshiftPreferences}"/>
+        <Button Content="Confirm" Grid.Row="3" Grid.RowSpan="3" Grid.Column="6" Height="24" ToolTip="Confirm selected preferences" FontSize="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=ConfirmWorkshiftPreferences}"/>
 
         <!--Row 5-->
         <TextBlock Text="{Binding ConfirmText}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="6" 

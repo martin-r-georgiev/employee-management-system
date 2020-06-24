@@ -49,7 +49,7 @@
                 <lvc:Axis Title="Quantity"/>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
-        <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Items Quantity" Padding="0 15 0 0" FontWeight="Bold"/>
+        <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Items Occurrence per Department" Padding="0 15 0 0" FontWeight="Bold"/>
 
         <lvc:PieChart x:Name="PieChartFirst" Grid.Row="1" Margin="0 0 0 20" Grid.Column="2" StartingRotationAngle="0" Series="{Binding FirstPie}">
             

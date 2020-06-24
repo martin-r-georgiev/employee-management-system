@@ -96,8 +96,7 @@ namespace MediaBazaarApplicationWPF.ViewModels
 		{
 			firstPie = new SeriesCollection();
 			Func<ChartPoint, string> labelPoint = chartPoint =>
-string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
-
+			string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 
 			using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
 			{
@@ -153,7 +152,7 @@ string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 		{
 			thirdPie = new SeriesCollection();
 			Func<ChartPoint, string> labelPoint = chartPoint =>
-	string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+			string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 
 			using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
 			{

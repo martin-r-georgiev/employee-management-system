@@ -85,14 +85,7 @@ namespace MediaBazaarApplicationWPF
             {
                 try
                 {
-                    using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM employees WHERE userID=@userID", conn))
-                    {
-                        cmd.Parameters.AddWithValue("@userid", userIdentifier);
-                        cmd.ExecuteNonQuery();
-                        cmd.Dispose();
-                    }
-
-                    using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM users WHERE userID=@userID", conn))
+                    using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM notifications WHERE employeeID=@userID", conn))
                     {
                         cmd.Parameters.AddWithValue("@userid", userIdentifier);
                         cmd.ExecuteNonQuery();
@@ -107,6 +100,20 @@ namespace MediaBazaarApplicationWPF
                     }
 
                     using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM workshifts WHERE userID=@userID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userid", userIdentifier);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+
+                    using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM employees WHERE userID=@userID", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userid", userIdentifier);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+
+                    using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM users WHERE userID=@userID", conn))
                     {
                         cmd.Parameters.AddWithValue("@userid", userIdentifier);
                         cmd.ExecuteNonQuery();
