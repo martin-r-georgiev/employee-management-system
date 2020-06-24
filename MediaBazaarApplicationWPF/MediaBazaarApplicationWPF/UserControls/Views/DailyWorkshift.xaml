@@ -79,6 +79,6 @@
         <Border Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="2">
             <Canvas x:Name="workshiftThreeCell" Grid.IsSharedSizeScope="True"/>
         </Border>
-        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="11" Background="Teal"/>
+        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="11" Background="Teal" Margin="80 0 0 0"/>
     </Grid>
 </UserControl>
