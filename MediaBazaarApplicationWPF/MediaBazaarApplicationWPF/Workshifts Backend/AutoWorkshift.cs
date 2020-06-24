@@ -117,7 +117,7 @@ namespace MediaBazaarApplicationWPF
                         // Checks if anyone is assigned to current shift
                         if(!HasPeopleAssigned(converttoday(i), j, department))
                         {
-                            for (int index = 0; index < Schedule.Count(); index++)
+                            for (int index = 0; index < Schedule.Count; index++)
                             {
                                 if(HasMultipleEntries(Schedule[i].Day, Schedule[i].Workshift) && Schedule[i].DepartmentID == department)
                                 {
@@ -143,13 +143,13 @@ namespace MediaBazaarApplicationWPF
             string message = "";
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM workshiftsupdate", con))
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT nextupdate FROM workshiftsupdate", con))
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
                     if (dataReader.Read())
                     {
-                        if (DateTime.Parse(dataReader["nextupdate"].ToString()) <= DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd")))
+                        if (dataReader.GetDateTime(0) <= DateTime.Now)
                         {
                             Attendance.UpdateAllAttendance();
                             GenerateWorkshiftSchedule(true);
@@ -213,15 +213,14 @@ namespace MediaBazaarApplicationWPF
                 {
                     try
                     {
-                        using (MySqlCommand cmd = new MySqlCommand($"DELETE from workshiftsupdate where 1", conn))
+                        using (MySqlCommand cmd = new MySqlCommand($"DELETE FROM workshiftsupdate", conn))
                         {
-
                             cmd.ExecuteNonQuery();
                             cmd.Dispose();
                         }
                         using (MySqlCommand cmd = new MySqlCommand($"INSERT INTO workshiftsupdate (nextupdate) VALUES (@nextupdate)", conn))
                         {
-                            cmd.Parameters.AddWithValue("@nextupdate", Schedule[Schedule.Count - 1].Date.ToString("yyyy/MM/dd"));
+                            cmd.Parameters.AddWithValue("@nextupdate", Schedule[Schedule.Count - 1].Date.Date);
                             cmd.ExecuteNonQuery();
                             cmd.Dispose();
                         }

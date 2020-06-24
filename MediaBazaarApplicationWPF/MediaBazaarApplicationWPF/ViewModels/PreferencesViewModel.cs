@@ -397,12 +397,12 @@ namespace MediaBazaarApplicationWPF.ViewModels
         {
             for (int i = 0; i < 5; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 1; j < 4; j++)
                 {
                     if (this.CheckBoxes[i, j] == true)
                     {
-                        int day = (i / 3);
-                        int shift = i % 3;
+                        int day = i;
+                        int shift = j - 1;
                         WorkshiftPreferences newPreference = new WorkshiftPreferences(LoggedInUser.userID, day, shift, DateTime.Now.ToString("yyyy/MM/dd"));
                         newPreference.ExpediteToDatabase();
                     }
