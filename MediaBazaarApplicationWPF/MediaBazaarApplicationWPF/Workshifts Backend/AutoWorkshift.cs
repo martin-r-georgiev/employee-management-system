@@ -190,6 +190,7 @@ namespace MediaBazaarApplicationWPF
 
             foreach (WorkshiftData w in Schedule) // actually adding it to the database
             {
+                if(w.Date>DateTime.Now)
                 using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
                 {
                     MySqlCommand cmd;
