@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:MediaBazaarApplicationWPF.UserControls.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
-        Title="EmployeeListingView" MinWidth="780" MinHeight="540" Height="600" Width="820" WindowStartupLocation="CenterScreen">
+        Title="EmployeeListingView" MinWidth="810" MinHeight="540" Height="600" Width="820" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityBoolConvert" />
     </Window.Resources>
@@ -120,6 +120,7 @@
                             <TextBlock Text="{Binding Gender, StringFormat=Gender: {0}, TargetNullValue=''}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
                             <TextBlock Text="{Binding SelectedEmployee.Nationality, StringFormat=Nationality: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
                             <TextBlock Text="{Binding SelectedEmployee.DepartmentName, StringFormat=Department: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7 5"/>
+                            <TextBlock Text="{Binding SelectedEmployee.Role, StringFormat=Role: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>   
                         </DockPanel>
                     </Border>
 
@@ -129,12 +130,11 @@
                         <DockPanel VerticalAlignment="Top">
                             <TextBlock Text="{Binding SelectedEmployee.Email, StringFormat=E-Mail: {0}}"  DockPanel.Dock="Top" FontSize="16" Margin="7"/>
                             <TextBlock Text="{Binding SelectedEmployee.PhoneNumber, StringFormat=Phone Number: {0}}" DockPanel.Dock="Top" FontSize="16" Margin="7"/>
-                            <TextBlock Text="{Binding SelectedEmployee.Address, StringFormat=Address: {0}}" DockPanel.Dock="Top" FontSize="16" Margin="7"/>
+                            <TextBlock Text="{Binding SelectedEmployee.Address, StringFormat=Address: {0}}" TextWrapping="Wrap" DockPanel.Dock="Top" FontSize="16" Margin="7"/>
                         </DockPanel>
                     </Border>
                     <Border Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" BorderBrush="Aqua" BorderThickness="0" Margin="5">
-                        <DockPanel VerticalAlignment="Center">
-                            <TextBlock Text="{Binding SelectedEmployee.Role, StringFormat=Role: {0}}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
+                        <DockPanel VerticalAlignment="Top">
                             <TextBlock Text="{Binding SelectedEmployee.Attendance, StringFormat=Attendance: {0}%}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
                             <TextBlock Text="{Binding SelectedEmployee.SalaryHourlyRate, StringFormat=Salary: {0}/hr}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
                             <TextBlock Text="{Binding WorkingSince}" DockPanel.Dock="Top" FontSize="15" Margin="7"/>
