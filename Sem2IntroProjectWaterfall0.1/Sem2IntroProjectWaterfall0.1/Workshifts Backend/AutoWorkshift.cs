@@ -136,13 +136,13 @@ namespace Sem2IntroProjectWaterfall0._1
             string message = "";
             using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
             {
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT * FROM workshiftsupdate", con))
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT nextupdate FROM workshiftsupdate", con))
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
                     if (dataReader.Read())
                     {
-                            if (DateTime.Parse(dataReader["nextupdate"].ToString()) <= DateTime.Parse(DateTime.Now.ToString("yyyy/MM/dd")))
+                            if (dataReader.GetDateTime(0) <= DateTime.Now)
                             {
                                 Attendance.UpdateAllAttendance();
                                 GenerateWorkshiftSchedule();
@@ -199,23 +199,26 @@ namespace Sem2IntroProjectWaterfall0._1
                     con.Close();             
                 }
             }
-            using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
-            {
-                MySqlCommand cmd;
-                using (cmd = new MySqlCommand($"DELETE from workshiftsupdate where 1", con))
-                {
-                   
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                }
-                using (cmd = new MySqlCommand($"INSERT INTO workshiftsupdate (nextupdate) VALUES (@nextupdate)", con))
-                {
-                    cmd.Parameters.AddWithValue("@nextupdate", Schedule[Schedule.Count() - 1].Date.ToString("yyyy/MM/dd"));
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                }
 
-                con.Close();
+            if(Schedule.Count > 0)
+            {
+                using (MySqlConnection con = SqlConnectionHandler.GetSqlConnection())
+                {
+                    MySqlCommand cmd;
+                    using (cmd = new MySqlCommand($"DELETE FROM workshiftsupdate", con))
+                    {
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+                    using (cmd = new MySqlCommand($"INSERT INTO workshiftsupdate (nextupdate) VALUES (@nextupdate)", con))
+                    {
+                        cmd.Parameters.AddWithValue("@nextupdate", Schedule[Schedule.Count - 1].Date.Date);
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                    }
+
+                    con.Close();
+                }
             }
         }
 
